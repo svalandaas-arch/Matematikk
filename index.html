@@ -724,6 +724,18 @@ svg.ch{display:block;width:100%;max-width:560px;min-width:420px;height:auto}
 .k9-cell.h{background:var(--line)}
 .k9-dice td,.k9-dice th{text-align:center;min-width:2.4rem}
 .k9-dice td.on{background:var(--red-soft);color:var(--red);font-weight:700}
+.wsg-hint{display:block;margin-top:6px;font-size:.8rem;color:var(--muted)}
+.ws.easy{font-size:13pt}
+.ws.easy .q{font-size:12.5pt;line-height:1.5}
+.ws.easy .qx,.ws.easy .q .math,.ws.easy .qx .math{font-size:15pt!important}
+.ws.easy .opts{font-size:12.5pt;gap:2.5mm 7mm}
+.ws.easy .opts span::before{width:4.6mm;height:4.6mm}
+.ws.easy .items{gap:6mm 9mm}
+.ws.easy .rule-only{font-size:12.5pt}
+.ws.easy .blank{min-width:22mm;height:8mm}
+.ws.easy .it .lt{font-size:12pt}
+.wsg-form .wsg-half{grid-column:span 2}
+@media (max-width:560px){.wsg-form .wsg-half{grid-column:1/-1}}
 
 /*K9CSSEND*/
 .lvd{display:inline-block;width:.6em;height:.6em;border-radius:50%;background:var(--c);margin-right:.45em;vertical-align:.05em;flex:none}
@@ -2797,25 +2809,26 @@ function wsWord(w,i){
 function wsBuild(tid,L,o){
   const ch=BOOK.chapters.find(c=>c.groups.some(g=>g.topics.includes(tid)));
   const seen=new Set(), mk=(id,Lv,f)=>{ const T=TRAINERS[id]; const ff={}; (T.filters||[]).forEach(F0=>ff[F0.k]=F0.def); Object.assign(ff,f); const nL=T.levels?T.levels.length:1; return T.gen(Math.min(Lv,nL),ff); };
-  const recipe=(WS_R[tid]||{})[L]||[];
+  const FZ=L===0?WS_F[tid]:null; const mk0=(id,Lv,f)=>FZ?fz[id]():mk(id,Lv,f);
+  const recipe=FZ?FZ[3].map(([id,n,cols,work,ins])=>[id,0,{},n,cols,work,ins]):((WS_R[tid]||{})[L]||[]);
   const blocks=recipe.map(([id,Lv,f,n,cols,work,ins])=>{ let m=Math.max(1,Math.round(n*o.amount)); if(m>cols&&cols>1) m=Math.ceil(m/cols)*cols;
-    const items=[]; let g=0; while(items.length<m&&g<400){ g++; let p; try{ p=mk(id,Lv,f); }catch(e){ continue; } if(!p||seen.has(p.q)||/^(.+) − \1$/.test(p.q)) continue; seen.add(p.q);
+    const items=[]; let g=0; while(items.length<m&&g<400){ g++; let p; try{ p=mk0(id,Lv,f); }catch(e){ continue; } if(!p||(seen.has(p.q)&&g<250)||/^(.+) − \1$/.test(p.q)) continue; seen.add(p.q);
       items.push({q:p.q, expr:!!p.expr, pre:p.pre||'', u:p.u||'', mc:p.mc?p.mc.opts:null, fr:!!p.fr, multi:p.multi?p.multi.map(x=>x.label):null, pa:!!p.pa, ex:!!p.ex, fac:!!p.fac, big:/<svg|<table|<div/.test(p.q), ans:wsAns(p), steps:p.steps||[], label:p.label||''}); }
     return {ins:ins||items[0]?.label||'Svar på oppgavene.', cols, work, items}; }).filter(b=>b.items.length);
   let example=null;
-  if(L<3&&o.example&&recipe.length){ const [id,Lv,f]=recipe[0]; for(let k=0;k<60;k++){ let p; try{ p=mk(id,Lv,f); }catch(e){ continue; } if(!p||seen.has(p.q)||/<svg|<table|tr-fig/.test(p.q)||!p.steps||p.steps.length<2) continue; example={q:p.q, ans:p.mc?p.mc.opts[p.mc.a]:wsAns(p), steps:p.steps}; break; } }
-  const tt=o.nText>0?textTasks(tid,L,o.nText):[];
+  if(L<3&&o.example&&recipe.length){ const [id,Lv,f]=recipe[0]; for(let k=0;k<60;k++){ let p; try{ p=mk0(id,Lv,f); }catch(e){ continue; } if(!p||seen.has(p.q)||/<svg|<table|tr-fig/.test(p.q)||!p.steps||p.steps.length<2) continue; example={q:p.q, ans:p.mc?p.mc.opts[p.mc.a]:wsAns(p), steps:p.steps}; break; } }
+  const tt=o.nText>0?(FZ?fzText(tid,o.nText):textTasks(tid,L,o.nText)):[];
   if(tt.length) blocks.push({ins:tt.length>1?'Løs oppgavene. Vis hvordan du tenker.':'Løs oppgaven. Vis hvordan du tenker.',cols:1,word:true,items:tt,tag:'Tekstoppgave'});
-  return {tid,L,title:TOPICS[tid].title,num:ch?ch.num:'',chap:ch?ch.title:'',grade:gradeOf(ch),blocks,example};
+  return {tid,L,title:TOPICS[tid].title,num:ch?ch.num:'',chap:ch?ch.title:'',grade:gradeOf(ch),blocks,example,mal:FZ?FZ[0]:null,husk:FZ?FZ[1]:null};
 }
-const wsDots=L=>`<span class="dots">${[1,2,3].map(k=>`<i class="${k<=L?'on':''}"></i>`).join('')}</span>`;
+const wsDots=L=>L===0?'<span class="dots"><i class="on" style="border-radius:1px"></i></span>':`<span class="dots">${[1,2,3].map(k=>`<i class="${k<=L?'on':''}"></i>`).join('')}</span>`;
 function wsSheet(d,v){
   const lv=WS_LV[d.L];
   let h=`<header class="top"><div><p class="kick">Matematikk ${d.grade||8}. trinn · Kapittel ${d.num} · ${d.chap}${v?` · Variant ${v}`:''}</p><h1 class="${d.title.length>26?'long':''}">${d.title}</h1></div><div class="wbadge"><span class="pill">${lv.name}${wsDots(d.L)}</span><small>${lv.sub}</small></div></header>
   <div class="who"><span>Navn</span><i></i><span>Klasse</span><i></i><span>Dato</span><i></i></div>
-  <div class="goal"><b>Mål</b><span>${WS_MAL[d.tid]||''}</span></div>`;
+  <div class="goal"><b>Mål</b><span>${d.mal||WS_MAL[d.tid]||''}</span></div>`;
   if(d.example) h+=`<section class="ex"><div class="h"><b>Slik gjør du</b><span>Eksempel</span></div><div class="bd${d.example.q.replace(/<[^>]+>/g,'').length>45?' stack':''}"><div class="task"><div>${d.example.q}</div>${d.example.ans?`<div style="margin-top:2mm;font-size:10pt;color:var(--lv)">Svar: ${d.example.ans}</div>`:''}</div><ol>${d.example.steps.map(s=>`<li><span>${s}</span></li>`).join('')}</ol></div></section>`;
-  else if(WS_HUSK[d.tid]) h+=`<section class="ex"><div class="h"><b>Husk</b><span>Regel</span></div><div class="rule-only">${WS_HUSK[d.tid]}</div></section>`;
+  if(d.husk||(!d.example&&WS_HUSK[d.tid])) h+=`<section class="ex"><div class="h"><b>${d.husk?'Tips':'Husk'}</b><span>${d.husk?'Huskeregel':'Regel'}</span></div><div class="rule-only">${d.husk||WS_HUSK[d.tid]}</div></section>`;
   d.blocks.forEach((b,k)=>{ h+=`<div class="task-h"><span class="no">Oppgave ${k+1}</span><span class="ins">${b.ins}</span>${b.tag?`<span class="tag">${b.tag}</span>`:''}</div><div class="items c${b.cols}">${b.items.map((p,i)=>b.word?wsWord(p,i):wsItem(p,i,b.work)).join('')}</div>`; });
   if(d.L===3&&WS_TALK[d.tid]) h+=`<div class="talk"><b>Tenk og forklar.</b> ${WS_TALK[d.tid]}</div>`;
   h+=`<div class="self"><span class="t">Hvordan gikk det?</span><span class="wch"><span>Jeg klarte alt selv</span><span>Jeg trengte litt hjelp</span><span>Jeg trenger mer øving</span></span><span class="nx">${d.L<3?`Neste: ${WS_LV[d.L+1].name}`:'Bra jobbet!'}</span></div>`;
@@ -2828,23 +2841,48 @@ function wsKey(d,v){
   if(d.L===3) h+=`<p class="knote"><b>Tenk og forklar:</b> ingen fasit. La elevene forklare for hverandre og få frem ulike løsninger.</p>`;
   return h+'</div>';
 }
+function wsFit(tid,L,o){
+  const lv=WS_LV[L], st=`--lv:${lv.c};--lv-soft:${lv.soft}`;
+  let m=document.getElementById('ws-measure'); if(!m){ m=document.createElement('div'); m.id='ws-measure'; m.setAttribute('aria-hidden','true'); m.style.cssText='position:absolute;left:-12000px;top:0;width:182mm;visibility:hidden;pointer-events:none'; document.body.appendChild(m); }
+  const ph=265*96/25.4, P=o.pages, meas=d=>{ m.innerHTML=`<article class="ws ws-sheet${L===0?' easy':''}" style="${st};width:182mm;padding:0;min-height:0;box-shadow:none;zoom:1">${wsSheet(d,'')}</article>`; const art=m.firstChild, base=art.getBoundingClientRect().top;
+    const els=[...art.querySelectorAll('.top,.who,.goal,.ex,.task-h,.it,.talk,.self')].filter(e=>!e.parentElement.closest('.it,.ex'));
+    const rows=[]; els.forEach(e=>{ const r=e.getBoundingClientRect(), t=r.top-base, b=r.bottom-base, last=rows[rows.length-1];
+      if(last&&Math.abs(last.t-t)<2) last.b=Math.max(last.b,b); else rows.push({t,b,h:e.classList.contains('task-h')}); });
+    const units=[]; for(let i=0;i<rows.length;i++){ const r=rows[i]; if(r.h&&rows[i+1]){ units.push({t:r.t,b:rows[i+1].b}); i++; } else units.push(r); }
+    let start=0, pages=1, end=0; units.forEach(u=>{ if(u.b-start>ph&&u.t>start){ pages++; start=u.t; } end=u.b; });
+    return pages-1+(end-start)/ph; };
+  const fits=x=>x<=P-0.07, goodLow=P-1+0.45;
+  let nT=o.nText, best=null, bestH=0, prevBest=null;
+  for(let round=0; round<4 && !best; round++){
+    let lo=0.1, hi=4*P+2;
+    for(let it=0; it<11; it++){ const a=it===0?lo:(lo+hi)/2, d=wsBuild(tid,L,Object.assign({},o,{amount:a,nText:nT})), x=meas(d);
+      if(fits(x)){ if(!best||x>=bestH-0.01){ best=d; bestH=Math.max(x,bestH); } lo=a; } else { if(it===0) break; hi=a; } }
+    if(!best) nT=Math.max(0,nT-1);
+    else if(bestH<P-0.15&&nT<8&&round<3){ const keep=(prevBest&&prevBest[1]>bestH)?prevBest:[best,bestH]; nT+=1; best=null; bestH=0; prevBest=keep; }
+  }
+  if(prevBest&&(!best||prevBest[1]>bestH)){ best=prevBest[0]; bestH=prevBest[1]; }
+  if(!best){ for(const ex of [true,false]){ const d=wsBuild(tid,L,Object.assign({},o,{amount:0.1,nText:0,example:ex&&o.example})); if(fits(meas(d))||!ex){ best=d; break; } }
+    while(best.blocks.length>1&&!fits(meas(best))) best.blocks.pop(); }
+  m.innerHTML=''; return best;
+}
 function wsDocument(tid,L,o){
-  const vs=o.ab?['A','B']:[''], ds=vs.map(()=>wsBuild(tid,L,o)), lv=WS_LV[L], st=`style="--lv:${lv.c};--lv-soft:${lv.soft}"`;
-  let h=ds.map((d,i)=>`<article class="ws ws-sheet" ${st} aria-label="Elevark${vs[i]?' variant '+vs[i]:''}">${wsSheet(d,vs[i])}</article>`).join('');
-  if(o.key) h+=ds.map((d,i)=>`<article class="ws ws-sheet ws-keysheet" ${st} aria-label="Fasit${vs[i]?' variant '+vs[i]:''}">${wsKey(d,vs[i])}</article>`).join('');
+  const vs=o.ab?['A','B']:[''], ds=vs.map(()=>o.pages?wsFit(tid,L,o):wsBuild(tid,L,o)), lv=WS_LV[L], st=`style="--lv:${lv.c};--lv-soft:${lv.soft}"`;
+  let h=ds.map((d,i)=>`<article class="ws ws-sheet${L===0?' easy':''}" ${st} aria-label="Elevark${vs[i]?' variant '+vs[i]:''}">${wsSheet(d,vs[i])}</article>`).join('');
+  if(o.key) h+=ds.map((d,i)=>`<article class="ws ws-sheet ws-keysheet${L===0?' easy':''}" ${st} aria-label="Fasit${vs[i]?' variant '+vs[i]:''}">${wsKey(d,vs[i])}</article>`).join('');
   return h+`<style>@media print{@page{@bottom-left{content:"Matematikk ${ds[0].grade||8}. trinn"}}}</style>`;
 }
 function mountWsGen(root){
-  const S=Object.assign({tid:'likninger',L:1,amount:1,nText:2,example:true,key:true,ab:false},(()=>{ try{ return JSON.parse(localStorage.getItem('mat8-wsg'))||{}; }catch(e){ return {}; } })());
+  const S=Object.assign({tid:'likninger',L:1,pages:2,nText:2,example:true,key:true,ab:false},(()=>{ try{ return JSON.parse(localStorage.getItem('mat8-wsg'))||{}; }catch(e){ return {}; } })());
   if(!gradeTids().includes(S.tid)) S.tid=gradeTids()[0];
+  if(![0,1,2,3].includes(S.L)) S.L=1; if(![1,2,3,4].includes(S.pages)) S.pages=2; delete S.amount;
   const save=()=>{ try{ localStorage.setItem('mat8-wsg',JSON.stringify(S)); }catch(e){} };
   const opts=CHS().map(ch=>`<optgroup label="Kapittel ${ch.num} · ${ch.title}">${order(ch).map(t=>`<option value="${t}">${TOPICS[t].title}</option>`).join('')}</optgroup>`).join('');
   root.innerHTML=`<div class="wsg-form">
       <label class="wsg-f wsg-wide"><span class="eyebrow">Tema</span><select data-w="tid">${opts}</select></label>
-      <div class="wsg-f"><span class="eyebrow" id="wsg-l">Nivå</span><div class="seg" role="group" aria-labelledby="wsg-l">${[1,2,3].map(n=>`<button type="button" data-wl="${n}" aria-pressed="${S.L===n}">Nivå ${n}</button>`).join('')}</div></div>
-      <div class="wsg-f"><span class="eyebrow" id="wsg-a">Mengde regneoppgaver</span><div class="seg" role="group" aria-labelledby="wsg-a">${[[0.6,'Færre'],[1,'Vanlig'],[1.5,'Flere']].map(([v,t])=>`<button type="button" data-wa="${v}" aria-pressed="${S.amount===v}">${t}</button>`).join('')}</div></div>
+      <div class="wsg-f wsg-wide"><span class="eyebrow" id="wsg-l">Nivå</span><div class="seg" role="group" aria-labelledby="wsg-l">${[0,1,2,3].map(n=>`<button type="button" data-wl="${n}" aria-pressed="${S.L===n}" ${n===0?'title="Tilsvarer 4.–5. trinn"':''}>${n===0?'Forenklet':'Nivå '+n}</button>`).join('')}</div><small class="wsg-hint">Forenklet tilsvarer 4.–5. trinn, med større skrift og huskeregel.</small></div>
+      <div class="wsg-f wsg-half"><span class="eyebrow" id="wsg-a">Antall sider (elevark)</span><div class="seg" role="group" aria-labelledby="wsg-a">${[1,2,3,4].map(v=>`<button type="button" data-wa="${v}" aria-pressed="${S.pages===v}">${v} ${v===1?'side':'sider'}</button>`).join('')}</div><small class="wsg-hint">Antall oppgaver tilpasses så arket fyller sidene. Fasiten kommer i tillegg.</small></div>
       <label class="wsg-f"><span class="eyebrow">Tekstoppgaver</span><select data-w="nt">${[0,1,2,3,4,5,6].map(n=>`<option value="${n}">${n===0?'Ingen':n}</option>`).join('')}</select></label>
-      <div class="wsg-f wsg-checks"><label><input type="checkbox" data-w="ex"> Gjennomgått eksempel (nivå 1 og 2)</label><label><input type="checkbox" data-w="key"> Fasit bakerst</label><label><input type="checkbox" data-w="ab"> Lag variant A og B med ulike tall</label></div>
+      <div class="wsg-f wsg-checks"><label><input type="checkbox" data-w="ex"> Gjennomgått eksempel (forenklet, nivå 1 og 2)</label><label><input type="checkbox" data-w="key"> Fasit bakerst</label><label><input type="checkbox" data-w="ab"> Lag variant A og B med ulike tall</label></div>
       <div class="wsg-f wsg-go"><button class="btn" type="button" data-w="make">Lag ark</button></div>
     </div>
     <div class="wsg-out" data-w="out" hidden>
@@ -2857,10 +2895,10 @@ function mountWsGen(root){
   q('tid').addEventListener('change',e=>{ S.tid=e.target.value; save(); });
   q('nt').addEventListener('change',e=>{ S.nText=+e.target.value; save(); });
   ['ex','key','ab'].forEach(k=>q(k).addEventListener('change',e=>{ S[{ex:'example',key:'key',ab:'ab'}[k]]=e.target.checked; save(); }));
-  root.querySelectorAll('[data-wl]').forEach(b=>b.addEventListener('click',()=>{ S.L=+b.dataset.wl; S.nText=[0,2,3,3][S.L]; q('nt').value=String(S.nText); root.querySelectorAll('[data-wl]').forEach(x=>x.setAttribute('aria-pressed',String(x===b))); save(); }));
-  root.querySelectorAll('[data-wa]').forEach(b=>b.addEventListener('click',()=>{ S.amount=+b.dataset.wa; root.querySelectorAll('[data-wa]').forEach(x=>x.setAttribute('aria-pressed',String(x===b))); save(); }));
+  root.querySelectorAll('[data-wl]').forEach(b=>b.addEventListener('click',()=>{ S.L=+b.dataset.wl; S.nText=[2,2,3,3][S.L]; q('nt').value=String(S.nText); root.querySelectorAll('[data-wl]').forEach(x=>x.setAttribute('aria-pressed',String(x===b))); save(); }));
+  root.querySelectorAll('[data-wa]').forEach(b=>b.addEventListener('click',()=>{ S.pages=+b.dataset.wa; root.querySelectorAll('[data-wa]').forEach(x=>x.setAttribute('aria-pressed',String(x===b))); save(); }));
   const fit=()=>{ const pv=q('prev'); if(!pv) return; const w=pv.clientWidth, z=Math.min(1,(w-4)/794); pv.querySelectorAll('.ws-sheet').forEach(s=>{ s.style.zoom=z; }); };
-  const make=()=>{ const out=q('out'), pv=q('prev'); pv.innerHTML=wsDocument(S.tid,S.L,{amount:S.amount,nText:S.nText,example:S.example,key:S.key,ab:S.ab}); out.hidden=false; q('msg').textContent=''; fit(); };
+  const make=()=>{ const out=q('out'), pv=q('prev'); pv.innerHTML=wsDocument(S.tid,S.L,{amount:1,pages:S.pages,nText:S.nText,example:S.example,key:S.key,ab:S.ab}); out.hidden=false; q('msg').textContent=''; fit(); };
   q('make').addEventListener('click',()=>{ make(); q('out').scrollIntoView({behavior:reduceMotion()?'auto':'smooth',block:'start'}); });
   q('again').addEventListener('click',make);
   q('print').addEventListener('click',()=>{ let host=document.getElementById('ws-print'); if(!host){ host=document.createElement('div'); host.id='ws-print'; document.body.appendChild(host); }
@@ -4217,6 +4255,184 @@ Object.assign(TP,{
  simulering:[[1,3,L=>{ const N=tP([60,120,600]); return [`Du skal simulere ${N} terningkast i et regneark. Omtrent hvor mange enere vil du forvente? Vil du få akkurat det tallet? Forklar.`,`Ca. ${N/6}, men ikke nødvendigvis akkurat`,[`${N} · 1/6 = ${N/6}`],'m']; }],
   [2,3,L=>[`Ola har kastet en mynt 6 ganger og fått kron hver gang. Han tror mynten er jukset. Hva kan han gjøre for å undersøke det?`,`Kaste mange flere ganger`,[`P(6 kron) = 1/64, så det kan skje`,`Gjør mange forsøk og se på relativ frekvens`],'m']]]
 });
+
+/* ===================== FORENKLET NIVÅ (tilsvarer 4.–5. trinn) ===================== */
+WS_LV[0]={name:'Forenklet',sub:'4.–5. trinn-nivå',c:'#7A4FB5',soft:'#F1EBF9'};
+const fz=(()=>{
+const R=rnd, nm=()=>pick(NAVN), tl=(a,b)=>a.map((x,i)=>x+(b[i]||'')).join('');
+const svgW=(w,h,inner,mm)=>`<svg viewBox="0 0 ${w} ${h}" style="width:${mm||Math.round(w*0.26)}mm;max-width:100%;display:block" role="img" aria-label="Figur">${inner}</svg>`;
+const T=(x,y,s,o)=>`<text x="${x}" y="${y}" font-size="${(o&&o.fs)||13}" text-anchor="${(o&&o.a)||'middle'}" font-family="JetBrains Mono,monospace" font-weight="700" fill="${(o&&o.c)||'#141E36'}">${s}</text>`;
+const grid=(c,r,fill)=>{ const u=18; let s=''; for(let y=0;y<r;y++) for(let x=0;x<c;x++) s+=`<rect x="${4+x*u}" y="${4+y*u}" width="${u}" height="${u}" fill="${fill&&fill(x,y)?'#C9B6EA':'#fff'}" stroke="#7A86A1" stroke-width="1"/>`; return svgW(c*u+8,r*u+8,s,Math.min(80,(c*u+8)*0.27)); };
+const bar=(n,k)=>{ const w=Math.min(34,240/n); let s=''; for(let i=0;i<n;i++) s+=`<rect x="${4+i*w}" y="4" width="${w}" height="34" fill="${i<k?'#9A6BE0':'#fff'}" stroke="#141E36" stroke-width="1.5"/>`; return svgW(n*w+8,42,s,Math.min(70,(n*w+8)*0.27)); };
+const angle=d=>{ const r=70, cx=20, cy=90, a=d*Math.PI/180; return svgW(170,100,`<path d="M${cx} ${cy} H${cx+r+60}" stroke="#141E36" stroke-width="3"/><path d="M${cx} ${cy} L${cx+(r+40)*Math.cos(a)} ${cy-(r+40)*Math.sin(a)}" stroke="#141E36" stroke-width="3"/>${d===90?`<path d="M${cx+18} ${cy} V${cy-18} H${cx}" fill="none" stroke="#C2362B" stroke-width="2"/>`:`<path d="M${cx+26} ${cy} A26 26 0 0 0 ${cx+26*Math.cos(a)} ${cy-26*Math.sin(a)}" fill="none" stroke="#C2362B" stroke-width="2"/>`}`,40); };
+const coord=(x,y)=>{ const u=22, n=6; let s=''; for(let i=0;i<=n;i++){ s+=`<line x1="${24+i*u}" y1="10" x2="${24+i*u}" y2="${10+n*u}" stroke="#C9D3E6"/><line x1="24" y1="${10+i*u}" x2="${24+n*u}" y2="${10+i*u}" stroke="#C9D3E6"/>`+T(24+i*u,10+n*u+16,i,{fs:11})+(i?T(14,10+(n-i)*u+4,i,{fs:11}):''); }
+  s+=`<line x1="24" y1="${10+n*u}" x2="${30+n*u}" y2="${10+n*u}" stroke="#141E36" stroke-width="2"/><line x1="24" y1="${10+n*u}" x2="24" y2="4" stroke="#141E36" stroke-width="2"/><circle cx="${24+x*u}" cy="${10+(n-y)*u}" r="5" fill="#C2362B"/>`+T(24+x*u+11,10+(n-y)*u-7,'A',{c:'#C2362B'});
+  return svgW(24+n*u+16,n*u+34,s,52); };
+const chart=(cats,vals)=>k9cats({cats,vals,labels:false,ystep:2,H:150});
+const ABC=['a','b','c'];
+return {
+ add:()=>{ const a=R(12,68), b=R(11,30); return {q:`${a} + ${b}`, expr:true, a:a+b, steps:[`Tiere: ${a-a%10} + ${b-b%10} = ${a-a%10+b-b%10}`,`Enere: ${a%10} + ${b%10} = ${a%10+b%10}`,`Sum: ${a-a%10+b-b%10} + ${a%10+b%10} = ${a+b}`]}; },
+ sub:()=>{ const a=R(35,99), b=R(11,a-12); return {q:`${a} − ${b}`, expr:true, a:a-b, steps:[`Trekk fra tierne: ${a} − ${b-b%10} = ${a-b+b%10}`,`Trekk fra enerne: ${a-b+b%10} − ${b%10} = ${a-b}`]}; },
+ add3:()=>{ const a=R(100,500), b=R(10,99); return {q:`${a} + ${b}`, expr:true, a:a+b, steps:[`${a} + ${b-b%10} = ${a+b-b%10}`,`${a+b-b%10} + ${b%10} = ${a+b}`]}; },
+ mul:()=>{ const a=R(2,10), b=R(2,10); return {q:`${a} · ${b}`, expr:true, a:a*b, steps:[`${a} · ${b} er ${b} grupper med ${a}`,`${Array(b).fill(a).join(' + ')} = ${a*b}`]}; },
+ mul10:()=>{ const a=R(2,45), t=pick([10,100]); return {q:`${a} · ${t}`, expr:true, a:a*t, steps:[`Ganger vi med ${t}, legger vi til ${t===10?'én null':'to nuller'}`,`${a} · ${t} = ${a*t}`]}; },
+ div:()=>{ const b=R(2,10), q=R(2,10); return {q:`${b*q} : ${b}`, expr:true, a:q, steps:[`Hvilket tall ganger ${b} blir ${b*q}?`,`${q} · ${b} = ${b*q}, så svaret er ${q}`]}; },
+ order:()=>{ const a=R(1,9), b=R(2,5), c=R(2,5); return {q:`${a} + ${b} · ${c}`, expr:true, a:a+b*c, steps:[`Gange først: ${b} · ${c} = ${b*c}`,`Så pluss: ${a} + ${b*c} = ${a+b*c}`]}; },
+ paren:()=>{ const a=R(1,6), b=R(1,6), c=R(2,5); return {q:`(${a} + ${b}) · ${c}`, expr:true, a:(a+b)*c, steps:[`Parentesen først: ${a} + ${b} = ${a+b}`,`Så gange: ${a+b} · ${c} = ${(a+b)*c}`]}; },
+ temp:()=>{ const t=R(-3,8), d=R(2,9), up=Math.random()<.4, r=up?t+d:t-d; return {q:`Termometeret viser ${fmt(t)} °C. Det blir ${d} grader ${up?'varmere':'kaldere'}. Hva viser termometeret nå?`, a:r, u:'°C', steps:[`Tell ${d} ${up?'opp':'ned'} fra ${fmt(t)}`,`Svaret er ${fmt(r)} °C`]}; },
+ bigger:()=>{ const a=R(-9,9); let b=R(-9,9); while(b===a) b=R(-9,9); return {q:`Hvilket tall er størst?`, mc:{opts:[fmt(a),fmt(b)],a:a>b?0:1}, steps:[`Tallet lengst til høyre på tallinja er størst: ${fmt(Math.max(a,b))}`]}; },
+ rep:()=>{ const b=R(2,5), n=b<4?R(2,3):2; return {q:`${Array(n).fill(b).join(' · ')}`, expr:true, a:b**n, steps:[`${b} · ${b} = ${b*b}`].concat(n===3?[`${b*b} · ${b} = ${b**3}`]:[`Det kan skrives ${b}<sup>2</sup>`])}; },
+ sq:()=>{ const n=R(2,10); return {q:`${n}<sup>2</sup>`, expr:true, a:n*n, steps:[`${n}<sup>2</sup> betyr ${n} · ${n}`,`${n} · ${n} = ${n*n}`]}; },
+ even:()=>{ const n=R(10,99); return {q:`Er ${n} et partall eller et oddetall?`, mc:{opts:['Partall','Oddetall'],a:n%2}, steps:[`Se på det siste sifferet: ${n%10}`,n%2?'Det er oddetall':'Det er partall']}; },
+ table:()=>{ const k=pick([2,5,10,3]), n=R(6,40); const y=n%k===0; return {q:`Finnes ${n} i ${k}-gangen?`, mc:{opts:['Ja','Nei'],a:y?0:1}, steps:[y?`${n/k} · ${k} = ${n}`:`${Math.floor(n/k)} · ${k} = ${Math.floor(n/k)*k} og ${Math.floor(n/k)+1} · ${k} = ${(Math.floor(n/k)+1)*k}`,y?'Ja':'Nei']}; },
+ factor:()=>{ const a=R(2,9), b=R(2,9); return {q:`${a} · ☐ = ${a*b}`, expr:false, a:b, steps:[`Hvilket tall ganger ${a} blir ${a*b}?`,`${a} · ${b} = ${a*b}`]}; },
+ fracPic:()=>{ const n=pick([2,3,4,5,6,8]), k=R(1,n-1); return {q:`${bar(n,k)}<p>Hvor stor del er farget?</p>`, fr:{n:k,d:n}, steps:[`Figuren er delt i ${n} like deler`,`${k} er farget: ${k}/${n}`]}; },
+ fracEq:()=>{ const [n,d,m]=pick([[1,2,2],[1,2,3],[1,3,2],[1,4,2],[2,3,2],[3,4,2],[1,5,2]]); return {q:`${bar(d*m,n*m)}<p>${F(n,d)} = ${F('☐',d*m)}</p>`, a:n*m, steps:[`Delene er delt i ${m}`,`${n} · ${m} = ${n*m}`]}; },
+ fracAdd:()=>{ const d=pick([4,5,6,8,10]), a=R(1,d-2), b=R(1,d-a-1); return {q:`${F(a,d)} + ${F(b,d)}`, expr:true, fr:{n:a+b,d}, steps:[`Like nevnere: legg sammen tellerne`,`${a} + ${b} = ${a+b}, så svaret er ${a+b}/${d}`]}; },
+ fracOf:()=>{ const n=pick([2,3,4,5,10]), m=R(2,9); return {q:`Hva er ${F(1,n)} av ${n*m}?`, a:m, steps:[`Del ${n*m} i ${n} like deler`,`${n*m} : ${n} = ${m}`]}; },
+ fracDec:()=>{ const k=R(1,9); return Math.random()<.5?{q:`Skriv ${F(k,10)} som desimaltall.`, a:k/10, steps:[`${F(1,10)} = 0,1`,`${k} tideler = ${fmt(k/10)}`]}:{q:`Skriv ${fmt(k/10)} som brøk.`, fr:{n:k,d:10}, steps:[`Første siffer etter komma er tideler`,`${fmt(k/10)} = ${k}/10`]}; },
+ half:()=>{ const m=R(2,20)*2, q=pick([['halvparten',2],['en firedel',4]]); const v=q[1]===4?(R(2,10)*4):m; return {q:`Hva er ${q[0]} av ${v}?`, a:v/q[1], steps:[`Del på ${q[1]}`,`${v} : ${q[1]} = ${v/q[1]}`]}; },
+ missing:()=>{ const a=R(3,20), x=R(2,20); return pick([{q:`☐ + ${a} = ${a+x}`, a:x, steps:[`Hva må vi legge til ${a} for å få ${a+x}?`,`${a+x} − ${a} = ${x}`]},{q:`☐ − ${a} = ${x}`, a:a+x, steps:[`Tallet er ${a} større enn ${x}`,`${x} + ${a} = ${a+x}`]},{q:`${a} + ☐ = ${a+x}`, a:x, steps:[`Regn ${a+x} − ${a}`,`= ${x}`]}]); },
+ missMul:()=>{ const a=R(2,9), x=R(2,9); return {q:`${a} · x = ${a*x}`, a:x, pre:'x =', steps:[`Hvilket tall ganger ${a} blir ${a*x}?`,`x = ${a*x} : ${a} = ${x}`]}; },
+ letter:()=>{ const v=R(2,9), c=R(1,9), op=pick(['+','·','−']); const val=op==='+'?v+c:op==='·'?v*c:v+c-c; const L=pick(['a','x','n']); const exp=op==='−'?`${L} + ${c} − ${c}`:op==='+'?`${L} + ${c}`:`${c} · ${L}`; const r=op==='·'?c*v:op==='+'?v+c:v;
+   return {q:`Hva er ${exp} når ${L} = ${v}?`, a:r, steps:[`Bytt ut ${L} med ${v}`,`${exp.replace(L,v)} = ${r}`]}; },
+ same:()=>{ const t=pick(['epler','bananer','blyanter','kuler']), a=R(2,9), b=R(2,9); return {q:`${a} ${t} + ${b} ${t} = ☐ ${t}`, a:a+b, steps:[`Vi legger sammen like ting`,`${a} + ${b} = ${a+b} ${t}`]}; },
+ sameL:()=>{ const n=R(2,5), L=pick(['a','x','b']); return {q:`Skriv kortere: ${Array(n).fill(L).join(' + ')}`, mc:{opts:[`${n}${L}`,`${L}${n}`,`${n} + ${L}`,`${L}<sup>${n}</sup>`],a:0}, steps:[`Det er ${n} stykker av ${L}`,`${n}${L}`]}; },
+ pattern:()=>{ const s=R(1,10), d=R(2,6), a=[0,1,2,3].map(i=>s+i*d); return {q:`Hvilket tall kommer etter? ${a.join(', ')}, ☐`, a:s+4*d, steps:[`Tallene øker med ${d} hver gang`,`${a[3]} + ${d} = ${s+4*d}`]}; },
+ sticks:()=>{ const s=R(3,5), d=R(2,4); return {q:`Figur 1 har ${s} pinner, figur 2 har ${s+d} pinner og figur 3 har ${s+2*d} pinner. Hvor mange pinner har figur 4?`, a:s+3*d, steps:[`Det kommer ${d} nye pinner hver gang`,`${s+2*d} + ${d} = ${s+3*d}`]}; },
+ coord:()=>{ const x=R(1,5), y=R(1,5); return {q:`${coord(x,y)}<p>Hva er koordinatene til punktet A?</p>`, ansHTML:`(${x}, ${y})`, a:0, steps:[`Gå ${x} bortover (x)`,`Gå ${y} oppover (y): (${x}, ${y})`]}; },
+ machine:()=>{ const op=pick([['legger til',3],['legger til',5],['ganger med',2],['ganger med',3],['trekker fra',2]]), x=R(3,12), r=op[0]==='legger til'?x+op[1]:op[0]==='ganger med'?x*op[1]:x-op[1];
+   return {q:`En tallmaskin ${op[0]} ${op[1]}. Hva kommer ut når ${x} går inn?`, a:r, steps:[`Maskinen ${op[0]} ${op[1]}`,`${x} ${op[0]==='legger til'?'+':op[0]==='ganger med'?'·':'−'} ${op[1]} = ${r}`]}; },
+ tabNext:()=>{ const p=pick([5,10,12,15,20]); return {q:`${k9htab([['Antall',1,2,3,4],['Pris (kr)',p,2*p,3*p,'?']])}<p>Hva koster 4?</p>`, a:4*p, u:'kr', steps:[`Prisen øker med ${p} kr for hver`,`${3*p} + ${p} = ${4*p}`]}; },
+ barRead:()=>{ const cats=['Eple','Banan','Pære','Drue'], v=cats.map(()=>R(1,9)), i=R(0,3); return {q:`<p>Diagrammet viser hvilken frukt elevene liker best.</p>${chart(cats,v)}<p>Hvor mange liker ${cats[i].toLowerCase()} best?</p>`, a:v[i], steps:[`Finn søylen for ${cats[i].toLowerCase()}`,`Les av: ${v[i]}`]}; },
+ barDiff:()=>{ const cats=['Ma','Ti','On','To','Fr'], v=cats.map(()=>R(2,10)); let i=R(0,4), j=R(0,4); while(v[i]===v[j]) { j=R(0,4); if(v.every(x=>x===v[0])) v[0]++; } const hi=v[i]>v[j]?i:j, lo=hi===i?j:i;
+   return {q:`<p>Diagrammet viser hvor mange elever som syklet til skolen.</p>${chart(cats,v)}<p>Hvor mange flere syklet på ${cats[hi]} enn på ${cats[lo]}?</p>`, a:v[hi]-v[lo], steps:[`${cats[hi]}: ${v[hi]}, ${cats[lo]}: ${v[lo]}`,`${v[hi]} − ${v[lo]} = ${v[hi]-v[lo]}`]}; },
+ lineRead:()=>{ const cats=['Ma','Ti','On','To','Fr'], v=cats.map(()=>R(1,12)), i=R(0,4); return {q:`<p>Linjediagrammet viser temperaturen klokka 12 hver dag.</p>${k9cats({cats,vals:v,type:'line',ystep:2,H:150})}<p>Hvor varmt var det på ${cats[i]}?</p>`, a:v[i], u:'°C', steps:[`Finn punktet over ${cats[i]}`,`Les av: ${v[i]} °C`]}; },
+ count:()=>{ const v=Array.from({length:10},()=>R(1,6)), k=pick(v); return {q:`Elevene kastet en terning: ${v.join(', ')}. Hvor mange ganger kom ${k}?`, a:v.filter(x=>x===k).length, steps:[`Tell alle ${k}-erne`,`${v.filter(x=>x===k).length} ganger`]}; },
+ minmax:()=>{ const v=Array.from({length:5},()=>R(2,30)), t=pick(['største','minste','forskjellen mellom største og minste']); const mx=Math.max(...v), mn=Math.min(...v), a=t==='største'?mx:t==='minste'?mn:mx-mn;
+   return {q:`Tallene er: ${v.join(', ')}. Hva er ${t==='forskjellen mellom største og minste'?t+' tall':'det '+t+' tallet'}?`, a, steps:[`Største: ${mx}, minste: ${mn}`,t.startsWith('forskjell')?`${mx} − ${mn} = ${mx-mn}`:`Svaret er ${a}`]}; },
+ mode:()=>{ const k=R(1,9), v=shuffle([k,k,k].concat(Array.from({length:4},()=>{ let x=R(1,9); while(x===k) x=R(1,9); return x; }))); const c={}; v.forEach(x=>c[x]=(c[x]||0)+1); if(Object.values(c).filter(x=>x>=3).length>1) return fz.mode();
+   return {q:`Hvilket tall kommer flest ganger? ${v.join(', ')}`, a:k, steps:[`Tell hvert tall`,`${k} kommer 3 ganger`]}; },
+ mean:()=>{ const n=pick([2,3]), m=R(2,9); let v=Array.from({length:n},()=>m+R(-2,2)); v[n-1]=m*n-v.slice(0,n-1).reduce((a,b)=>a+b,0); if(v[n-1]<0) return fz.mean();
+   return {q:`Finn gjennomsnittet av ${v.join(' og ')}.`, a:m, steps:[`Summen: ${v.join(' + ')} = ${m*n}`,`Del på ${n}: ${m*n} : ${n} = ${m}`]}; },
+ pie:()=>{ const n=pick([2,4]), k=n===2?1:R(1,3); return {q:`${spinSVG(Array(n).fill(1),{colors:Array.from({length:n},(_,i)=>i<k?'#9A6BE0':'#fff'),labels:Array(n).fill('')})}<p>Hvor stor del av sirkelen er lilla?</p>`, fr:{n:k,d:n}, steps:[`Sirkelen er delt i ${n} like deler`,`${k} av ${n} er lilla`]}; },
+ angType:()=>{ const d=pick([25,40,60,90,90,120,140,160]); return {q:`${angle(d)}<p>Hva slags vinkel er dette?</p>`, mc:{opts:['Spiss','Rett','Butt'],a:d<90?0:d===90?1:2}, steps:[`Spiss: mindre enn 90°. Rett: 90°. Butt: mer enn 90°.`]}; },
+ angRest:()=>{ if(Math.random()<.5){ const a=5*R(2,16); return {q:`En rett vinkel (90°) er delt i to. Den ene delen er ${a}°. Hvor stor er den andre?`, a:90-a, u:'°', steps:[`90° − ${a}°`,`= ${90-a}°`]}; }
+   const a=10*R(3,9), b=10*R(2,15-a/10); return {q:`Vinklene i en trekant er til sammen 180°. To av vinklene er ${a}° og ${b}°. Hvor stor er den tredje?`, a:180-a-b, u:'°', steps:[`${a}° + ${b}° = ${a+b}°`,`180° − ${a+b}° = ${180-a-b}°`]}; },
+ sides:()=>{ const s=pick([['trekant',3],['firkant',4],['femkant',5],['sekskant',6],['åttekant',8]]); return Math.random()<.5?{q:`Hvor mange hjørner har en ${s[0]}?`, a:s[1], steps:[`En ${s[0]} har ${s[1]} sider`,`og ${s[1]} hjørner`]}:(()=>{ const all=['Trekant','Firkant','Femkant','Sekskant','Åttekant'], right=s[0][0].toUpperCase()+s[0].slice(1), opts=shuffle([right,...shuffle(all.filter(x=>x!==right)).slice(0,2)]); return {q:`En figur har ${s[1]} rette sider. Hva heter den?`, mc:{opts,a:opts.indexOf(right)}, steps:[`${s[1]} sider: ${s[0]}`]}; })(); },
+ triKind:()=>{ const t=pick([[[5,5,5],0],[[4,4,6],1],[[3,5,6],2],[[7,7,7],0],[[6,6,3],1],[[4,6,7],2]]); return {q:`En trekant har sidene ${t[0].join(' cm, ')} cm. Hva slags trekant er det?`, mc:{opts:['Likesidet','Likebeint','Ingen like sider'],a:t[1]}, steps:[['Alle tre sidene er like lange.','To sider er like lange.','Alle sidene er ulike.'][t[1]]]}; },
+ radius:()=>{ const r=R(2,15); return Math.random()<.5?{q:`Radius i en sirkel er ${r} cm. Hvor lang er diameteren?`, a:2*r, u:'cm', steps:[`Diameteren er dobbelt så lang som radius`,`${r} · 2 = ${2*r} cm`]}:{q:`Diameteren i en sirkel er ${2*r} cm. Hvor lang er radius?`, a:r, u:'cm', steps:[`Radius er halvparten av diameteren`,`${2*r} : 2 = ${r} cm`]}; },
+ gridArea:()=>{ const c=R(2,7), r=R(2,4); return {q:`${grid(c,r,()=>true)}<p>Hvor mange ruter dekker rektangelet? (Hver rute er 1 cm².)</p>`, a:c*r, u:'cm²', steps:[`${r} rader med ${c} ruter`,`${r} · ${c} = ${c*r} cm²`]}; },
+ rectA:()=>{ const l=R(2,10), b=R(2,8); return {q:`Et rektangel er ${l} cm langt og ${b} cm bredt. Hva er arealet?`, a:l*b, u:'cm²', steps:[`Areal = lengde · bredde`,`${l} · ${b} = ${l*b} cm²`]}; },
+ rectO:()=>{ const l=R(2,12), b=R(2,9); return {q:`Et rektangel er ${l} cm langt og ${b} cm bredt. Hva er omkretsen?`, a:2*(l+b), u:'cm', steps:[`Gå rundt: ${l} + ${b} + ${l} + ${b}`,`= ${2*(l+b)} cm`]}; },
+ sqA:()=>{ const s=R(2,10); return Math.random()<.5?{q:`Et kvadrat har sider på ${s} cm. Hva er arealet?`, a:s*s, u:'cm²', steps:[`${s} · ${s}`,`= ${s*s} cm²`]}:{q:`Et kvadrat har sider på ${s} cm. Hva er omkretsen?`, a:4*s, u:'cm', steps:[`4 like sider: 4 · ${s}`,`= ${4*s} cm`]}; },
+ triGrid:()=>{ const c=2*R(1,3), r=R(2,4); return {q:`${grid(c,r,(x,y)=>x/c<(r-y)/r)}<p>Hver rute er 1 cm². Trekanten er halvparten av rektangelet med ${c} · ${r} ruter. Hva er arealet av trekanten?</p>`, a:c*r/2, u:'cm²', steps:[`Rektangelet: ${c} · ${r} = ${c*r}`,`Halvparten: ${c*r} : 2 = ${c*r/2} cm²`]}; },
+ twoRect:()=>{ const a=R(3,6), b=R(2,4), c=R(1,3), d=R(1,3); return {q:`En figur består av to rektangler. Det ene er ${a} cm · ${b} cm, og det andre er ${c} cm · ${d} cm. Hva er arealet av hele figuren?`, a:a*b+c*d, u:'cm²', steps:[`${a} · ${b} = ${a*b} og ${c} · ${d} = ${c*d}`,`${a*b} + ${c*d} = ${a*b+c*d} cm²`]}; },
+ sumSq:()=>{ const t=pick([[3,4],[6,8],[5,12],[1,2],[2,3],[4,5]]); return {q:`${t[0]}<sup>2</sup> + ${t[1]}<sup>2</sup>`, expr:true, a:t[0]**2+t[1]**2, steps:[`${t[0]}<sup>2</sup> = ${t[0]**2} og ${t[1]}<sup>2</sup> = ${t[1]**2}`,`${t[0]**2} + ${t[1]**2} = ${t[0]**2+t[1]**2}`]}; },
+ root:()=>{ const n=R(2,10); return {q:`Hvilket tall ganget med seg selv blir ${n*n}?`, a:n, steps:[`Prøv: ${n} · ${n}`,`= ${n*n}`]}; },
+ bigger2:()=>{ const l=R(2,6), b=R(1,l), k=pick([2,3]); return {q:`Et rektangel er ${l} cm · ${b} cm. Vi gjør det ${k} ganger så stort. Hvor lang blir den lengste siden?`, a:l*k, u:'cm', steps:[`Alle sidene ganges med ${k}`,`${l} · ${k} = ${l*k} cm`]}; },
+ congr:()=>{ const c=pick([['To figurer har samme form og samme størrelse. Er de kongruente?',0],['En figur er speilet. Har den fortsatt samme størrelse?',0],['En figur er forstørret. Er den kongruent med den første?',1],['To kvadrater har sider på 3 cm. Er de kongruente?',0],['Et kvadrat med side 2 cm og et med side 4 cm. Er de kongruente?',1]]); return {q:c[0], mc:{opts:['Ja','Nei'],a:c[1]}, steps:[c[1]?'Nei, størrelsen er ulik.':'Ja, form og størrelse er lik.']}; },
+ cubes:()=>{ const l=R(2,4), b=R(1,3), h=R(1,3); return {q:`${boxSVG(l,b,h,{cubes:true,labels:false,u:30})}<p>Hvor mange terninger er det?</p>`, a:l*b*h, steps:[`Ett lag: ${l} · ${b} = ${l*b}`,`${h} lag: ${l*b} · ${h} = ${l*b*h}`]}; },
+ faceA:()=>{ const l=R(2,9), b=R(2,6); return {q:`En eske har en bunn som er ${l} cm · ${b} cm. Hva er arealet av bunnen?`, a:l*b, u:'cm²', steps:[`${l} · ${b}`,`= ${l*b} cm²`]}; },
+ solid:()=>{ const c=pick([['en boks brus','Sylinder'],['en fotball','Kule'],['en iskremkjeks','Kjegle'],['en skoeske','Prisme'],['en terning','Prisme'],['en appelsin','Kule'],['en trafikkjegle','Kjegle'],['et toalettrull','Sylinder']]), o=['Sylinder','Kule','Kjegle','Prisme']; return {q:`Hvilken romfigur ligner mest på ${c[0]}?`, mc:{opts:o,a:o.indexOf(c[1])}, steps:[`${c[0][0].toUpperCase()+c[0].slice(1)} ligner på en ${c[1].toLowerCase()}`]}; },
+ cubeCount:()=>{ const c=pick([['flater',6],['hjørner',8],['kanter',12]]); return {q:`Hvor mange ${c[0]} har en terning?`, a:c[1], steps:[`Tell på en terning`,`${c[1]} ${c[0]}`]}; },
+ pyrCount:()=>{ const c=pick([['sideflater (trekanter)',4],['hjørner',5]]); return {q:`En pyramide har en kvadratisk bunn. Hvor mange ${c[0]} har den?`, a:c[1], steps:[c[1]===4?'Én trekant på hver side av kvadratet':'4 hjørner i bunnen og 1 på toppen',`${c[1]}`]}; },
+ liter:()=>{ const c=pick([['L','dL',10,R(1,9)],['L','mL',1000,R(1,5)],['dL','mL',100,R(1,9)],['dL','L',0.1,10*R(1,9)]]); const a=Math.round(c[3]*c[2]*1000)/1000; return {q:`${c[3]} ${c[0]} = ☐ ${c[1]}`, a, u:c[1], steps:[`1 ${c[0]} = ${fmt(c[2])} ${c[1]}`,`${c[3]} · ${fmt(c[2])} = ${fmt(a)}`]}; },
+ kg:()=>{ if(Math.random()<.5){ const k=R(1,9); return {q:`${k} kg = ☐ g`, a:k*1000, u:'g', steps:[`1 kg = 1000 g`,`${k} · 1000 = ${k*1000} g`]}; } const g=100*R(3,15); return {q:`Hva er tyngst: ${g} g eller 1 kg?`, mc:{opts:[`${g} g`,'1 kg','Like tunge'],a:g>1000?0:g===1000?2:1}, steps:[`1 kg = 1000 g`,g>1000?`${g} g er tyngst`:g===1000?'Like tunge':'1 kg er tyngst']}; },
+ heavy:()=>{ const c=pick([['en kloss av jern','en kloss av tre',0],['en isbit','en like stor stein',1],['en ball av bly','en like stor ball av plast',0]]); return {q:`To ting er like store. Hva er tyngst: ${c[0]} eller ${c[1]}?`, mc:{opts:[c[0][0].toUpperCase()+c[0].slice(1),c[1][0].toUpperCase()+c[1].slice(1)],a:c[2]}, steps:['Noen stoffer er tyngre enn andre selv om de er like store.']}; },
+ combo:()=>{ const a=R(2,4), b=R(2,4); return {q:`${nm()} har ${a} T-skjorter og ${b} bukser. Hvor mange ulike antrekk kan hen lage?`, a:a*b, steps:[`Hver T-skjorte kan brukes med ${b} bukser`,`${a} · ${b} = ${a*b} antrekk`]}; },
+ icecream:()=>{ const a=R(2,5), b=R(2,3); return {q:`En iskiosk har ${a} smaker og ${b} typer kjeks. Hvor mange ulike is med én smak kan du velge?`, a:a*b, steps:[`${a} smaker · ${b} kjeks`,`= ${a*b}`]}; },
+ die:()=>{ const c=pick([['ulike tall kan du få på en vanlig terning',6,'1, 2, 3, 4, 5, 6'],['av tallene på en terning er partall',3,'2, 4, 6'],['av tallene på en terning er større enn 4',2,'5, 6'],['av tallene på en terning er oddetall',3,'1, 3, 5']]); return {q:`Hvor mange ${c[0]}?`, a:c[1], steps:[`Skriv opp: ${c[2]}`,`${c[1]}`]}; },
+ chance:()=>{ const c=pick([['Du kaster en vanlig terning og får 7.',2],['Du kaster en vanlig terning og får et tall mindre enn 7.',0],['Du kaster en vanlig terning og får 6.',1],['Du trekker en rød kule fra en pose med bare blå kuler.',2],['Du trekker en blå kule fra en pose med bare blå kuler.',0],['Du kaster en mynt og får kron.',1],['Det blir mandag etter søndag.',0]]); return {q:c[0], mc:{opts:['Sikkert','Mulig','Umulig'],a:c[1]}, steps:[['Det skjer alltid.','Det kan skje, men ikke alltid.','Det kan aldri skje.'][c[1]]]}; },
+ bag:()=>{ const r=R(1,6); let b=R(1,6); const c=[r,b,0,0]; return {q:`${ballsSVG(c)}<p>Du trekker én kule uten å se. Hvilken farge har du størst sjanse for å få?</p>`, mc:{opts:['Rød','Blå','Like stor sjanse'],a:r>b?0:r<b?1:2}, steps:[`${r} røde og ${b} blå`,r===b?'Like mange: like stor sjanse':(r>b?'Flest røde':'Flest blå')]}; },
+ outOf:()=>{ const r=R(1,5), b=R(1,5); return {q:`I en pose er det ${r} røde og ${b} blå kuler. Hvor stor er sjansen for å trekke en rød? Svar som «… av …».`, ansHTML:`${r} av ${r+b}`, a:0, steps:[`Det er ${r+b} kuler i alt`,`${r} er røde: ${r} av ${r+b}`]}; },
+ coins:()=>({q:`Du kaster to mynter. Hvor mange ulike resultater kan du få? (For eksempel kron og mynt.)`, a:4, steps:[`KK, KM, MK, MM`,`4 resultater`]}),
+ fairSpin:()=>{ const eq=Math.random()<.5, sz=eq?[1,1,1,1]:pick([[2,1,1],[3,1],[1,1,2]]); return {q:`${spinSVG(sz,{labels:sz.map(()=>'')})}<p>Er det like stor sjanse for alle fargene?</p>`, mc:{opts:['Ja','Nei'],a:eq?0:1}, steps:[eq?'Alle feltene er like store.':'Feltene er ikke like store.']}; },
+ expect:()=>{ const c=pick([['kaster en mynt',2,'kron',[10,20,50,100]],['kaster en terning',6,'en sekser',[12,30,60]]]), n=pick(c[3]); return {q:`Du ${c[0]} ${n} ganger. Omtrent hvor mange ganger får du ${c[2]}?`, a:n/c[1], steps:[`Sjansen er 1 av ${c[1]}`,`${n} : ${c[1]} = ${n/c[1]}`]}; },
+ tally:()=>{ const k=R(1,4), r=R(0,4), n=5*k+r; return {q:`Hvor mange tellestreker er det? <span style="font-family:var(--f-mono);font-size:13pt;letter-spacing:1px">${Array(k).fill('<s>||||</s>').join(' ')} ${'|'.repeat(r)}</span>`, a:n, steps:[`Hver gruppe er 5`,`${k} · 5 + ${r} = ${n}`]}; },
+ word:()=>pick([()=>{ const a=R(20,90), b=R(10,40); return {q:`${nm()} kjøper en bok til ${a} kr og en penn til ${b} kr. Hvor mye betaler hen til sammen?`, a:a+b, u:'kr', steps:[`${a} + ${b}`,`= ${a+b} kr`]}; },()=>{ const p=R(15,85); return {q:`${nm()} betaler med en hundrelapp for en is som koster ${p} kr. Hvor mye får hen tilbake?`, a:100-p, u:'kr', steps:[`100 − ${p}`,`= ${100-p} kr`]}; },()=>{ const k=R(2,6), m=R(2,8); return {q:`${k*m} kaker skal deles likt på ${k} barn. Hvor mange kaker får hvert barn?`, a:m, steps:[`${k*m} : ${k}`,`= ${m}`]}; },()=>{ const r=R(3,8), s=R(4,9); return {q:`I en sal står det ${r} rader med ${s} stoler. Hvor mange stoler er det?`, a:r*s, steps:[`${r} · ${s}`,`= ${r*s}`]}; }])()
+};})();
+const fzW={ arit:['word'], alg:['word','machine'], brok:[()=>{ const n=pick([4,6,8]), k=R0(1,n-1); return {q:`En pizza er delt i ${n} like biter. ${pick(NAVN)} spiser ${k} biter. Hvor stor del av pizzaen har hen spist?`, fr:{n:k,d:n}, steps:[`${k} av ${n} biter`,`${k}/${n}`]}; },'word'], stat:['barDiff'], geo:[()=>{ const l=R0(3,9), b=R0(2,6); return {q:`Et bord er ${l} dm langt og ${b} dm bredt. Hvor langt er det rundt bordet?`, a:2*(l+b), u:'dm', steps:[`${l} + ${b} + ${l} + ${b}`,`= ${2*(l+b)} dm`]}; },'twoRect'], rom:['liter','kg'], sann:['combo','expect'] };
+function R0(a,b){ return rnd(a,b); }
+/* tema → [mål, husk, gruppe for tekstoppgaver, [[oppgavetype, antall, kolonner, regneplass, instruksjon], ...]] */
+const WS_F={
+ addisjon:['Jeg kan legge sammen og trekke fra tall.','Del opp i tiere og enere. Regn tierne først, så enerne.','arit',[['add',6,3,'','Regn ut.'],['sub',6,3,'','Regn ut.'],['add3',3,3,'','Regn ut.']]],
+ multiplikasjon:['Jeg kan gangetabellen.','Gange er gjentatt pluss: 4 · 3 = 3 + 3 + 3 + 3.','arit',[['mul',9,3,'','Regn ut.'],['mul10',6,3,'','Regn ut.']]],
+ divisjon:['Jeg kan dele med hjelp av gangetabellen.','Deling er det motsatte av ganging: 12 : 3 = 4 fordi 4 · 3 = 12.','arit',[['div',9,3,'','Regn ut.'],['factor',6,3,'','Hvilket tall mangler?']]],
+ 'flere-ledd':['Jeg kan regne gange før pluss.','Gange og dele gjør vi før pluss og minus.','arit',[['order',6,2,'s','Regn ut. Husk å gange først.'],['mul',6,3,'','Regn ut.']]],
+ 'negative-tall':['Jeg kan bruke tall under null.','Tall under null har minus foran. −3 er 3 under null på termometeret.','arit',[['temp',4,2,'','Svar på oppgavene.'],['bigger',6,3,'','Sett kryss ved det største tallet.']]],
+ potenser:['Jeg kan regne ut et tall ganget med seg selv.','3 · 3 kan skrives 3<sup>2</sup>. 2 · 2 · 2 kan skrives 2<sup>3</sup>.','arit',[['rep',6,3,'','Regn ut.'],['sq',6,3,'','Regn ut.']]],
+ potensregler:['Jeg kan gange med 10 og 100.','Ganger du med 10, legger du til én null. Ganger du med 100, legger du til to nuller.','arit',[['mul10',9,3,'','Regn ut.'],['rep',3,3,'','Regn ut.']]],
+ delelighet:['Jeg kan se om et tall er partall eller oddetall.','Partall slutter på 0, 2, 4, 6 eller 8.','arit',[['even',6,2,'','Sett kryss.'],['table',4,2,'','Sett kryss.']]],
+ faktorisering:['Jeg kan finne tall som ganget sammen gir et tall.','12 = 3 · 4 = 2 · 6. Bruk gangetabellen.','arit',[['factor',9,3,'','Hvilket tall mangler?'],['mul',3,3,'','Regn ut.']]],
+ forkorting:['Jeg vet at to brøker kan være like store.','Halvparten er det samme som 2 av 4 eller 3 av 6.','brok',[['fracEq',4,2,'','Hvilket tall mangler?'],['fracPic',4,2,'','Svar med brøk.']]],
+ 'brok-add':['Jeg kan legge sammen brøker med lik nevner.','Når nevnerne er like, legger du sammen tellerne: 1/5 + 2/5 = 3/5.','brok',[['fracPic',2,2,'','Svar med brøk.'],['fracAdd',6,3,'','Regn ut.']]],
+ 'brok-mul':['Jeg kan finne en del av et tall.','1/4 av 20: del 20 i 4 like deler. Hver del er 5.','brok',[['fracOf',6,2,'','Regn ut.'],['half',4,2,'','Regn ut.']]],
+ 'brok-div':['Jeg kan dele i like store deler.','Halvparten: del på 2. En firedel: del på 4.','brok',[['half',6,2,'','Regn ut.'],['div',6,3,'','Regn ut.']]],
+ 'brok-desimal':['Jeg vet at tideler kan skrives som brøk og desimaltall.','1/10 = 0,1. 3/10 = 0,3. 1/2 = 0,5.','brok',[['fracDec',6,2,'','Svar på oppgavene.'],['fracPic',2,2,'','Svar med brøk.']]],
+ uttrykk:['Jeg kan bytte ut en bokstav med et tall.','Står det a + 4 og a = 3, regner du 3 + 4 = 7.','alg',[['letter',6,2,'','Regn ut.'],['machine',2,1,'','Svar på oppgavene.']]],
+ forenkling:['Jeg kan legge sammen like ting.','3 epler + 2 epler = 5 epler. a + a + a = 3a.','alg',[['same',4,2,'','Fyll inn.'],['sameL',4,2,'','Sett kryss.']]],
+ 'gange-alg':['Jeg kan regne med en bokstav.','3a betyr 3 · a. Er a = 2, er 3a = 6.','alg',[['letter',6,2,'','Regn ut.'],['mul',6,3,'','Regn ut.']]],
+ parenteser:['Jeg kan regne ut parentesen først.','Regn alltid ut det som står i parentesen først.','alg',[['paren',6,2,'','Regn ut.'],['order',4,2,'','Regn ut.']]],
+ likninger:['Jeg kan finne tallet som mangler.','☐ + 5 = 12: Hva må du legge til 5 for å få 12? Svaret er 7.','alg',[['missing',6,2,'','Hvilket tall mangler?'],['missMul',4,2,'','Finn x.']]],
+ problemlosning:['Jeg kan løse tekstoppgaver.','Les oppgaven to ganger. Finn tallene. Skal du legge sammen, trekke fra, gange eller dele?','arit',[['word',4,1,'s','Løs oppgavene.'],['missing',4,2,'','Hvilket tall mangler?']]],
+ monster:['Jeg kan fortsette et mønster.','Se hvor mye tallene øker hver gang.','alg',[['pattern',6,1,'','Hvilket tall kommer etter?'],['sticks',2,1,'s','Svar på oppgavene.']]],
+ koordinater:['Jeg kan lese av et punkt i et rutenett.','Gå først bortover (x), så oppover (y). Skriv (x, y).','alg',[['coord',4,2,'','Skriv koordinatene.']]],
+ grafer:['Jeg kan lese av et diagram.','Finn riktig sted på aksen og les av.','stat',[['lineRead',2,1,'','Les av diagrammet.'],['tabNext',2,2,'','Svar på oppgavene.']]],
+ funksjonsuttrykk:['Jeg kan finne ut hva en tallmaskin gjør.','En tallmaskin gjør det samme med alle tall som går inn.','alg',[['machine',4,2,'','Svar på oppgavene.'],['tabNext',2,2,'','Svar på oppgavene.']]],
+ diagrammer:['Jeg kan lese av søylediagram.','Følg toppen av søylen bort til tallet på aksen.','stat',[['barRead',2,2,'','Les av diagrammet.'],['barDiff',1,1,'','Les av diagrammet.']]],
+ datasett:['Jeg kan telle og ordne data.','En tellestrek for hver. Den femte streken går på skrå.','stat',[['count',4,2,'','Tell.'],['tally',4,2,'','Tell strekene.']]],
+ sentralmal:['Jeg kan finne største, minste og det tallet som kommer flest ganger.','Sorter tallene fra minst til størst først.','stat',[['minmax',4,1,'','Svar på oppgavene.'],['mode',2,1,'','Svar på oppgavene.'],['mean',2,1,'s','Regn ut.']]],
+ linjediagram:['Jeg kan lese av et linjediagram.','Finn dagen nederst, gå opp til punktet og bort til tallet.','stat',[['lineRead',4,2,'','Les av diagrammet.']]],
+ stolpediagram:['Jeg kan lese av et søylediagram.','Følg toppen av søylen bort til tallet på aksen.','stat',[['barRead',2,2,'','Les av diagrammet.'],['barDiff',2,2,'','Les av diagrammet.']]],
+ sektordiagram:['Jeg kan se hvor stor del av en sirkel som er farget.','En halv sirkel er 1/2. En firedel er 1/4.','stat',[['pie',4,2,'','Svar med brøk.'],['fracPic',2,2,'','Svar med brøk.']]],
+ 'tolke-diagram':['Jeg kan sammenligne tall i et diagram.','Les av begge tallene og trekk fra.','stat',[['barDiff',2,2,'','Les av diagrammet.'],['lineRead',2,2,'','Les av diagrammet.']]],
+ 'geo-monster':['Jeg kan fortsette et figurmønster.','Se hvor mange nye pinner som kommer hver gang.','alg',[['sticks',3,1,'s','Svar på oppgavene.'],['pattern',3,1,'','Hvilket tall kommer etter?']]],
+ 'monster-alg':['Jeg kan fortsette et tallmønster.','Finn ut hvor mye tallene øker hver gang.','alg',[['pattern',6,1,'','Hvilket tall kommer etter?']]],
+ vinkler:['Jeg kan kjenne igjen spisse, rette og butte vinkler.','Rett vinkel er 90°, som hjørnet på et ark. Spiss er mindre. Butt er større.','geo',[['angType',6,2,'','Sett kryss.']]],
+ vinkelsum:['Jeg kan finne en vinkel som mangler.','En rett vinkel er 90°. Vinklene i en trekant er til sammen 180°.','geo',[['angRest',6,2,'s','Regn ut.']]],
+ trekanter:['Jeg kan sortere trekanter.','Likesidet: tre like sider. Likebeint: to like sider.','geo',[['triKind',4,1,'','Sett kryss.'],['angType',2,2,'','Sett kryss.']]],
+ regulare:['Jeg kan navnene på mangekanter.','Tre sider: trekant. Fire: firkant. Fem: femkant. Seks: sekskant.','geo',[['sides',6,2,'','Svar på oppgavene.']]],
+ sirkelen:['Jeg vet hva radius og diameter er.','Diameteren går tvers over sirkelen. Den er dobbelt så lang som radius.','geo',[['radius',6,2,'','Regn ut.']]],
+ rektangel:['Jeg kan finne areal og omkrets av et rektangel.','Areal: lengde · bredde. Omkrets: legg sammen alle sidene.','geo',[['gridArea',2,2,'','Tell rutene.'],['rectA',2,2,'s','Regn ut.'],['rectO',2,2,'s','Regn ut.']]],
+ kvadrat:['Jeg kan finne areal og omkrets av et kvadrat.','Et kvadrat har fire like lange sider.','geo',[['sqA',6,2,'s','Regn ut.']]],
+ parallellogram:['Jeg kan finne arealet ved å telle ruter.','Tell hele ruter. Hver rute er 1 cm².','geo',[['gridArea',4,2,'','Tell rutene.'],['rectA',2,2,'s','Regn ut.']]],
+ trapes:['Jeg kan finne arealet av figurer som er satt sammen.','Del figuren i rektangler og legg sammen.','geo',[['twoRect',2,1,'s','Regn ut.'],['gridArea',2,2,'','Tell rutene.']]],
+ 'trekant-areal':['Jeg vet at en trekant kan være halvparten av et rektangel.','Arealet av trekanten er halvparten av rektangelet rundt den.','geo',[['triGrid',4,2,'','Regn ut.']]],
+ 'sirkel-areal':['Jeg vet hva radius og diameter er.','Diameter = 2 · radius.','geo',[['radius',6,2,'','Regn ut.']]],
+ pytagoras:['Jeg kan regne ut kvadrattall.','4<sup>2</sup> = 4 · 4 = 16.','geo',[['sq',6,3,'','Regn ut.'],['sumSq',4,2,'s','Regn ut.']]],
+ hypotenus:['Jeg kan regne ut kvadrattall og legge dem sammen.','3<sup>2</sup> + 4<sup>2</sup> = 9 + 16 = 25.','geo',[['sumSq',4,2,'s','Regn ut.'],['root',4,2,'','Svar på oppgavene.']]],
+ katet:['Jeg kan finne tallet som ganget med seg selv gir et tall.','5 · 5 = 25, så tallet er 5.','geo',[['root',6,2,'','Svar på oppgavene.'],['sq',3,3,'','Regn ut.']]],
+ 'likebeint-rett':['Jeg kan finne en vinkel som mangler.','Vinklene i en trekant er til sammen 180°.','geo',[['angRest',6,2,'s','Regn ut.']]],
+ 'trekant-30-60':['Jeg kan finne en vinkel som mangler.','Vinklene i en trekant er til sammen 180°.','geo',[['angRest',4,2,'s','Regn ut.'],['angType',2,2,'','Sett kryss.']]],
+ kongruens:['Jeg vet når to figurer er helt like.','Kongruente figurer har samme form og samme størrelse.','geo',[['congr',5,1,'','Sett kryss.']]],
+ formlikhet:['Jeg kan forstørre en figur.','Når vi forstørrer, ganger vi alle sidene med det samme tallet.','geo',[['bigger2',4,1,'s','Regn ut.']]],
+ 'formlik-sider':['Jeg kan forstørre en figur.','Ganger du én side med 2, må du gange alle sidene med 2.','geo',[['bigger2',4,1,'s','Regn ut.'],['mul',3,3,'','Regn ut.']]],
+ sammensatte:['Jeg kan finne arealet av figurer som er satt sammen.','Del figuren i rektangler og legg sammen arealene.','geo',[['twoRect',4,1,'s','Regn ut.']]],
+ 'utforsking-plan':['Jeg kan finne omkretsen.','Omkrets: gå rundt figuren og legg sammen alle sidene.','geo',[['rectO',4,2,'s','Regn ut.'],['sqA',2,2,'s','Regn ut.']]],
+ 'prisme-volum':['Jeg kan telle terninger i en boks.','Tell terningene i ett lag, og gang med antall lag.','rom',[['cubes',4,2,'s','Tell terningene.']]],
+ 'prisme-overflate':['Jeg kan finne arealet av en side på en eske.','Areal = lengde · bredde.','rom',[['faceA',4,2,'s','Regn ut.'],['cubeCount',2,2,'','Svar på oppgavene.']]],
+ 'kvadratisk-prisme':['Jeg kan telle terninger i en boks.','Tell terningene i ett lag, og gang med antall lag.','rom',[['cubes',4,2,'s','Tell terningene.'],['cubeCount',2,2,'','Svar på oppgavene.']]],
+ 'andre-prismer':['Jeg kjenner igjen romfigurer.','Prisme, sylinder, kjegle, kule og pyramide er romfigurer.','rom',[['solid',4,2,'','Sett kryss.'],['cubeCount',2,2,'','Svar på oppgavene.']]],
+ pyramider:['Jeg kjenner igjen en pyramide.','En pyramide har en bunn og trekanter som møtes i en topp.','rom',[['pyrCount',2,2,'','Svar på oppgavene.'],['solid',4,2,'','Sett kryss.']]],
+ 'sylinder-volum':['Jeg kan gjøre om mellom liter og desiliter.','1 L = 10 dL = 1000 mL.','rom',[['liter',6,2,'','Gjør om.'],['solid',2,2,'','Sett kryss.']]],
+ 'sylinder-overflate':['Jeg kjenner igjen en sylinder.','En sylinder har to sirkler og en rund side.','rom',[['solid',4,2,'','Sett kryss.'],['radius',2,2,'','Regn ut.']]],
+ 'kjegle-volum':['Jeg kjenner igjen romfigurer.','En kjegle har en sirkel som bunn og en spiss topp.','rom',[['solid',4,2,'','Sett kryss.'],['liter',2,2,'','Gjør om.']]],
+ kule:['Jeg kjenner igjen en kule og vet hva radius er.','En kule er helt rund. Diameter = 2 · radius.','rom',[['solid',2,2,'','Sett kryss.'],['radius',4,2,'','Regn ut.']]],
+ massetetthet:['Jeg kan gjøre om mellom kilogram og gram.','1 kg = 1000 g.','rom',[['kg',4,2,'','Svar på oppgavene.'],['heavy',2,1,'','Sett kryss.']]],
+ 'utforsking-rom':['Jeg kan gjøre om mellom liter, desiliter og milliliter.','1 L = 10 dL = 1000 mL. 1 dL = 100 mL.','rom',[['liter',8,2,'','Gjør om.']]],
+ kombinatorikk:['Jeg kan finne hvor mange måter jeg kan velge på.','Tegn eller list opp. Eller gang antallet valg: 3 gensere og 2 bukser gir 3 · 2 = 6.','sann',[['combo',2,1,'s','Svar på oppgavene.'],['icecream',2,1,'s','Svar på oppgavene.']]],
+ utfall:['Jeg kan skrive opp alle mulige resultater.','En terning kan gi 1, 2, 3, 4, 5 eller 6.','sann',[['die',4,2,'','Svar på oppgavene.'],['coins',1,1,'s','Svar på oppgaven.']]],
+ 'en-hendelse':['Jeg kan si om noe er sikkert, mulig eller umulig.','Sikkert: skjer alltid. Mulig: kan skje. Umulig: skjer aldri.','sann',[['chance',5,1,'','Sett kryss.'],['outOf',2,1,'','Svar på oppgavene.']]],
+ 'flere-hendelser':['Jeg kan finne alle muligheter når jeg kaster to ting.','Skriv opp alle mulighetene systematisk.','sann',[['coins',1,1,'s','Svar på oppgaven.'],['combo',2,1,'s','Svar på oppgavene.'],['die',2,2,'','Svar på oppgavene.']]],
+ multiplikasjonsprinsippet:['Jeg kan finne hvor mange måter jeg kan velge på.','Gang antallet valg: 3 smaker og 2 kjeks gir 3 · 2 = 6.','sann',[['icecream',2,1,'s','Svar på oppgavene.'],['combo',2,1,'s','Svar på oppgavene.']]],
+ 'like-sannsynlig':['Jeg kan se om det er like stor sjanse for alle utfall.','Like store felt på et lykkehjul gir like stor sjanse.','sann',[['fairSpin',4,2,'','Sett kryss.'],['bag',2,2,'','Sett kryss.']]],
+ 'stat-sanns':['Jeg kan telle resultater og se hva som skjer oftest.','Tell hvor mange ganger hvert resultat kom.','sann',[['count',4,2,'','Tell.'],['bag',2,2,'','Sett kryss.']]],
+ simulering:['Jeg kan gjette omtrent hvor ofte noe skjer.','En mynt gir kron omtrent halvparten av gangene.','sann',[['expect',4,1,'','Svar på oppgavene.'],['chance',3,1,'','Sett kryss.']]]
+};
+function fzText(tid,k){ const g=(WS_F[tid]||[])[2]||'arit', pool=fzW[g]||['word'], out=[], seen=new Set(); let t=0;
+  while(out.length<k&&t<40){ t++; const b=pick(pool); const p=typeof b==='function'?b():fz[b](); if(!p||seen.has(p.q)) continue; seen.add(p.q); out.push({q:p.q,a:p.fr?`${p.fr.n}/${p.fr.d}`:p.mc?p.mc.opts[p.mc.a]:p.ansHTML||(fmt(p.a)+(p.u?' '+p.u:'')),steps:p.steps||[],w:'s'}); }
+  return out; }
 
 /* ---------- 9. trinn: eksport for test ---------- */
 try{ window.__k9={TP,WS_R,WS_MAL,WS_HUSK,WS_TALK,wsDocument,textTasks}; }catch(e){}
