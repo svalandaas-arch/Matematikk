@@ -488,6 +488,134 @@ svg.ch{display:block;width:100%;max-width:560px;min-width:420px;height:auto}
 .mon-cell b{font-size:.92rem}.mon-cell span{font-size:.72rem;color:var(--muted);font-family:var(--f-mono)}
 .mon-cell.locked b{color:var(--muted)}
 @media (max-width:520px){.mon-field{grid-template-columns:110px 1fr;gap:10px}.mon-info h3{font-size:1.2rem}.mon-arena{padding:12px}}
+.ws{--ink:#141E36;--muted:#56617A;--line:#D2DAE8;--surface:#fff;--paper:#fff;--pen:#2343B0;--pen-soft:rgba(35,67,176,.08);--red:#C2362B;--red-soft:rgba(194,54,43,.08);--ok:#1B7646;--ok-soft:rgba(27,118,70,.10);--hl:rgba(255,211,59,.78);
+ font-family:var(--f-body);font-size:11.5pt;line-height:1.42;color:#141E36;background:#fff;-webkit-print-color-adjust:exact;print-color-adjust:exact;text-align:left}
+.ws *{box-sizing:border-box}
+.ws h1,.ws h2,.ws h3,.ws p{margin:0}
+.ws .frac{color:inherit}
+.ws-sheet+.ws-sheet{break-before:page}
+.ws .top{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:2mm 8mm;align-items:end;padding-bottom:3mm;border-bottom:2.5px solid var(--ink)}
+.ws .kick{font-family:var(--f-mono);font-size:7.5pt;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin:0 0 1.5mm}
+.ws .top h1{font-family:var(--f-display);font-weight:800;font-size:25pt;line-height:1.02;letter-spacing:-.01em;margin:0}
+.ws .wbadge{display:flex;flex-direction:column;align-items:flex-end;gap:1.2mm}
+.ws .wbadge .pill{white-space:nowrap;display:inline-flex;align-items:center;gap:2.2mm;background:var(--lv);color:#fff;font-family:var(--f-display);font-weight:800;font-size:12pt;padding:1.6mm 3.6mm;border-radius:10mm}
+.ws .dots{display:inline-flex;gap:1.1mm}
+.ws .dots i{width:2.4mm;height:2.4mm;border-radius:50%;border:1.3px solid #fff}
+.ws .dots i.on{background:#fff}
+.ws .wbadge small{white-space:nowrap;font-family:var(--f-mono);font-size:7.5pt;letter-spacing:.1em;text-transform:uppercase;color:var(--lv)}
+.ws .who{display:grid;grid-template-columns:auto 1fr auto 28mm auto 28mm;gap:3mm;align-items:end;margin-top:3.5mm;font-size:9pt;color:var(--muted)}
+.ws .who i{border-bottom:1px solid var(--ink);height:5mm}
+.ws .goal{display:grid;grid-template-columns:auto 1fr;gap:3mm;align-items:center;margin-top:4mm;padding:2.6mm 3.5mm;background:var(--lv-soft);border-left:4px solid var(--lv);border-radius:0 2mm 2mm 0;font-size:10.5pt}
+.ws .goal b{font-family:var(--f-mono);font-size:7.5pt;letter-spacing:.12em;text-transform:uppercase;color:var(--lv)}
+.ws .ex{margin-top:4mm;border:1.3px solid var(--line);border-radius:2.5mm;overflow:hidden;break-inside:avoid}
+.ws .ex .h{display:flex;justify-content:space-between;align-items:center;background:#F3F5FA;padding:1.8mm 3.5mm;border-bottom:1.3px solid var(--line)}
+.ws .ex .h b{font-family:var(--f-display);font-weight:800;font-size:11pt}
+.ws .ex .h span{font-size:8.5pt;color:var(--muted)}
+.ws .ex .bd{display:grid;grid-template-columns:minmax(40mm,auto) 1fr;gap:5mm;padding:3mm 3.5mm;align-items:start}
+.ws .ex .bd.stack{grid-template-columns:1fr;gap:3mm}
+.ws .ex .bd.stack .task{font-family:var(--f-body);font-weight:400;font-size:10.5pt}
+.ws .top h1.long{font-size:20pt}
+.ws .ex .task{font-family:var(--f-mono);font-weight:700;font-size:12.5pt}
+.ws .ex .task p{font-family:var(--f-body);font-weight:400;font-size:10.5pt;margin:0}
+.ws .ex ol{margin:0;padding:0;list-style:none;counter-reset:s;display:flex;flex-direction:column;gap:1.2mm;font-size:10pt}
+.ws .ex ol li{counter-increment:s;display:grid;grid-template-columns:5.5mm 1fr;gap:1.5mm}
+.ws .ex ol li::before{content:counter(s);font-family:var(--f-mono);font-weight:700;font-size:7.5pt;width:4.4mm;height:4.4mm;border-radius:50%;background:var(--lv);color:#fff;display:flex;align-items:center;justify-content:center;margin-top:.6mm}
+.ws .ex .rule-only{padding:3mm 3.5mm;font-size:10.5pt}
+.ws .task-h{display:flex;align-items:baseline;gap:3mm;margin:6mm 0 2.5mm;break-after:avoid}
+.ws .task-h .no{font-family:var(--f-display);font-weight:800;font-size:13pt;color:var(--lv);white-space:nowrap}
+.ws .task-h .ins{font-size:10.5pt}
+.ws .task-h .tag{margin-left:auto;font-family:var(--f-mono);font-size:7pt;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);border:1px solid var(--line);border-radius:1mm;padding:.6mm 1.6mm;white-space:nowrap}
+.ws .items{display:grid;gap:3.5mm 7mm}
+.ws .c1{grid-template-columns:1fr}
+.ws .c2{grid-template-columns:1fr 1fr}
+.ws .c3{grid-template-columns:1fr 1fr 1fr}
+.ws .c4{grid-template-columns:repeat(4,1fr)}
+.ws .it{display:grid;grid-template-columns:6mm 1fr;gap:1mm;break-inside:avoid;min-width:0}
+.ws .it .lt{font-weight:700;color:var(--lv);font-size:10.5pt;padding-top:.2mm}
+.ws .it .b{display:flex;flex-direction:column;gap:1.6mm;min-width:0}
+.ws .qx{font-family:var(--f-mono);font-weight:700;font-size:12pt;display:flex;align-items:center;gap:1.8mm;flex-wrap:wrap}
+.ws .qx sup,.ws .q sup,.ws .ex sup{font-size:.62em;vertical-align:.7em;line-height:0}
+.ws .q .math,.ws .qx .math{font-size:12.5pt!important;font-family:var(--f-mono);font-weight:700}
+.ws .qx{font-size:12.5pt!important}
+.ws .q{font-size:10.5pt}
+.ws .q p{margin:0 0 1mm}
+.ws .blank{display:inline-block;min-width:22mm;border-bottom:1.4px solid var(--ink);height:6mm}
+.ws .blank.w{min-width:38mm}
+.ws .blank.s{min-width:12mm}
+.ws .fblank{display:inline-flex;flex-direction:column;gap:.8mm;vertical-align:middle}
+.ws .fblank i{display:block;width:10mm;height:5.5mm;border:1px solid #9AA6BF;border-radius:1mm}
+.ws .fblank b{display:block;height:1.4px;background:var(--ink)}
+.ws .pblank{display:inline-flex;align-items:flex-start;gap:.5mm}
+.ws .pblank i{display:block;border:1px solid #9AA6BF;border-radius:1mm}
+.ws .work{border:1px solid #CBD3E3;border-radius:1.5mm;background-image:linear-gradient(rgba(48,92,168,.14) 1px,transparent 1px),linear-gradient(90deg,rgba(48,92,168,.14) 1px,transparent 1px);background-size:5mm 5mm;background-position:-1px -1px}
+.ws .work.s{height:15mm}
+.ws .work.m{height:25mm}
+.ws .work.l{height:38mm}
+.ws .work.grid{height:58mm}
+.ws .ansl{font-size:9.5pt;display:flex;align-items:flex-end;gap:1.8mm;flex-wrap:wrap;color:var(--muted)}
+.ws .ansl .qx{font-size:10.5pt;color:var(--ink)}
+.ws .opts{display:flex;flex-wrap:wrap;gap:1.5mm 5mm;font-weight:700;font-size:10.5pt}
+.ws .opts span{display:inline-flex;align-items:center;gap:1.4mm}
+.ws .opts span::before{content:"";width:3.6mm;height:3.6mm;border:1.4px solid var(--ink);border-radius:.7mm;flex:none}
+.ws .q .scroll{overflow:visible}
+.ws .q svg.pg{width:56mm!important;height:auto}
+.ws .c1 .q svg.pg{width:62mm!important}
+.ws .c1 .q svg.ch{max-width:115mm}
+.ws .q svg.ch{min-width:0;max-width:100%;height:auto}
+.ws .q .figs{justify-content:flex-start;gap:4mm;flex-wrap:wrap}
+.ws .q .figs svg{max-width:38mm;height:auto}
+.ws .q table.t{margin:1mm 0!important;font-size:10pt}
+.ws .coordbox{display:grid;grid-template-columns:1fr 52mm;gap:4mm;align-items:start}
+.ws .talk{margin-top:6mm;border:1.4px dashed var(--lv);border-radius:2.5mm;padding:3mm 4mm;break-inside:avoid}
+.ws .talk b{font-family:var(--f-display);font-weight:800;color:var(--lv)}
+.ws .self{margin-top:6mm;border-top:1.5px solid var(--ink);padding-top:3mm;display:grid;grid-template-columns:auto 1fr auto;gap:4mm;align-items:center;break-inside:avoid;font-size:9.5pt}
+.ws .self .t{font-family:var(--f-display);font-weight:800;font-size:11pt}
+.ws .self .wch{display:flex;gap:1.5mm 4mm;flex-wrap:wrap;font-size:8.8pt}
+.ws .self .wch span{display:inline-flex;gap:1.5mm;align-items:center}
+.ws .self .wch span::before{content:"";width:3.6mm;height:3.6mm;border:1.4px solid var(--ink);border-radius:50%}
+.ws .self .nx{font-family:var(--f-mono);font-size:8pt;color:var(--lv);text-align:right}
+.ws .pb{break-before:page;height:0}
+.ws .key .top h1{font-size:19pt}
+.ws .kt{margin-top:4mm;display:grid;grid-template-columns:22mm 1fr;border-top:1px solid var(--line);break-inside:avoid}
+.ws .kt>.n{font-family:var(--f-display);font-weight:800;color:var(--lv);padding:2mm 0;font-size:10.5pt}
+.ws .kt>.l{display:grid;grid-template-columns:repeat(var(--kc,3),1fr);gap:1mm 5mm;padding:2mm 0}
+.ws .ka{display:grid;grid-template-columns:5mm 1fr;gap:1mm;font-size:9.5pt;break-inside:avoid}
+.ws .ka .lt{font-weight:700;color:var(--lv)}
+.ws .ka .a{font-family:var(--f-mono);font-weight:700}
+.ws .ka .st{font-size:8.3pt;color:var(--muted);line-height:1.3}
+.ws .ka .st b{color:var(--ink)}
+.ws .ka svg,.ws .ka table{display:none}
+.ws .knote{margin-top:5mm;font-size:9pt;color:var(--muted)}
+.wsg{display:flex;flex-direction:column;gap:16px}
+.wsg-intro{margin:0;color:var(--muted);max-width:62ch}
+.wsg-form{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px 22px;align-items:end;background:var(--surface);border:1.5px solid var(--line);border-radius:14px;padding:18px 20px}
+.wsg-f{display:flex;flex-direction:column;gap:6px;min-width:0}
+.wsg-wide{grid-column:1/-1}
+.wsg-f select{font:inherit;font-weight:700;color:var(--ink);background:var(--surface);border:1.5px solid var(--line);border-radius:8px;padding:8px 12px;max-width:100%;cursor:pointer}
+.wsg-f select:focus-visible{outline:3px solid var(--pen);outline-offset:2px}
+.wsg-checks{gap:8px}
+.wsg-checks label{display:flex;gap:9px;align-items:flex-start;font-size:.95rem;cursor:pointer}
+.wsg-checks input{width:18px;height:18px;margin:1px 0 0;accent-color:var(--pen);flex:none}
+.wsg-go{align-items:flex-start}
+.wsg-out{display:flex;flex-direction:column;gap:12px}
+.wsg-out[hidden]{display:none}
+.wsg-bar{display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+.wsg-msg{color:var(--red);font-weight:700;font-size:.92rem}
+.wsg-tip{margin:0;font-size:.85rem;color:var(--muted)}
+.wsg-prev{display:flex;flex-direction:column;align-items:center;gap:22px;background:var(--line);border-radius:14px;padding:22px 10px;overflow:hidden}
+.wsg-prev .ws-sheet{width:210mm;min-height:297mm;padding:13mm 14mm 15mm;box-shadow:0 4px 18px rgba(14,20,36,.22);flex:none}
+@media screen{#ws-print{display:none}}
+@media print{
+ html.ws-printing body>*:not(#ws-print){display:none!important}
+ html.ws-printing,html.ws-printing body{background:#fff!important;background-image:none!important;display:block!important;margin:0!important;padding:0!important}
+ html.ws-printing body::before,html.ws-printing body::after{display:none!important}
+ html.ws-printing #ws-print{display:block!important}
+ #ws-print .ws-sheet{width:auto;min-height:0;padding:0;margin:0;box-shadow:none;zoom:1!important}
+ #ws-print .ws-sheet+.ws-sheet{break-before:page}
+ @page{size:A4;margin:13mm 14mm 15mm;
+  @bottom-left{content:"Matematikk 8. trinn";font-family:"Atkinson Hyperlegible",sans-serif;font-size:7pt;color:#56617A}
+  @bottom-right{content:"Side " counter(page) " av " counter(pages);font-family:"Atkinson Hyperlegible",sans-serif;font-size:7pt;color:#56617A}}
+}
 .g-step{display:flex;flex-direction:column;gap:14px}
 .g-step-h{display:flex;align-items:center;gap:12px}
 .g-step-h h2{margin:0;font-size:1.3rem}
@@ -2346,6 +2474,356 @@ function renderTopic(ch, tid){
 const VIDS=["brok-add", "brok-div", "brok-mul", "divisjon", "flere-ledd", "forenkling", "forkorting", "funksjonsuttrykk", "koordinater", "likninger", "monster", "multiplikasjon", "negative-tall", "potenser", "problemlosning", "uttrykk", "addisjon", "potensregler", "delelighet", "faktorisering", "brok-desimal", "gange-alg", "parenteser", "grafer", "diagrammer"];
 const ARK={"addisjon": {"id": "kap1-addisjon", "n": 14}, "multiplikasjon": {"id": "kap1-multiplikasjon", "n": 14}, "divisjon": {"id": "kap1-divisjon", "n": 14}, "flere-ledd": {"id": "kap1-flere-ledd", "n": 14}, "negative-tall": {"id": "kap1-negative-tall", "n": 14}, "potenser": {"id": "kap1-potenser", "n": 14}, "potensregler": {"id": "kap1-potensregler", "n": 14}, "delelighet": {"id": "kap2-delelighet", "n": 14}, "faktorisering": {"id": "kap2-faktorisering", "n": 14}, "forkorting": {"id": "kap2-forkorting", "n": 14}, "brok-desimal": {"id": "kap2-brok-desimal", "n": 14}, "brok-add": {"id": "kap2-brok-add", "n": 14}, "brok-mul": {"id": "kap2-brok-mul", "n": 14}, "brok-div": {"id": "kap2-brok-div", "n": 14}, "uttrykk": {"id": "kap3-uttrykk", "n": 14}, "forenkling": {"id": "kap3-forenkling", "n": 14}, "gange-alg": {"id": "kap3-gange-alg", "n": 14}, "parenteser": {"id": "kap3-parenteser", "n": 14}, "monster": {"id": "kap3-monster", "n": 8}, "likninger": {"id": "kap3-likninger", "n": 14}, "problemlosning": {"id": "kap3-problemlosning", "n": 14}, "koordinater": {"id": "kap4-koordinater", "n": 12}, "funksjonsuttrykk": {"id": "kap4-funksjonsuttrykk", "n": 11}, "grafer": {"id": "kap4-grafer", "n": 12}, "diagrammer": {"id": "kap4-diagrammer", "n": 8}};
 let DL=null; try{ if(window.claude&&window.claude.use) window.claude.use('downloads').then(d=>{ DL=d; }).catch(()=>{}); }catch(e){}
+/* ===================== tekstoppgavebank ===================== */
+const tR=(a,b)=>a+Math.floor(Math.random()*(b-a+1));
+const tP=a=>a[Math.floor(Math.random()*a.length)];
+const NAVN=['Emma','Noah','Sara','Ali','Ingrid','Jonas','Amir','Nora','Lukas','Maja','Elias','Sofie','Filip','Leah','Oskar','Aisha','Mathias','Ida','Jakob','Thea','Sander','Hedda','Yusuf','Live','Magnus','Selma','Adrian','Frida','Omar','Tuva','Henrik','Mina','Kasper','Linnea','Isak','Hanna'];
+const tN=()=>tP(NAVN); const tN2=()=>{ const a=tN(); let b; do b=tN(); while(b===a); return [a,b]; };
+const nf=x=>{ const neg=x<0; let s=String(Math.round(Math.abs(x)*1000)/1000); let [i,d]=s.split('.'); if(i.length>=5) i=i.replace(/\B(?=(\d{3})+(?!\d))/g,' '); return (neg?'−':'')+i+(d?','+d:''); };
+const tSg=x=>x<0?'('+nf(x)+')':nf(x);
+const rf=(n,d)=>{ const g=gcd(n,d)||1; n/=g; d/=g; if(d<0){ n=-n; d=-d; } return d===1?nf(n):F(n,d); };
+const mixd=(n,d)=>{ const g=gcd(n,d)||1; n/=g; d/=g; if(d===1) return nf(n); if(Math.abs(n)>d){ const w=Math.trunc(n/d), r=Math.abs(n%d); return `${F(n,d)} = ${nf(w)} ${F(r,d)}`; } return F(n,d); };
+const tSup=(b,e)=>`${b}<sup>${e}</sup>`;
+const tCo=a=>a===1?'':a===-1?'−':nf(a);
+const lin=(a,b)=>`${tCo(a)}x${b?` ${b<0?'−':'+'} ${Math.abs(b)}`:''}`;
+// [minLevel, maxLevel, fn(L) => [question, answer, steps[], work]]
+const TP={
+ addisjon:[
+  [1,3,L=>{ const n=tN(), a=tR(...[[120,480],[1200,4800],[12000,48000]][L-1]), b=tR(...[[110,390],[700,3900],[5000,39000]][L-1]); return [`${n} har ${nf(a)} kr på sparekontoen og setter inn ${nf(b)} kr. Hvor mye har ${n} på kontoen nå?`,`${nf(a+b)} kr`,[`${nf(a)} + ${nf(b)} = ${nf(a+b)}`],'m']; }],
+  [1,3,L=>{ const a=tR(...[[300,700],[600,1400],[2000,9000]][L-1]), b=tR(Math.floor(a*0.2),Math.floor(a*0.6)); const g=tP(['8. trinn','9. trinn','10. trinn']); return [`En skole har ${nf(a)} elever. ${nf(b)} av dem går i ${g}. Hvor mange elever går ikke i ${g}?`,`${nf(a-b)} elever`,[`${nf(a)} − ${nf(b)} = ${nf(a-b)}`],'m']; }],
+  [1,3,L=>{ const pl=tP(['Et badeland','En fotballkamp','Et museum','En konsert','En skimesse']), a=tR(...[[150,600],[900,4500],[12000,45000]][L-1]), b=tR(...[[150,600],[900,4500],[12000,45000]][L-1]); return [`${pl} hadde ${nf(a)} besøkende på lørdag og ${nf(b)} på søndag. Hvor mange besøkende var det til sammen?`,`${nf(a+b)}`,[`${nf(a)} + ${nf(b)} = ${nf(a+b)}`],'m']; }],
+  [1,3,L=>{ const [x,y]=tN2(), b=tR(...[[120,400],[800,3000],[8000,30000]][L-1]), a=b+tR(...[[35,250],[150,1900],[1500,19000]][L-1]); return [`I et dataspill har ${x} ${nf(a)} poeng og ${y} har ${nf(b)} poeng. Hvor mange flere poeng har ${x}?`,`${nf(a-b)} poeng`,[`${nf(a)} − ${nf(b)} = ${nf(a-b)}`],'m']; }],
+  [2,3,L=>{ const n=tN(), it=tP(['en sykkel','en mobil','en gitar','en PC','et skateboard','et snowboard']), p=tR(...[[0,0],[18,49],[120,350]][L-1])*100-tR(1,9)*(L===3?10:1), a=tR(Math.floor(p*0.3),Math.floor(p*0.8)); return [`${n} vil kjøpe ${it} som koster ${nf(p)} kr. ${n} har spart ${nf(a)} kr. Hvor mye mangler?`,`${nf(p-a)} kr`,[`${nf(p)} − ${nf(a)} = ${nf(p-a)}`],'m']; }],
+  [2,3,L=>{ const a=tR(...[[0,0],[1200,4999],[15000,79999]][L-1]), d=tR(...[[0,0],[300,1800],[1200,9800]][L-1]); return [`Kilometertelleren på en bil viste ${nf(a)} km før sommerferien og ${nf(a+d)} km etter ferien. Hvor langt kjørte bilen i ferien?`,`${nf(d)} km`,[`${nf(a+d)} − ${nf(a)} = ${nf(d)}`],'m']; }],
+  [3,3,()=>{ const h=tR(8,11)*1000, a=tR(1500,3800), b=tR(800,2900); return [`Et fly er ${nf(h)} m over bakken. Det synker ${nf(a)} m og stiger så ${nf(b)} m. Hvor høyt er flyet nå?`,`${nf(h-a+b)} m`,[`${nf(h)} − ${nf(a)} = ${nf(h-a)}`,`${nf(h-a)} + ${nf(b)} = ${nf(h-a+b)}`],'m']; }],
+  [3,3,()=>{ const n=tN(), s=tR(40,90)*100, a=tR(1200,2800), b=tR(800,1900), c=tR(300,900); return [`${n} skal spare ${nf(s)} kr til en tur. ${n} har ${nf(a)} kr, får ${nf(b)} kr i gave og tjener ${nf(c)} kr på å passe barn. Hvor mye mangler ${n}?`,`${nf(s-a-b-c)} kr`,[`${nf(a)} + ${nf(b)} + ${nf(c)} = ${nf(a+b+c)}`,`${nf(s)} − ${nf(a+b+c)} = ${nf(s-a-b-c)}`],'m']; }]
+ ],
+ multiplikasjon:[
+  [1,3,L=>{ const p=[tR(45,95),tR(65,149),tR(129,489)][L-1], k=[tR(3,9),tR(12,35),tR(24,68)][L-1], ev=tP(['kinobilletter','konsertbilletter','badelandbilletter','bussbilletter']); return [`En klasse skal kjøpe ${k} ${ev}. Én billett koster ${nf(p)} kr. Hva koster billettene til sammen?`,`${nf(p*k)} kr`,[`${k} · ${nf(p)} = ${nf(p*k)}`],'m']; }],
+  [1,3,L=>{ const per=[tR(6,12),tR(12,36),tR(24,48)][L-1], k=[tR(4,9),tR(15,48),tR(125,480)][L-1], t=tP([['kasser','flasker'],['esker','blyanter'],['pakker','kjeks'],['brett','egg']]); return [`En butikk får ${nf(k)} ${t[0]} med ${per} ${t[1]} i hver. Hvor mange ${t[1]} er det til sammen?`,`${nf(per*k)} ${t[1]}`,[`${nf(k)} · ${per} = ${nf(per*k)}`],'m']; }],
+  [1,3,L=>{ const n=tN(), r=[tR(4,9),tR(12,25),tR(18,45)][L-1], m=[200,400,400][L-1]; return [`${n} løper ${r} runder på en bane som er ${m} m lang. Hvor mange meter løper ${n}?`,`${nf(r*m)} m`,[`${r} · ${m} = ${nf(r*m)}`],'s']; }],
+  [1,3,L=>{ const a=[tR(4,9),tR(12,48),tR(105,345)][L-1], b=[tR(12,45),tR(14,39),tR(48,96)][L-1], t=tP(['En hage','Et jorde','En fotballbane','Et gulv']); return [`${t} er formet som et rektangel som er ${a} m langt og ${b} m bredt. Hva er arealet?`,`${nf(a*b)} m²`,[`${a} · ${b} = ${nf(a*b)}`],'m']; }],
+  [2,3,L=>{ const n=tN(), w=[0,tR(12,52),tR(26,52)][L-1], s=[0,tR(45,150),tR(175,649)][L-1]; return [`${n} sparer ${nf(s)} kr hver uke i ${w} uker. Hvor mye har ${n} spart til slutt?`,`${nf(s*w)} kr`,[`${w} · ${nf(s)} = ${nf(s*w)}`],'m']; }],
+  [2,3,L=>{ const r=[0,tR(14,28),tR(24,48)][L-1], s=[0,tR(16,32),tR(32,64)][L-1]; return [`I en konsertsal er det ${r} rader med ${s} seter i hver rad. Hvor mange seter er det?`,`${nf(r*s)} seter`,[`${r} · ${s} = ${nf(r*s)}`],'m']; }],
+  [3,3,()=>{ const k=tR(18,36), p=tR(1290,4990); return [`Skolen kjøper ${k} nettbrett til ${nf(p)} kr per stykk. Hva koster de til sammen?`,`${nf(k*p)} kr`,[`${k} · ${nf(p)} = ${nf(k*p)}`],'l']; }]
+ ],
+ divisjon:[
+  [1,3,L=>{ const k=[tR(3,6),tR(12,24),tR(24,36)][L-1], q=[tR(12,29),tR(15,45),tR(125,280)][L-1], t=tP([['elever','busser'],['klistremerker','venner'],['kroner','barn'],['kuler','poser']]); return [`${nf(k*q)} ${t[0]} skal fordeles likt på ${k} ${t[1]}. Hvor mange blir det på hver?`,`${nf(q)} ${t[0]}`,[`${nf(k*q)} : ${k} = ${nf(q)}`],'m']; }],
+  [1,3,L=>{ const k=[tR(2,6),tR(12,18),tR(14,28)][L-1], q=[tR(15,40),tR(24,65),tR(45,125)][L-1]; return [`Et tau på ${nf(k*q)} cm skal kuttes i ${k} like lange biter. Hvor lang blir hver bit?`,`${nf(q)} cm`,[`${nf(k*q)} : ${k} = ${nf(q)}`],'m']; }],
+  [2,3,L=>{ const c=[0,tR(45,55),tR(48,62)][L-1], b=tR(3,8), r=tR(4,c-5), n=c*b+r; return [`${nf(n)} elever skal på tur. En buss har plass til ${c} elever. Hvor mange busser trengs?`,`${b+1} busser`,[`${nf(n)} : ${c} = ${b} rest ${r}`,`${r} elever trenger en buss til, så det trengs ${b+1} busser`],'m']; }],
+  [2,3,L=>{ const k=[0,tR(12,28),tR(23,32)][L-1], q=[0,tR(85,250),tR(140,380)][L-1]; return [`${k} elever samlet inn ${nf(k*q)} kr til en innsamlingsaksjon. Hvor mye samlet hver elev inn i gjennomsnitt?`,`${nf(q)} kr`,[`${nf(k*q)} : ${k} = ${nf(q)}`],'m']; }],
+  [2,3,L=>{ const h=[0,tR(3,8),tR(12,18)][L-1], v=[0,tR(55,95),tR(65,98)][L-1]; return [`En bil kjører ${nf(h*v)} km på ${h} timer. Hvor langt kjører den i timen i gjennomsnitt?`,`${v} km`,[`${nf(h*v)} : ${h} = ${v}`],'m']; }],
+  [1,3,L=>{ const per=[tR(4,8),tR(6,12),tR(12,24)][L-1], q=[tR(6,15),tR(25,60),tR(85,240)][L-1], r=tR(1,per-1), it=tP(['muffins','boller','kjeks']); return [`Et bakeri har ${nf(per*q+r)} ${it}. De pakkes i esker med ${per} i hver. Hvor mange fulle esker blir det, og hvor mange ${it} blir til overs?`,`${nf(q)} esker, ${r} til overs`,[`${nf(per*q+r)} : ${per} = ${nf(q)} rest ${r}`],'m']; }]
+ ],
+ 'flere-ledd':[
+  [1,3,L=>{ const n=tN(), a=tR(2,4), p=[tR(15,35),tR(45,120),tR(129,349)][L-1], b=tR(2,5), q=[tR(10,25),tR(25,69),tR(59,149)][L-1], it=tP([['brus','sjokolade'],['notatbøker','penner'],['billetter','popcorn']]); return [`${n} kjøper ${a} ${it[0]} til ${p} kr per stykk og ${b} ${it[1]} til ${q} kr per stykk. Hva må ${n} betale?`,`${nf(a*p+b*q)} kr`,[`${a} · ${p} + ${b} · ${q}`,`= ${nf(a*p)} + ${nf(b*q)} = ${nf(a*p+b*q)}`],'s']; }],
+  [1,3,L=>{ const n=tN(), a=tR(2,5), p=[tR(25,60),tR(55,130),tR(119,239)][L-1], m=Math.ceil(a*p/100)*100+[0,100,200][L-1]; return [`${n} kjøper ${a} gaver til ${p} kr per stykk og betaler med ${nf(m)} kr. Hvor mye får ${n} tilbake?`,`${nf(m-a*p)} kr`,[`${nf(m)} − ${a} · ${p}`,`= ${nf(m)} − ${nf(a*p)} = ${nf(m-a*p)}`],'s']; }],
+  [1,3,L=>{ const g=tR(3,8), per=tR(4,9), x=tR(2,9); return [`En klasse deler seg i ${g} lag med ${per} elever på hvert lag. ${x} elever er dommere. Hvor mange elever er det i klassen?`,`${g*per+x} elever`,[`${g} · ${per} + ${x} = ${g*per} + ${x} = ${g*per+x}`],'s']; }],
+  [2,3,L=>{ const a=tR(3,8), b=2*tR(2,6), tot=a*b; const k=[2,3,4,6].find(k=>tot%k===0)||1; return [`Det er ${a} poser med ${b} drops i hver. Alle dropsene deles likt på ${k} venner. Hvor mange drops får hver?`,`${tot/k} drops`,[`(${a} · ${b}) : ${k} = ${tot} : ${k} = ${tot/k}`],'s']; }],
+  [2,3,L=>{ const a=tR(2,4), v=[0,tR(99,159),tR(149,289)][L-1], b=tR(2,5), bb=[0,tR(59,99),tR(79,149)][L-1]; return [`En familie kjøper ${a} voksenbilletter til ${v} kr og ${b} barnebilletter til ${bb} kr. Hva koster billettene til sammen?`,`${nf(a*v+b*bb)} kr`,[`${a} · ${v} + ${b} · ${bb} = ${nf(a*v)} + ${nf(b*bb)} = ${nf(a*v+b*bb)}`],'s']; }],
+  [3,3,()=>{ const a=tR(4,9), b=tR(12,24), s=tR(Math.ceil(a*b*0.4),Math.floor(a*b*0.8)); let k=[2,3,4,5,6].filter(k=>(a*b-s)%k===0); if(!k.length) return TP['flere-ledd'][5][2](3); k=tP(k); return [`Et konditori lager ${a} brett med ${b} kaker på hvert. ${s} kaker blir solgt, og resten deles likt på ${k} ansatte. Hvor mange kaker får hver ansatt?`,`${(a*b-s)/k} kaker`,[`(${a} · ${b} − ${s}) : ${k}`,`= (${a*b} − ${s}) : ${k} = ${a*b-s} : ${k} = ${(a*b-s)/k}`],'s']; }],
+  [3,3,()=>{ const x=tR(2,5), y=tR(3,8), z=tR(2,6); return [`Sett inn parenteser slik at regnestykket blir riktig: ${x} + ${y} · ${z} = ${(x+y)*z}`,`(${x} + ${y}) · ${z} = ${(x+y)*z}`,[`${x} + ${y} = ${x+y}`,`${x+y} · ${z} = ${(x+y)*z}`],'s']; }]
+ ],
+ 'negative-tall':[
+  [1,3,L=>{ const a=-tR(2,12), b=tR(3,15); return [`Om morgenen var temperaturen ${nf(a)} °C. Midt på dagen var den ${nf(b)} °C. Hvor mange grader steg temperaturen?`,`${b-a} °C`,[`${nf(b)} − ${tSg(a)} = ${nf(b)} + ${-a} = ${b-a}`],'s']; }],
+  [1,3,L=>{ const a=tR(-4,6), d=tR(5,14); return [`Temperaturen er ${nf(a)} °C. I løpet av natta synker den ${d} grader. Hva er temperaturen da?`,`${nf(a-d)} °C`,[`${nf(a)} − ${d} = ${nf(a-d)}`],'s']; }],
+  [1,3,L=>{ const n=tN(), a=tR(50,300), p=a+tR(20,250); return [`${n} har ${nf(a)} kr på kontoen og betaler ${nf(p)} kr med bankkortet. Hva er saldoen etterpå?`,`${nf(a-p)} kr`,[`${nf(a)} − ${nf(p)} = ${nf(a-p)}`],'s']; }],
+  [1,3,L=>{ const s=-tR(1,3), u=tR(4,9); return [`Du går inn i heisen i etasje ${nf(s)}. Heisen kjører ${u} etasjer opp. Hvilken etasje kommer du til?`,`Etasje ${nf(s+u)}`,[`${nf(s)} + ${u} = ${nf(s+u)}`],'s']; }],
+  [2,3,L=>{ const d=-tR(8,25), u=tR(3,7); return [`En dykker er på ${nf(d)} m. Hun stiger ${u} m, og synker så ${u*2} m. Hvor dypt er hun nå?`,`${nf(d+u-2*u)} m`,[`${nf(d)} + ${u} − ${2*u} = ${nf(d-u)}`],'s']; }],
+  [2,3,L=>{ const hi=tR(2,9), lo=-tR(5,18); return [`I januar var høyeste temperatur ${nf(hi)} °C og laveste ${nf(lo)} °C. Hvor stor var forskjellen?`,`${hi-lo} °C`,[`${nf(hi)} − ${tSg(lo)} = ${hi} + ${-lo} = ${hi-lo}`],'s']; }],
+  [3,3,()=>{ let t=[tR(-9,4),tR(-9,4),tR(-9,4)]; const s=t.reduce((a,b)=>a+b,0); const r=((s%4)+4)%4; const t4=tR(-6,3)-r; const all=[...t,t4], sum=all.reduce((a,b)=>a+b,0); if(sum%4) return TP['negative-tall'][6][2](3); return [`Temperaturen klokka 12 fire dager på rad var ${all.map(nf).join(' °C, ')} °C. Hva var gjennomsnittstemperaturen?`,`${nf(sum/4)} °C`,[`(${all.map(sg).join(' + ')}) : 4`,`= ${nf(sum)} : 4 = ${nf(sum/4)}`],'s']; }],
+  [3,3,()=>{ const a=-tR(2,6), b=-tR(2,5), c=tR(2,4)*(Math.random()<.5?-1:1); return [`Regn ut ${tSg(a)} · ${tSg(b)} · ${tSg(c)}, og forklar hvordan du finner fortegnet.`,nf(a*b*c),[`${tSg(a)} · ${tSg(b)} = ${nf(a*b)} (likt fortegn gir pluss)`,`${nf(a*b)} · ${tSg(c)} = ${nf(a*b*c)}`],'s']; }]
+ ],
+ potenser:[
+  [1,3,L=>{ const h=[tR(3,5),tR(5,8),tR(8,12)][L-1]; return [`En bakterie deler seg i to hver time. Vi starter med én bakterie. Hvor mange bakterier er det etter ${h} timer? Skriv svaret som potens og regn ut.`,`${tSup(2,h)} = ${nf(2**h)}`,[`Antallet dobles ${h} ganger: ${tSup(2,h)} = ${nf(2**h)}`],'s']; }],
+  [1,3,L=>{ const s=[tR(3,9),tR(11,19),tR(21,35)][L-1]; return [`Et kvadrat har sider på ${s} cm. Skriv arealet som en potens og regn det ut.`,`${tSup(s,2)} = ${nf(s*s)} cm²`,[`${s} · ${s} = ${tSup(s,2)} = ${nf(s*s)}`],'s']; }],
+  [1,3,L=>{ const s=[tR(2,5),tR(4,9),tR(9,15)][L-1]; return [`En kube har sider på ${s} cm. Skriv volumet som en potens og regn det ut.`,`${tSup(s,3)} = ${nf(s**3)} cm³`,[`${s} · ${s} · ${s} = ${tSup(s,3)} = ${nf(s**3)}`],'s']; }],
+  [2,3,L=>{ let a=tR(2,4), b=tR(a+2,7); if(Math.random()<.5) [a,b]=[b,a]; const x=a**b, y=b**a; return [`Hva er størst, ${tSup(a,b)} eller ${tSup(b,a)}? Vis utregningen.`,x===y?'Like store':`${x>y?tSup(a,b):tSup(b,a)} er størst`,[`${tSup(a,b)} = ${nf(x)} og ${tSup(b,a)} = ${nf(y)}`],'s']; }],
+  [2,3,L=>{ const e=tR(4,9); return [`Skriv ${nf(10**e)} som en potens med grunntall 10.`,tSup(10,e),[`Tallet har ${e} nuller, så det er ${tSup(10,e)}`],'s']; }],
+  [3,3,()=>{ const n=tR(5,9); return [`Du bretter et ark på midten ${n} ganger. Hvor mange lag papir blir det? Skriv som potens og regn ut.`,`${tSup(2,n)} = ${nf(2**n)} lag`,[`Hver bretting dobler antall lag: ${tSup(2,n)} = ${nf(2**n)}`],'s']; }],
+  [3,3,()=>{ const b=tP([2,3]), e=b===2?tR(5,7):tR(3,4), v=b**e, b2=b===2?4:9, e2=e/2; if(!Number.isInteger(e2)) return [`Skriv ${nf(v)} som en potens med grunntall ${b}.`,tSup(b,e),[`${Array(e).fill(b).join(' · ')} = ${nf(v)}`],'s']; return [`Skriv ${nf(v)} som en potens med grunntall ${b}, og som en potens med grunntall ${b2}.`,`${tSup(b,e)} og ${tSup(b2,e2)}`,[`${Array(e).fill(b).join(' · ')} = ${nf(v)}`,`${Array(e2).fill(b2).join(' · ')} = ${nf(v)}`],'s']; }]
+ ],
+ potensregler:[
+  [1,3,L=>{ const b=tR(2,9), m=tR(2,5), n=tR(2,5); return [`Skriv ${tSup(b,m)} · ${tSup(b,n)} som én potens. Vis hvorfor ved å skrive ut alle faktorene.`,tSup(b,m+n),[`${Array(m).fill(b).join(' · ')} · ${Array(n).fill(b).join(' · ')} = ${tSup(b,m+n)}`],'s']; }],
+  [1,3,L=>{ const b=tR(2,9), n=tR(2,4), m=n+tR(1,4); return [`Skriv ${tSup(b,m)} : ${tSup(b,n)} som én potens. Forklar med en brøk.`,tSup(b,m-n),[`${n} faktorer forkortes bort, og ${m-n} blir igjen: ${tSup(b,m-n)}`],'s']; }],
+  [2,3,L=>{ const b=tR(2,7), a=tR(2,5), c=tR(3,6), d=tR(2,a+c-1); return [`Skriv ${tSup(b,a)} · ${tSup(b,c)} : ${tSup(b,d)} som én potens.`,tSup(b,a+c-d),[`${tSup(b,a)} · ${tSup(b,c)} = ${tSup(b,a+c)}`,`${tSup(b,a+c)} : ${tSup(b,d)} = ${tSup(b,a+c-d)}`],'s']; }],
+  [2,3,L=>{ const n=tN(), b=tR(2,3), m=tR(2,4), k=tR(2,4); return [`${n} skriver ${tSup(b,m)} · ${tSup(b,k)} = ${tSup(b*b,m+k)}. Forklar hva som er feil, og finn riktig svar.`,`${tSup(b,m+k)} = ${nf(b**(m+k))}`,[`Grunntallet skal ikke ganges, bare eksponentene legges sammen`,`${tSup(b,m)} · ${tSup(b,k)} = ${tSup(b,m+k)} = ${nf(b**(m+k))}`],'s']; }],
+  [3,3,()=>{ const a=tR(5,9), b=tR(2,4); return [`Hvor mange ganger større er ${tSup(10,a)} enn ${tSup(10,b)}?`,`${tSup(10,a-b)} = ${nf(10**(a-b))} ganger`,[`${tSup(10,a)} : ${tSup(10,b)} = ${tSup(10,a-b)} = ${nf(10**(a-b))}`],'s']; }],
+  [3,3,()=>{ const b=tR(2,5), m=tR(2,4), n=tR(2,3); return [`Skriv (${tSup(b,m)})<sup>${n}</sup> som én potens. Forklar regelen du bruker.`,tSup(b,m*n),[`(${tSup(b,m)})<sup>${n}</sup> = ${Array(n).fill(tSup(b,m)).join(' · ')} = ${tSup(b,m*n)}`],'s']; }],
+  [3,3,()=>{ const b=tR(2,5), e=tR(2,4); return [`Regn ut ${tSup(b,e)} + ${tSup(b,e)}. Kan du skrive svaret som én potens med grunntall ${b}? Forklar.`,b===2?`${nf(2*b**e)} = ${tSup(2,e+1)}`:`${nf(2*b**e)}, nei`,[`${tSup(b,e)} + ${tSup(b,e)} = 2 · ${tSup(b,e)} = ${nf(2*b**e)}`,b===2?`2 · ${tSup(2,e)} = ${tSup(2,e+1)}`:`2 · ${tSup(b,e)} er ikke en potens av ${b}`],'s']; }]
+ ],
+ delelighet:[
+  [1,3,L=>{ const n=tP([12,18,20,24,30,36]), d=[]; for(let k=2;k<=n;k++) if(n%k===0) d.push(k); return [`${n} elever skal deles i like store grupper med mer enn én elev i hver. Hvor mange elever kan det være i hver gruppe? Skriv alle mulighetene.`,d.join(', '),[`Faktorene i ${n} unntatt 1`],'s']; }],
+  [1,3,L=>{ const n=[tR(100,999),tR(1000,9999),tR(10000,99999)][L-1], ds=String(n).split('').map(Number), s=ds.reduce((a,b)=>a+b,0); return [`Er ${nf(n)} delelig med 3? Bruk tverrsummen.`,s%3===0?'Ja':'Nei',[`${ds.join(' + ')} = ${s}`,`${s} er ${s%3===0?'':'ikke '}delelig med 3`],'s']; }],
+  [1,3,L=>{ const k=tR(3,6), q=tR(5,12), r=Math.random()<.5?0:tR(1,k-1), n=k*q+r; return [`Kan ${n} godterier deles likt på ${k} barn uten rest? Hvor mange får hver?`,r?`Nei. ${q} hver, ${r} til overs`:`Ja, ${q} hver`,[`${n} : ${k} = ${q}${r?` rest ${r}`:''}`],'s']; }],
+  [2,3,L=>{ const a=tR(20,40), b=a+tR(10,20), p=[]; for(let x=a;x<=b;x++){ let ok=x>1; for(let d=2;d*d<=x;d++) if(x%d===0) ok=false; if(ok) p.push(x); } return [`Skriv opp alle primtallene mellom ${a} og ${b}.`,p.join(', ')||'Ingen',[`Sjekk hvert tall: et primtall har bare 1 og seg selv som faktorer`],'s']; }],
+  [3,3,()=>{ const sets=[[2,3,4,5,60],[2,3,5,30],[3,4,5,60],[2,5,6,30],[4,6,9,36],[3,5,6,30]]; const s=tP(sets).slice(), v=s.pop(); return [`Finn det minste tallet (større enn 0) som er delelig med ${s.join(', ').replace(/, ([^,]*)$/,' og $1')}.`,nf(v),[`Minste felles multiplum av ${s.join(', ')} er ${v}`],'s']; }],
+  [3,3,()=>{ const end=tP([0,5]); return [`Finn et tresifret tall som slutter på ${end} og er delelig med 9. Forklar hvordan du fant det.`,end?'For eksempel 135, 225 eller 315':'For eksempel 180, 270 eller 360',[`Tverrsummen må være delelig med 9`],'s']; }]
+ ],
+ faktorisering:[
+  [1,2,L=>{ const n=tP([12,16,18,20,24,28,30,36]), d=[]; for(let k=1;k<=n;k++) if(n%k===0) d.push(k); return [`Skriv opp alle tallene som går opp i ${n}.`,d.join(', '),[`Del ${n} på 1, 2, 3, … og se hvilke som går opp uten rest`],'s']; }],
+  [1,2,L=>{ const n=tP([9,15,21,25,27,33,35,39,49,51]); return [`Er ${n} et primtall? Hvis ikke, skriv tallet som et produkt av primtall.`,`Nei. ${n} = ${powStr(pfac(n))}`,[`${n} har flere faktorer enn 1 og seg selv`],'s']; }],
+  [1,3,L=>{ const n=tP([[12,18,20,28,30,45],[60,72,84,90,126],[180,210,252,360,420]][L-1]); return [`Skriv ${n} som et produkt av primtall. Tegn gjerne et faktortre.`,`${n} = ${powStr(pfac(n))}`,[`Del på det minste primtallet som går opp, til alle faktorene er primtall`],'m']; }],
+  [2,3,L=>{ const [a,b,m]=tP([[6,8,24],[4,10,20],[6,9,18],[8,12,24],[10,15,30],[12,18,36]]); const t=tP([['To blinklys','blinker','sekund'],['To busser','går fra holdeplassen','minutt'],['To fyrtårn','lyser','sekund']]); return [`${t[0]} ${t[1]} hvert ${a}. og hvert ${b}. ${t[2]}. Nå skjer det samtidig. Om hvor lang tid skjer det samtidig igjen?`,`${m} ${t[2]==='minutt'?'minutter':'sekunder'}`,[`MFM(${a}, ${b}) = ${m}`],'m']; }],
+  [2,3,L=>{ const [a,b,g]=tP([[12,18,6],[16,24,8],[18,24,6],[20,30,10],[24,36,12],[36,48,12],[30,45,15]]); const f=tP([['epler','pærer'],['røde perler','blå perler'],['jenter','gutter']]); return [`Du har ${a} ${f[0]} og ${b} ${f[1]}. Du vil lage så mange like grupper som mulig, uten noe til overs. Hvor mange grupper blir det, og hva er i hver?`,`${g} grupper med ${a/g} ${f[0]} og ${b/g} ${f[1]}`,[`SFF(${a}, ${b}) = ${g}`],'m']; }],
+  [3,3,()=>{ const [a,b,g]=tP([[84,126,42],[90,150,30],[72,120,24],[105,140,35]]); return [`To tau er ${a} cm og ${b} cm lange. De skal deles i like lange biter, så lange som mulig, uten rester. Hvor lange blir bitene?`,`${g} cm`,[`${a} = ${powStr(pfac(a))}, ${b} = ${powStr(pfac(b))}`,`SFF = ${g}`],'m']; }],
+  [3,3,()=>{ const [a,b,m]=tP([[12,18,36],[15,20,60],[8,12,24],[6,10,30]]); return [`Du har mange like rektangulære fliser som er ${a} cm lange og ${b} cm brede. Du legger dem ved siden av hverandre slik at de danner et kvadrat. Hva er den minste mulige sidelengden?`,`${m} cm`,[`Sidelengden må være delelig med både ${a} og ${b}`,`MFM(${a}, ${b}) = ${m}`],'m']; }]
+ ],
+ forkorting:[
+  [1,3,L=>{ const n=tN(), d=tP([6,8,10,12]), k=tP([2,3,4,6].filter(x=>d%x===0&&x<d)); return [`En pizza er delt i ${d} like store biter. ${n} spiser ${k} biter. Hvor stor del av pizzaen spiser ${n}? Forkort så langt det går.`,rf(k,d),[`${F(k,d)} = ${rf(k,d)}`],'s']; }],
+  [1,3,L=>{ const tot=tP([20,24,25,28,30]), g=tP([...Array(tot-6).keys()].map(x=>x+4).filter(x=>gcd(x,tot)>1)); return [`Det er ${tot} elever i en klasse, og ${g} av dem er jenter. Hvor stor del av klassen er jenter? Forkort så langt det går.`,rf(g,tot),[`${F(g,tot)} = ${rf(g,tot)} (del på ${gcd(g,tot)})`],'s']; }],
+  [2,3,L=>{ const tot=tP([20,24,30,36,40]), r=tP([...Array(tot-4).keys()].map(x=>x+3).filter(x=>gcd(x,tot)>1)); return [`På en prøve fikk du ${r} av ${tot} poeng. Skriv dette som en forkortet brøk.`,rf(r,tot),[`${F(r,tot)} = ${rf(r,tot)}`],'s']; }],
+  [2,3,L=>{ const a=tR(1,4), b=a+tR(1,4), c=tR(1,4), d=c+tR(1,4); if(a*d===b*c) return TP.forkorting[3][2](L); const g=a*d>b*c; return [`Hvem har spist mest pizza? Lise har spist ${F(a,b)} av en pizza, og Tor har spist ${F(c,d)} av en like stor pizza. Vis hvordan du tenker.`,g?'Lise':'Tor',[`Fellesnevner ${b*d}: ${F(a*d,b*d)} og ${F(c*b,b*d)}`],'s']; }],
+  [3,3,()=>{ const a=tR(1,4), b=a+tR(1,5); if(gcd(a,b)>1) return TP.forkorting[4][2](3); const k1=tR(2,4), k2=k1+tR(1,3); return [`Er ${F(a*k1,b*k1)} og ${F(a*k2,b*k2)} like store? Vis det.`,`Ja, begge er ${F(a,b)}`,[`${F(a*k1,b*k1)} = ${F(a,b)} og ${F(a*k2,b*k2)} = ${F(a,b)}`],'s']; }],
+  [3,3,()=>{ const a=tR(1,4), b=a+tR(1,5); if(gcd(a,b)>1) return TP.forkorting[5][2](3); return [`Finn tre brøker som er like store som ${F(a,b)}, der nevneren er større enn 10.`,`For eksempel ${[4,5,7].map(k=>F(a*k,b*k)).join(', ')}`,[`Utvid med samme tall i teller og nevner`],'s']; }]
+ ],
+ 'brok-desimal':[
+  [1,3,L=>{ const [r,t]=tP([[3,4],[1,2],[4,5],[2,5],[3,10],[7,10],[1,4],[9,10]]); return [`Du svarte riktig på ${r} av ${t} oppgaver. Hvor mange prosent er det?`,`${nf(r/t*100)} %`,[`${F(r,t)} = ${nf(r/t)} = ${nf(r/t*100)} %`],'s']; }],
+  [2,3,L=>{ const p=tP([10,20,25,30,40,50]), pr=tR(4,24)*100*(p===25?1:1), it=tP(['En jakke','En sykkel','Et par sko','En hettegenser']); return [`${it} koster ${nf(pr)} kr. Prisen settes ned med ${p} %. Hvor mye sparer du, og hva blir den nye prisen?`,`Sparer ${nf(pr*p/100)} kr, ny pris ${nf(pr-pr*p/100)} kr`,[`${p} % av ${nf(pr)} = ${nf(pr)} · ${nf(p/100)} = ${nf(pr*p/100)}`,`${nf(pr)} − ${nf(pr*p/100)} = ${nf(pr-pr*p/100)}`],'s']; }],
+  [2,3,L=>{ const set=tP([[[1,2],0.55,0.6],[[3,4],0.7,0.8],[[2,5],0.35,0.45],[[1,4],0.2,0.3]]); const [[n,d],a,b]=set; const items=[{t:F(n,d),v:n/d},{t:nf(a),v:a},{t:`${nf(b*100)} %`,v:b}]; const s=items.slice().sort((x,y)=>x.v-y.v); return [`Sorter fra minst til størst: ${tP([items,items.slice().reverse()]).map(x=>x.t).join(' &nbsp; ')}`,s.map(x=>x.t).join(', '),[`Gjør alle om til desimaltall: ${s.map(x=>nf(x.v)).join(' < ')}`],'s']; }],
+  [1,3,L=>{ const [n,d]=tP([[1,4],[3,5],[2,5],[7,20],[3,25],[1,20]]); return [`${F(n,d)} av elevene på en skole sykler til skolen. Hvor mange prosent er det?`,`${nf(n/d*100)} %`,[`${F(n,d)} = ${F(n*100/d,100)} = ${nf(n/d*100)} %`],'s']; }],
+  [3,3,()=>{ const [a,b]=tP([[2,5],[1,4],[3,10],[1,5]]), c=tP([0.3,0.25,0.35,0.15]); const rest=100-a/b*100-c*100; if(rest<=0) return TP['brok-desimal'][4][2](3); return [`I en klasse liker ${F(a,b)} av elevene fotball best, og ${nf(c)} av elevene liker håndball best. Resten liker en annen idrett best. Hvor mange prosent er det?`,`${nf(rest)} %`,[`${F(a,b)} = ${nf(a/b*100)} %, ${nf(c)} = ${nf(c*100)} %`,`100 − ${nf(a/b*100)} − ${nf(c*100)} = ${nf(rest)}`],'s']; }],
+  [3,3,()=>{ const [n,d]=tP([[3,8],[5,8],[1,8],[7,8],[3,16]]); return [`Skriv ${F(n,d)} som desimaltall og som prosent.`,`${nf(n/d)} og ${nf(n/d*100)} %`,[`${n} : ${d} = ${nf(n/d)}`],'s']; }]
+ ],
+ 'brok-add':[
+  [1,3,L=>{ const [x,y]=tN2(), d=tP([6,8,10,12]), a=tR(1,d/2-1), b=tR(1,d-a-1); return [`${x} spiste ${F(a,d)} av en pizza, og ${y} spiste ${F(b,d)}. Hvor mye spiste de til sammen?`,rf(a+b,d),[`${F(a,d)} + ${F(b,d)} = ${F(a+b,d)}${gcd(a+b,d)>1?` = ${rf(a+b,d)}`:''}`],'s']; }],
+  [1,3,L=>{ const d=tP([4,6,8,10]), a=tR(2,d-1), b=tR(1,a-1); return [`Du har ${F(a,d)} liter saft og drikker ${F(b,d)} liter. Hvor mye saft er igjen?`,`${rf(a-b,d)} liter`,[`${F(a,d)} − ${F(b,d)} = ${F(a-b,d)}${gcd(a-b,d)>1?` = ${rf(a-b,d)}`:''}`],'s']; }],
+  [2,3,L=>{ const [d1,d2]=tP([[2,4],[3,6],[2,6],[4,8],[3,12],[4,12],[5,10]]), a=1, b=tR(1,d2-1); const N=a*d2/d1+b; if(N>=d2) return TP['brok-add'][2][2](L); return [`Line sover ${F(a,d1)} av døgnet og er på skolen ${F(b,d2)} av døgnet. Hvor stor del av døgnet er det til sammen?`,rf(N,d2),[`${F(a,d1)} = ${F(a*d2/d1,d2)}`,`${F(a*d2/d1,d2)} + ${F(b,d2)} = ${F(N,d2)}${gcd(N,d2)>1?` = ${rf(N,d2)}`:''}`],'s']; }],
+  [2,3,L=>{ const [d1,d2]=tP([[4,2],[6,3],[8,4],[12,4],[10,5]]), a=tR(d1/d2+1,d1-1), b=1; const N=a-b*d1/d2; return [`En kanne har ${F(a,d1)} liter melk. Du bruker ${F(b,d2)} liter i en kake. Hvor mye melk er igjen?`,`${rf(N,d1)} liter`,[`${F(b,d2)} = ${F(b*d1/d2,d1)}`,`${F(a,d1)} − ${F(b*d1/d2,d1)} = ${F(N,d1)}`],'s']; }],
+  [3,3,()=>{ const n=tN(), [d1,d2]=tP([[3,4],[2,5],[3,5],[4,5],[2,3],[3,8]]), a=tR(1,d1-1), b=tR(1,d2-1), D=d1*d2, N=a*d2+b*d1; return [`${n} går ${F(a,d1)} km til bussen og ${F(b,d2)} km fra bussen til skolen. Hvor langt går ${n} til sammen?`,`${mixd(N,D)} km`,[`Fellesnevner ${D}: ${F(a*d2,D)} + ${F(b*d1,D)} = ${F(N,D)}`],'m']; }],
+  [3,3,()=>{ const [x,y]=tN2(), [d1,d2]=tP([[3,4],[4,6],[3,5],[4,5],[6,4]]); const a=1, b=1, D=d1*d2/gcd(d1,d2), N=D-a*D/d1-b*D/d2; if(N<=0) return TP['brok-add'][5][2](3); return [`${x} spiser ${F(a,d1)} av en kake, og ${y} spiser ${F(b,d2)} av den. Hvor stor del av kaken er igjen?`,rf(N,D),[`${F(a,d1)} + ${F(b,d2)} = ${F(a*D/d1,D)} + ${F(b*D/d2,D)} = ${F(D-N,D)}`,`1 − ${F(D-N,D)} = ${F(N,D)}${gcd(N,D)>1?` = ${rf(N,D)}`:''}`],'m']; }],
+  [3,3,()=>{ const [d1,d2]=tP([[6,5],[3,4],[4,5],[6,4]]), a=d1-1, b=tR(1,d2-2); const D=d1*d2/gcd(d1,d2), N=a*D/d1-b*D/d2; if(N<=0) return TP['brok-add'][6][2](3); return [`En tank er ${F(a,d1)} full. Vi bruker ${F(b,d2)} av tanken. Hvor full er tanken nå?`,rf(N,D),[`${F(a*D/d1,D)} − ${F(b*D/d2,D)} = ${F(N,D)}`],'m']; }]
+ ],
+ 'brok-mul':[
+  [1,3,L=>{ const [n,d]=tP([[3,4],[2,3],[1,2],[3,5],[1,3]]), k=tP([2,3,4,6].filter(k=>k!==d)), it=tP(['dl sukker','dl melk','ts salt','kopper mel']); return [`En oppskrift trenger ${F(n,d)} ${it}. Du lager oppskriften ${k} ganger. Hvor mye trenger du?`,`${mixd(n*k,d)} ${it.split(' ')[0]}`,[`${k} · ${F(n,d)} = ${F(n*k,d)}`],'s']; }],
+  [1,3,L=>{ const [n,d]=tP([[3,4],[2,3],[2,5],[3,10],[5,6]]), tot=d*tR(...[[3,8],[6,20],[12,40]][L-1]), t=tP(['elever','kr','sider']); return [`Hvor mye er ${F(n,d)} av ${nf(tot)} ${t}?`,`${nf(tot*n/d)} ${t}`,[`${nf(tot)} : ${d} = ${nf(tot/d)}`,`${nf(tot/d)} · ${n} = ${nf(tot*n/d)}`],'s']; }],
+  [2,3,L=>{ const [a,b]=tP([[1,2],[1,3],[2,3],[3,4]]), [c,d]=tP([[2,3],[3,4],[1,2],[3,5]]); return [`${F(a,b)} av klassen går til skolen. ${F(c,d)} av disse er jenter. Hvor stor del av hele klassen er jenter som går til skolen?`,rf(a*c,b*d),[`${F(c,d)} · ${F(a,b)} = ${F(a*c,b*d)}${gcd(a*c,b*d)>1?` = ${rf(a*c,b*d)}`:''}`],'s']; }],
+  [3,3,()=>{ const [a,b]=tP([[3,4],[2,3],[4,5],[5,6]]), [c,d]=tP([[2,3],[1,2],[3,4],[3,5]]); return [`Et rektangel er ${F(a,b)} m langt og ${F(c,d)} m bredt. Hva er arealet?`,`${rf(a*c,b*d)} m²`,[`${F(a,b)} · ${F(c,d)} = ${F(a*c,b*d)}${gcd(a*c,b*d)>1?` = ${rf(a*c,b*d)}`:''}`],'s']; }],
+  [3,3,()=>{ const n=tN(), [a,b]=tP([[1,4],[1,3],[1,5]]), [c,d]=tP([[2,3],[1,2],[3,4]]); const R=b-a; return [`${n} bruker ${F(a,b)} av lønna si på mat og ${F(c,d)} av resten på husleie. Hvor stor del av hele lønna går til husleie?`,rf(c*R,d*b),[`Resten er 1 − ${F(a,b)} = ${F(R,b)}`,`${F(c,d)} · ${F(R,b)} = ${F(c*R,d*b)}${gcd(c*R,d*b)>1?` = ${rf(c*R,d*b)}`:''}`],'m']; }]
+ ],
+ 'brok-div':[
+  [1,2,L=>{ const k=tR(2,8); return [`Hvor mange kvarter er det på ${k} timer?`,`${4*k} kvarter`,[`${k} : ${F(1,4)} = ${k} · 4 = ${4*k}`],'s']; }],
+  [1,2,L=>{ const k=tR(2,6), d=tP([2,3,4]); return [`Du har ${k} pizzaer og deler hver pizza i ${d===2?'halvdeler':d===3?'tredjedeler':'firedeler'}. Hvor mange biter får du?`,`${k*d} biter`,[`${k} : ${F(1,d)} = ${k} · ${d} = ${k*d}`],'s']; }],
+  [1,3,L=>{ const d=tP([2,3,4,5]), k=tR(2,6); return [`Hvor mange glass på ${F(1,d)} liter kan du fylle fra en mugge med ${k} liter?`,`${k*d} glass`,[`${k} : ${F(1,d)} = ${k} · ${d} = ${k*d}`],'s']; }],
+  [2,3,L=>{ const [n,d]=tP([[3,4],[2,3],[3,2],[2,5]]), q=tR(2,8), L0=q*n/d; if(!Number.isInteger(L0)) return TP['brok-div'][3][2](L); return [`Et tau på ${L0} m deles i biter på ${F(n,d)} m. Hvor mange biter blir det?`,`${q} biter`,[`${L0} : ${F(n,d)} = ${L0} · ${F(d,n)} = ${q}`],'s']; }],
+  [2,3,L=>{ const [n,d]=tP([[3,4],[2,3],[4,5],[5,6]]), p=tP([2,3,4].filter(x=>x!==n)); return [`${F(n,d)} av en pizza deles likt på ${p} personer. Hvor mye får hver?`,rf(n,d*p),[`${F(n,d)} : ${p} = ${F(n,d*p)}${gcd(n,d*p)>1?` = ${rf(n,d*p)}`:''}`],'s']; }],
+  [2,3,L=>{ const t=tR(3,8), [n,d]=tP([[3,4],[1,2],[3,2]]), q=t*d/n; if(!Number.isInteger(q)) return TP['brok-div'][5][2](L); return [`En skoledag har ${t} timer med undervisning. En økt varer ${F(n,d)} time. Hvor mange økter er det?`,`${q} økter`,[`${t} : ${F(n,d)} = ${t} · ${F(d,n)} = ${q}`],'s']; }],
+  [3,3,()=>{ const [n,d]=tP([[3,5],[2,3],[3,4],[4,5]]), q=tR(4,12)*n, L0=q*n/d; const l=d*q/n; if(!Number.isInteger(L0)||!Number.isInteger(l)) return TP['brok-div'][6][2](3); return [`En bil bruker ${F(n,d)} liter bensin per mil. Hvor langt kan den kjøre på ${q} liter?`,`${l} mil`,[`${q} : ${F(n,d)} = ${q} · ${F(d,n)} = ${l}`],'s']; }],
+  [3,3,()=>{ const [n,d]=tP([[2,3],[3,4],[3,8],[2,5]]), k=tR(2,6)*n; const q=k*d/n; return [`Hvor mange flasker på ${F(n,d)} liter kan fylles fra ${k} liter?`,`${q} flasker`,[`${k} : ${F(n,d)} = ${k} · ${F(d,n)} = ${q}`],'s']; }]
+ ],
+ uttrykk:[
+  [1,3,L=>{ const p=tP([95,110,120,139,149]), b=tP([20,25,29,35]), x=tR(2,5); return [`En pizza koster ${p} kr og en brus ${b} kr. Skriv et uttrykk for prisen av x pizzaer og én brus. Hva koster det med ${x} pizzaer?`,`${p}x + ${b}. ${nf(p*x+b)} kr`,[`${p} · ${x} + ${b} = ${nf(p*x+b)}`],'s']; }],
+  [1,3,L=>{ const s=tP([40,50,60,75]), k=tP([12,15,18,22]), x=tR(5,25); return [`En taxi tar ${s} kr i startpris og ${k} kr per km. Skriv et uttrykk for prisen for x km. Hva koster en tur på ${x} km?`,`${s} + ${k}x. ${nf(s+k*x)} kr`,[`${s} + ${k} · ${x} = ${nf(s+k*x)}`],'s']; }],
+  [1,3,L=>{ const a=tR(3,15), b=tR(2,12); return [`Omkretsen av et rektangel er 2a + 2b. Finn omkretsen når a = ${a} og b = ${b}.`,nf(2*a+2*b),[`2 · ${a} + 2 · ${b} = ${2*a} + ${2*b} = ${2*a+2*b}`],'s']; }],
+  [2,3,L=>{ const n=tN(), a=tR(11,15); return [`${n} er ${a} år. Skriv et uttrykk for hvor gammel ${n} er om x år, og for hvor gammel ${n} var for y år siden. Hvor gammel er ${n} om 7 år?`,`${a} + x og ${a} − y. ${a+7} år`,[`${a} + 7 = ${a+7}`],'s']; }],
+  [2,3,L=>{ const k=tP([4,6]), c=tP([2]), n=tR(8,20); return [`Uttrykket ${k}n + ${c} gir antall stoler rundt n bord som står på rad. Hvor mange stoler trengs til ${n} bord?`,`${k*n+c} stoler`,[`${k} · ${n} + ${c} = ${k*n+c}`],'s']; }],
+  [3,3,()=>{ const a=tR(2,3), b=tR(2,5), x=-tR(1,4); return [`Finn verdien av ${a}x² − ${b}x når x = ${nf(x)}.`,nf(a*x*x-b*x),[`${a} · ${tSg(x)}² − ${b} · ${tSg(x)}`,`= ${a} · ${x*x} + ${-b*x} = ${nf(a*x*x-b*x)}`],'s']; }],
+  [3,3,()=>{ const x=tR(2,6), y=-tR(1,5); return [`Finn verdien av 3x − 2y + xy når x = ${x} og y = ${nf(y)}.`,nf(3*x-2*y+x*y),[`3 · ${x} − 2 · ${tSg(y)} + ${x} · ${tSg(y)}`,`= ${3*x} + ${-2*y} − ${-x*y} = ${nf(3*x-2*y+x*y)}`],'s']; }]
+ ],
+ forenkling:[
+  [1,3,L=>{ const a=tR(2,9); return [`Et rektangel har sidene x og ${a}. Skriv omkretsen så enkelt som mulig.`,`2x + ${2*a}`,[`x + ${a} + x + ${a} = 2x + ${2*a}`],'s']; }],
+  [1,3,L=>{ const a=tR(2,5), b=tR(2,6), c=tR(1,9); return [`En trekant har sidene ${a}x, ${b}x og ${c}. Skriv omkretsen så enkelt som mulig.`,`${a+b}x + ${c}`,[`${a}x + ${b}x = ${a+b}x`],'s']; }],
+  [2,3,L=>{ const a=tR(2,4), c=tR(2,6), b=tR(3,8), d=tR(1,b-1); return [`En trekant har sidene ${a}x, x + ${b} og ${c}x − ${d}. Skriv omkretsen så enkelt som mulig.`,`${a+1+c}x + ${b-d}`,[`${a}x + x + ${c}x = ${a+1+c}x`,`${b} − ${d} = ${b-d}`],'s']; }],
+  [2,3,L=>{ const n=tN(), a=tR(2,6), b=tR(1,9), x=tR(2,5); return [`${n} sier at ${a}x + ${b} = ${a+b}x. Vis at ${n} tar feil ved å sette inn x = ${x}.`,`${a*x+b} ≠ ${(a+b)*x}`,[`${a} · ${x} + ${b} = ${a*x+b}`,`${a+b} · ${x} = ${(a+b)*x}`,`${a}x og ${b} er ikke like ledd`],'s']; }],
+  [3,3,()=>{ const [x,y,z]=[tN(),tN(),tN()], k=tR(2,3), m=tR(2,6), p=tR(5,15); return [`Alex har x kr. Bea har ${m} kr mindre enn ${k===2?'dobbelt':'tre ganger'} så mye som Alex. Cato har ${p} kr mer enn Alex. Skriv et forenklet uttrykk for hvor mye de har til sammen.`,`${k+2}x + ${p-m}`,[`x + (${k}x − ${m}) + (x + ${p})`,`= ${k+2}x + ${p-m}`],'s']; }],
+  [3,3,()=>{ const a=tR(2,7), b=tR(2,5), c=tR(1,6); return [`Sorter i grupper med like ledd: ${a}x, ${c}, x², −x, ${b}x², 7`,`${a}x og −x · x² og ${b}x² · ${c} og 7`,[`Like ledd har samme bokstav med samme eksponent`],'s']; }]
+ ],
+ 'gange-alg':[
+  [1,2,L=>{ return [`Et kvadrat har sider på x cm. Skriv arealet så enkelt som mulig.`,`x² cm²`,[`x · x = x²`],'s']; }],
+  [1,2,L=>{ const a=tR(2,6), b=tR(2,6); return [`Hver pose koster ${b}x kr. Hva koster ${a} poser? Skriv så enkelt som mulig.`,`${a*b}x kr`,[`${a} · ${b}x = ${a*b}x`],'s']; }],
+  [1,3,L=>{ const a=tR(2,5), b=tR(2,5); return [`Et rektangel har sidene ${a}x og ${b}. Hva er omkretsen, og hva er arealet?`,`Omkrets ${2*a}x + ${2*b}, areal ${a*b}x`,[`O = 2 · ${a}x + 2 · ${b}`,`A = ${a}x · ${b} = ${a*b}x`],'s']; }],
+  [1,3,L=>{ const a=tR(2,6), b=tR(2,9); return [`Et rektangel har sidene ${a}x og ${b}. Hva er arealet?`,`${a*b}x`,[`${a}x · ${b} = ${a*b}x`],'s']; }],
+  [2,3,L=>{ const a=tR(2,6), b=tR(2,6); return [`Et rektangel har sidene ${a}x og ${b}x. Hva er arealet?`,`${a*b}x²`,[`${a} · ${b} = ${a*b} og x · x = x²`],'s']; }],
+  [2,3,L=>{ const s=tR(3,9); return [`Et kvadrat har arealet ${s*s}x². Hvor lang er siden?`,`${s}x`,[`${s}x · ${s}x = ${s*s}x²`],'s']; }],
+  [3,3,()=>{ const b=tR(2,5), l=tR(3,8); return [`Et rektangel har arealet ${b*l}x² og bredden ${b}x. Hvor langt er det?`,`${l}x`,[`${b*l}x² : ${b}x = ${l}x`],'s']; }],
+  [3,3,()=>{ const s=tR(2,4); return [`En kube har sider på ${s}x. Hva er volumet?`,`${s**3}x³`,[`${s}x · ${s}x · ${s}x = ${s**3}x³`],'s']; }],
+  [3,3,()=>{ const a=tR(2,5), b=tR(2,4), c=tR(2,3); return [`En eske har lengde ${a}x, bredde ${b}x og høyde ${c}. Hva er volumet?`,`${a*b*c}x²`,[`${a}x · ${b}x · ${c} = ${a*b*c}x²`],'s']; }]
+ ],
+ parenteser:[
+  [1,3,L=>{ const a=tR(2,6), b=tR(1,9); return [`Tegn en arealmodell for ${a}(x + ${b}) og skriv uttrykket uten parentes.`,`${a}x + ${a*b}`,[`Rektangel med høyde ${a} og bredde x + ${b}: ${a} · x + ${a} · ${b}`],'m']; }],
+  [1,3,L=>{ const a=tR(3,6), b=tR(2,6), it=tP(['boller','muffins','kjeks']); return [`Du kjøper ${a} poser. I hver pose er det x ${it} pluss ${b} ekstra. Skriv antall ${it} som et uttrykk med parentes, og så uten parentes.`,`${a}(x + ${b}) = ${a}x + ${a*b}`,[`${a} · x + ${a} · ${b}`],'s']; }],
+  [2,3,L=>{ const a=tR(2,6), b=tR(2,9); return [`Finn feilen og rett den: ${a}(x + ${b}) = ${a}x + ${b}`,`${a}x + ${a*b}`,[`${a} må ganges med begge leddene: ${a} · ${b} = ${a*b}`],'s']; }],
+  [2,3,L=>{ const a=tR(2,5), b=tR(2,4), c=tR(1,7); return [`Tegn en arealmodell for ${a}(${b}x + ${c}) og skriv uten parentes.`,`${a*b}x + ${a*c}`,[`${a} · ${b}x + ${a} · ${c}`],'m']; }],
+  [3,3,()=>{ const a=tR(3,5), c=a-1, b=tR(1,6), d=tR(1,6), k=a*b-c*d; return [`Skriv ${a}(x + ${b}) − ${c}(x + ${d}) så enkelt som mulig.`,lin(1,k),[`${a}x + ${a*b} − ${c}x − ${c*d}`,`= ${lin(1,k)}`],'s']; }],
+  [3,3,()=>{ const k=tR(2,6), a=tR(2,5), b=tR(1,7); if(gcd(a,b)>1) return TP.parenteser[5][2](3); return [`Skriv ${k*a}x + ${k*b} som et produkt med en parentes.`,`${k}(${a}x + ${b})`,[`${k} er felles faktor i begge leddene`],'s']; }]
+ ],
+ monster:[
+  [1,3,L=>{ const s=tR(1,9), d=tR(2,7); const f=[0,1,2,3].map(i=>s+d*i); return [`Tallfølgen er ${f.join(', ')}, … Hva er de to neste tallene?`,`${s+4*d} og ${s+5*d}`,[`Tallene øker med ${d}`],'s']; }],
+  [1,3,L=>{ const n=tR(5,12); return [`Du legger fyrstikker i en rad av kvadrater som deler sider. Ett kvadrat bruker 4 fyrstikker, to kvadrater bruker 7. Hvor mange fyrstikker trengs til ${n} kvadrater?`,`${3*n+1} fyrstikker`,[`Hvert nytt kvadrat trenger 3 fyrstikker: 3n + 1`,`3 · ${n} + 1 = ${3*n+1}`],'s']; }],
+  [2,3,L=>{ const s=tR(2,9), d=tR(2,6), n=tR(10,25); return [`Tallfølgen er ${[0,1,2,3].map(i=>s+d*i).join(', ')}, … Finn tall nummer ${n}.`,nf(s+d*(n-1)),[`Formel: ${d}n ${s-d>=0?'+':'−'} ${Math.abs(s-d)}`,`${d} · ${n} ${s-d>=0?'+':'−'} ${Math.abs(s-d)} = ${s+d*(n-1)}`],'s']; }],
+  [3,3,()=>{ const a=tR(2,5), b=tR(1,6), n=tR(12,30); return [`Et figurmønster har formelen ${a}n + ${b}. Hvilken figur har ${a*n+b} ruter?`,`Figur ${n}`,[`${a}n + ${b} = ${a*n+b}`,`${a}n = ${a*n}, n = ${n}`],'s']; }],
+  [3,3,()=>{ const d=tR(3,7), s=tR(1,d-1); const c=s-d; return [`Lag en formel for tallfølgen ${[0,1,2,3].map(i=>s+d*i).join(', ')}, …`,`${d}n ${c<0?'−':'+'} ${Math.abs(c)}`,[`Tallene øker med ${d}, så formelen starter med ${d}n`,`Figur 1: ${d} · 1 ${c<0?'−':'+'} ${Math.abs(c)} = ${s}`],'s']; }]
+ ],
+ likninger:[
+  [1,3,L=>{ const a=tR(3,25), x=tR(2,30); return [`Jeg tenker på et tall. Legger jeg til ${a}, får jeg ${x+a}. Hvilket tall tenker jeg på? Skriv likningen og løs den.`,`x + ${a} = ${x+a}, x = ${x}`,[`x = ${x+a} − ${a} = ${x}`],'s']; }],
+  [1,3,L=>{ const k=tR(3,9), x=tR(4,15); return [`Jeg tenker på et tall. Ganger jeg det med ${k}, får jeg ${k*x}. Hvilket tall tenker jeg på? Skriv likningen og løs den.`,`${k}x = ${k*x}, x = ${x}`,[`x = ${k*x} : ${k} = ${x}`],'s']; }],
+  [2,3,L=>{ const k=tR(2,5), x=tR(4,15)*10, p=tR(1,5)*10; return [`${k} like bøker og en penn til ${p} kr koster ${k*x+p} kr. Hva koster én bok?`,`${x} kr`,[`${k}x + ${p} = ${k*x+p}`,`${k}x = ${k*x}`,`x = ${x}`],'m']; }],
+  [2,3,L=>{ const a=tR(3,7), b=tR(1,9), c=tR(1,a-1), x=tR(2,6), d=a*x-b-c*x; const ok=Math.random()<.6; const xx=ok?x:x+1; return [`Er x = ${xx} løsningen av ${a}x − ${b} = ${tCo(c)}x ${d<0?'−':'+'} ${Math.abs(d)}? Sett prøve.`,ok?'Ja':'Nei',[`Venstre side: ${a} · ${xx} − ${b} = ${a*xx-b}`,`Høyre side: ${c} · ${xx} ${d<0?'−':'+'} ${Math.abs(d)} = ${c*xx+d}`],'s']; }],
+  [3,3,()=>{ const k=tR(2,4), x=tR(9,16); const m=tP(['Mor','Far','Bestemor']); return [`${m} er ${k} ganger så gammel som Ida. Til sammen er de ${(k+1)*x} år. Hvor gammel er Ida?`,`${x} år`,[`x + ${k}x = ${(k+1)*x}`,`${k+1}x = ${(k+1)*x}`,`x = ${x}`],'m']; }],
+  [3,3,()=>{ const x=tR(2,9), a=tR(2,5), c=tR(1,a-1), b=tR(1,9), d=(a-c)*x+b; return [`Lag en likning med x på begge sider som har løsningen x = ${x}.`,`For eksempel ${a}x + ${b} = ${tCo(c)}x + ${d}`,[`Sjekk: ${a} · ${x} + ${b} = ${a*x+b} og ${c} · ${x} + ${d} = ${c*x+d}`],'s']; }],
+  [3,3,()=>{ const b=tR(4,12), d=tR(2,6); return [`Et rektangel er ${d} cm lengre enn det er bredt. Omkretsen er ${4*b+2*d} cm. Sett opp en likning og finn bredden.`,`${b} cm`,[`2x + 2(x + ${d}) = ${4*b+2*d}`,`4x + ${2*d} = ${4*b+2*d}`,`x = ${b}`],'m']; }]
+ ],
+ problemlosning:[
+  [1,3,L=>{ const x=tR(5,30), d=tR(2,12); return [`To tall har summen ${2*x+d}. Det ene tallet er ${d} større enn det andre. Finn tallene.`,`${x} og ${x+d}`,[`x + x + ${d} = ${2*x+d}`,`2x = ${2*x}, x = ${x}`],'m']; }],
+  [1,3,L=>{ const [a,b]=tN2(), k=tR(2,4), x=tR(5,20); return [`${a} har ${k} ganger så mange klistremerker som ${b}. Til sammen har de ${(k+1)*x}. Hvor mange har ${b}?`,`${x}`,[`x + ${k}x = ${(k+1)*x}`,`${k+1}x = ${(k+1)*x}, x = ${x}`],'m']; }],
+  [2,3,L=>{ const v=tP([90,110,120,140]), b=tP([50,60,70,80]), nv=tR(1,2), x=tR(2,5); return [`Kinobilletter koster ${v} kr for voksne og ${b} kr for barn. En familie med ${nv} voksne betalte ${nv*v+x*b} kr. Hvor mange barn var med?`,`${x} barn`,[`${nv*v} + ${b}x = ${nv*v+x*b}`,`${b}x = ${x*b}, x = ${x}`],'m']; }],
+  [2,3,L=>{ const x=tR(10,40); return [`Summen av tre tall som kommer rett etter hverandre, er ${3*x+3}. Hvilke tall er det?`,`${x}, ${x+1} og ${x+2}`,[`x + (x + 1) + (x + 2) = ${3*x+3}`,`3x + 3 = ${3*x+3}, x = ${x}`],'m']; }],
+  [3,3,()=>{ const A=tP([199,249,299]), f=tP([99,129,149]), k=tP([5,10,8]); const g=(A-f)/k; if(!Number.isInteger(g)) return TP.problemlosning[4][2](3); return [`Abonnement A koster ${A} kr i måneden. Abonnement B koster ${f} kr i måneden pluss ${k} kr per GB. Ved hvor mange GB koster de det samme?`,`${g} GB`,[`${f} + ${k}x = ${A}`,`${k}x = ${A-f}, x = ${g}`],'m']; }],
+  [3,3,()=>{ const m=tR(10,15), d=tR(2,6), y=tR(3,8); const s=2*m+d+2*y; return [`Jonas er ${d} år eldre enn Mia. Om ${y} år er summen av alderen deres ${s}. Hvor gamle er de nå?`,`Mia ${m} år, Jonas ${m+d} år`,[`(x + ${y}) + (x + ${d} + ${y}) = ${s}`,`2x + ${d+2*y} = ${s}, x = ${m}`],'m']; }],
+  [3,3,()=>{ const x=tR(4,12)*10, k=tP([2,3]), r=tR(1,4)*10; const tot=x+k*x+r; return [`Tre venner deler ${tot} kr. Sara får x kr, Ali får ${k} ganger så mye som Sara, og Tuva får ${r} kr mer enn Sara. Hvor mye får hver?`,`Sara ${x} kr, Ali ${k*x} kr, Tuva ${x+r} kr`,[`x + ${k}x + x + ${r} = ${tot}`,`${k+2}x = ${tot-r}, x = ${x}`],'m']; }]
+ ],
+ koordinater:[
+  [1,3,L=>{ const x=tR(-5,5), y=tR(-5,5), d=tR(2,6), dir=tP([['til venstre',-1,0],['til høyre',1,0],['opp',0,1],['ned',0,-1]]); return [`Punktet A er (${nf(x)}, ${nf(y)}). Flytt A ${d} enheter ${dir[0]}. Hva blir de nye koordinatene?`,`(${nf(x+dir[1]*d)}, ${nf(y+dir[2]*d)})`,[dir[1]?`x endres: ${nf(x)} ${dir[1]>0?'+':'−'} ${d} = ${nf(x+dir[1]*d)}`:`y endres: ${nf(y)} ${dir[2]>0?'+':'−'} ${d} = ${nf(y+dir[2]*d)}`],'coord']; }],
+  [1,3,L=>{ const x=tP([-1,1])*tR(1,7), y=tP([-1,1])*tR(1,7); const q=x>0?(y>0?1:4):(y>0?2:3); return [`I hvilken kvadrant ligger punktet (${nf(x)}, ${nf(y)})? Forklar.`,`${q}. kvadrant`,[`x er ${x>0?'positiv':'negativ'} og y er ${y>0?'positiv':'negativ'}`],'s']; }],
+  [2,3,L=>{ const x1=tR(-4,1), y1=tR(-4,1), w=tR(3,6), h=tR(2,5); return [`Et rektangel har hjørnene (${nf(x1)}, ${nf(y1)}), (${nf(x1+w)}, ${nf(y1)}), (${nf(x1+w)}, ${nf(y1+h)}) og (${nf(x1)}, y). Hva er y? Hva er arealet av rektangelet?`,`y = ${nf(y1+h)}. Arealet er ${w*h}`,[`Bredde ${w}, høyde ${h}`,`${w} · ${h} = ${w*h}`],'coord']; }],
+  [3,3,()=>{ const x=tR(-4,0), y=tR(-3,1), s=tR(3,5); return [`Tre hjørner i et kvadrat er (${nf(x)}, ${nf(y)}), (${nf(x+s)}, ${nf(y)}) og (${nf(x+s)}, ${nf(y+s)}). Finn det fjerde hjørnet.`,`(${nf(x)}, ${nf(y+s)})`,[`Sidene er ${s} lange`],'coord']; }],
+  [3,3,()=>{ const x1=tR(-6,-1), x2=x1+2*tR(2,5), y=tR(-4,4); return [`Punktet P ligger midt mellom (${nf(x1)}, ${nf(y)}) og (${nf(x2)}, ${nf(y)}). Finn P.`,`(${nf((x1+x2)/2)}, ${nf(y)})`,[`(${nf(x1)} + ${nf(x2)}) : 2 = ${nf((x1+x2)/2)}`],'s']; }],
+  [3,3,()=>{ const x=tR(1,6), y=tR(1,6); return [`Speil punktet (${x}, ${y}) i y-aksen og deretter i x-aksen. Hvor havner punktet, og i hvilken kvadrant?`,`(${nf(-x)}, ${nf(-y)}), 3. kvadrant`,[`Speiling i y-aksen: (${nf(-x)}, ${y})`,`Speiling i x-aksen: (${nf(-x)}, ${nf(-y)})`],'coord']; }]
+ ],
+ funksjonsuttrykk:[
+  [1,3,L=>{ const s=tP([40,50,60]), k=tP([10,12,15]); return [`En taxi koster ${s} kr i startpris og ${k} kr per km. Skriv et funksjonsuttrykk for prisen f(x) for x km.`,`f(x) = ${k}x + ${s}`,[`Fast del ${s}, økning ${k} per km`],'s']; }],
+  [1,3,L=>{ const s=tP([99,149,199]), k=tP([2,3,5]), g=tR(5,30); return [`Et mobilabonnement koster ${s} kr i måneden pluss ${k} kr per GB. Hva koster en måned med ${g} GB? Skriv også funksjonsuttrykket.`,`f(x) = ${k}x + ${s}. ${s+k*g} kr`,[`f(${g}) = ${k} · ${g} + ${s} = ${s+k*g}`],'s']; }],
+  [2,3,L=>{ const V=tR(4,10)*100, r=tP([20,25,40,50]), t=tR(2,Math.floor(V/r/2)); return [`Et basseng har ${V} liter vann. Det tappes ut ${r} liter i minuttet. Skriv et funksjonsuttrykk, og finn hvor mye vann det er etter ${t} minutter.`,`f(x) = ${V} − ${r}x. ${V-r*t} liter`,[`f(${t}) = ${V} − ${r} · ${t} = ${V-r*t}`],'m']; }],
+  [2,3,L=>{ const h=tR(15,30), r=tP([1,2,3]); return [`Et stearinlys er ${h} cm høyt og brenner ned ${r} cm i timen. Skriv et funksjonsuttrykk for høyden etter x timer. Når er lyset brent helt ned?`,`f(x) = ${h} − ${r}x. Etter ${nf(h/r)} timer`,[`${h} − ${r}x = 0`,`x = ${nf(h/r)}`],'m']; }],
+  [3,3,()=>{ const fa=tP([149,199]), ka=tP([2,3]), kb=ka+tP([3,5]), fb=tP([49,99]); const x=(fa-fb)/(kb-ka); if(!Number.isInteger(x)) return TP.funksjonsuttrykk[4][2](3); return [`Abonnement A koster ${fa} kr + ${ka} kr per GB. Abonnement B koster ${fb} kr + ${kb} kr per GB. Ved hvor mange GB koster de det samme?`,`${x} GB`,[`${fa} + ${ka}x = ${fb} + ${kb}x`,`${fa-fb} = ${kb-ka}x, x = ${x}`],'m']; }],
+  [3,3,()=>{ const a=tR(2,6)*(Math.random()<.3?-1:1), b=tR(-5,10); const t=[0,1,2,3].map(x=>a*x+b); const fv=0; return [`En lineær funksjon har verdiene f(0) = ${nf(t[0])}, f(1) = ${nf(t[1])}, f(2) = ${nf(t[2])} og f(3) = ${nf(t[3])}. Finn funksjonsuttrykket, og regn ut f(10).`,`f(x) = ${lin(a,b)}. f(10) = ${nf(10*a+b)}`,[`Økning ${nf(a)} per steg, startverdi ${nf(b)}`,`f(10) = ${tSg(a)} · 10 ${b<0?'−':'+'} ${Math.abs(b)} = ${nf(10*a+b)}`],'s']; }]
+ ],
+ grafer:[
+  [1,2,L=>{ const a=tR(1,4)*(Math.random()<.3?-1:1), b=tR(-5,6); return [`Hvor krysser grafen til f(x) = ${lin(a,b)} y-aksen? Og hva er stigningstallet?`,`I (0, ${nf(b)}). Stigningstallet er ${nf(a)}`,[`Konstantleddet ${nf(b)} er der grafen krysser y-aksen`,`Tallet foran x er stigningstallet`],'s']; }],
+  [1,2,L=>{ const a=tR(1,3), b=tR(0,3), x=tR(2,6), on=Math.random()<.5, y=a*x+b+(on?0:tP([-1,1])); return [`Ligger punktet (${x}, ${y}) på grafen til f(x) = ${lin(a,b)}? Vis utregningen.`,on?'Ja':'Nei',[`f(${x}) = ${tCo(a)}${a===1?'':' · '}${x} + ${b} = ${a*x+b}`,on?`${a*x+b} = ${y}`:`${a*x+b} ≠ ${y}`],'s']; }],
+  [1,3,L=>{ const a=tR(1,3), b=tR(-2,3); const v=[0,1,2,3].map(x=>a*x+b); return [`Regn ut f(0), f(1), f(2) og f(3) for f(x) = ${lin(a,b)}. Tegn så grafen.`,v.map(nf).join(', '),[`f(0) = ${nf(v[0])}, f(1) = ${nf(v[1])}, f(2) = ${nf(v[2])}, f(3) = ${nf(v[3])}`],'coord']; }],
+  [2,3,L=>{ const a=-tR(1,2), b=tR(2,6); const xz=-b/a; return [`Tegn grafen til f(x) = ${lin(a,b)}. Hvor krysser den y-aksen, og hvor krysser den x-aksen?`,`(0, ${b}) og (${nf(xz)}, 0)`,[`Konstantleddet er ${b}`,`f(x) = 0 når x = ${nf(xz)}`],'coord']; }],
+  [3,3,()=>{ const a=tR(-3,3)||2, b=tR(-4,4), x2=tR(2,4); return [`En rett linje går gjennom (0, ${nf(b)}) og (${x2}, ${nf(a*x2+b)}). Finn funksjonsuttrykket.`,`f(x) = ${lin(a,b)}`,[`b = ${nf(b)}`,`Stigningstall: (${nf(a*x2+b)} − ${tSg(b)}) : ${x2} = ${a}`],'s']; }],
+  [3,3,()=>{ const a=tR(2,4), x0=tR(1,5); return [`Hvor krysser grafen til f(x) = ${a}x − ${a*x0} x-aksen?`,`I (${x0}, 0)`,[`${a}x − ${a*x0} = 0`,`x = ${x0}`],'s']; }],
+  [2,3,L=>{ const a=tR(1,3), b=tR(1,4), c=tR(-2,0); return [`Hvilken graf er brattest: f(x) = ${lin(a,b)}, g(x) = ${lin(a+1,c)} eller h(x) = ${lin(a+2,0)}? Forklar.`,`h(x), fordi stigningstallet ${a+2} er størst`,[`Stigningstallene er ${a}, ${a+1} og ${a+2}`],'s']; }]
+ ],
+ diagrammer:[
+  [1,3,L=>{ const cats=tP([['Fotball','Håndball','Dans','Annet'],['Pizza','Taco','Sushi','Pasta'],['Buss','Sykkel','Gå','Bil']]), v=cats.map(()=>tR(2,10)); return [`I en klasse ble elevene spurt om favoritten sin: ${cats.map((c,i)=>`${c} ${v[i]}`).join(', ')}. Tegn et søylediagram.`,`Fire søyler med høyde ${v.join(', ')}`,[`Husk overskrift og navn på aksene`],'grid']; }],
+  [1,3,L=>{ const v=[0,1,2,3,4].map(()=>tR(2,9)); const s=v.reduce((a,b)=>a+b,0); const k=5; const m=s/k; return [`Antall mål i fem kamper var ${v.join(', ')}. Hvor mange mål ble det til sammen, og hva er gjennomsnittet per kamp?`,`${s} mål. Gjennomsnitt ${nf(m)}`,[`${v.join(' + ')} = ${s}`,`${s} : 5 = ${nf(m)}`],'s']; }],
+  [2,3,L=>{ const a=tR(-4,6), h=tR(3,6), r=tR(1,3); return [`Temperaturen steg jevnt fra ${nf(a)} °C klokka 06 til ${nf(a+r*h)} °C klokka ${String(6+h).padStart(2,'0')}. Hvor mange grader steg den per time?`,`${r} °C per time`,[`(${nf(a+r*h)} − ${tSg(a)}) : ${h} = ${r*h} : ${h} = ${r}`],'s']; }],
+  [2,3,L=>{ return [`Når passer et søylediagram best, og når passer et linjediagram best? Gi et eksempel på hver.`,`Søyle: sammenligne grupper. Linje: endring over tid`,[`For eksempel favorittidrett og temperatur gjennom døgnet`],'s']; }],
+  [3,3,()=>{ const m=['jan','feb','mar','apr','mai','jun'], v=m.map(()=>tR(4,30)*10); const mx=Math.max(...v), mn=Math.min(...v); return [`En kiosk solgte dette antallet is: ${m.map((x,i)=>`${x} ${v[i]}`).join(', ')}. Hva er forskjellen mellom den beste og den dårligste måneden? Hvilket diagram ville du brukt, og hvorfor?`,`${mx-mn} is. Søylediagram eller linjediagram over tid`,[`${mx} − ${mn} = ${mx-mn}`],'s']; }],
+  [3,3,()=>{ const v=[0,1,2,3].map(()=>tR(1,5)*5); const s=v.reduce((a,b)=>a+b,0); const c=['blå','rød','grønn','gul']; return [`I en pose er det ${c.map((x,i)=>`${v[i]} ${x}`).join(', ')} kuler. Hvor mange prosent av kulene er blå?`,`${nf(Math.round(v[0]/s*1000)/10)} %`,[`${v[0]} : ${s} = ${nf(Math.round(v[0]/s*1000)/1000)}`],'s']; }]
+ ]
+};
+function textTasks(tid,L,k){
+  const pool=(TP[tid]||[]).map((t,i)=>({t,i})).filter(o=>o.t[0]<=L&&L<=o.t[1]);
+  const out=[], seen=new Set(); let round=0;
+  while(out.length<k&&round<6&&pool.length){ round++;
+    for(const o of pool.slice().sort(()=>Math.random()-.5)){ if(out.length>=k) break; if(round===1&&out.some(x=>x.i===o.i)) continue;
+      let r=null; for(let g=0;g<8&&!r;g++){ try{ const x=o.t[2](L); if(x&&!seen.has(x[0])) r=x; }catch(e){} }
+      if(!r) continue; seen.add(r[0]); out.push({i:o.i,q:r[0],a:r[1],steps:r[2]||[],w:r[3]||'s'}); } }
+  return out;
+}
+const WS_R={"addisjon":{"1":[["addsub",1,{"op":"pluss"},6,3,"m","Still opp og regn ut."],["addsub",1,{"op":"minus"},6,3,"m","Still opp og regn ut."]],"2":[["addsub",2,{"op":"pluss"},6,3,"m","Still opp og regn ut."],["addsub",2,{"op":"minus"},6,3,"m","Still opp og regn ut. Husk å låne når det trengs."]],"3":[["addsub",3,{"op":"pluss"},3,3,"m","Still opp og regn ut."],["addsub",3,{"op":"minus"},6,3,"m","Still opp og regn ut."]]},"multiplikasjon":{"1":[["mult",1,{},6,3,"m","Still opp og regn ut."]],"2":[["mult",2,{},6,3,"l","Still opp og regn ut."]],"3":[["mult",3,{},6,3,"l","Still opp og regn ut."]]},"divisjon":{"1":[["div",1,{},6,3,"m","Regn ut med oppstilling."]],"2":[["div",2,{},6,3,"l","Regn ut med oppstilling."]],"3":[["div",3,{},6,2,"l","Regn ut med oppstilling. Kontroller med ganging."]]},"flere-ledd":{"1":[["ledd",1,{},8,2,"s","Regn ut. Husk regnerekkefølgen."],["leddtekst",1,{},2,1,"s","Skriv ett regnestykke og regn ut."]],"2":[["ledd",2,{},8,2,"s","Regn ut. Start med parentesene."],["leddtekst",2,{},2,1,"s","Skriv ett regnestykke og regn ut."]],"3":[["ledd",3,{},8,2,"s","Regn ut."],["leddtekst",3,{},3,1,"s","Skriv ett regnestykke og regn ut."]]},"negative-tall":{"1":[["negregn",1,{"op":"+"},6,3,"","Regn ut."],["negregn",1,{"op":"-"},6,3,"","Regn ut."],["negtekst",1,{"cat":"temp"},2,1,"s","Løs oppgaven."]],"2":[["negregn",1,{"op":"*"},6,3,"","Regn ut."],["negregn",1,{"op":"/"},6,3,"","Regn ut."],["negtekst",1,{"cat":"money"},2,1,"s","Løs oppgaven."]],"3":[["negregn",1,{"op":"mix"},9,3,"","Regn ut."],["negtekst",1,{"cat":"all"},3,1,"s","Løs oppgaven."]]},"potenser":{"1":[["pow",1,{"cat":"skrivsom"},6,3,"","Skriv som potens."],["pow",1,{"cat":"regnut"},6,3,"","Regn ut."]],"2":[["pow",2,{"cat":"skrivsom"},3,3,"","Skriv som potens."],["pow",2,{"cat":"regnut"},9,3,"","Regn ut."]],"3":[["pow",3,{"cat":"regnut"},9,3,"","Regn ut."]]},"potensregler":{"1":[["powrules",1,{"op":"mult"},6,3,"","Skriv som én potens."],["powrules",1,{"op":"div"},6,3,"","Skriv som én potens."]],"2":[["powrules",2,{"op":"mult"},4,2,"","Skriv som én potens."],["powrules",2,{"op":"div"},4,2,"","Skriv som én potens."],["powrules",2,{"op":"add"},2,2,"s","Regn ut. Her gjelder ikke potensreglene."]],"3":[["powrules",3,{"op":"all"},8,2,"s","Regn ut eller skriv som én potens."],["powrules",3,{"op":"sub"},2,2,"s","Regn ut."]]},"delelighet":{"1":[["prim",1,{"t":"regel"},8,4,"","Kryss av for riktig svar."],["prim",1,{"t":"prim"},6,3,"","Er tallet et primtall?"]],"2":[["prim",2,{"t":"regel"},8,4,"","Kryss av for riktig svar. Bruk delelighetsreglene."],["prim",2,{"t":"prim"},6,3,"","Er tallet et primtall? Begrunn for deg selv."]],"3":[["prim",2,{"t":"prim"},9,3,"","Er tallet et primtall?"],["prim",2,{"t":"regel"},4,4,"","Kryss av for riktig svar."]]},"faktorisering":{"1":[["faktor",1,{"t":"pf"},6,3,"l","Primtallsfaktoriser. Tegn gjerne et faktortre."]],"2":[["faktor",2,{"t":"pf"},3,3,"l","Primtallsfaktoriser."],["faktor",2,{"t":"sff"},2,2,"m",""],["faktor",2,{"t":"mfm"},2,2,"m",""]],"3":[["faktor",3,{"t":"pf"},3,3,"l","Primtallsfaktoriser."],["faktor",3,{"t":"sff"},2,2,"m",""],["faktor",3,{"t":"mfm"},2,2,"m",""]]},"forkorting":{"1":[["forkort",1,{"t":"utvid"},6,3,"","Finn tallet som mangler."],["forkort",1,{"t":"fork"},6,3,"","Forkort så langt det går."]],"2":[["forkort",2,{"t":"fork"},6,3,"","Forkort så langt det går."],["forkort",2,{"t":"sml"},4,2,"","Hvilken brøk er størst?"]],"3":[["forkort",3,{"t":"fork"},6,3,"","Forkort så langt det går."],["forkort",3,{"t":"sml"},4,2,"","Hvilken brøk er størst?"]]},"brok-desimal":{"1":[["brokdes",1,{"t":"bd"},6,2,"",""],["brokdes",1,{"t":"dp"},4,2,"",""]],"2":[["brokdes",1,{"t":"bp"},4,2,"",""],["brokdes",1,{"t":"pb"},4,2,"",""],["brokdes",1,{"t":"bd"},4,2,"",""]],"3":[["brokdes",1,{"t":"bd"},4,2,"",""],["brokdes",1,{"t":"pb"},4,2,"",""],["brokdes",1,{"t":"bp"},4,2,"",""]]},"brok-add":{"1":[["brokadd",1,{"op":"+"},6,3,"","Regn ut. Forkort svaret."],["brokadd",1,{"op":"-"},6,3,"","Regn ut. Forkort svaret."]],"2":[["brokadd",2,{"op":"b"},9,3,"s","Finn fellesnevner og regn ut."]],"3":[["brokadd",3,{"op":"b"},9,3,"s","Finn fellesnevner og regn ut. Forkort svaret."]]},"brok-mul":{"1":[["brokmul",1,{"t":"helt"},6,3,"","Regn ut. Forkort svaret."],["brokmul",1,{"t":"av"},3,3,"s","Regn ut."]],"2":[["brokmul",2,{"t":"brok"},6,3,"","Regn ut. Forkort svaret."],["brokmul",2,{"t":"av"},3,3,"s","Regn ut."]],"3":[["brokmul",2,{"t":"brok"},6,3,"s","Regn ut. Forkort svaret."],["brokmul",2,{"t":"av"},3,3,"s","Regn ut."]]},"brok-div":{"1":[["brokdiv",1,{"t":"hb"},6,3,"s","Regn ut."],["brokdiv",1,{"t":"bh"},3,3,"s","Regn ut."]],"2":[["brokdiv",1,{"t":"bh"},3,3,"s","Regn ut."],["brokdiv",1,{"t":"bb"},6,3,"s","Regn ut. Gang med den omvendte brøken."]],"3":[["brokdiv",1,{"t":"bb"},9,3,"s","Regn ut. Forkort svaret."]]},"uttrykk":{"1":[["innsett",1,{},6,2,"s","Finn verdien av uttrykket."],["lagutr",1,{},2,1,"","Hvilket uttrykk passer?"]],"2":[["innsett",2,{},6,2,"s","Finn verdien av uttrykket."],["lagutr",1,{},3,1,"","Hvilket uttrykk passer?"]],"3":[["innsett",3,{},6,2,"s","Finn verdien av uttrykket."],["lagutr",1,{},3,1,"","Hvilket uttrykk passer?"]]},"forenkling":{"1":[["forenkle",1,{},8,2,"","Trekk sammen like ledd."]],"2":[["forenkle",2,{},8,2,"s","Trekk sammen like ledd."]],"3":[["forenkle",3,{},8,2,"s","Løs opp parentesene og trekk sammen."]]},"gange-alg":{"1":[["gangealg",1,{"t":"mul"},9,3,"","Regn ut."]],"2":[["gangealg",1,{"t":"mul"},6,3,"","Regn ut."],["gangealg",1,{"t":"div"},6,3,"","Regn ut."]],"3":[["gangealg",1,{"t":"pot"},6,3,"","Skriv så enkelt som mulig."],["gangealg",1,{"t":"div"},6,3,"","Regn ut."]]},"parenteser":{"1":[["parentes",1,{},8,2,"","Gang ut parentesen."]],"2":[["parentes",2,{},8,2,"s","Gang ut parentesen."]],"3":[["parentes",3,{},6,2,"s","Gang ut parentesene og trekk sammen."]]},"monster":{"1":[["monster",1,{"t":"neste"},2,1,"",""],["monster",1,{"t":"nte"},1,1,"s",""]],"2":[["monster",1,{"t":"nte"},2,1,"s",""],["monster",1,{"t":"formel"},1,1,"s",""]],"3":[["monster",1,{"t":"formel"},2,1,"s",""],["monster",1,{"t":"nte"},1,1,"s",""]]},"likninger":{"1":[["likning",1,{},8,2,"s","Løs likningen."]],"2":[["likning",2,{},8,2,"m","Løs likningen. Sett prøve på minst to av dem."]],"3":[["likning",3,{},6,2,"l","Løs likningen. Sett prøve."]]},"problemlosning":{"1":[["problem",1,{},2,1,"m","Sett opp en likning og løs den."]],"2":[["problem",1,{},2,1,"m","Sett opp en likning og løs den."]],"3":[["problem",1,{},2,1,"m","Sett opp en likning og løs den."]]},"koordinater":{"1":[["koord",1,{"t":"les"},3,3,"",""],["koord",1,{"t":"kv"},4,2,"",""]],"2":[["koord",1,{"t":"les"},2,2,"",""],["koord",1,{"t":"finn"},2,2,"",""],["koord",1,{"t":"kv"},4,2,"",""]],"3":[["koord",1,{"t":"finn"},3,3,"",""],["koord",1,{"t":"les"},3,3,"",""]]},"funksjonsuttrykk":{"1":[["funk",1,{"t":"verdi"},6,2,"",""],["funk",1,{"t":"sit"},1,1,"s",""]],"2":[["funk",1,{"t":"verdi"},4,2,"",""],["funk",1,{"t":"tabell"},2,2,"",""],["funk",1,{"t":"sit"},2,1,"s",""]],"3":[["funk",1,{"t":"tabell"},2,2,"",""],["funk",1,{"t":"sit"},3,1,"s",""]]},"grafer":{"1":[["grafles",1,{"t":"les"},4,2,"",""]],"2":[["grafles",1,{"t":"les"},2,2,"",""],["grafles",1,{"t":"ab"},2,2,"",""]],"3":[["grafles",1,{"t":"ab"},4,2,"",""]]},"diagrammer":{"1":[["diagram",1,{"t":"stolpe"},2,2,"",""],["diagram",1,{"t":"linje"},1,1,"",""]],"2":[["diagram",1,{"t":"stolpe"},2,2,"",""],["diagram",1,{"t":"linje"},2,2,"",""]],"3":[["diagram",1,{"t":"linje"},2,2,"",""],["diagram",1,{"t":"stolpe"},2,2,"",""]]}};
+const WS_MAL={"addisjon":"Jeg kan addere og subtrahere flersifrede tall med oppstilling, også med mente og lån.","multiplikasjon":"Jeg kan multiplisere flersifrede tall med oppstilling og forklare delsvarene.","divisjon":"Jeg kan dele med oppstilling og kontrollere svaret med ganging.","flere-ledd":"Jeg kan regne ut stykker med flere ledd i riktig rekkefølge.","negative-tall":"Jeg kan regne med negative tall og bruke dem i hverdagssituasjoner.","potenser":"Jeg kan skrive gjentatt ganging som potens og regne ut potenser.","potensregler":"Jeg kan bruke regnereglene for ganging og deling av potenser med samme grunntall.","delelighet":"Jeg kan avgjøre om et tall er delelig med et annet, og om det er et primtall.","faktorisering":"Jeg kan primtallsfaktorisere og finne SFF og MFM.","forkorting":"Jeg kan utvide og forkorte brøker og sammenligne brøker.","brok-desimal":"Jeg kan gjøre om mellom brøk, desimaltall og prosent.","brok-add":"Jeg kan legge sammen og trekke fra brøker ved å finne fellesnevner.","brok-mul":"Jeg kan gange brøker med hele tall og med andre brøker.","brok-div":"Jeg kan dele med brøker og forklare hvorfor vi ganger med den omvendte brøken.","uttrykk":"Jeg kan lage algebraiske uttrykk og finne verdien når jeg setter inn tall.","forenkling":"Jeg kan trekke sammen like ledd og forenkle uttrykk.","gange-alg":"Jeg kan gange og dele algebraiske uttrykk og bruke potenser.","parenteser":"Jeg kan gange ut parenteser og forenkle uttrykket.","monster":"Jeg kan finne neste figur, figur nummer n og en formel for et mønster.","likninger":"Jeg kan løse likninger ved å gjøre det samme på begge sider.","problemlosning":"Jeg kan sette opp og løse en likning fra en tekstoppgave.","koordinater":"Jeg kan lese av og plassere punkter i koordinatsystemet.","funksjonsuttrykk":"Jeg kan lage et funksjonsuttrykk fra en situasjon eller tabell og regne ut verdier.","grafer":"Jeg kan tegne grafen til en lineær funksjon og finne stigningstall og konstantledd.","diagrammer":"Jeg kan lese av og tolke diagrammer og grafer."};
+const WS_HUSK={"addisjon":"Still opp med enere under enere. Start alltid med enerne. <b>Mente:</b> tieren flyttes til neste kolonne. <b>Lån:</b> veksle 1 fra naboen til 10.","multiplikasjon":"Gang med ett siffer om gangen. Når du ganger med tiersifferet, skriver du 0 på enerplassen først. Legg sammen delsvarene til slutt.","divisjon":"Hver runde: <b>hent ned – del – gang – trekk fra</b>. Sjekk svaret: kvotient · divisor = dividend.","flere-ledd":"Rekkefølge: parenteser, potenser, ganging og deling, pluss og minus. Pluss og minus deler stykket i ledd.","negative-tall":"Like fortegn gir pluss, ulike fortegn gir minus. 5 − (−3) = 5 + 3 = 8.","potenser":"Eksponenten sier hvor mange ganger grunntallet skal ganges med seg selv: 2³ = 2 · 2 · 2 = 8. Alt (unntatt 0) opphøyd i 0 er 1.","potensregler":"a<sup>m</sup> · a<sup>n</sup> = a<sup>m+n</sup> og a<sup>m</sup> : a<sup>n</sup> = a<sup>m−n</sup>. Reglene gjelder bare for samme grunntall, og ikke ved pluss og minus.","delelighet":"Et primtall har nøyaktig to faktorer: 1 og seg selv. Er tverrsummen delelig med 3, er tallet delelig med 3.","faktorisering":"Del med det minste primtallet som går opp, til alle grenene er primtall. SFF: de felles faktorene. MFM: alle faktorene, de felles bare én gang.","forkorting":"<b>Utvide:</b> gang teller og nevner med samme tall. <b>Forkorte:</b> del teller og nevner med samme tall. Verdien endres ikke.","brok-desimal":"Brøkstreken betyr «delt på». Prosent betyr hundredeler: 0,25 = 25/100 = 25 %.","brok-add":"Finn fellesnevneren, utvid brøkene, regn med tellerne og behold nevneren. Forkort svaret.","brok-mul":"Helt tall · brøk: gang telleren. Brøk · brøk: teller · teller og nevner · nevner. «Av» betyr ganger.","brok-div":"Å dele med en brøk er det samme som å gange med den omvendte brøken: snu teller og nevner.","uttrykk":"3x betyr 3 · x. Bytt ut bokstaven med tallet, og sett negative tall i parentes.","forenkling":"Bare like ledd kan trekkes sammen. Minus foran parentes snur alle fortegnene inni.","gange-alg":"Gang tallene for seg og bokstavene for seg. x · x = x². 12x : 4 = 3x.","parenteser":"Tallet foran parentesen ganges med alle leddene inni: a(b + c) = ab + ac.","monster":"Antall i figur n = økning · n + fast del.","likninger":"Gjør det samme på begge sidene av likhetstegnet. Sjekk svaret ved å sette det inn i likningen.","problemlosning":"Tegn, kall det ukjente x, sett opp en likning, løs den og sjekk svaret mot teksten.","koordinater":"(x, y): først bortover, så opp eller ned. Origo er (0, 0).","funksjonsuttrykk":"f(x) = ax + b. a er endringen når x øker med 1. b er startverdien.","grafer":"Konstantleddet b er der grafen krysser y-aksen. Stigningstallet a: gå 1 til høyre, så a opp eller ned.","diagrammer":"Les aksene og enhetene først. Bratt graf betyr rask endring, vannrett betyr ingen endring."};
+const WS_TALK={"addisjon":"Hvorfor starter vi med enerne og ikke med det største sifferet? Vis med et eksempel der det blir mente.","multiplikasjon":"Tegn en arealmodell for 23 · 14. Hvor finner dere hvert delsvar fra oppstillingen i tegningen?","divisjon":"Lag en tekstoppgave der svaret «17 rest 2» betyr at man må runde opp til 18.","flere-ledd":"Ida regner 2 + 3 · 4 = 20. Forklar hva hun har gjort, og hvorfor det blir feil.","negative-tall":"Hvorfor blir minus ganger minus pluss? Forklar med tallinja eller med et eksempel om gjeld.","potenser":"Hva er størst: 2<sup>5</sup> eller 5<sup>2</sup>? Og 2<sup>10</sup> eller 10<sup>2</sup>? Gjett først, regn så ut.","potensregler":"Hvorfor kan vi ikke legge sammen eksponentene i 2³ + 2²? Skriv ut faktorene og vis det.","delelighet":"Er det flere primtall mellom 1 og 50 enn mellom 51 og 100? Gjett først, sjekk så.","faktorisering":"To busser går fra samme holdeplass hvert 12. og hvert 18. minutt. De går samtidig nå. Når går de samtidig neste gang? Hvilket begrep bruker dere?","forkorting":"Tegn 2/3 og 4/6 som brøkstrimler. Hvorfor er de like store selv om tallene er forskjellige?","brok-desimal":"Hvilke brøker blir desimaltall som slutter, og hvilke fortsetter i det uendelige? Se på nevnerne.","brok-add":"Jonas sier at 1/2 + 1/3 = 2/5. Vis med en tegning at det ikke stemmer.","brok-mul":"Kan svaret bli mindre enn tallene vi ganger? Finn eksempler og forklar med en arealmodell.","brok-div":"Hvorfor blir 3 : 1/4 større enn 3? Forklar med «hvor mange får plass».","uttrykk":"Finn på en hverdagssituasjon som passer til uttrykket 25x + 50.","forenkling":"Hvorfor er 3x + 2 ikke lik 5x? Vis det med algebrabrikker eller ved å sette inn et tall for x.","gange-alg":"Hva er forskjellen på 2x og x²? Sett inn x = 1, 2, 3 og 10 og sammenlign.","parenteser":"Tegn en arealmodell for 4(x + 3). Hvordan viser tegningen at svaret er 4x + 12?","monster":"Lag et eget figurmønster med formelen 2n + 3. Bytt med sidemannen og finn formelen til hverandres mønster.","likninger":"Lag en likning som har x = 4 som løsning. Klarer dere å lage en der løsningen er negativ?","problemlosning":"Skriv en tekstoppgave som passer til likningen 3x + 15 = 60.","koordinater":"Tegn en figur i koordinatsystemet. Les opp koordinatene til hjørnene, mens sidemannen tegner uten å se.","funksjonsuttrykk":"Finn på en situasjon der stigningstallet er negativt. Hva betyr det i situasjonen?","grafer":"Hva skjer med grafen når a blir større? Og når b endres? Skisser tre linjer og sammenlign.","diagrammer":"Tegn en graf over hvor langt du er hjemmefra gjennom en skoledag. Fortell historien til sidemannen."};
+/* ===================== arkgenerator ===================== */
+const WS_LV={1:{name:'Nivå 1',sub:'Grunnleggende',c:'#1B7646',soft:'#E8F3EC'},2:{name:'Nivå 2',sub:'Middels',c:'#2343B0',soft:'#E9EDFA'},3:{name:'Nivå 3',sub:'Utfordrende',c:'#B4232A',soft:'#FBEAEA'}};
+const WL='abcdefghijklmnopqrstuvwxyz';
+const wsAns=p=> p.ansHTML ? p.ansHTML : p.pa ? P(p.pa.b,p.pa.e) : p.fr ? F(p.fr.n,p.fr.d) : p.ex ? (p.pre?p.pre+' ':'')+poly(p.ex) : p.fac ? `${p.fac} = ${powStr(pfac(p.fac))}` : p.multi ? p.multi.map(m=>`${m.label} = ${fmt(m.a)}`).join(', ') : p.mc ? p.mc.opts[p.mc.a] : (p.pre?p.pre+' ':'')+fmt(p.a)+(p.u?' '+p.u:'');
+function wsBlank(p){
+  if(p.fr) return `<span class="fblank"><i></i><b></b><i></i></span>`;
+  if(p.pa) return `<span class="pblank"><i style="width:9mm;height:6mm"></i><i style="width:6mm;height:4.5mm"></i></span>`;
+  if(p.ex||p.fac) return `<span class="blank w"></span>`;
+  return `<span class="blank"></span>${p.u?` <span>${p.u}</span>`:''}`;
+}
+function wsItem(p,i,work){
+  const lt=`<span class="lt">${WL[i]})</span>`;
+  const isExpr=(p.expr||(p.pre&&p.q.replace(/<[^>]+>/g,'').length<28&&!/[?.]/.test(p.q)))&&!p.big&&!p.mc;
+  if(isExpr&&!work) return `<div class="it">${lt}<div class="b"><div class="qx"><span>${p.q}</span> = ${wsBlank(p)}</div></div></div>`;
+  let body=isExpr?`<div class="qx"><span>${p.q}</span></div>`:`<div class="q">${p.q}</div>`;
+  if(p.mc) body+=`<div class="opts">${p.mc.map(o=>`<span>${o}</span>`).join('')}</div>`;
+  else if(p.multi) body+=(work?`<div class="work ${work}"></div>`:'')+`<div class="ansl">${p.multi.map(l=>`${l} = <span class="blank s"></span>`).join('&nbsp;&nbsp;')}</div>`;
+  else body+=(work?`<div class="work ${work}"></div>`:'')+`<div class="ansl">${p.pre?`<span class="qx">${p.pre}</span>`:(isExpr?'<span class="qx">=</span>':'Svar:')} ${wsBlank(p)}</div>`;
+  return `<div class="it">${lt}<div class="b">${body}</div></div>`;
+}
+const WS_COORD=(()=>{ let s='<svg viewBox="0 0 200 200" style="width:52mm;height:52mm"><rect width="200" height="200" fill="#fff"/>'; for(let i=0;i<=20;i++){const v=i*10; s+=`<line x1="${v}" y1="0" x2="${v}" y2="200" stroke="${i===10?'#141E36':'#C9D3E6'}" stroke-width="${i===10?1.6:.7}"/><line x1="0" y1="${v}" x2="200" y2="${v}" stroke="${i===10?'#141E36':'#C9D3E6'}" stroke-width="${i===10?1.6:.7}"/>`;}
+  for(let k=-8;k<=8;k+=2){ if(!k) continue; s+=`<text x="${100+k*10}" y="110" font-size="6.5" text-anchor="middle" font-family="sans-serif" fill="#56617A">${k}</text><text x="95" y="${102-k*10}" font-size="6.5" text-anchor="end" font-family="sans-serif" fill="#56617A">${k}</text>`; }
+  return s+'<text x="196" y="96" font-size="8" text-anchor="end" font-family="sans-serif" font-style="italic">x</text><text x="104" y="9" font-size="8" font-family="sans-serif" font-style="italic">y</text></svg>'; })();
+function wsWord(w,i){
+  const lt=`<span class="lt">${WL[i]})</span>`;
+  if(w.w==='coord') return `<div class="it">${lt}<div class="b"><div class="coordbox"><div style="display:flex;flex-direction:column;gap:2mm"><div class="q">${w.q}</div><div class="work m"></div><div class="ansl">Svar: <span class="blank w"></span></div></div>${WS_COORD}</div></div></div>`;
+  return `<div class="it">${lt}<div class="b"><div class="q">${w.q}</div><div class="work ${w.w==='grid'?'grid':w.w}"></div>${w.w==='grid'?'':'<div class="ansl">Svar: <span class="blank w"></span></div>'}</div></div>`;
+}
+function wsBuild(tid,L,o){
+  const ch=BOOK.chapters.find(c=>c.groups.some(g=>g.topics.includes(tid)));
+  const seen=new Set(), mk=(id,Lv,f)=>{ const T=TRAINERS[id]; const ff={}; (T.filters||[]).forEach(F0=>ff[F0.k]=F0.def); Object.assign(ff,f); const nL=T.levels?T.levels.length:1; return T.gen(Math.min(Lv,nL),ff); };
+  const recipe=(WS_R[tid]||{})[L]||[];
+  const blocks=recipe.map(([id,Lv,f,n,cols,work,ins])=>{ let m=Math.max(1,Math.round(n*o.amount)); if(m>cols&&cols>1) m=Math.ceil(m/cols)*cols;
+    const items=[]; let g=0; while(items.length<m&&g<400){ g++; let p; try{ p=mk(id,Lv,f); }catch(e){ continue; } if(!p||seen.has(p.q)||/^(.+) − \1$/.test(p.q)) continue; seen.add(p.q);
+      items.push({q:p.q, expr:!!p.expr, pre:p.pre||'', u:p.u||'', mc:p.mc?p.mc.opts:null, fr:!!p.fr, multi:p.multi?p.multi.map(x=>x.label):null, pa:!!p.pa, ex:!!p.ex, fac:!!p.fac, big:/<svg|<table|<div/.test(p.q), ans:wsAns(p), steps:p.steps||[], label:p.label||''}); }
+    return {ins:ins||items[0]?.label||'Svar på oppgavene.', cols, work, items}; }).filter(b=>b.items.length);
+  let example=null;
+  if(L<3&&o.example&&recipe.length){ const [id,Lv,f]=recipe[0]; for(let k=0;k<60;k++){ let p; try{ p=mk(id,Lv,f); }catch(e){ continue; } if(!p||seen.has(p.q)||/<svg|<table|tr-fig/.test(p.q)||!p.steps||p.steps.length<2) continue; example={q:p.q, ans:p.mc?p.mc.opts[p.mc.a]:wsAns(p), steps:p.steps}; break; } }
+  const tt=o.nText>0?textTasks(tid,L,o.nText):[];
+  if(tt.length) blocks.push({ins:tt.length>1?'Løs oppgavene. Vis hvordan du tenker.':'Løs oppgaven. Vis hvordan du tenker.',cols:1,word:true,items:tt,tag:'Tekstoppgave'});
+  return {tid,L,title:TOPICS[tid].title,num:ch?ch.num:'',chap:ch?ch.title:'',blocks,example};
+}
+const wsDots=L=>`<span class="dots">${[1,2,3].map(k=>`<i class="${k<=L?'on':''}"></i>`).join('')}</span>`;
+function wsSheet(d,v){
+  const lv=WS_LV[d.L];
+  let h=`<header class="top"><div><p class="kick">Matematikk 8. trinn · Kapittel ${d.num} · ${d.chap}${v?` · Variant ${v}`:''}</p><h1 class="${d.title.length>26?'long':''}">${d.title}</h1></div><div class="wbadge"><span class="pill">${lv.name}${wsDots(d.L)}</span><small>${lv.sub}</small></div></header>
+  <div class="who"><span>Navn</span><i></i><span>Klasse</span><i></i><span>Dato</span><i></i></div>
+  <div class="goal"><b>Mål</b><span>${WS_MAL[d.tid]||''}</span></div>`;
+  if(d.example) h+=`<section class="ex"><div class="h"><b>Slik gjør du</b><span>Eksempel</span></div><div class="bd${d.example.q.replace(/<[^>]+>/g,'').length>45?' stack':''}"><div class="task"><div>${d.example.q}</div>${d.example.ans?`<div style="margin-top:2mm;font-size:10pt;color:var(--lv)">Svar: ${d.example.ans}</div>`:''}</div><ol>${d.example.steps.map(s=>`<li><span>${s}</span></li>`).join('')}</ol></div></section>`;
+  else if(WS_HUSK[d.tid]) h+=`<section class="ex"><div class="h"><b>Husk</b><span>Regel</span></div><div class="rule-only">${WS_HUSK[d.tid]}</div></section>`;
+  d.blocks.forEach((b,k)=>{ h+=`<div class="task-h"><span class="no">Oppgave ${k+1}</span><span class="ins">${b.ins}</span>${b.tag?`<span class="tag">${b.tag}</span>`:''}</div><div class="items c${b.cols}">${b.items.map((p,i)=>b.word?wsWord(p,i):wsItem(p,i,b.work)).join('')}</div>`; });
+  if(d.L===3&&WS_TALK[d.tid]) h+=`<div class="talk"><b>Tenk og forklar.</b> ${WS_TALK[d.tid]}</div>`;
+  h+=`<div class="self"><span class="t">Hvordan gikk det?</span><span class="wch"><span>Jeg klarte alt selv</span><span>Jeg trengte litt hjelp</span><span>Jeg trenger mer øving</span></span><span class="nx">${d.L<3?`Neste: ${WS_LV[d.L+1].name}`:'Bra jobbet!'}</span></div>`;
+  return h;
+}
+function wsKey(d,v){
+  const lv=WS_LV[d.L];
+  let h=`<div class="key"><header class="top"><div><p class="kick">Fasit · ${d.title}${v?` · Variant ${v}`:''}</p><h1>Fasit ${lv.name.toLowerCase()}${v?` · variant ${v}`:''}</h1></div><div class="wbadge"><span class="pill">${lv.name}${wsDots(d.L)}</span><small>For læreren</small></div></header>`;
+  d.blocks.forEach((b,k)=>{ const kc=b.word?1:Math.min(3,b.cols===1?2:b.cols); h+=`<div class="kt"><span class="n">Oppgave ${k+1}</span><div class="l" style="--kc:${kc}">${b.items.map((p,i)=>`<div class="ka"><span class="lt">${WL[i]})</span><div><div class="a">${b.word?p.a:p.ans}</div>${(p.steps&&p.steps.length)?`<div class="st">${p.steps.join(' → ')}</div>`:''}</div></div>`).join('')}</div></div>`; });
+  if(d.L===3) h+=`<p class="knote"><b>Tenk og forklar:</b> ingen fasit. La elevene forklare for hverandre og få frem ulike løsninger.</p>`;
+  return h+'</div>';
+}
+function wsDocument(tid,L,o){
+  const vs=o.ab?['A','B']:[''], ds=vs.map(()=>wsBuild(tid,L,o)), lv=WS_LV[L], st=`style="--lv:${lv.c};--lv-soft:${lv.soft}"`;
+  let h=ds.map((d,i)=>`<article class="ws ws-sheet" ${st} aria-label="Elevark${vs[i]?' variant '+vs[i]:''}">${wsSheet(d,vs[i])}</article>`).join('');
+  if(o.key) h+=ds.map((d,i)=>`<article class="ws ws-sheet ws-keysheet" ${st} aria-label="Fasit${vs[i]?' variant '+vs[i]:''}">${wsKey(d,vs[i])}</article>`).join('');
+  return h;
+}
+function mountWsGen(root){
+  const S=Object.assign({tid:'likninger',L:1,amount:1,nText:2,example:true,key:true,ab:false},(()=>{ try{ return JSON.parse(localStorage.getItem('mat8-wsg'))||{}; }catch(e){ return {}; } })());
+  if(!TOPICS[S.tid]) S.tid=Object.keys(TOPICS)[0];
+  const save=()=>{ try{ localStorage.setItem('mat8-wsg',JSON.stringify(S)); }catch(e){} };
+  const opts=BOOK.chapters.map(ch=>`<optgroup label="Kapittel ${ch.num} · ${ch.title}">${order(ch).map(t=>`<option value="${t}">${TOPICS[t].title}</option>`).join('')}</optgroup>`).join('');
+  root.innerHTML=`<div class="wsg-form">
+      <label class="wsg-f wsg-wide"><span class="eyebrow">Tema</span><select data-w="tid">${opts}</select></label>
+      <div class="wsg-f"><span class="eyebrow" id="wsg-l">Nivå</span><div class="seg" role="group" aria-labelledby="wsg-l">${[1,2,3].map(n=>`<button type="button" data-wl="${n}" aria-pressed="${S.L===n}">Nivå ${n}</button>`).join('')}</div></div>
+      <div class="wsg-f"><span class="eyebrow" id="wsg-a">Mengde regneoppgaver</span><div class="seg" role="group" aria-labelledby="wsg-a">${[[0.6,'Færre'],[1,'Vanlig'],[1.5,'Flere']].map(([v,t])=>`<button type="button" data-wa="${v}" aria-pressed="${S.amount===v}">${t}</button>`).join('')}</div></div>
+      <label class="wsg-f"><span class="eyebrow">Tekstoppgaver</span><select data-w="nt">${[0,1,2,3,4,5,6].map(n=>`<option value="${n}">${n===0?'Ingen':n}</option>`).join('')}</select></label>
+      <div class="wsg-f wsg-checks"><label><input type="checkbox" data-w="ex"> Gjennomgått eksempel (nivå 1 og 2)</label><label><input type="checkbox" data-w="key"> Fasit bakerst</label><label><input type="checkbox" data-w="ab"> Lag variant A og B med ulike tall</label></div>
+      <div class="wsg-f wsg-go"><button class="btn" type="button" data-w="make">Lag ark</button></div>
+    </div>
+    <div class="wsg-out" data-w="out" hidden>
+      <div class="wsg-bar"><button class="btn" type="button" data-w="print">Skriv ut eller lagre som PDF</button><button class="btn ghost" type="button" data-w="again">Nye tall og nye oppgaver</button><span class="wsg-msg" data-w="msg" aria-live="polite"></span></div>
+      <p class="wsg-tip">Forhåndsvisning. Velg «Lagre som PDF» som skriver i utskriftsvinduet for å få en PDF-fil. Skru av «Topptekst og bunntekst» i utskriftsinnstillingene hvis nettleseren legger til nettadresse og dato.</p>
+      <div class="wsg-prev" data-w="prev"></div>
+    </div>`;
+  const q=k=>root.querySelector(`[data-w="${k}"]`);
+  q('tid').value=S.tid; q('nt').value=String(S.nText); q('ex').checked=S.example; q('key').checked=S.key; q('ab').checked=S.ab;
+  q('tid').addEventListener('change',e=>{ S.tid=e.target.value; save(); });
+  q('nt').addEventListener('change',e=>{ S.nText=+e.target.value; save(); });
+  ['ex','key','ab'].forEach(k=>q(k).addEventListener('change',e=>{ S[{ex:'example',key:'key',ab:'ab'}[k]]=e.target.checked; save(); }));
+  root.querySelectorAll('[data-wl]').forEach(b=>b.addEventListener('click',()=>{ S.L=+b.dataset.wl; S.nText=[0,2,3,3][S.L]; q('nt').value=String(S.nText); root.querySelectorAll('[data-wl]').forEach(x=>x.setAttribute('aria-pressed',String(x===b))); save(); }));
+  root.querySelectorAll('[data-wa]').forEach(b=>b.addEventListener('click',()=>{ S.amount=+b.dataset.wa; root.querySelectorAll('[data-wa]').forEach(x=>x.setAttribute('aria-pressed',String(x===b))); save(); }));
+  const fit=()=>{ const pv=q('prev'); if(!pv) return; const w=pv.clientWidth, z=Math.min(1,(w-4)/794); pv.querySelectorAll('.ws-sheet').forEach(s=>{ s.style.zoom=z; }); };
+  const make=()=>{ const out=q('out'), pv=q('prev'); pv.innerHTML=wsDocument(S.tid,S.L,{amount:S.amount,nText:S.nText,example:S.example,key:S.key,ab:S.ab}); out.hidden=false; q('msg').textContent=''; fit(); };
+  q('make').addEventListener('click',()=>{ make(); q('out').scrollIntoView({behavior:reduceMotion()?'auto':'smooth',block:'start'}); });
+  q('again').addEventListener('click',make);
+  q('print').addEventListener('click',()=>{ let host=document.getElementById('ws-print'); if(!host){ host=document.createElement('div'); host.id='ws-print'; document.body.appendChild(host); }
+    host.innerHTML=q('prev').innerHTML; host.querySelectorAll('.ws-sheet').forEach(s=>s.style.zoom=''); document.documentElement.classList.add('ws-printing');
+    const done=()=>{ document.documentElement.classList.remove('ws-printing'); window.removeEventListener('afterprint',done); };
+    window.addEventListener('afterprint',done);
+    try{ window.print(); }catch(e){ done(); q('msg').textContent='Utskrift er sperret i denne visningen. Åpne nettsiden i en egen fane og prøv igjen.'; }
+  });
+  window.__wsfit=fit; if(!window.__wsfitOn){ window.__wsfitOn=1; window.addEventListener('resize',()=>{ if(window.__wsfit&&document.querySelector('.wsg-prev')) window.__wsfit(); }); }
+}
 function renderTeacher(){
   main.innerHTML=`<div class="col">
     <nav class="crumb" aria-label="Brødsmuler"><a href="#">Forside</a><span>›</span><span>For lærere</span></nav>
@@ -2353,11 +2831,13 @@ function renderTeacher(){
       <p class="lede">Ferdige ark til hvert delkapittel på tre nivåer, klare til utskrift i A4. Velg nivå etter hva eleven trenger. Fasiten med kort føring ligger på egen side bakerst i hver fil, så du skriver bare ut elevsidene til klassen. Trykk på et nivå for å se arket før du laster det ned. ${VIDS.length} delkapitler har også en forklaringsvideo med tale som du kan laste ned og vise på storskjerm.</p></header>
     <section class="group" aria-labelledby="ph"><h2 id="ph">Slik er arkene bygd opp</h2>
       <div class="parts"><div><b><span class="lvd" style="--c:#1B7646"></span>Nivå 1 · Grunnleggende</b><span>Gjennomgått eksempel steg for steg, enkle oppgaver og én tekstoppgave.</span></div><div><b><span class="lvd" style="--c:#2343B0"></span>Nivå 2 · Middels</b><span>Eksempel, oppgaver på neste trinn og to tekstoppgaver.</span></div><div><b><span class="lvd" style="--c:#B4232A"></span>Nivå 3 · Utfordrende</b><span>Huskeregel, krevende oppgaver, tekstoppgaver og en «Tenk og forklar»-oppgave.</span></div><div><b>På hvert ark</b><span>Mål for timen, oppgaver merket a), b), c) med regneplass, og egenvurdering nederst.</span></div><div><b>Fasit</b><span>Siste side i hver fil: svar og kort føring for hver oppgave.</span></div></div></section>
+    <section class="group wsg" aria-labelledby="wsh"><h2 id="wsh">Lag nye ark</h2><p class="wsg-intro">Velg tema og nivå, så lager nettsiden et nytt ark med nye tall og nye tekstoppgaver hver gang, med fasit. Skriv det ut, eller lagre det som PDF.</p><div data-wsg></div></section>
     <p class="dlmsg" data-dlmsg aria-live="polite"></p>
     ${BOOK.chapters.map(ch=>`<section class="group"><div class="group-head"><span class="eyebrow">Kapittel ${ch.num}</span><h2>${ch.title}</h2></div>
       <ul class="trows">${order(ch).map(tid=>{ const a=ARK[tid]; if(!a) return ''; return `<li><span class="t">${TOPICS[tid].title}</span><span class="d">Nivå 1, 2 og 3 med fasit${VIDS.includes(tid)?' · video med tale':''} · <a href="#${ch.id}-${tid}">Se delkapitlet</a></span>
         <span class="dl">${[[1,'#1B7646'],[2,'#2343B0'],[3,'#B4232A']].map(([n,c])=>`<button type="button" class="btn ghost small" data-prev="${a.id}-niva${n}" data-title="${TOPICS[tid].title}" data-lv="${n}"><span class="lvd" style="--c:${c}"></span>Nivå ${n}</button>`).join('')}${VIDS.includes(tid)?`<a class="btn ghost small" href="video/${tid}.mp4" target="_blank" rel="noopener" data-file="video-${tid}.mp4">Video (MP4)</a>`:''}</span></li>`; }).join('')}</ul></section>`).join('')}
     <footer class="foot">Matematikk 8. trinn · Oppgaveark for lærere · Drilloppgavene er laget med de samme generatorene som øvingsdelene på nettstedet.</footer></div>`;
+  const wg=main.querySelector('[data-wsg]'); if(wg) mountWsGen(wg);
 }
 
 const PAGES={"kap1-addisjon-niva1":3,"kap1-addisjon-niva2":3,"kap1-addisjon-niva3":3,"kap1-divisjon-niva1":2,"kap1-divisjon-niva2":3,"kap1-divisjon-niva3":3,"kap1-flere-ledd-niva1":3,"kap1-flere-ledd-niva2":3,"kap1-flere-ledd-niva3":3,"kap1-multiplikasjon-niva1":2,"kap1-multiplikasjon-niva2":3,"kap1-multiplikasjon-niva3":3,"kap1-negative-tall-niva1":2,"kap1-negative-tall-niva2":3,"kap1-negative-tall-niva3":3,"kap1-potenser-niva1":2,"kap1-potenser-niva2":2,"kap1-potenser-niva3":2,"kap1-potensregler-niva1":2,"kap1-potensregler-niva2":2,"kap1-potensregler-niva3":3,"kap2-brok-add-niva1":2,"kap2-brok-add-niva2":3,"kap2-brok-add-niva3":3,"kap2-brok-desimal-niva1":2,"kap2-brok-desimal-niva2":3,"kap2-brok-desimal-niva3":3,"kap2-brok-div-niva1":3,"kap2-brok-div-niva2":3,"kap2-brok-div-niva3":3,"kap2-brok-mul-niva1":2,"kap2-brok-mul-niva2":2,"kap2-brok-mul-niva3":3,"kap2-delelighet-niva1":2,"kap2-delelighet-niva2":3,"kap2-delelighet-niva3":3,"kap2-faktorisering-niva1":2,"kap2-faktorisering-niva2":3,"kap2-faktorisering-niva3":3,"kap2-forkorting-niva1":2,"kap2-forkorting-niva2":2,"kap2-forkorting-niva3":3,"kap3-forenkling-niva1":2,"kap3-forenkling-niva2":3,"kap3-forenkling-niva3":3,"kap3-gange-alg-niva1":2,"kap3-gange-alg-niva2":2,"kap3-gange-alg-niva3":2,"kap3-likninger-niva1":3,"kap3-likninger-niva2":3,"kap3-likninger-niva3":3,"kap3-monster-niva1":3,"kap3-monster-niva2":3,"kap3-monster-niva3":3,"kap3-parenteser-niva1":2,"kap3-parenteser-niva2":3,"kap3-parenteser-niva3":3,"kap3-problemlosning-niva1":3,"kap3-problemlosning-niva2":3,"kap3-problemlosning-niva3":3,"kap3-uttrykk-niva1":3,"kap3-uttrykk-niva2":3,"kap3-uttrykk-niva3":3,"kap4-diagrammer-niva1":3,"kap4-diagrammer-niva2":3,"kap4-diagrammer-niva3":3,"kap4-funksjonsuttrykk-niva1":2,"kap4-funksjonsuttrykk-niva2":3,"kap4-funksjonsuttrykk-niva3":3,"kap4-grafer-niva1":3,"kap4-grafer-niva2":3,"kap4-grafer-niva3":3,"kap4-koordinater-niva1":3,"kap4-koordinater-niva2":3,"kap4-koordinater-niva3":3};
