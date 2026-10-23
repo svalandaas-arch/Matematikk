@@ -1,3 +1,4 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
 <title>Matematikk 8.–10. trinn</title>
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -455,6 +456,13 @@ svg.ch{display:block;width:100%;max-width:560px;min-width:420px;height:auto}
 .pv-act{display:flex;gap:8px}
 .pv-pages{overflow-y:auto;padding:20px;display:flex;flex-direction:column;gap:22px;align-items:center;background:var(--paper)}
 .pv-pages figure{margin:0;width:100%;max-width:620px}
+.pv-pages img.pv-img{height:auto;object-fit:contain}
+.pv-pages figcaption{font-family:var(--f-mono);font-size:.75rem;color:var(--muted);text-align:center;margin-top:6px}
+.act-thumbs{display:flex;flex-wrap:wrap;gap:16px}
+.act-th{font:inherit;display:flex;flex-direction:column;gap:6px;align-items:flex-start;background:none;border:0;padding:0;cursor:pointer;color:var(--muted);font-family:var(--f-mono);font-size:.72rem;text-align:left}
+.act-th img{width:150px;aspect-ratio:910/1287;background:#fff;border:1px solid var(--line);border-radius:3px;box-shadow:0 2px 8px rgba(14,20,36,.14);transition:transform .15s,box-shadow .15s}
+.act-th:hover img{transform:translateY(-2px);box-shadow:4px 4px 0 var(--pen)}
+.act-th:hover{color:var(--pen)}
 .pv-pages .pv-img{display:block;width:100%;aspect-ratio:909/1287;background-repeat:no-repeat;background:#fff;box-shadow:0 2px 10px rgba(14,20,36,.18);border-radius:3px}
 .pv-pages figcaption{font-family:var(--f-mono);font-size:.75rem;color:var(--muted);margin-top:6px;text-align:center}
 @media (max-width:560px){.pv-h{padding:14px}.pv-pages{padding:12px}}
@@ -2501,7 +2509,7 @@ const bar = s => `<div class="bar" role="progressbar" aria-valuemin="0" aria-val
 const tally = s => s.t && s.n>=s.t ? `<span class="tally done">✓ mestret</span>` : `<span class="tally">${pct(s)} %</span>`;
 let curRoute='';
 function renderNav(route){
-  let h=`<a class="brand-big" href="#">Matematikk<small>${GRADE}. trinn</small></a>${gradeSw()}<ul class="nav"><li><a href="#" ${route===''?'aria-current="page"':''}><span>Forside</span></a></li><li><a href="#spill" ${route==='spill'?'aria-current="page"':''}><span>Spill</span><span class="tally">5 spill</span></a></li><li><a href="#laerer" ${route==='laerer'?'aria-current="page"':''}><span>For lærere</span><span class="tally">PDF</span></a></li>`;
+  let h=`<a class="brand-big" href="#">Matematikk<small>${GRADE}. trinn</small></a>${gradeSw()}<ul class="nav"><li><a href="#" ${route===''?'aria-current="page"':''}><span>Forside</span></a></li><li><a href="#spill" ${route==='spill'?'aria-current="page"':''}><span>Spill</span><span class="tally">5 spill</span></a></li><li><a href="#aktiviteter" ${route==='aktiviteter'?'aria-current="page"':''}><span>Klasseaktiviteter</span><span class="tally">${ACTS.length} opplegg</span></a></li><li><a href="#laerer" ${route==='laerer'?'aria-current="page"':''}><span>For lærere</span><span class="tally">PDF</span></a></li>`;
   CHS().forEach(ch=>{
     h+=`<li><a class="chap" href="#${ch.id}" ${route===ch.id?'aria-current="page"':''}><span>Kap ${ch.num} · ${ch.title}</span></a></li>`;
     ch.groups.forEach(g=>{ h+=`<li class="grp">${g.title}</li>`; g.topics.forEach(tid=>{ const r=`${ch.id}-${tid}`; h+=`<li class="sub"><a href="#${r}" ${route===r?'aria-current="page"':''}><span>${TOPICS[tid].title}</span>${tally(topicStat(tid))}</a></li>`; }); });
@@ -2517,6 +2525,7 @@ function renderHome(){
       <div class="hero-row"><a class="btn" href="#${ch.id}">${started?`Fortsett med kapittel ${ch.num}`:'Start på kapittel 1'} →</a>${gradeSw()}</div></header>
     <section class="group" aria-labelledby="kh"><h2 id="kh">Kapitler</h2><div class="chapters">${CH.map(c=>{ const cs=chapterStat(c); return `<a class="chap-card" href="#${c.id}"><span class="num">${c.num}</span><h3>${c.title}</h3><p class="meta">${c.groups.length} temaer · ${order(c).length} delkapitler med trinnvise modeller</p><div>${bar(cs)}<p class="tally" style="margin-top:6px">${pct(cs)} % fullført</p></div></a>`; }).join('')}</div></section>
     <section class="group" aria-labelledby="sp2"><h2 id="sp2">Spill</h2><a class="chap-card" href="#spill"><span class="num" style="font-size:2.6rem">Spill</span><h3>Mattespill med stopp-spørsmål</h3><p class="meta">Papirflyet, Hopperen, Slangen, Meteorregn og Tallmonstre. Svar riktig for å spille videre.</p></a></section>
+    <section class="group" aria-labelledby="ka2"><h2 id="ka2">Klasseaktiviteter</h2><a class="chap-card" href="#aktiviteter"><span class="num" style="font-size:2.6rem">Klasse</span><h3>Opplegg for hele klassen</h3><p class="meta">${ACTS.map(a=>a.title).join(', ')}. Instruksjoner og utskrifter samlet i én PDF.</p></a></section>
     <section class="group" aria-labelledby="lh2"><h2 id="lh2">For lærere</h2><a class="chap-card" href="#laerer"><span class="num" style="font-size:2.6rem">PDF</span><h3>Oppgaveark på tre nivåer</h3><p class="meta">${gradeTids().filter(t=>ARK[t]).length*3} ark til ${gradeTids().filter(t=>ARK[t]).length} delkapitler, med fasit, klare til utskrift.</p></a></section>
     <section class="group" aria-labelledby="sh"><h2 id="sh">Slik jobber du</h2><ol class="steps-how">
       <li><b>Lær med modellen</b><span>Velg dine egne tall og trykk «Neste steg». Forklaringen under viser hva som skjer og hvorfor.</span></li>
@@ -5895,6 +5904,41 @@ function renderGames(){
   main.querySelectorAll('[data-game]').forEach(b=>b.addEventListener('click',()=>pick(b.dataset.game)));
   sync();
 }
+/* ===================== klasseaktiviteter ===================== */
+const ACTS=[
+ {id:'faktoriseringskonkurranse', title:'Faktoriseringskonkurranse', fit:'8. trinn · Kapittel 2 · Faktorisering', link:'#kap2-faktorisering', pages:14,
+  desc:'To lag konkurrerer om å primtallsfaktorisere flest mulig av tallene fra 1 til 99. Lagene henter én lapp om gangen, faktoriserer tallet og får svaret godkjent før de henter en ny.',
+  inside:['Side 1: instruksjoner, regler, hva som godkjennes, en variant og primtallene under 100','Side 2–14: 99 lapper med tallene 1–99, 8 per ark, klare til å klippe ut']}
+];
+const actImg=(a,k)=>`aktiviteter/${a.id}/s-${String(k).padStart(2,'0')}.jpg`;
+function openActPrev(id,pg){
+  const a=ACTS.find(x=>x.id===id); if(!a) return;
+  let d=document.getElementById('pv'); if(!d){ d=document.createElement('dialog'); d.id='pv'; document.body.appendChild(d);
+    d.addEventListener('click',e=>{ if(e.target===d||e.target.closest('[data-close]')) d.close(); }); }
+  d.innerHTML=`<div class="pv-in"><header class="pv-h"><div><p class="eyebrow">Forhåndsvisning · ${a.pages} sider · instruksjoner først</p><h2>${a.title}</h2></div>
+    <div class="pv-act"><a class="btn small" href="aktiviteter/${a.id}.pdf" target="_blank" rel="noopener" data-file="${a.id}.pdf">Last ned PDF</a><button type="button" class="btn ghost small" data-close aria-label="Lukk forhåndsvisning">Lukk</button></div></header>
+    <div class="pv-pages">${Array.from({length:a.pages},(_,i)=>`<figure data-p="${i+1}"><img class="pv-img" src="${actImg(a,i+1)}" alt="Side ${i+1} av ${a.title}" loading="${i<3?'eager':'lazy'}"><figcaption>Side ${i+1} av ${a.pages}${i===0?' · instruksjoner':''}</figcaption></figure>`).join('')}</div></div>`;
+  d.showModal(); const box=d.querySelector('.pv-pages'), f=box.querySelector(`[data-p="${pg}"]`); box.scrollTop=pg>1&&f?f.offsetTop-box.offsetTop-10:0;
+}
+document.addEventListener('click',e=>{ const b=e.target.closest('[data-actpv]'); if(!b) return; openActPrev(b.dataset.actpv,+b.dataset.pg||1); });
+document.addEventListener('click', async e=>{
+  const a=e.target.closest('#pv a[data-file^="faktor"], #pv a[href^="aktiviteter/"]'); if(!a||!DL) return;
+  e.preventDefault();
+  try{ const r=await fetch(a.getAttribute('href')); if(!r.ok) throw new Error('fetch'); await DL.save({filename:'Matematikk-'+a.dataset.file, data:await r.blob()}); }
+  catch(err){ const c=err&&err.code; if(c==='declined'||c==='rate_limited') return; window.open(a.href,'_blank','noopener'); }
+});
+function renderActivities(){
+  main.innerHTML=`<div class="col">
+    <nav class="crumb" aria-label="Brødsmuler"><a href="#">Forside</a><span>›</span><span>Klasseaktiviteter</span></nav>
+    <header class="topic-head"><p class="eyebrow">For lærere</p><h1>Klasse<span class="hl">aktiviteter</span></h1>
+      <p class="lede">Opplegg for hele klassen. Hver aktivitet er én PDF: instruksjonene står på første side, og utskriftene følger etter.</p></header>
+    <p class="dlmsg" data-dlmsg aria-live="polite"></p>
+    ${ACTS.map(a=>`<section class="box" aria-labelledby="act-${a.id}"><span class="lab">${a.fit}</span><h2 id="act-${a.id}">${a.title}</h2><p>${a.desc}</p>
+      <ul style="margin:0;padding-left:1.2em;display:grid;gap:4px">${a.inside.map(x=>`<li>${x}</li>`).join('')}</ul>
+      <div class="act-thumbs">${[1,2].map(k=>`<button type="button" class="act-th" data-actpv="${a.id}" data-pg="${k}" aria-label="Forhåndsvis side ${k}"><img src="${actImg(a,k)}" alt="" loading="lazy"><span>${k===1?'Side 1 · instruksjoner':'Side 2–'+a.pages+' · utskrifter'}</span></button>`).join('')}</div>
+      <div class="jump"><button type="button" class="btn ghost" data-actpv="${a.id}" data-pg="1">Forhåndsvis alle ${a.pages} sider</button><a class="btn" href="aktiviteter/${a.id}.pdf" target="_blank" rel="noopener" data-file="${a.id}.pdf">Last ned PDF</a><a class="btn ghost" href="aktiviteter/${a.id}.pdf" target="_blank" rel="noopener">Åpne i ny fane</a><a class="btn ghost" href="${a.link}">Se delkapitlet</a></div></section>`).join('')}
+    <footer class="foot">Matematikk · Klasseaktiviteter · Skriv ut fra side 2 når du bare trenger utskriftene.</footer></div>`;
+}
 function route(){
   const r=decodeURIComponent(location.hash.slice(1));
   const ch=BOOK.chapters.find(c=>r===c.id||r.startsWith(c.id+'-'));
@@ -5903,6 +5947,7 @@ function route(){
   if(ch&&gradeOf(ch)!==GRADE) setGrade(gradeOf(ch));
   if (r==='laerer'){ renderTeacher(); cur=r; }
   else if (r==='spill'){ renderGames(); cur=r; }
+  else if (r==='aktiviteter'){ renderActivities(); cur=r; }
   else if (ch && r===ch.id){ renderChapter(ch); cur=r; }
   else if (ch && TOPICS[r.slice(ch.id.length+1)]){ renderTopic(ch, r.slice(ch.id.length+1)); cur=r; }
   else renderHome();
@@ -5922,9 +5967,11 @@ scrim.addEventListener('click', closeMenu);
 document.addEventListener('keydown', e=>{ if(e.key==='Escape'&&side.classList.contains('open')){ closeMenu(); menuBtn.focus(); } });
 try{ window.__mat8={TRAINERS,poly,parsePoly,polyEq,TOPICS,BOOK,F,P,fmt,powStr,pfac,MODELS}; }catch(e){}
 document.addEventListener('click',e=>{ const b=e.target.closest('[data-grade]'); if(!b) return; const g=+b.dataset.grade; if(g===GRADE) return; setGrade(g);
-  const r=decodeURIComponent(location.hash.slice(1)); if(r==='laerer'||r==='spill'||r==='') route(); else location.hash=''; });
+  const r=decodeURIComponent(location.hash.slice(1)); if(r==='laerer'||r==='spill'||r==='aktiviteter'||r==='') route(); else location.hash=''; });
 setGrade(GRADE);
 window.addEventListener('hashchange', route);
 route();
 })();
 </script>
+
+</body></html>
