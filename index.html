@@ -342,6 +342,7 @@ svg.fb{display:block;width:100%;height:auto}
 .mlist{display:flex;flex-wrap:wrap;gap:6px;align-items:center;font-family:var(--f-mono);font-weight:700}
 .mlist .flabel{min-width:9rem}
 .dots .dt{fill:var(--pen)}.dots .dt.r{fill:var(--red)}
+.amod .cl{fill:var(--pen-soft);stroke:var(--pen);stroke-width:1}.amod .cl.r{fill:var(--red-soft);stroke:var(--red);stroke-width:1.5}.amod .ol{fill:none;stroke:var(--ink);stroke-width:2.5}.amod .lb{fill:var(--ink);font:700 15px var(--f-body,sans-serif)}
 .tree line{stroke:var(--ink);stroke-width:1.8}
 .tree circle.node{fill:var(--surface);stroke:var(--ink);stroke-width:2}
 .tree circle.leaf{fill:var(--c3);stroke:var(--ok);stroke-width:2}
@@ -1505,10 +1506,11 @@ function fbar(o){ const parts=o.parts, sub=o.sub||1, w=o.w||480, h=o.h||46, pw=w
 function wholes(T, N, shadeAt, opt){ const nB=Math.max(1,Math.ceil(T/N)); let h=''; for(let w=0;w<nB;w++) h+=fbar(Object.assign({parts:N, shade:i=>shadeAt(w*N+i)}, opt||{})); return h; }
 const barRow=(lbl, svg)=>`<div class="barlab"><span class="lbl">${lbl}</span><div>${svg}</div></div>`;
 const bars=rows=>`<div class="bars">${rows.join('')}</div>`;
-function dotsSVG(n, rows){ const cols=Math.floor(n/rows), left=n-rows*cols, C=cols+(left?1:0), g=20, W=C*g, H=rows*g;
-  let s=`<svg class="dots" viewBox="0 0 ${W} ${H}" style="width:${W}px;max-width:100%" role="img" aria-label="${n} prikker i ${rows} ${rows===1?'rad':'rader'}">`;
-  for(let r=0;r<rows;r++) for(let c=0;c<cols;c++) s+=`<circle class="dt" cx="${c*g+g/2}" cy="${r*g+g/2}" r="7"/>`;
-  for(let r=0;r<left;r++) s+=`<circle class="dt r" cx="${cols*g+g/2}" cy="${r*g+g/2}" r="7"/>`;
+function dotsSVG(n, rows){ /* arealmodell: n ruter lagt i rader */ const cols=Math.floor(n/rows), left=n-rows*cols, C=cols+(left?1:0), g=n>40&&rows===1?16:22, L=30, T=24, W=L+C*g+4, H=T+rows*g+4;
+  let s=`<svg class="amod" viewBox="0 0 ${W} ${H}" style="width:${W}px;max-width:100%" role="img" aria-label="Arealmodell: ${n} ruter i ${rows} ${rows===1?'rad':'rader'}">`;
+  for(let r=0;r<rows;r++) for(let c=0;c<cols;c++) s+=`<rect class="cl" x="${L+c*g}" y="${T+r*g}" width="${g}" height="${g}"/>`;
+  if(cols) s+=`<rect class="ol" x="${L}" y="${T}" width="${cols*g}" height="${rows*g}"/><text class="lb" x="${L+cols*g/2}" y="${T-7}" text-anchor="middle">${cols}</text><text class="lb" x="${L-8}" y="${T+rows*g/2+5}" text-anchor="end">${rows}</text>`;
+  for(let r=0;r<left;r++) s+=`<rect class="cl r" x="${L+cols*g}" y="${T+r*g}" width="${g}" height="${g}"/>`;
   return s+'</svg>'; }
 function treeSVG(n,k){ const f=[], chain=[n]; let m=n; while(m>1 && !isPrime(m)){ let p=2; while(m%p) p++; f.push(p); m/=p; chain.push(m); }
   const K=Math.min(k,f.length), dx=44, dy=58, x0=70, y0=26, W=x0+K*dx+50, H=y0+K*dy+36;
@@ -1595,14 +1597,14 @@ const mchips=(list,hiV)=>list.map(v=>`<span class="chip${v===hiV?' grp':''}">${v
 
 /* ===================== KAP 2 MODELS ===================== */
 function mountPrim(el){
-  const {stage,capt,err}=setupModel(el,'Rektangelmodellen: primtall og sammensatte tall',`${fld('pm-n','Antall prikker',24)}<span class="sp"></span><button class="btn ghost small" data-act="rand">Tilfeldig tall</button>`);
+  const {stage,capt,err}=setupModel(el,'Arealmodellen: primtall og sammensatte tall',`${fld('pm-n','Antall ruter',24)}<span class="sp"></span><button class="btn ghost small" data-act="rand">Tilfeldig tall</button>`);
   const val=()=>{ const e=[]; const n=intIn(el,'#pm-n',2,60,24,e,'Tallet'); err.textContent=e.join(' '); return n; };
   const M={ get count(){ const n=val(); return 2+Math.max(0,Math.floor(Math.sqrt(n))-1); }, render(i){
     const n=val(), lim=Math.floor(Math.sqrt(n)), cnt=M.count;
-    if(i===0){ stage.innerHTML=flab(`1 rad · ${n} prikker`)+dotsSVG(n,1); capt.innerHTML=`Vi har ${n} prikker. Alle tall kan legges i én rad: ${n} = 1 · ${n}. Kan vi lage et rektangel med <b>flere rader</b>?`; }
+    if(i===0){ stage.innerHTML=flab(`1 rad · ${n} ruter`)+dotsSVG(n,1); capt.innerHTML=`Vi har ${n} ruter, altså et areal på ${n}. Alle tall kan legges som ett rektangel med én rad: ${n} = 1 · ${n}. Kan vi lage et rektangel med <b>flere rader</b>?`; }
     else if(i<cnt-1){ const r=i+1, ok=n%r===0;
       stage.innerHTML=flab(`${r} rader`)+dotsSVG(n,r);
-      capt.innerHTML= ok ? `${r} rader går opp: <b>${n} = ${r} · ${n/r}</b>. Da er ${r} og ${n/r} faktorer i ${n}.` : `${r} rader går ikke opp. Det blir <span class="neg">${n%r} til overs</span>, så ${r} er ikke en faktor i ${n}.`; }
+      capt.innerHTML= ok ? `${r} rader går opp og gir et helt rektangel: <b>${n} = ${r} · ${n/r}</b>. Sidene ${r} og ${n/r} er faktorer i ${n}.` : `${r} rader går ikke opp. Rektangelet blir ikke helt, og det blir <span class="neg">${n%r} ${n%r===1?'rute':'ruter'} til overs</span>. Da er ${r} ikke en faktor i ${n}.`; }
     else { const divs=[]; for(let d=1;d<=n;d++) if(n%d===0) divs.push(d); const prime=divs.length===2, best=divs.filter(d=>d*d<=n).pop();
       stage.innerHTML=flab(prime?'Bare én rad':`${best} rader`)+dotsSVG(n, prime?1:best);
       capt.innerHTML = prime ? `${n} kan bare legges i én rad. Faktorene er bare 1 og ${n}, så <b>${n} er et primtall</b>.` : `${n} kan legges som rektangler: ${divs.filter(d=>d*d<=n).map(d=>`${d} · ${n/d}`).join(', ')}. Faktorene er ${divs.join(', ')}. ${n} er et <b>sammensatt tall</b>.`;
@@ -2359,7 +2361,7 @@ const miniBar=(a,b,cls)=>`<div style="width:160px">${fbar({parts:b,w:160,h:20,sh
 Object.assign(TOPICS, {
  delelighet:{ title:'Delelighet og primtall', short:'Faktorer, delelighetsregler, primtall og sammensatte tall.',
   learn:`<p>Et tall er <b>delelig</b> med et annet tall når divisjonen går opp uten rest. Tallet vi deler med, er da en <b>faktor</b>. 24 er delelig med 6 fordi 24 : 6 = 4. Vi sier også at 6 går opp i 24.</p>
-   <p>Et <b>primtall</b> har nøyaktig to faktorer: 1 og seg selv. Et <b>sammensatt tall</b> har flere. Rektangelmodellen viser forskjellen: kan prikkene legges i et rektangel med mer enn én rad?</p>
+   <p>Et <b>primtall</b> har nøyaktig to faktorer: 1 og seg selv. Et <b>sammensatt tall</b> har flere. Arealmodellen viser forskjellen: kan rutene legges som et helt rektangel med mer enn én rad? Sidene i rektangelet er da faktorer i tallet.</p>
    <div class="model" data-model="prim"></div>
    <div class="rule"><span class="lab">Delelighetsregler</span><div class="scroll"><table class="t"><thead><tr><th>Delelig med</th><th>Regel</th><th>Eksempel</th></tr></thead><tbody>
     <tr><td>2</td><td style="font-family:var(--f-body)">siste siffer er 0, 2, 4, 6 eller 8</td><td>348</td></tr>
