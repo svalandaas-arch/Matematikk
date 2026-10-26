@@ -477,7 +477,7 @@ svg.ch{display:block;width:100%;max-width:560px;min-width:420px;height:auto}
 .pb-grid{display:grid;grid-template-columns:repeat(10,1fr);gap:0;border-left:1.5px solid var(--muted);border-top:1.5px solid var(--muted);width:min(100%,calc((100vh - 190px)*10/11));touch-action:none;user-select:none;-webkit-user-select:none}
 .pb:fullscreen .pb-grid,.pb.pb-fake .pb-grid{width:min(100%,calc((100vh - 150px)*10/11))}.pb:fullscreen .pb-main,.pb.pb-fake .pb-main{justify-content:center}
 .pb-c{aspect-ratio:1;border:0;border-right:1.5px solid var(--muted);border-bottom:1.5px solid var(--muted);background:var(--surface);color:var(--ink);font:700 clamp(.9rem,2.6vmin,2.1rem) var(--f-body);position:relative;cursor:pointer;padding:0;display:grid;place-items:center}
-.pb-c.col{background:color-mix(in srgb,var(--c) 26%,var(--surface));color:color-mix(in srgb,var(--c) 75%,var(--ink))}
+.pb-c.col{background:color-mix(in srgb,var(--c) 26%,var(--surface));color:color-mix(in srgb,var(--c) 75%,var(--ink))}.pb-c.multi{color:var(--ink)}
 .pb-c span{position:relative;z-index:1;display:grid;place-items:center;width:78%;aspect-ratio:1;border-radius:50%;border:3px solid transparent}
 .pb-c.ring span{border-color:var(--ink)}
 .pb-c.x::after{content:"";position:absolute;inset:6%;background:linear-gradient(45deg,transparent 46%,var(--ink) 47%,var(--ink) 53%,transparent 54%),linear-gradient(-45deg,transparent 46%,var(--ink) 47%,var(--ink) 53%,transparent 54%);opacity:.75}
@@ -5969,8 +5969,8 @@ function renderActivities(){
 /* ===================== primtallsjakten: tavleversjon ===================== */
 const PB_COL=[null,{n:2,c:'#2343B0',t:'2-gangen'},{n:3,c:'#C2362B',t:'3-gangen'},{n:5,c:'#1B7646',t:'5-gangen'},{n:7,c:'#C77700',t:'7-gangen'}];
 let PB=null;
-function pbLoad(){ try{ const v=JSON.parse(localStorage.getItem('primtavle')||'null'); if(v&&v.c&&v.c.length===101) return v; }catch(e){} return {c:Array(101).fill(0),r:Array(101).fill(false),x:Array(101).fill(false),step:0}; }
-function pbSave(){ try{ localStorage.setItem('primtavle',JSON.stringify(PB.s)); }catch(e){} }
+function pbLoad(){ try{ const v=JSON.parse(localStorage.getItem('primtavle2')||'null'); if(v&&v.c&&v.c.length===101) return v; }catch(e){} return {c:Array(101).fill(0),r:Array(101).fill(false),x:Array(101).fill(false),step:0}; }
+function pbSave(){ try{ localStorage.setItem('primtavle2',JSON.stringify(PB.s)); }catch(e){} }
 function renderPrimBoard(){
   PB={s:pbLoad(), tool:'1', drag:null, timer:null};
   main.innerHTML=`<div class="col pb-col">
@@ -5988,22 +5988,25 @@ function renderPrimBoard(){
       <div class="pb-main"><div class="pb-grid" id="pb-grid">${Array.from({length:101},(_,n)=>`<button type="button" class="pb-c" data-n="${n}"><span>${n}</span></button>`).join('')}</div>
         <aside class="pb-side"><p class="pb-cnt"><b id="pb-nr">0</b> ringet rundt</p></aside></div>
     </section>
-    <div class="box"><span class="lab">Slik bruker du tavla</span><p>Velg et verktøy og trykk på tallene. Du kan dra over flere tall på én gang. Trykker du på et tall som allerede har den fargen, blir fargen fjernet. Tavla husker det du har gjort i denne nettleseren til du trykker <b>Nullstill</b>.</p>
+    <div class="box"><span class="lab">Slik bruker du tavla</span><p>Velg et verktøy og trykk på tallene. Du kan dra over flere tall på én gang. Et tall kan ha flere farger, for eksempel 6, som er både i 2-gangen og 3-gangen. Trykker du på et tall som allerede har den fargen, blir bare den fargen fjernet. Tavla husker det du har gjort i denne nettleseren til du trykker <b>Nullstill</b>.</p>
       <p>Tastatur: <b>1–4</b> velger farge, <b>R</b> ring, <b>X</b> kryss, <b>V</b> visk ut, <b>F</b> fullskjerm.</p>
       <div class="jump"><a class="btn ghost" href="aktiviteter/primtallsjakten.pdf" target="_blank" rel="noopener">Elevarket som PDF</a><a class="btn ghost" href="#kap2-delelighet">Se delkapitlet</a></div></div>
   </div>`;
   const root=main.querySelector('#pb'), grid=root.querySelector('#pb-grid');
-  const paint=()=>{ let k=0; grid.querySelectorAll('.pb-c').forEach(b=>{ const n=+b.dataset.n, c=PB.s.c[n];
-      b.style.setProperty('--c', c?PB_COL[c].c:'transparent'); b.classList.toggle('col',!!c); b.classList.toggle('ring',PB.s.r[n]); b.classList.toggle('x',PB.s.x[n]); if(PB.s.r[n]) k++;
-      b.setAttribute('aria-label', `${n}${c?', '+PB_COL[c].t:''}${PB.s.r[n]?', ringet rundt':''}${PB.s.x[n]?', krysset over':''}`); });
+  const tint=h=>`color-mix(in srgb,${h} 28%,var(--surface))`;
+  const paint=()=>{ let k=0; grid.querySelectorAll('.pb-c').forEach(b=>{ const n=+b.dataset.n, cs=[1,2,3,4].filter(i=>PB.s.c[n]&(1<<(i-1)));
+      b.style.setProperty('--c', cs.length===1?PB_COL[cs[0]].c:'var(--ink)');
+      b.style.background = cs.length>1 ? `linear-gradient(135deg,${cs.map((i,j)=>`${tint(PB_COL[i].c)} ${j*100/cs.length}% ${(j+1)*100/cs.length}%`).join(',')})` : '';
+      b.classList.toggle('col',cs.length>0); b.classList.toggle('multi',cs.length>1); b.classList.toggle('ring',PB.s.r[n]); b.classList.toggle('x',PB.s.x[n]); if(PB.s.r[n]) k++;
+      b.setAttribute('aria-label', `${n}${cs.length?', '+cs.map(i=>PB_COL[i].t).join(' og '):''}${PB.s.r[n]?', ringet rundt':''}${PB.s.x[n]?', krysset over':''}`); });
     root.querySelector('#pb-nr').textContent=k;
     root.querySelectorAll('[data-tool]').forEach(b=>b.setAttribute('aria-pressed', b.dataset.tool===PB.tool)); pbSave(); };
   const apply=(n,mode)=>{ const t=PB.tool, s=PB.s;
     if(t==='erase'){ s.c[n]=0; s.r[n]=false; s.x[n]=false; return; }
     if(t==='ring'){ s.r[n]=mode; return; }
     if(t==='x'){ s.x[n]=mode; return; }
-    s.c[n]=mode?+t:0; };
-  const modeFor=n=>{ const t=PB.tool, s=PB.s; if(t==='erase') return true; if(t==='ring') return !s.r[n]; if(t==='x') return !s.x[n]; return s.c[n]!==+t; };
+    const bit=1<<(+t-1); s.c[n]=mode?(s.c[n]|bit):(s.c[n]&~bit); };
+  const modeFor=n=>{ const t=PB.tool, s=PB.s; if(t==='erase') return true; if(t==='ring') return !s.r[n]; if(t==='x') return !s.x[n]; return !(s.c[n]&(1<<(+t-1))); };
   grid.addEventListener('pointerdown',e=>{ const b=e.target.closest('.pb-c'); if(!b) return; e.preventDefault(); const n=+b.dataset.n; PB.drag=modeFor(n); apply(n,PB.drag); paint(); });
   grid.addEventListener('pointermove',e=>{ if(PB.drag===null) return; const el=document.elementFromPoint(e.clientX,e.clientY), b=el&&el.closest('.pb-c'); if(!b) return; apply(+b.dataset.n,PB.drag); paint(); });
   const end=()=>{ PB.drag=null; }; window.addEventListener('pointerup',end); window.addEventListener('pointercancel',end);
