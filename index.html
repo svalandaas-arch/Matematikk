@@ -2371,6 +2371,7 @@ Object.assign(TOPICS, {
   learn:`<p>Et tall er <b>delelig</b> med et annet tall når divisjonen går opp uten rest. Tallet vi deler med, er da en <b>faktor</b>. 24 er delelig med 6 fordi 24 : 6 = 4. Vi sier også at 6 går opp i 24.</p>
    <p>Et <b>primtall</b> har nøyaktig to faktorer: 1 og seg selv. Et <b>sammensatt tall</b> har flere. Arealmodellen viser forskjellen: kan rutene legges som et helt rektangel med mer enn én rad? Sidene i rektangelet er da faktorer i tallet.</p>
    <div class="model" data-model="prim"></div>
+   <p>Vil du finne alle primtallene opp til 100? Prøv arket <a href="#aktiviteter">Primtallsjakten</a> under Klasseaktiviteter.</p>
    <div class="rule"><span class="lab">Delelighetsregler</span><div class="scroll"><table class="t"><thead><tr><th>Delelig med</th><th>Regel</th><th>Eksempel</th></tr></thead><tbody>
     <tr><td>2</td><td style="font-family:var(--f-body)">siste siffer er 0, 2, 4, 6 eller 8</td><td>348</td></tr>
     <tr><td>3</td><td style="font-family:var(--f-body)">tverrsummen er delelig med 3</td><td>471: 4 + 7 + 1 = 12</td></tr>
@@ -5908,16 +5909,19 @@ function renderGames(){
 const ACTS=[
  {id:'faktoriseringskonkurranse', title:'Faktoriseringskonkurranse', fit:'8. trinn · Kapittel 2 · Faktorisering', link:'#kap2-faktorisering', pages:14,
   desc:'To lag konkurrerer om å primtallsfaktorisere flest mulig av tallene fra 1 til 99. Lagene henter én lapp om gangen, faktoriserer tallet og får svaret godkjent før de henter en ny.',
-  inside:['Side 1: instruksjoner, regler, hva som godkjennes, en variant og primtallene under 100','Side 2–14: 99 lapper med tallene 1–99, 8 per ark, klare til å klippe ut']}
+  inside:['Side 1: instruksjoner, regler, hva som godkjennes, en variant og primtallene under 100','Side 2–14: 99 lapper med tallene 1–99, 8 per ark, klare til å klippe ut']},
+ {id:'primtallsjakten', title:'Primtallsjakten', fit:'8. trinn · Kapittel 2 · Delelighet og primtall', link:'#kap2-delelighet', pages:2, thumbs:['Side 1 · elevark','Side 2 · fasit'],
+  desc:'Elevene finner alle primtallene fra 0 til 100 med Eratosthenes’ såld: de fargelegger 2-, 3-, 5- og 7-gangen, og tallene som blir igjen, er primtallene. Etterpå utforsker de mønstre, tvillingprimtall og summer av primtall.',
+  inside:['Side 1: elevark med alle tallene 0–100, fremgangsmåte og seks utforskende spørsmål','Side 2: fasit med ferdig silt tabell, svar og primtallene under 100']}
 ];
 const actImg=(a,k)=>`aktiviteter/${a.id}/s-${String(k).padStart(2,'0')}.jpg`;
 function openActPrev(id,pg){
   const a=ACTS.find(x=>x.id===id); if(!a) return;
   let d=document.getElementById('pv'); if(!d){ d=document.createElement('dialog'); d.id='pv'; document.body.appendChild(d);
     d.addEventListener('click',e=>{ if(e.target===d||e.target.closest('[data-close]')) d.close(); }); }
-  d.innerHTML=`<div class="pv-in"><header class="pv-h"><div><p class="eyebrow">Forhåndsvisning · ${a.pages} sider · instruksjoner først</p><h2>${a.title}</h2></div>
+  d.innerHTML=`<div class="pv-in"><header class="pv-h"><div><p class="eyebrow">Forhåndsvisning · ${a.pages} sider${a.thumbs?'':' · instruksjoner først'}</p><h2>${a.title}</h2></div>
     <div class="pv-act"><a class="btn small" href="aktiviteter/${a.id}.pdf" target="_blank" rel="noopener" data-file="${a.id}.pdf">Last ned PDF</a><button type="button" class="btn ghost small" data-close aria-label="Lukk forhåndsvisning">Lukk</button></div></header>
-    <div class="pv-pages">${Array.from({length:a.pages},(_,i)=>`<figure data-p="${i+1}"><img class="pv-img" src="${actImg(a,i+1)}" alt="Side ${i+1} av ${a.title}" loading="${i<3?'eager':'lazy'}"><figcaption>Side ${i+1} av ${a.pages}${i===0?' · instruksjoner':''}</figcaption></figure>`).join('')}</div></div>`;
+    <div class="pv-pages">${Array.from({length:a.pages},(_,i)=>`<figure data-p="${i+1}"><img class="pv-img" src="${actImg(a,i+1)}" alt="Side ${i+1} av ${a.title}" loading="${i<3?'eager':'lazy'}"><figcaption>${a.thumbs&&a.thumbs[i]?a.thumbs[i]:`Side ${i+1} av ${a.pages}${i===0?' · instruksjoner':''}`}</figcaption></figure>`).join('')}</div></div>`;
   d.showModal(); const box=d.querySelector('.pv-pages'), f=box.querySelector(`[data-p="${pg}"]`); box.scrollTop=pg>1&&f?f.offsetTop-box.offsetTop-10:0;
 }
 document.addEventListener('click',e=>{ const b=e.target.closest('[data-actpv]'); if(!b) return; openActPrev(b.dataset.actpv,+b.dataset.pg||1); });
@@ -5935,9 +5939,9 @@ function renderActivities(){
     <p class="dlmsg" data-dlmsg aria-live="polite"></p>
     ${ACTS.map(a=>`<section class="box" aria-labelledby="act-${a.id}"><span class="lab">${a.fit}</span><h2 id="act-${a.id}">${a.title}</h2><p>${a.desc}</p>
       <ul style="margin:0;padding-left:1.2em;display:grid;gap:4px">${a.inside.map(x=>`<li>${x}</li>`).join('')}</ul>
-      <div class="act-thumbs">${[1,2].map(k=>`<button type="button" class="act-th" data-actpv="${a.id}" data-pg="${k}" aria-label="Forhåndsvis side ${k}"><img src="${actImg(a,k)}" alt="" loading="lazy"><span>${k===1?'Side 1 · instruksjoner':'Side 2–'+a.pages+' · utskrifter'}</span></button>`).join('')}</div>
+      <div class="act-thumbs">${[1,2].map(k=>`<button type="button" class="act-th" data-actpv="${a.id}" data-pg="${k}" aria-label="Forhåndsvis side ${k}"><img src="${actImg(a,k)}" alt="" loading="lazy"><span>${a.thumbs?a.thumbs[k-1]:k===1?'Side 1 · instruksjoner':'Side 2–'+a.pages+' · utskrifter'}</span></button>`).join('')}</div>
       <div class="jump"><button type="button" class="btn ghost" data-actpv="${a.id}" data-pg="1">Forhåndsvis alle ${a.pages} sider</button><a class="btn" href="aktiviteter/${a.id}.pdf" target="_blank" rel="noopener" data-file="${a.id}.pdf">Last ned PDF</a><a class="btn ghost" href="aktiviteter/${a.id}.pdf" target="_blank" rel="noopener">Åpne i ny fane</a><a class="btn ghost" href="${a.link}">Se delkapitlet</a></div></section>`).join('')}
-    <footer class="foot">Matematikk · Klasseaktiviteter · Skriv ut fra side 2 når du bare trenger utskriftene.</footer></div>`;
+    <footer class="foot">Matematikk · Klasseaktiviteter · Hver PDF har instruksjoner eller elevark først, og utskrifter eller fasit etter.</footer></div>`;
 }
 function route(){
   const r=decodeURIComponent(location.hash.slice(1));
