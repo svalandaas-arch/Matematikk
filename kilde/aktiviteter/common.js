@@ -50,6 +50,6 @@ function page(o){ // o: eye,title,key(bool),lede,body,foot:[l,r]
 // kortsider: cards = [html], cols x rows per side
 function cardPages(o){ const per=o.cols*o.rows, out=[]; const n=Math.ceil(o.cards.length/per);
   for(let p=0;p<n;p++){ const slice=o.cards.slice(p*per,(p+1)*per); while(slice.length<per) slice.push('');
-    out.push(page({eye:o.eye, title:o.title, small:o.small, body:`<p class="cut">✂ Klipp langs de stiplede linjene${o.cutNote?' · '+o.cutNote:''}</p><div class="cardgrid" style="grid-template-columns:repeat(${o.cols},1fr);grid-template-rows:repeat(${o.rows},1fr)">${slice.map(c=>`<div class="card"${o.cardStyle?` style="${o.cardStyle}"`:''}>${c}</div>`).join('')}</div>`, foot:[o.foot, `Side ${o.start+p} · ${o.label||'utskrift'}`]})); }
+    out.push(page({eye:o.eye, title:o.title, small:o.small, body:`<p class="cut">✂ Klipp langs de stiplede linjene${o.cutNote?' · '+o.cutNote:''}</p><div class="cardgrid" style="grid-template-columns:repeat(${o.cols},minmax(0,1fr));grid-template-rows:repeat(${o.rows},minmax(0,1fr))">${slice.map(c=>`<div class="card"${o.cardStyle?` style="${o.cardStyle}"`:''}>${c}</div>`).join('')}</div>`, foot:[o.foot, `Side ${o.start+p} · ${o.label||'utskrift'}`]})); }
   return out; }
 module.exports={C,CSS,esc,nf,sg,fr,rng,shuffle,gcd,page,cardPages};
