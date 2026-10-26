@@ -463,6 +463,30 @@ svg.ch{display:block;width:100%;max-width:560px;min-width:420px;height:auto}
 .act-th img{width:150px;aspect-ratio:910/1287;background:#fff;border:1px solid var(--line);border-radius:3px;box-shadow:0 2px 8px rgba(14,20,36,.14);transition:transform .15s,box-shadow .15s}
 .act-th:hover img{transform:translateY(-2px);box-shadow:4px 4px 0 var(--pen)}
 .act-th:hover{color:var(--pen)}
+.pb{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:14px;display:flex;flex-direction:column;gap:12px}
+.pb:fullscreen{border-radius:0;padding:18px 24px;height:100vh;background:var(--paper)}
+.pb.pb-fake{position:fixed;inset:0;z-index:200;border-radius:0;padding:18px 24px;background:var(--paper);overflow:auto}
+.pb-bar{display:flex;flex-wrap:wrap;gap:8px;align-items:center}.pb-bar .sp{flex:1}
+.pb-t{font:inherit;font-weight:700;display:inline-flex;align-items:center;gap:8px;padding:9px 13px;border-radius:10px;border:2px solid var(--line);background:var(--surface);color:var(--ink);cursor:pointer;min-height:46px}
+.pb-t i{width:20px;height:20px;border-radius:4px;background:var(--c);display:inline-block}
+.pb-t i.ring{background:none;border:2.5px solid var(--ink);border-radius:50%}
+.pb-t i.xx{background:linear-gradient(45deg,transparent 44%,var(--ink) 45%,var(--ink) 55%,transparent 56%),linear-gradient(-45deg,transparent 44%,var(--ink) 45%,var(--ink) 55%,transparent 56%)}
+.pb-t i.er{background:repeating-linear-gradient(45deg,var(--line) 0 3px,transparent 3px 6px);border:1.5px solid var(--muted)}
+.pb-t[aria-pressed=true]{border-color:var(--ink);box-shadow:3px 3px 0 var(--ink);transform:translate(-1px,-1px)}
+.pb-main{display:flex;gap:18px;align-items:flex-start;flex:1;min-height:0}
+.pb-grid{display:grid;grid-template-columns:repeat(10,1fr);gap:0;border-left:1.5px solid var(--muted);border-top:1.5px solid var(--muted);width:min(100%,calc((100vh - 190px)*10/11));touch-action:none;user-select:none;-webkit-user-select:none}
+.pb:fullscreen .pb-grid,.pb.pb-fake .pb-grid{width:min(100%,calc((100vh - 150px)*10/11))}.pb:fullscreen .pb-main,.pb.pb-fake .pb-main{justify-content:center}
+.pb-c{aspect-ratio:1;border:0;border-right:1.5px solid var(--muted);border-bottom:1.5px solid var(--muted);background:var(--surface);color:var(--ink);font:700 clamp(.9rem,2.6vmin,2.1rem) var(--f-body);position:relative;cursor:pointer;padding:0;display:grid;place-items:center}
+.pb-c.col{background:color-mix(in srgb,var(--c) 26%,var(--surface));color:color-mix(in srgb,var(--c) 75%,var(--ink))}
+.pb-c span{position:relative;z-index:1;display:grid;place-items:center;width:78%;aspect-ratio:1;border-radius:50%;border:3px solid transparent}
+.pb-c.ring span{border-color:var(--ink)}
+.pb-c.x::after{content:"";position:absolute;inset:6%;background:linear-gradient(45deg,transparent 46%,var(--ink) 47%,var(--ink) 53%,transparent 54%),linear-gradient(-45deg,transparent 46%,var(--ink) 47%,var(--ink) 53%,transparent 54%);opacity:.75}
+.pb-c:focus-visible{outline:3px solid var(--pen);outline-offset:-3px;z-index:2}
+@media (hover:hover){.pb-c:hover{box-shadow:inset 0 0 0 3px var(--pen)}}
+.pb-side{flex:1;min-width:160px;max-width:300px;display:flex;flex-direction:column;gap:10px}
+.pb-cnt{font-size:1.15rem;margin:0}.pb-cnt b{font:800 2.6rem var(--f-display);display:block;line-height:1}
+.pb-msg{margin:0;font-size:1.1rem;line-height:1.4}.pb-sn{display:block;font:500 .75rem var(--f-mono);text-transform:uppercase;letter-spacing:.06em;color:var(--muted);margin-bottom:4px}
+@media (max-width:760px){.pb-main{flex-direction:column}.pb-grid{width:100%}.pb-side{max-width:none}.pb-t{padding:7px 10px;min-height:40px}}
 .pv-pages .pv-img{display:block;width:100%;aspect-ratio:909/1287;background-repeat:no-repeat;background:#fff;box-shadow:0 2px 10px rgba(14,20,36,.18);border-radius:3px}
 .pv-pages figcaption{font-family:var(--f-mono);font-size:.75rem;color:var(--muted);margin-top:6px;text-align:center}
 @media (max-width:560px){.pv-h{padding:14px}.pv-pages{padding:12px}}
@@ -2371,7 +2395,7 @@ Object.assign(TOPICS, {
   learn:`<p>Et tall er <b>delelig</b> med et annet tall når divisjonen går opp uten rest. Tallet vi deler med, er da en <b>faktor</b>. 24 er delelig med 6 fordi 24 : 6 = 4. Vi sier også at 6 går opp i 24.</p>
    <p>Et <b>primtall</b> har nøyaktig to faktorer: 1 og seg selv. Et <b>sammensatt tall</b> har flere. Arealmodellen viser forskjellen: kan rutene legges som et helt rektangel med mer enn én rad? Sidene i rektangelet er da faktorer i tallet.</p>
    <div class="model" data-model="prim"></div>
-   <p>Vil du finne alle primtallene opp til 100? Prøv arket <a href="#aktiviteter">Primtallsjakten</a> under Klasseaktiviteter.</p>
+   <p>Vil du finne alle primtallene opp til 100? Prøv arket <a href="#aktiviteter">Primtallsjakten</a>, eller fargelegg sammen på <a href="#primtavle">tavleversjonen</a>.</p>
    <div class="rule"><span class="lab">Delelighetsregler</span><div class="scroll"><table class="t"><thead><tr><th>Delelig med</th><th>Regel</th><th>Eksempel</th></tr></thead><tbody>
     <tr><td>2</td><td style="font-family:var(--f-body)">siste siffer er 0, 2, 4, 6 eller 8</td><td>348</td></tr>
     <tr><td>3</td><td style="font-family:var(--f-body)">tverrsummen er delelig med 3</td><td>471: 4 + 7 + 1 = 12</td></tr>
@@ -5912,7 +5936,7 @@ const ACTS=[
   inside:['Side 1: instruksjoner, regler, hva som godkjennes, en variant og primtallene under 100','Side 2–14: 99 lapper med tallene 1–99, 8 per ark, klare til å klippe ut']},
  {id:'primtallsjakten', title:'Primtallsjakten', fit:'8. trinn · Kapittel 2 · Delelighet og primtall', link:'#kap2-delelighet', pages:2, thumbs:['Side 1 · elevark','Side 2 · fasit'],
   desc:'Elevene finner alle primtallene fra 0 til 100 med Eratosthenes’ såld: de fargelegger 2-, 3-, 5- og 7-gangen, og tallene som blir igjen, er primtallene. Etterpå utforsker de mønstre, tvillingprimtall og summer av primtall.',
-  inside:['Side 1: elevark med alle tallene 0–100, fremgangsmåte og seks utforskende spørsmål','Side 2: fasit med ferdig silt tabell, svar og primtallene under 100']}
+  inside:['Side 1: elevark med alle tallene 0–100, fremgangsmåte og seks utforskende spørsmål','Side 2: fasit med ferdig silt tabell, svar og primtallene under 100'],board:'#primtavle'}
 ];
 const actImg=(a,k)=>`aktiviteter/${a.id}/s-${String(k).padStart(2,'0')}.jpg`;
 function openActPrev(id,pg){
@@ -5940,9 +5964,78 @@ function renderActivities(){
     ${ACTS.map(a=>`<section class="box" aria-labelledby="act-${a.id}"><span class="lab">${a.fit}</span><h2 id="act-${a.id}">${a.title}</h2><p>${a.desc}</p>
       <ul style="margin:0;padding-left:1.2em;display:grid;gap:4px">${a.inside.map(x=>`<li>${x}</li>`).join('')}</ul>
       <div class="act-thumbs">${[1,2].map(k=>`<button type="button" class="act-th" data-actpv="${a.id}" data-pg="${k}" aria-label="Forhåndsvis side ${k}"><img src="${actImg(a,k)}" alt="" loading="lazy"><span>${a.thumbs?a.thumbs[k-1]:k===1?'Side 1 · instruksjoner':'Side 2–'+a.pages+' · utskrifter'}</span></button>`).join('')}</div>
-      <div class="jump"><button type="button" class="btn ghost" data-actpv="${a.id}" data-pg="1">Forhåndsvis alle ${a.pages} sider</button><a class="btn" href="aktiviteter/${a.id}.pdf" target="_blank" rel="noopener" data-file="${a.id}.pdf">Last ned PDF</a><a class="btn ghost" href="aktiviteter/${a.id}.pdf" target="_blank" rel="noopener">Åpne i ny fane</a><a class="btn ghost" href="${a.link}">Se delkapitlet</a></div></section>`).join('')}
+      <div class="jump"><button type="button" class="btn ghost" data-actpv="${a.id}" data-pg="1">Forhåndsvis alle ${a.pages} sider</button><a class="btn" href="aktiviteter/${a.id}.pdf" target="_blank" rel="noopener" data-file="${a.id}.pdf">Last ned PDF</a><a class="btn ghost" href="aktiviteter/${a.id}.pdf" target="_blank" rel="noopener">Åpne i ny fane</a>${a.board?`<a class="btn" href="${a.board}">Åpne tavleversjon</a>`:''}<a class="btn ghost" href="${a.link}">Se delkapitlet</a></div></section>`).join('')}
     <footer class="foot">Matematikk · Klasseaktiviteter · Hver PDF har instruksjoner eller elevark først, og utskrifter eller fasit etter.</footer></div>`;
 }
+/* ===================== primtallsjakten: tavleversjon ===================== */
+const PB_COL=[null,{n:2,c:'#2343B0',t:'2-gangen'},{n:3,c:'#C2362B',t:'3-gangen'},{n:5,c:'#1B7646',t:'5-gangen'},{n:7,c:'#C77700',t:'7-gangen'}];
+let PB=null;
+function pbLoad(){ try{ const v=JSON.parse(localStorage.getItem('primtavle')||'null'); if(v&&v.c&&v.c.length===101) return v; }catch(e){} return {c:Array(101).fill(0),r:Array(101).fill(false),x:Array(101).fill(false),step:0}; }
+function pbSave(){ try{ localStorage.setItem('primtavle',JSON.stringify(PB.s)); }catch(e){} }
+function renderPrimBoard(){
+  PB={s:pbLoad(), tool:'1', drag:null, timer:null};
+  main.innerHTML=`<div class="col pb-col">
+    <nav class="crumb" aria-label="Brødsmuler"><a href="#">Forside</a><span>›</span><a href="#aktiviteter">Klasseaktiviteter</a><span>›</span><span>Primtallsjakten på tavla</span></nav>
+    <section class="pb" id="pb" aria-label="Primtallsjakten, interaktiv tavle">
+      <div class="pb-bar" role="toolbar" aria-label="Verktøy">
+        ${PB_COL.slice(1).map((o,i)=>`<button type="button" class="pb-t" data-tool="${i+1}" style="--c:${o.c}" aria-pressed="false"><i></i>${o.t}</button>`).join('')}
+        <button type="button" class="pb-t" data-tool="ring" aria-pressed="false"><i class="ring"></i>Ring rundt</button>
+        <button type="button" class="pb-t" data-tool="x" aria-pressed="false"><i class="xx"></i>Kryss</button>
+        <button type="button" class="pb-t" data-tool="erase" aria-pressed="false"><i class="er"></i>Visk ut</button>
+        <span class="sp"></span>
+        <button type="button" class="btn small" data-pb="step">Neste steg</button>
+        <button type="button" class="btn ghost small" data-pb="reset">Nullstill</button>
+        <button type="button" class="btn ghost small" data-pb="fs">Fullskjerm</button>
+      </div>
+      <div class="pb-main"><div class="pb-grid" id="pb-grid">${Array.from({length:101},(_,n)=>`<button type="button" class="pb-c" data-n="${n}"><span>${n}</span></button>`).join('')}</div>
+        <aside class="pb-side"><p class="pb-cnt"><b id="pb-nr">0</b> ringet rundt</p><p class="pb-msg" id="pb-msg" aria-live="polite"></p></aside></div>
+    </section>
+    <div class="box"><span class="lab">Slik bruker du tavla</span><p>Velg et verktøy og trykk på tallene. Du kan dra over flere tall på én gang. Trykker du på et tall som allerede har den fargen, blir fargen fjernet. <b>Neste steg</b> viser silingen automatisk, ett steg om gangen: kryss over 0 og 1, så 2-, 3-, 5- og 7-gangen, og til slutt ringes primtallene rundt. Tavla husker det du har gjort i denne nettleseren til du trykker <b>Nullstill</b>.</p>
+      <p>Tastatur: <b>1–4</b> velger farge, <b>R</b> ring, <b>X</b> kryss, <b>V</b> visk ut, <b>N</b> neste steg, <b>F</b> fullskjerm.</p>
+      <div class="jump"><a class="btn ghost" href="aktiviteter/primtallsjakten.pdf" target="_blank" rel="noopener">Elevarket som PDF</a><a class="btn ghost" href="#kap2-delelighet">Se delkapitlet</a></div></div>
+  </div>`;
+  const root=main.querySelector('#pb'), grid=root.querySelector('#pb-grid');
+  const paint=()=>{ let k=0; grid.querySelectorAll('.pb-c').forEach(b=>{ const n=+b.dataset.n, c=PB.s.c[n];
+      b.style.setProperty('--c', c?PB_COL[c].c:'transparent'); b.classList.toggle('col',!!c); b.classList.toggle('ring',PB.s.r[n]); b.classList.toggle('x',PB.s.x[n]); if(PB.s.r[n]) k++;
+      b.setAttribute('aria-label', `${n}${c?', '+PB_COL[c].t:''}${PB.s.r[n]?', ringet rundt':''}${PB.s.x[n]?', krysset over':''}`); });
+    root.querySelector('#pb-nr').textContent=k;
+    root.querySelectorAll('[data-tool]').forEach(b=>b.setAttribute('aria-pressed', b.dataset.tool===PB.tool)); pbSave(); };
+  const msg=t=>{ root.querySelector('#pb-msg').innerHTML=t; };
+  const apply=(n,mode)=>{ const t=PB.tool, s=PB.s;
+    if(t==='erase'){ s.c[n]=0; s.r[n]=false; s.x[n]=false; return; }
+    if(t==='ring'){ s.r[n]=mode; return; }
+    if(t==='x'){ s.x[n]=mode; return; }
+    s.c[n]=mode?+t:0; };
+  const modeFor=n=>{ const t=PB.tool, s=PB.s; if(t==='erase') return true; if(t==='ring') return !s.r[n]; if(t==='x') return !s.x[n]; return s.c[n]!==+t; };
+  grid.addEventListener('pointerdown',e=>{ const b=e.target.closest('.pb-c'); if(!b) return; e.preventDefault(); const n=+b.dataset.n; PB.drag=modeFor(n); apply(n,PB.drag); paint(); });
+  grid.addEventListener('pointermove',e=>{ if(PB.drag===null) return; const el=document.elementFromPoint(e.clientX,e.clientY), b=el&&el.closest('.pb-c'); if(!b) return; apply(+b.dataset.n,PB.drag); paint(); });
+  const end=()=>{ PB.drag=null; }; window.addEventListener('pointerup',end); window.addEventListener('pointercancel',end);
+  grid.addEventListener('keydown',e=>{ const b=e.target.closest('.pb-c'); if(!b||(e.key!=='Enter'&&e.key!==' ')) return; e.preventDefault(); const n=+b.dataset.n; apply(n,modeFor(n)); paint(); });
+  grid.addEventListener('click',e=>{ if(e.detail===0){ const b=e.target.closest('.pb-c'); if(b){ const n=+b.dataset.n; apply(n,modeFor(n)); paint(); } } });
+  const isP=n=>{ if(n<2) return false; for(let d=2;d*d<=n;d++) if(n%d===0) return false; return true; };
+  const STEPS=[
+    ()=>{ PB.s.x[0]=PB.s.x[1]=true; return 'Kryss over 0 og 1. De er ikke primtall.'; },
+    ...[1,2,3,4].map(ci=>()=>{ const p=PB_COL[ci].n; PB.s.r[p]=true; const m=[]; for(let k=2*p;k<=100;k+=p){ if(!PB.s.c[k]) { PB.s.c[k]=ci; m.push(k); } }
+      return `Ring rundt <b>${p}</b>. Fargelegg resten av ${p}-gangen: ${m.length} nye tall${ci>1?' (tall som allerede har farge, får være)':''}.`; }),
+    ()=>{ for(let n=2;n<=100;n++) if(!PB.s.c[n]) PB.s.r[n]=true; return `Ring rundt alle tallene som er igjen. Det er primtallene! Vi trenger ikke 11-gangen, fordi 11 · 11 = 121 er større enn 100.`; }];
+  root.addEventListener('click',e=>{ const b=e.target.closest('button'); if(!b) return;
+    if(b.dataset.tool){ PB.tool=b.dataset.tool; paint(); }
+    if(b.dataset.pb==='step'){ const i=PB.s.step||0; if(i>=STEPS.length){ msg(`Ferdig! Det er <b>${PB.s.r.filter(Boolean).length}</b> primtall fra 0 til 100.`); return; } const t=STEPS[i](); PB.s.step=i+1; paint(); msg(`<span class="pb-sn">Steg ${i+1} av ${STEPS.length}</span>${t}`); if(PB.s.step>=STEPS.length) b.textContent='Ferdig'; }
+    if(b.dataset.pb==='reset'){ if(b.dataset.arm){ PB.s={c:Array(101).fill(0),r:Array(101).fill(false),x:Array(101).fill(false),step:0}; paint(); msg(''); delete b.dataset.arm; b.textContent='Nullstill'; root.querySelector('[data-pb=step]').textContent='Neste steg'; }
+      else { b.dataset.arm='1'; b.textContent='Trykk igjen for å tømme'; setTimeout(()=>{ if(b.isConnected){ delete b.dataset.arm; b.textContent='Nullstill'; } },3500); } }
+    if(b.dataset.pb==='fs'){ const fake=()=>{ const on=root.classList.toggle('pb-fake'); b.textContent=on?'Avslutt fullskjerm':'Fullskjerm'; };
+      if(root.classList.contains('pb-fake')) fake(); else if(document.fullscreenElement) document.exitFullscreen(); else { try{ const pr=root.requestFullscreen&&root.requestFullscreen(); if(pr&&pr.catch) pr.catch(fake); else if(!pr) fake(); }catch(err){ fake(); } } }
+  });
+  if(PB.s.step>=STEPS.length) root.querySelector('[data-pb=step]').textContent='Ferdig';
+  paint();
+}
+document.addEventListener('fullscreenchange',()=>{ const b=document.querySelector('[data-pb=fs]'); if(b) b.textContent=document.fullscreenElement?'Avslutt fullskjerm':'Fullskjerm'; });
+document.addEventListener('keydown',e=>{ const root=document.getElementById('pb'); if(!root||e.ctrlKey||e.metaKey||e.altKey||/INPUT|TEXTAREA/.test(e.target.tagName)) return;
+  const k=e.key.toLowerCase(), map={'1':'1','2':'2','3':'3','4':'4','r':'ring','x':'x','v':'erase'};
+  if(map[k]){ root.querySelector(`[data-tool="${map[k]}"]`).click(); }
+  else if(k==='n') root.querySelector('[data-pb=step]').click();
+  else if(k==='f') root.querySelector('[data-pb=fs]').click();
+  else if(k==='escape'&&root.classList.contains('pb-fake')) root.querySelector('[data-pb=fs]').click(); });
 function route(){
   const r=decodeURIComponent(location.hash.slice(1));
   const ch=BOOK.chapters.find(c=>r===c.id||r.startsWith(c.id+'-'));
@@ -5952,6 +6045,7 @@ function route(){
   if (r==='laerer'){ renderTeacher(); cur=r; }
   else if (r==='spill'){ renderGames(); cur=r; }
   else if (r==='aktiviteter'){ renderActivities(); cur=r; }
+  else if (r==='primtavle'){ renderPrimBoard(); cur='aktiviteter'; }
   else if (ch && r===ch.id){ renderChapter(ch); cur=r; }
   else if (ch && TOPICS[r.slice(ch.id.length+1)]){ renderTopic(ch, r.slice(ch.id.length+1)); cur=r; }
   else renderHome();
@@ -5971,7 +6065,7 @@ scrim.addEventListener('click', closeMenu);
 document.addEventListener('keydown', e=>{ if(e.key==='Escape'&&side.classList.contains('open')){ closeMenu(); menuBtn.focus(); } });
 try{ window.__mat8={TRAINERS,poly,parsePoly,polyEq,TOPICS,BOOK,F,P,fmt,powStr,pfac,MODELS}; }catch(e){}
 document.addEventListener('click',e=>{ const b=e.target.closest('[data-grade]'); if(!b) return; const g=+b.dataset.grade; if(g===GRADE) return; setGrade(g);
-  const r=decodeURIComponent(location.hash.slice(1)); if(r==='laerer'||r==='spill'||r==='aktiviteter'||r==='') route(); else location.hash=''; });
+  const r=decodeURIComponent(location.hash.slice(1)); if(r==='laerer'||r==='spill'||r==='aktiviteter'||r==='primtavle'||r==='') route(); else location.hash=''; });
 setGrade(GRADE);
 window.addEventListener('hashchange', route);
 route();
