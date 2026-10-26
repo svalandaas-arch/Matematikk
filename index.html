@@ -505,6 +505,32 @@ svg.ch{display:block;width:100%;max-width:560px;min-width:420px;height:auto}
 .cz-ln{stroke:var(--line);stroke-width:1}.cz-t{font:800 22px var(--f-display);fill:var(--ink);text-anchor:middle}.cz-t.a{fill:var(--pen)}.cz-r{font:800 19px var(--f-display);fill:var(--red);text-anchor:middle}
 .cz-map{font:700 1.2rem var(--f-mono)}.cz-lab{font-weight:700;display:block;margin-top:10px}.cz-in{width:100%;font:1.1rem var(--f-mono);text-transform:uppercase;padding:8px;border:2px solid var(--line);border-radius:8px;background:var(--surface);color:var(--ink);box-sizing:border-box}.cz-out{font:700 1.2rem var(--f-mono);color:var(--red);word-break:break-word;letter-spacing:.08em}
 #pb.bd .bd-side{width:300px}
+.ov{display:grid;gap:12px}
+.ov details>summary{list-style:none;cursor:pointer;display:flex;align-items:center;gap:12px;justify-content:space-between}
+.ov details>summary::-webkit-details-marker{display:none}
+.ov details>summary>span:first-child::before{content:"";display:inline-block;width:.55em;height:.55em;border-right:2.5px solid currentColor;border-bottom:2.5px solid currentColor;transform:rotate(-45deg);margin-right:.7em;transition:transform .15s;vertical-align:.12em}
+.ov details[open]>summary>span:first-child::before{transform:rotate(45deg)}
+.ov-g{border:1.5px solid var(--line);border-radius:14px;background:var(--surface);overflow:hidden}
+.ov-g>summary{padding:16px 20px;font:800 1.45rem var(--f-display);color:var(--ink)}
+.ov-g[open]>summary{border-bottom:1.5px solid var(--line);background:var(--paper)}
+.ov-gb{padding:8px 14px 14px;display:grid;gap:8px}
+.ov-c{border:1px solid var(--line);border-radius:10px}
+.ov-c>summary{padding:12px 14px;font-weight:700;font-size:1.08rem}
+.ov-c[open]>summary{color:var(--pen)}
+.ov-n{font:500 .78rem var(--f-mono);color:var(--muted);white-space:nowrap}
+.ov-body{padding:0 14px 12px}
+.ov-t h4{font:500 .78rem var(--f-mono);text-transform:uppercase;letter-spacing:.06em;color:var(--muted);margin:14px 0 6px}.ov-t h4 span{color:var(--pen)}
+.ov-t ul{list-style:none;margin:0;padding:0;border-top:1px solid var(--line)}
+.ov-r{display:flex;gap:12px;align-items:center;justify-content:space-between;padding:9px 4px;border-bottom:1px solid var(--line)}
+.ov-r.hit{background:color-mix(in srgb,var(--hl,#ffd33b) 35%,transparent);border-radius:6px}
+.ov-i{min-width:0;flex:1}.ov-h{display:flex;flex-wrap:wrap;gap:6px;align-items:baseline}.ov-h b{font-size:1rem}
+.ov-k{font:500 .68rem var(--f-mono);text-transform:uppercase;letter-spacing:.05em;color:var(--muted);border:1px solid var(--line);border-radius:999px;padding:1px 7px}.ov-k.big{color:var(--pen);border-color:var(--pen)}.ov-k.tv{color:var(--ok);border-color:var(--ok)}
+.ov-i p{margin:2px 0 0;font-size:.9rem;color:var(--muted);line-height:1.4}.ov-s{color:var(--ink);font-weight:700}
+.ov-a{display:flex;gap:6px;flex-shrink:0;flex-wrap:wrap;justify-content:flex-end}.ov-a .btn{padding:5px 10px}
+.ov-tools{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin-bottom:14px}.ov-search{flex:1;min-width:220px}.ov-search input{width:100%;font:inherit;padding:10px 12px;border:2px solid var(--line);border-radius:10px;background:var(--surface);color:var(--ink);box-sizing:border-box}
+.ov-search .sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+.ov-empty{color:var(--muted)}
+@media (max-width:700px){.ov-r{flex-direction:column;align-items:stretch}.ov-a{justify-content:flex-start}.ov-g>summary{font-size:1.2rem}}
 .act-pg{background-repeat:no-repeat;background-size:100% auto;background-color:#fff}
 .act-th .act-im{width:150px;aspect-ratio:600/849;border:1px solid var(--line);border-radius:3px;box-shadow:0 2px 8px rgba(14,20,36,.14);transition:transform .15s,box-shadow .15s}
 .act-th:hover .act-im{transform:translateY(-2px);box-shadow:4px 4px 0 var(--pen)}
@@ -2582,7 +2608,7 @@ const bar = s => `<div class="bar" role="progressbar" aria-valuemin="0" aria-val
 const tally = s => s.t && s.n>=s.t ? `<span class="tally done">✓ mestret</span>` : `<span class="tally">${pct(s)} %</span>`;
 let curRoute='';
 function renderNav(route){
-  let h=`<a class="brand-big" href="#">Matematikk<small>${GRADE}. trinn</small></a>${gradeSw()}<ul class="nav"><li><a href="#" ${route===''?'aria-current="page"':''}><span>Forside</span></a></li><li><a href="#spill" ${route==='spill'?'aria-current="page"':''}><span>Spill</span><span class="tally">5 spill</span></a></li><li><a href="#aktiviteter" ${route==='aktiviteter'?'aria-current="page"':''}><span>Klasseaktiviteter</span><span class="tally">${actsOf(GRADE).length} opplegg</span></a></li><li><a href="#laerer" ${route==='laerer'?'aria-current="page"':''}><span>For lærere</span><span class="tally">PDF</span></a></li>`;
+  let h=`<a class="brand-big" href="#">Matematikk<small>${GRADE}. trinn</small></a>${gradeSw()}<ul class="nav"><li><a href="#" ${route===''?'aria-current="page"':''}><span>Forside</span></a></li><li><a href="#spill" ${route==='spill'?'aria-current="page"':''}><span>Spill</span><span class="tally">5 spill</span></a></li><li><a href="#aktiviteter" ${route==='aktiviteter'?'aria-current="page"':''}><span>Klasseaktiviteter</span><span class="tally">${ACTS.length} opplegg</span></a></li><li><a href="#laerer" ${route==='laerer'?'aria-current="page"':''}><span>For lærere</span><span class="tally">PDF</span></a></li>`;
   CHS().forEach(ch=>{
     h+=`<li><a class="chap" href="#${ch.id}" ${route===ch.id?'aria-current="page"':''}><span>Kap ${ch.num} · ${ch.title}</span></a></li>`;
     ch.groups.forEach(g=>{ h+=`<li class="grp">${g.title}</li>`; g.topics.forEach(tid=>{ const r=`${ch.id}-${tid}`; h+=`<li class="sub"><a href="#${r}" ${route===r?'aria-current="page"':''}><span>${TOPICS[tid].title}</span>${tally(topicStat(tid))}</a></li>`; }); });
@@ -2598,7 +2624,7 @@ function renderHome(){
       <div class="hero-row"><a class="btn" href="#${ch.id}">${started?`Fortsett med kapittel ${ch.num}`:'Start på kapittel 1'} →</a>${gradeSw()}</div></header>
     <section class="group" aria-labelledby="kh"><h2 id="kh">Kapitler</h2><div class="chapters">${CH.map(c=>{ const cs=chapterStat(c); return `<a class="chap-card" href="#${c.id}"><span class="num">${c.num}</span><h3>${c.title}</h3><p class="meta">${c.groups.length} temaer · ${order(c).length} delkapitler med trinnvise modeller</p><div>${bar(cs)}<p class="tally" style="margin-top:6px">${pct(cs)} % fullført</p></div></a>`; }).join('')}</div></section>
     <section class="group" aria-labelledby="sp2"><h2 id="sp2">Spill</h2><a class="chap-card" href="#spill"><span class="num" style="font-size:2.6rem">Spill</span><h3>Mattespill med stopp-spørsmål</h3><p class="meta">Papirflyet, Hopperen, Slangen, Meteorregn og Tallmonstre. Svar riktig for å spille videre.</p></a></section>
-    <section class="group" aria-labelledby="ka2"><h2 id="ka2">Klasseaktiviteter</h2><a class="chap-card" href="#aktiviteter"><span class="num" style="font-size:2.6rem">Klasse</span><h3>Opplegg for hele klassen</h3><p class="meta">${actsOf(GRADE).length} opplegg for ${GRADE}. trinn: konkurranser, spill, utforskende ark og tavleversjoner til smartboard.</p></a></section>
+    <section class="group" aria-labelledby="ka2"><h2 id="ka2">Klasseaktiviteter</h2><a class="chap-card" href="#aktiviteter"><span class="num" style="font-size:2.6rem">Klasse</span><h3>Opplegg for hele klassen</h3><p class="meta">${ACTS.length} opplegg for 8.–10. trinn: konkurranser, spill, utforskende ark og tavleversjoner til smartboard.</p></a></section>
     <section class="group" aria-labelledby="lh2"><h2 id="lh2">For lærere</h2><a class="chap-card" href="#laerer"><span class="num" style="font-size:2.6rem">PDF</span><h3>Oppgaveark på tre nivåer</h3><p class="meta">${gradeTids().filter(t=>ARK[t]).length*3} ark til ${gradeTids().filter(t=>ARK[t]).length} delkapitler, med fasit, klare til utskrift.</p></a></section>
     <section class="group" aria-labelledby="sh"><h2 id="sh">Slik jobber du</h2><ol class="steps-how">
       <li><b>Lær med modellen</b><span>Velg dine egne tall og trykk «Neste steg». Forklaringen under viser hva som skjer og hvorfor.</span></li>
@@ -5996,22 +6022,39 @@ function openActPrev(id,pg){
 }
 document.addEventListener('click',e=>{ const b=e.target.closest('[data-actpv]'); if(!b) return; openActPrev(b.dataset.actpv,+b.dataset.pg||1); });
 function renderActivities(focus){
-  const L=actsOf(GRADE), chs=CHS();
-  const card=a=>`<section class="box act${a.own?' own':''}" id="act-${a.id}" aria-labelledby="acth-${a.id}"><span class="lab">${a.own?(a.kind||'Aktivitet')+' · '+(TOPICS[a.topics[0]]?TOPICS[a.topics[0]].title:''):a.fit}</span><h4 id="acth-${a.id}">${a.title}</h4><p>${a.own?a.short:a.desc}</p>
-      ${a.own?'':`<ul class="act-ul">${a.inside.map(x=>`<li>${x}</li>`).join('')}</ul>`}
-      <div class="act-thumbs">${(a.own?[1]:[1,2]).filter(k=>k<=a.pages).map(k=>`<button type="button" class="act-th" data-actpv="${a.id}" data-pg="${k}" aria-label="Forhåndsvis side ${k}">${actPg(a,k,'act-im')}<span>${a.thumbs&&a.thumbs[k-1]?a.thumbs[k-1]:k===1?(a.own?a.pages+' sider':'Side 1 · instruksjoner'):'Side 2'+(a.pages>2?'–'+a.pages:'')+' · utskrifter'}</span></button>`).join('')}</div>
-      <div class="jump"><button type="button" class="btn ghost${a.own?' small':''}" data-actpv="${a.id}" data-pg="1">Forhåndsvis${a.own?'':' '+(a.pages===1?'siden':'alle '+a.pages+' sider')}</button><a class="btn${a.own?' small':''}" href="${actHref(a)}" target="_blank" rel="noopener" data-file="${a.id}.pdf">Last ned PDF</a>${a.board?`<a class="btn${a.own?' small':''}" href="${a.board}">Åpne tavleversjon</a>`:''}<a class="btn ghost${a.own?' small':''}" href="${a.link}">Se delkapitlet</a></div></section>`;
-  const grp=(c,g)=>{ const top=L.filter(a=>a.ch===c.id&&!a.own&&a.topics.some(t=>g.topics.includes(t))), own=g.topics.flatMap(t=>L.filter(a=>a.own&&a.topics[0]===t)); if(!top.length&&!own.length) return '';
-    return `<div class="act-grp"><h3 class="act-gh">${g.title}</h3>${top.map(card).join('')}${own.length?`<div class="act-own">${own.map(card).join('')}</div>`:''}</div>`; };
+  const esc=t=>String(t).replace(/</g,'&lt;');
+  const row=(a,ctx)=>{ const sub=a.own&&TOPICS[a.topics[0]]?TOPICS[a.topics[0]].title:'';
+    return `<li class="ov-r" id="act-${a.id}" data-q="${esc((a.title+' '+(a.kind||'')+' '+sub+' '+(a.short||'')+' '+(a.desc||'')+' '+ctx).toLowerCase())}">
+      <div class="ov-i"><div class="ov-h"><b>${a.title}</b><span class="ov-k${a.own?'':' big'}">${a.own?(a.kind||'Aktivitet'):'Temaopplegg'}</span>${a.board?'<span class="ov-k tv">Tavle</span>':''}</div>
+        <p>${sub?`<span class="ov-s">${sub}:</span> `:''}${a.short||a.desc}</p></div>
+      <div class="ov-a"><button type="button" class="btn ghost small" data-actpv="${a.id}" data-pg="1">Se</button><a class="btn small" href="${actHref(a)}" target="_blank" rel="noopener" data-file="${a.id}.pdf">PDF</a>${a.board?`<a class="btn ghost small" href="${a.board}">Tavle</a>`:''}<a class="btn ghost small" href="${a.link}" title="Gå til delkapitlet">Delkapittel</a></div></li>`; };
+  const chap=c=>{ const L=ACTS.filter(a=>a.ch===c.id); if(!L.length) return '';
+    const groups=c.groups.map(g=>{ const top=L.filter(a=>!a.own&&a.topics.some(t=>g.topics.includes(t))), own=g.topics.flatMap(t=>L.filter(a=>a.own&&a.topics[0]===t)); const all=[...top,...own]; if(!all.length) return '';
+      return `<div class="ov-t"><h4>${g.title} <span>${all.length}</span></h4><ul>${all.map(a=>row(a,g.title+' '+c.title+' '+a.grade+'. trinn')).join('')}</ul></div>`; }).join('');
+    return `<details class="ov-c"><summary><span>Kapittel ${c.num} · ${c.title}</span><span class="ov-n">${L.length} opplegg</span></summary><div class="ov-body">${groups}</div></details>`; };
+  const grade=g=>{ const chs=BOOK.chapters.filter(c=>gradeOf(c)===g), n=ACTS.filter(a=>a.grade===g).length;
+    return `<details class="ov-g" data-g="${g}"${g===GRADE?' open':''}><summary><span>${g}. trinn</span><span class="ov-n">${n} opplegg</span></summary><div class="ov-gb">${chs.map(chap).join('')}</div></details>`; };
   main.innerHTML=`<div class="col">
     <nav class="crumb" aria-label="Brødsmuler"><a href="#">Forside</a><span>›</span><span>Klasseaktiviteter</span></nav>
-    <header class="topic-head"><p class="eyebrow">For lærere · ${GRADE}. trinn</p><h1>Klasse<span class="hl">aktiviteter</span></h1>
-      <p class="lede">Ett større opplegg til hvert tema, og en egen aktivitet til hvert delkapittel. Hver aktivitet er én PDF med instruksjoner og fasit. Noen har også en tavleversjon til smartboard.</p>
-      <div class="jump">${chs.map(c=>`<button class="btn ghost small" data-jump="ak-${c.id}">Kap ${c.num} · ${c.title}</button>`).join('')}</div></header>
+    <header class="topic-head"><p class="eyebrow">For lærere</p><h1>Klasse<span class="hl">aktiviteter</span></h1>
+      <p class="lede">${ACTS.length} opplegg for 8.–10. trinn: ett temaopplegg til hvert tema og en aktivitet til hvert delkapittel. Åpne et trinn og et kapittel for å se oppleggene.</p></header>
+    <div class="ov-tools"><label class="ov-search"><span class="sr">Søk</span><input type="search" id="ov-q" placeholder="Søk, for eksempel brøk, bingo eller Pytagoras" autocomplete="off"></label>
+      <button type="button" class="btn ghost small" data-ov="open">Utvid alle</button><button type="button" class="btn ghost small" data-ov="close">Lukk alle</button></div>
+    <p class="ov-empty" id="ov-empty" hidden>Ingen opplegg passer søket.</p>
     <p class="dlmsg" data-dlmsg aria-live="polite"></p>
-    ${L.length?chs.map(c=>{ const inner=c.groups.map(g=>grp(c,g)).join(''); return inner?`<section class="group" id="ak-${c.id}" aria-labelledby="akh-${c.id}"><h2 id="akh-${c.id}">Kapittel ${c.num} · ${c.title}</h2>${inner}</section>`:''; }).join(''):'<p>Aktivitetene til dette trinnet kommer snart.</p>'}
-    <footer class="foot">Matematikk · Klasseaktiviteter · ${GRADE}. trinn · ${L.length} aktiviteter</footer></div>`;
-  if(focus){ const el=document.getElementById('act-'+focus); if(el) setTimeout(()=>el.scrollIntoView({block:'start'}),30); }
+    <div class="ov">${[8,9,10].map(grade).join('')}</div>
+    <footer class="foot">Matematikk · Klasseaktiviteter · ${ACTS.length} opplegg. Hver PDF har instruksjoner og fasit.</footer></div>`;
+  const all=()=>main.querySelectorAll('.ov details');
+  main.querySelector('.ov-tools').addEventListener('click',e=>{ const b=e.target.closest('[data-ov]'); if(!b) return; all().forEach(d=>d.open=b.dataset.ov==='open'); });
+  const q=main.querySelector('#ov-q'); let saved=null;
+  q.addEventListener('input',()=>{ const v=q.value.trim().toLowerCase(); const words=v.split(/\s+/).filter(Boolean);
+    if(words.length&&!saved) saved=[...all()].map(d=>d.open);
+    main.querySelectorAll('.ov-r').forEach(r=>{ r.hidden=words.length>0&&!words.every(w=>r.dataset.q.includes(w)); });
+    main.querySelectorAll('.ov-t').forEach(t=>{ t.hidden=![...t.querySelectorAll('.ov-r')].some(r=>!r.hidden); });
+    main.querySelectorAll('.ov details').forEach(d=>{ const any=[...d.querySelectorAll('.ov-r')].some(r=>!r.hidden); d.hidden=!any; if(words.length) d.open=any; });
+    if(!words.length&&saved){ [...all()].forEach((d,i)=>d.open=saved[i]); saved=null; }
+    main.querySelector('#ov-empty').hidden=!words.length||[...main.querySelectorAll('.ov-r')].some(r=>!r.hidden); });
+  if(focus){ const el=document.getElementById('act-'+focus); if(el){ let d=el.closest('details'); while(d){ d.open=true; d=d.parentElement.closest('details'); } el.classList.add('hit'); setTimeout(()=>el.scrollIntoView({block:'center'}),40); } }
 }
 /* ===================== tavleversjoner: felles ===================== */
 const BD_COL=['#2343B0','#C2362B','#1B7646','#C77700'];
