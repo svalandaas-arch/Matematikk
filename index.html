@@ -530,7 +530,17 @@ svg.ch{display:block;width:100%;max-width:560px;min-width:420px;height:auto}
 .ov-tools{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin-bottom:14px}.ov-search{flex:1;min-width:220px}.ov-search input{width:100%;font:inherit;padding:10px 12px;border:2px solid var(--line);border-radius:10px;background:var(--surface);color:var(--ink);box-sizing:border-box}
 .ov-search .sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
 .ov-empty{color:var(--muted)}
-@media (max-width:700px){.ov-r{flex-direction:column;align-items:stretch}.ov-a{justify-content:flex-start}.ov-g>summary{font-size:1.2rem}}
+.ov-done{display:inline-flex;align-items:center;gap:7px;cursor:pointer;font-size:.86rem;font-weight:600;color:var(--muted);padding:4px 8px;border:1.5px solid var(--line);border-radius:999px;user-select:none;white-space:nowrap}
+.ov-done input{width:18px;height:18px;margin:0;accent-color:var(--ok);cursor:pointer}
+.ov-r.done .ov-done{color:var(--ok);border-color:var(--ok);background:var(--ok-soft)}
+.ov-r.done .ov-h b{color:var(--muted)}.ov-r.done .ov-h b::before{content:"✓ ";color:var(--ok)}
+.ov-n .dn{color:var(--ok)}.ov-n .dn.all{font-weight:700}
+.ov-flt{display:inline-flex;border:1.5px solid var(--line);border-radius:10px;overflow:hidden}
+.ov-flt button{font:inherit;font-size:.86rem;padding:7px 11px;border:0;background:var(--surface);color:var(--ink);cursor:pointer}
+.ov-flt button+button{border-left:1.5px solid var(--line)}.ov-flt button[aria-pressed="true"]{background:var(--pen);color:#fff}
+.ov-sync{flex-basis:100%;font-size:.82rem;color:var(--muted);margin:2px 0 0}
+.act-done{color:var(--ok);font-weight:700;white-space:nowrap}
+@media (max-width:700px){.ov-r{flex-direction:column;align-items:stretch}.ov-a{justify-content:flex-start;align-items:center}.ov-g>summary{font-size:1.2rem}.ov-n{text-align:right}.ov-n .dn{display:block}}
 .act-pg{background-repeat:no-repeat;background-size:100% auto;background-color:#fff}
 .act-th .act-im{width:150px;aspect-ratio:600/849;border:1px solid var(--line);border-radius:3px;box-shadow:0 2px 8px rgba(14,20,36,.14);transition:transform .15s,box-shadow .15s}
 .act-th:hover .act-im{transform:translateY(-2px);box-shadow:4px 4px 0 var(--pen)}
@@ -6008,8 +6018,38 @@ const ACTS=/*ACTSSTART*/[{"id": "faktoriseringskonkurranse", "grade": 8, "ch": "
 const actPg=(a,k,cls)=>{ const sp=a.sp, y=sp.n>1?(sp.o+k-1)*100/(sp.n-1):0; return `<div class="${cls||'pv-img'} act-pg" role="img" aria-label="Side ${k} av ${a.title}" style="background-image:url(${sp.f});background-size:100% ${sp.n*100}%;background-position:0 ${y.toFixed(4)}%"></div>`; };
 const actsOf=g=>ACTS.filter(a=>a.grade===g);
 const actHref=a=>(a.pdf&&window.claude)?a.pdf:`aktiviteter/${a.id}.pdf`;
+/* ---- gjennomførte opplegg: lagres på kontoen (db) og i nettleseren ---- */
+const DONE={set:new Set(),ref:null,remote:false,first:true,timer:null,busy:false,again:false,
+  has(id){ return this.set.has(id); },
+  saveLocal(){ try{ localStorage.setItem('akt-gjort',JSON.stringify([...this.set])); }catch(e){} },
+  toggle(id,on){ if(on) this.set.add(id); else this.set.delete(id); this.saveLocal(); this.queue(); paintDone(); },
+  queue(){ if(!this.ref) return; clearTimeout(this.timer); this.timer=setTimeout(()=>this.write(),500); },
+  async write(){ this.timer=null; if(!this.ref) return; if(this.busy){ this.again=true; return; } this.busy=true;
+    try{ await this.ref.set({ids:[...this.set],t:Date.now()}); }catch(e){ if(e&&e.code==='unavailable') setTimeout(()=>this.queue(),1500+Math.random()*1000); else { this.ref=null; this.remote=false; paintDone(); } }
+    this.busy=false; if(this.again){ this.again=false; this.write(); } }
+};
+try{ JSON.parse(localStorage.getItem('akt-gjort')||'[]').forEach(i=>DONE.set.add(i)); }catch(e){}
+(async()=>{ try{ if(!window.claude||!window.claude.use) return;
+  const [u,db]=await Promise.all([window.claude.use('user').catch(()=>null),window.claude.use('db').catch(()=>null)]);
+  const uid=u&&await u.id(); if(!db||!uid) return;
+  DONE.ref=db.doc('data/users/'+uid+'/gjort'); DONE.remote=true; paintDone();
+  DONE.ref.onSnapshot(sn=>{ if(sn.exists){ const ids=(sn.data()||{}).ids; if(Array.isArray(ids)&&!sn.metadata.hasPendingWrites&&!DONE.timer){ DONE.set=new Set(ids); DONE.saveLocal(); } }
+      else if(DONE.first&&DONE.set.size) DONE.queue();
+      DONE.first=false; paintDone(); },
+    ()=>{ DONE.remote=false; paintDone(); });
+}catch(e){} })();
+function paintDone(){
+  document.querySelectorAll('.ov-r[data-id]').forEach(r=>{ const on=DONE.has(r.dataset.id); r.classList.toggle('done',on); const c=r.querySelector('.ov-done input'); if(c) c.checked=on; });
+  const cnt=(L,el)=>{ const d=L.filter(a=>DONE.has(a.id)).length; el.textContent=d?`${d} av ${L.length} gjennomført`:''; el.classList.toggle('all',d===L.length); };
+  document.querySelectorAll('[data-dn-g]').forEach(el=>cnt(ACTS.filter(a=>a.grade===+el.dataset.dnG),el));
+  document.querySelectorAll('[data-dn-c]').forEach(el=>cnt(ACTS.filter(a=>a.ch===el.dataset.dnC),el));
+  document.querySelectorAll('[data-act-done]').forEach(el=>{ el.hidden=!DONE.has(el.dataset.actDone); });
+  const sy=document.getElementById('ov-sync'); if(sy) sy.textContent=DONE.remote?'Avkryssingene lagres på kontoen din, så de følger deg på alle enheter.':'Avkryssingene lagres i denne nettleseren.';
+  if(typeof ovApply==='function') ovApply();
+}
+let ovApply=null;
 function actBox(tid){ const L=ACTS.filter(a=>a.topics&&a.topics.includes(tid)); if(!L.length) return '';
-  return `<div class="box act-link"><span class="lab">Klasseaktivitet</span>${L.map(a=>`<p><b>${a.title}.</b> ${a.short||''} <a href="#aktiviteter/${a.id}">Se aktiviteten</a>${a.board?` · <a href="${a.board}">Åpne tavleversjonen</a>`:''}</p>`).join('')}</div>`; }
+  return `<div class="box act-link"><span class="lab">Klasseaktivitet</span>${L.map(a=>`<p><b>${a.title}.</b> <span class="act-done" data-act-done="${a.id}"${DONE.has(a.id)?'':' hidden'}>✓ Gjennomført</span> ${a.short||''} <a href="#aktiviteter/${a.id}">Se aktiviteten</a>${a.board?` · <a href="${a.board}">Åpne tavleversjonen</a>`:''}</p>`).join('')}</div>`; }
 const BOARDS={};
 function openActPrev(id,pg){
   const a=ACTS.find(x=>x.id===id); if(!a) return;
@@ -6024,36 +6064,42 @@ document.addEventListener('click',e=>{ const b=e.target.closest('[data-actpv]');
 function renderActivities(focus){
   const esc=t=>String(t).replace(/</g,'&lt;');
   const row=(a,ctx)=>{ const sub=a.own&&TOPICS[a.topics[0]]?TOPICS[a.topics[0]].title:'';
-    return `<li class="ov-r" id="act-${a.id}" data-q="${esc((a.title+' '+(a.kind||'')+' '+sub+' '+(a.short||'')+' '+(a.desc||'')+' '+ctx).toLowerCase())}">
+    return `<li class="ov-r${DONE.has(a.id)?' done':''}" id="act-${a.id}" data-id="${a.id}" data-q="${esc((a.title+' '+(a.kind||'')+' '+sub+' '+(a.short||'')+' '+(a.desc||'')+' '+ctx).toLowerCase())}">
       <div class="ov-i"><div class="ov-h"><b>${a.title}</b><span class="ov-k${a.own?'':' big'}">${a.own?(a.kind||'Aktivitet'):'Temaopplegg'}</span>${a.board?'<span class="ov-k tv">Tavle</span>':''}</div>
         <p>${sub?`<span class="ov-s">${sub}:</span> `:''}${a.short||a.desc}</p></div>
-      <div class="ov-a"><button type="button" class="btn ghost small" data-actpv="${a.id}" data-pg="1">Se</button><a class="btn small" href="${actHref(a)}" target="_blank" rel="noopener" data-file="${a.id}.pdf">PDF</a>${a.board?`<a class="btn ghost small" href="${a.board}">Tavle</a>`:''}<a class="btn ghost small" href="${a.link}" title="Gå til delkapitlet">Delkapittel</a></div></li>`; };
+      <div class="ov-a"><button type="button" class="btn ghost small" data-actpv="${a.id}" data-pg="1">Se</button><a class="btn small" href="${actHref(a)}" target="_blank" rel="noopener" data-file="${a.id}.pdf">PDF</a>${a.board?`<a class="btn ghost small" href="${a.board}">Tavle</a>`:''}<a class="btn ghost small" href="${a.link}" title="Gå til delkapitlet">Delkapittel</a><label class="ov-done"><input type="checkbox" data-done="${a.id}"${DONE.has(a.id)?' checked':''}>Gjennomført</label></div></li>`; };
   const chap=c=>{ const L=ACTS.filter(a=>a.ch===c.id); if(!L.length) return '';
     const groups=c.groups.map(g=>{ const top=L.filter(a=>!a.own&&a.topics.some(t=>g.topics.includes(t))), own=g.topics.flatMap(t=>L.filter(a=>a.own&&a.topics[0]===t)); const all=[...top,...own]; if(!all.length) return '';
       return `<div class="ov-t"><h4>${g.title} <span>${all.length}</span></h4><ul>${all.map(a=>row(a,g.title+' '+c.title+' '+a.grade+'. trinn')).join('')}</ul></div>`; }).join('');
-    return `<details class="ov-c"><summary><span>Kapittel ${c.num} · ${c.title}</span><span class="ov-n">${L.length} opplegg</span></summary><div class="ov-body">${groups}</div></details>`; };
+    return `<details class="ov-c"><summary><span>Kapittel ${c.num} · ${c.title}</span><span class="ov-n">${L.length} opplegg <span class="dn" data-dn-c="${c.id}"></span></span></summary><div class="ov-body">${groups}</div></details>`; };
   const grade=g=>{ const chs=BOOK.chapters.filter(c=>gradeOf(c)===g), n=ACTS.filter(a=>a.grade===g).length;
-    return `<details class="ov-g" data-g="${g}"${g===GRADE?' open':''}><summary><span>${g}. trinn</span><span class="ov-n">${n} opplegg</span></summary><div class="ov-gb">${chs.map(chap).join('')}</div></details>`; };
+    return `<details class="ov-g" data-g="${g}"${g===GRADE?' open':''}><summary><span>${g}. trinn</span><span class="ov-n">${n} opplegg <span class="dn" data-dn-g="${g}"></span></span></summary><div class="ov-gb">${chs.map(chap).join('')}</div></details>`; };
   main.innerHTML=`<div class="col">
     <nav class="crumb" aria-label="Brødsmuler"><a href="#">Forside</a><span>›</span><span>Klasseaktiviteter</span></nav>
     <header class="topic-head"><p class="eyebrow">For lærere</p><h1>Klasse<span class="hl">aktiviteter</span></h1>
       <p class="lede">${ACTS.length} opplegg for 8.–10. trinn: ett temaopplegg til hvert tema og en aktivitet til hvert delkapittel. Åpne et trinn og et kapittel for å se oppleggene.</p></header>
     <div class="ov-tools"><label class="ov-search"><span class="sr">Søk</span><input type="search" id="ov-q" placeholder="Søk, for eksempel brøk, bingo eller Pytagoras" autocomplete="off"></label>
-      <button type="button" class="btn ghost small" data-ov="open">Utvid alle</button><button type="button" class="btn ghost small" data-ov="close">Lukk alle</button></div>
-    <p class="ov-empty" id="ov-empty" hidden>Ingen opplegg passer søket.</p>
+      <button type="button" class="btn ghost small" data-ov="open">Utvid alle</button><button type="button" class="btn ghost small" data-ov="close">Lukk alle</button>
+      <div class="ov-flt" role="group" aria-label="Vis"><button type="button" data-flt="all" aria-pressed="true">Alle</button><button type="button" data-flt="todo" aria-pressed="false">Ikke gjennomført</button><button type="button" data-flt="done" aria-pressed="false">Gjennomført</button></div>
+      <p class="ov-sync" id="ov-sync"></p></div>
+    <p class="ov-empty" id="ov-empty" hidden>Ingen opplegg passer.</p>
     <p class="dlmsg" data-dlmsg aria-live="polite"></p>
     <div class="ov">${[8,9,10].map(grade).join('')}</div>
     <footer class="foot">Matematikk · Klasseaktiviteter · ${ACTS.length} opplegg. Hver PDF har instruksjoner og fasit.</footer></div>`;
   const all=()=>main.querySelectorAll('.ov details');
   main.querySelector('.ov-tools').addEventListener('click',e=>{ const b=e.target.closest('[data-ov]'); if(!b) return; all().forEach(d=>d.open=b.dataset.ov==='open'); });
-  const q=main.querySelector('#ov-q'); let saved=null;
-  q.addEventListener('input',()=>{ const v=q.value.trim().toLowerCase(); const words=v.split(/\s+/).filter(Boolean);
-    if(words.length&&!saved) saved=[...all()].map(d=>d.open);
-    main.querySelectorAll('.ov-r').forEach(r=>{ r.hidden=words.length>0&&!words.every(w=>r.dataset.q.includes(w)); });
+  const q=main.querySelector('#ov-q'); let saved=null, flt='all';
+  ovApply=()=>{ if(!main.contains(q)) return; const v=q.value.trim().toLowerCase(); const words=v.split(/\s+/).filter(Boolean); const active=words.length>0||flt!=='all';
+    if(active&&!saved) saved=[...all()].map(d=>d.open);
+    main.querySelectorAll('.ov-r').forEach(r=>{ const d=DONE.has(r.dataset.id); r.hidden=(words.length>0&&!words.every(w=>r.dataset.q.includes(w)))||(flt==='done'&&!d)||(flt==='todo'&&d); });
     main.querySelectorAll('.ov-t').forEach(t=>{ t.hidden=![...t.querySelectorAll('.ov-r')].some(r=>!r.hidden); });
-    main.querySelectorAll('.ov details').forEach(d=>{ const any=[...d.querySelectorAll('.ov-r')].some(r=>!r.hidden); d.hidden=!any; if(words.length) d.open=any; });
-    if(!words.length&&saved){ [...all()].forEach((d,i)=>d.open=saved[i]); saved=null; }
-    main.querySelector('#ov-empty').hidden=!words.length||[...main.querySelectorAll('.ov-r')].some(r=>!r.hidden); });
+    main.querySelectorAll('.ov details').forEach(d=>{ const any=[...d.querySelectorAll('.ov-r')].some(r=>!r.hidden); d.hidden=!any; if(words.length||flt==='done') d.open=any; });
+    if(!active&&saved){ [...all()].forEach((d,i)=>d.open=saved[i]); saved=null; }
+    main.querySelector('#ov-empty').hidden=!active||[...main.querySelectorAll('.ov-r')].some(r=>!r.hidden); };
+  q.addEventListener('input',ovApply);
+  main.querySelector('.ov-flt').addEventListener('click',e=>{ const b=e.target.closest('[data-flt]'); if(!b) return; flt=b.dataset.flt; main.querySelectorAll('[data-flt]').forEach(x=>x.setAttribute('aria-pressed',x===b)); ovApply(); });
+  main.querySelector('.ov').addEventListener('change',e=>{ const c=e.target.closest('[data-done]'); if(c) DONE.toggle(c.dataset.done,c.checked); });
+  paintDone();
   if(focus){ const el=document.getElementById('act-'+focus); if(el){ let d=el.closest('details'); while(d){ d.open=true; d=d.parentElement.closest('details'); } el.classList.add('hit'); setTimeout(()=>el.scrollIntoView({block:'center'}),40); } }
 }
 /* ===================== tavleversjoner: felles ===================== */
