@@ -6354,6 +6354,7 @@ BOARDS.brokmodell=()=>{
   const NF=(a,b)=>({c:b,r:1,a,op:null,chain:[[a,b,b,1]]});
   const DEF=()=>({m:'rect',mode:'en',eq:true,F:[NF(2,3),NF(3,4)]});
   const H=bdHistory('brokmodell2',DEF()); if(!H.s||!H.s.F) H.s=DEF();
+  H.s.F.forEach(F=>{ if(F.r>1){ F.c*=F.r; F.r=1; F.op=null; } F.chain=F.chain.map(e=>[e[0],e[1],e[1],1]); });
   let fresh=-1, sideMode=null;
   const root=bdShell({title:'Brøkmodell: utvide, forkorte og sammenligne', act:'brokmodell',
     tools:bdTool('rect','Rektangel','<i class="bm-ir"></i>','r')+bdTool('circle','Sirkel','<i class="bm-ic"></i>','s')+'<span class="bm-sep"></span>'+bdTool('en','Én brøk','<i class="bm-i1">1</i>','1')+bdTool('to','Sammenlign to','<i class="bm-i1">2</i>','2'),
@@ -6380,10 +6381,10 @@ BOARDS.brokmodell=()=>{
     for(let j=0;j<c;j++) for(let k=0;k<r;k++) g+=`<rect x="${X0+j*cw}" y="${Y0+k*rh}" width="${cw+.5}" height="${rh+.5}" style="fill:${j*r+k<a?fill:'var(--surface)'}"/>`;
     const op=s.op, fade=new Set(), newH=new Set(), gi=op&&op.t==='f'&&op.ph===1?groupInfo(s,op.k):null;
     if(gi){ for(let k=1;k<r;k++) if(k%gi.gr) fade.add('h'+k); for(let j=1;j<c;j++) if(j%gi.gc) fade.add('v'+j); }
-    if(op&&op.t==='u') for(let k=1;k<r;k++) if(k%op.k) newH.add(k);
+    const newV=new Set(); if(op&&op.t==='u') for(let j=1;j<c;j++) if(j%op.k) newV.add(j);
     const nw=anim?'bm-new anim':'bm-new';
     for(let k=1;k<r;k++){ const y=Y0+k*rh, cl=newH.has(k)?nw:fade.has('h'+k)?'bm-fade':'bm-ln'; g+=`<line x1="${X0}" x2="${X0+W}" y1="${y}" y2="${y}" class="${cl}" pathLength="1"/>`; }
-    for(let j=1;j<c;j++){ const x=X0+j*cw, cl=fade.has('v'+j)?'bm-fade':'bm-ln bm-v'; g+=`<line x1="${x}" x2="${x}" y1="${Y0}" y2="${Y0+HH}" class="${cl}"/>`; }
+    for(let j=1;j<c;j++){ const x=X0+j*cw, cl=newV.has(j)?nw:fade.has('v'+j)?'bm-fade':'bm-ln bm-v'; g+=`<line x1="${x}" x2="${x}" y1="${Y0}" y2="${Y0+HH}" class="${cl}" pathLength="1"/>`; }
     g+=`<rect x="${X0}" y="${Y0}" width="${W}" height="${HH}" class="bm-out"/>`;
     if(gi){ let n=0; for(let j=0;j<c;j+=gi.gc) for(let k=0;k<r;k+=gi.gr) g+=`<rect x="${X0+j*cw+5}" y="${Y0+k*rh+5}" width="${gi.gc*cw-10}" height="${gi.gr*rh-10}" rx="8" class="bm-grp ${n++%2?'g2':'g1'}"/>`; }
     return g; }
@@ -6464,7 +6465,7 @@ BOARDS.brokmodell=()=>{
     for(const i of two?[0,1]:[0]){ const ia=sd.querySelector('#bm-a'+i), ib=sd.querySelector('#bm-b'+i), a=Math.round(+ia.value), b=Math.round(+ib.value);
       if(ia.value===''||ib.value===''||!(b>=1&&b<=12)||!(a>=0&&a<=b)){ err.hidden=false; err.textContent='Nevneren må være fra 1 til 12, og telleren fra 0 til nevneren.'; return; } vals.push([a,b]); }
     err.hidden=true; H.push(); vals.forEach(([a,b],i)=>{ H.s.F[i]=NF(a,b); }); draw(); }
-  const expand=(F,k)=>{ F.r*=k; F.a*=k; F.op={t:'u',k}; F.chain.push([F.a,F.c*F.r,F.c,F.r]); };
+  const expand=(F,k)=>{ F.c*=k; F.a*=k; F.op={t:'u',k}; F.chain.push([F.a,F.c*F.r,F.c,F.r]); };
   root.addEventListener('click',e=>{ const s=H.s; let t;
     if((t=e.target.closest('[data-tool]'))){ const v=t.dataset.tool; H.push(); if(v==='rect'||v==='circle') s.m=v; else s.mode=v; draw(); return; }
     const i=(t=e.target.closest('[data-i]'))?+t.dataset.i:0, F=s.F[i];
