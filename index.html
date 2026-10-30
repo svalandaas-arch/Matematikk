@@ -78,6 +78,7 @@ code,.math{font-family:var(--f-mono);font-weight:500;font-size:.94em;white-space
 .nav .chap{font-weight:700;margin-top:10px}
 .nav .grp{font-family:var(--f-mono);font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);padding:12px 10px 4px}
 .nav .sub a{padding-left:20px}
+.nav a.tool{font-weight:700;border:1.5px solid var(--pen);color:var(--pen)}.nav a.tool:hover{background:var(--pen-soft)}
 .nav .soon{color:var(--muted);padding:6px 10px;font-size:.92rem}
 .tally{font-family:var(--f-mono);font-size:.74rem;color:var(--muted);font-variant-numeric:tabular-nums;white-space:nowrap}
 .tally.done{color:var(--ok);font-weight:700}
@@ -2689,7 +2690,7 @@ const bar = s => `<div class="bar" role="progressbar" aria-valuemin="0" aria-val
 const tally = s => s.t && s.n>=s.t ? `<span class="tally done">✓ mestret</span>` : `<span class="tally">${pct(s)} %</span>`;
 let curRoute='';
 function renderNav(route){
-  let h=`<a class="brand-big" href="#">Matematikk<small>${GRADE}. trinn</small></a>${gradeSw()}<ul class="nav"><li><a href="#" ${route===''?'aria-current="page"':''}><span>Forside</span></a></li><li><a href="#spill" ${route==='spill'?'aria-current="page"':''}><span>Spill</span><span class="tally">5 spill</span></a></li><li><a href="#aktiviteter" ${route==='aktiviteter'?'aria-current="page"':''}><span>Klasseaktiviteter</span><span class="tally">${ACTS.length} opplegg</span></a></li><li><a href="#laerer" ${route==='laerer'?'aria-current="page"':''}><span>For lærere</span><span class="tally">PDF</span></a></li><li><a href="grupper/"><span>Grupper og klassekart</span><span class="tally">Lærer</span></a></li>`;
+  let h=`<a class="brand-big" href="#">Matematikk<small>${GRADE}. trinn</small></a>${gradeSw()}<ul class="nav"><li><a href="#" ${route===''?'aria-current="page"':''}><span>Forside</span></a></li><li><a href="#spill" ${route==='spill'?'aria-current="page"':''}><span>Spill</span><span class="tally">5 spill</span></a></li><li><a href="#aktiviteter" ${route==='aktiviteter'?'aria-current="page"':''}><span>Klasseaktiviteter</span><span class="tally">${ACTS.length} opplegg</span></a></li><li><a href="#laerer" ${route==='laerer'?'aria-current="page"':''}><span>For lærere</span><span class="tally">PDF</span></a></li><li class="grp">Lærerverktøy</li><li><a class="tool" href="grupper/"><span>👥 Grupper og klassekart</span><span class="tally">Logg inn</span></a></li>`;
   CHS().forEach(ch=>{
     h+=`<li><a class="chap" href="#${ch.id}" ${route===ch.id?'aria-current="page"':''}><span>Kap ${ch.num} · ${ch.title}</span></a></li>`;
     ch.groups.forEach(g=>{ h+=`<li class="grp">${g.title}</li>`; g.topics.forEach(tid=>{ const r=`${ch.id}-${tid}`; h+=`<li class="sub"><a href="#${r}" ${route===r?'aria-current="page"':''}><span>${TOPICS[tid].title}</span>${tally(topicStat(tid))}</a></li>`; }); });
