@@ -1,0 +1,1517 @@
+<!doctype html>
+<html lang="no">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Grupper og klassekart</title>
+<meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&display=swap">
+<style>
+:root{
+  --bg:#f5f3ee;--card:#ffffff;--ink:#1e2226;--muted:#6a6f76;--line:#e2ded5;
+  --accent:#2343B0;--accent-2:#1A3490;--accent-ink:#fff;--warn:#b0502a;--absent:#c9c4b8;
+  --c1:#e6f0ea;--c2:#f6eadb;--c3:#e5ebf5;--c4:#f3e3e6;--c5:#efeadb;--c6:#e3eff0;--c7:#ece5f3;--c8:#f1ece4;
+  --b1:#2e6b5b;--b2:#a3622a;--b3:#3a5f9a;--b4:#9a3d55;--b5:#7c6a22;--b6:#2c7480;--b7:#6a4a96;--b8:#7a5f43;
+}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.45 "Atkinson Hyperlegible","Segoe UI",system-ui,sans-serif}
+.top h1,.logincard h1,.archtitle{font-family:"Bricolage Grotesque","Segoe UI",system-ui,sans-serif;font-weight:800}
+button,input,select,textarea{font:inherit;color:inherit}
+button{cursor:pointer}
+.top{display:flex;align-items:center;gap:12px;padding:12px 20px;border-bottom:1px solid var(--line);background:var(--card);flex-wrap:wrap}
+.top h1{font-size:19px;margin:0 6px 0 0;font-weight:700;letter-spacing:-.01em}
+.top .sp{flex:1}
+.top select{padding:7px 10px;border:1px solid var(--line);border-radius:8px;background:var(--card)}
+.iconbtn{border:1px solid var(--line);background:var(--card);border-radius:8px;padding:7px 10px}
+.iconbtn:hover{background:var(--bg)}
+.gear{border:none;background:transparent;opacity:.35;font-size:18px;padding:6px 8px;border-radius:8px}
+.gear:hover{opacity:.8;background:var(--bg)}
+.tabs{display:inline-flex;background:var(--bg);border-radius:10px;padding:3px}
+.tabs button{border:none;background:transparent;padding:6px 14px;border-radius:8px;font-weight:600;color:var(--muted)}
+.tabs button.on{background:var(--card);color:var(--ink);box-shadow:0 1px 3px rgba(0,0,0,.1)}
+.wrap{display:grid;grid-template-columns:340px 1fr;min-height:calc(100vh - 62px)}
+.side{border-right:1px solid var(--line);padding:18px 20px;background:var(--card);overflow:auto}
+.main{padding:24px 28px;overflow:auto}
+h2{font-size:13px;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);margin:22px 0 10px;font-weight:600}
+h2:first-child{margin-top:0}
+.chips{display:flex;flex-wrap:wrap;gap:6px}
+.chip{border:1px solid var(--line);background:var(--bg);border-radius:999px;padding:4px 11px;font-size:14px;user-select:none}
+.chip.absent{color:var(--absent);text-decoration:line-through;background:transparent}
+.chip.sel{background:var(--accent);color:#fff;border-color:var(--accent)}
+.hint{font-size:13px;color:var(--muted);margin:6px 0 0}
+textarea{width:100%;min-height:200px;border:1px solid var(--line);border-radius:10px;padding:10px;resize:vertical;background:var(--card)}
+.row{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.seg{display:inline-flex;border:1px solid var(--line);border-radius:9px;overflow:hidden;flex-wrap:wrap}
+.seg button{border:none;background:var(--card);padding:7px 12px;font-size:14px}
+.seg button.on{background:var(--accent);color:var(--accent-ink)}
+.num{display:inline-flex;align-items:center;border:1px solid var(--line);border-radius:9px;overflow:hidden}
+.num button{border:none;background:var(--card);width:34px;height:36px;font-size:18px}
+.num span{min-width:34px;text-align:center;font-weight:600}
+.lbl{font-size:14px;color:var(--muted);min-width:64px}
+.primary{width:100%;margin-top:18px;border:none;background:var(--accent);color:var(--accent-ink);border-radius:12px;padding:14px;font-size:17px;font-weight:600}
+.primary:hover{background:var(--accent-2)}
+.primary:disabled{opacity:.45;cursor:default}
+.linkbtn{border:none;background:none;color:var(--accent);padding:0;font-size:14px;text-decoration:underline}
+.summary{color:var(--muted);font-size:14px;margin-top:8px}
+.summary.bad{color:var(--warn)}
+.empty{height:100%;display:flex;align-items:center;justify-content:center;color:var(--muted);text-align:center;min-height:50vh}
+.empty b{display:block;font-size:22px;color:var(--ink);margin-bottom:6px}
+.groups{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:18px}
+.group{border-radius:16px;padding:16px 18px 18px;background:var(--c1);border-top:6px solid var(--b1);opacity:0;transform:translateY(10px);animation:in .45s ease forwards}
+.group h3{margin:0 0 10px;font-size:15px;text-transform:uppercase;letter-spacing:.06em;color:var(--b1)}
+.group ul{list-style:none;margin:0;padding:0}
+.group li{font-size:22px;font-weight:600;padding:3px 0}
+@keyframes in{to{opacity:1;transform:none}}
+.group.noanim{opacity:1;transform:none;animation:none}
+.group li.mv{cursor:grab;border-radius:8px;padding:3px 8px;margin:0 -8px;transition:background .12s,box-shadow .12s;user-select:none}
+.group li.mv:hover{background:rgba(255,255,255,.65)}
+.group li.mv.sel{background:var(--card);box-shadow:0 0 0 2px var(--accent)}
+.group li.mv.over{background:var(--card);box-shadow:inset 0 0 0 2px var(--accent)}
+.group li.dragging{opacity:.35}
+.group.over{box-shadow:0 0 0 3px var(--accent)}
+.groups.moving .group{cursor:pointer}
+.group.newgroup{display:flex;align-items:center;justify-content:center;min-height:110px;background:transparent;border:2px dashed #d6d1c5;color:var(--muted);font-weight:600;cursor:pointer}
+.group.newgroup:hover,.group.newgroup.over{border-color:var(--accent);color:var(--accent);box-shadow:none}
+body.present .newgroup,body.present .movehint{display:none}
+.g2{background:var(--c2);border-color:var(--b2)}.g2 h3{color:var(--b2)}
+.g3{background:var(--c3);border-color:var(--b3)}.g3 h3{color:var(--b3)}
+.g4{background:var(--c4);border-color:var(--b4)}.g4 h3{color:var(--b4)}
+.g5{background:var(--c5);border-color:var(--b5)}.g5 h3{color:var(--b5)}
+.g6{background:var(--c6);border-color:var(--b6)}.g6 h3{color:var(--b6)}
+.g7{background:var(--c7);border-color:var(--b7)}.g7 h3{color:var(--b7)}
+.g8{background:var(--c8);border-color:var(--b8)}.g8 h3{color:var(--b8)}
+.resultbar{display:flex;align-items:center;gap:8px;margin-bottom:18px;flex-wrap:wrap}
+.resultbar h2{margin:0}
+.resultbar .sp{flex:1}
+/* Klassekart */
+.room{display:flex;flex-direction:column;gap:16px;max-width:1150px;margin:0 auto}
+.room.flipped .board{order:2}
+.board{align-self:center;width:min(60%,520px);text-align:center;padding:8px;border-radius:8px;background:var(--ink);color:#fff;font-size:13px;letter-spacing:.14em;text-transform:uppercase}
+.seatgrid{display:grid;gap:10px 6px}
+.desk,.aisle{min-height:60px;border-radius:10px}
+.desk{background:var(--card);border:1.5px solid #d6d1c5;display:flex;align-items:center;justify-content:center;text-align:center;padding:6px 4px;font-weight:600;font-size:15px;line-height:1.15;word-break:break-word;cursor:pointer;transition:transform .12s,box-shadow .12s;box-shadow:0 1px 0 rgba(0,0,0,.04)}
+.desk:hover{transform:translateY(-1px);box-shadow:0 3px 8px rgba(0,0,0,.08)}
+.desk.free{background:transparent;border-style:dashed;color:var(--muted);font-weight:400;box-shadow:none}
+.desk.sel{outline:3px solid var(--accent);outline-offset:1px;background:var(--c1)}
+.desk.pop{animation:pop .35s ease}
+@keyframes pop{from{opacity:0;transform:scale(.92)}to{opacity:1;transform:none}}
+.room.editing .desk{background:var(--c1);border-color:var(--b1);color:var(--b1)}
+.room.editing .aisle{border:1.5px dashed var(--line);cursor:pointer;opacity:.7}
+.room.editing .aisle:hover{background:var(--card);opacity:1}
+.editnote{text-align:center;color:var(--accent);font-size:14px;font-weight:600}
+body.present .top,body.present .side{display:none}
+body.present .wrap{grid-template-columns:1fr;min-height:100vh}
+body.present .main{padding:40px}
+body.present .group li{font-size:28px}
+body.present .groups{grid-template-columns:repeat(auto-fill,minmax(280px,1fr))}
+body.present .desk,body.present .aisle{min-height:84px}
+body.present .desk{font-size:20px}
+body.present .resultbar,body.present #unplacedWrap{display:none}
+.exitp{display:none;position:fixed;right:14px;bottom:14px;opacity:.3}
+body.present .exitp{display:block}
+.exitp:hover{opacity:1}
+/* Lærerpanel */
+.overlay{position:fixed;inset:0;background:rgba(20,22,25,.45);display:none;align-items:flex-start;justify-content:center;padding:5vh 16px;z-index:10;overflow:auto}
+.overlay.open{display:flex}
+.panel{background:var(--card);border-radius:16px;width:min(640px,100%);padding:22px 24px;box-shadow:0 20px 60px rgba(0,0,0,.25)}
+.panel h3{margin:0 0 4px;font-size:20px}
+.panel h4{margin:20px 0 8px;font-size:15px}
+.panel .sub{color:var(--muted);font-size:14px;margin:0 0 12px}
+.panel select,.panel input[type=password],.panel input[type=text]{padding:8px 10px;border:1px solid var(--line);border-radius:8px;background:var(--card);min-width:0}
+.panel .row select{flex:1}
+.x{color:var(--muted);font-size:13px}
+.addbtn{border:none;background:var(--accent);color:#fff;border-radius:8px;padding:8px 14px;font-weight:600}
+.pairs{list-style:none;padding:0;margin:10px 0 0;max-height:220px;overflow:auto;border:1px solid var(--line);border-radius:10px}
+.pairs li{display:flex;align-items:center;padding:7px 12px;border-bottom:1px solid var(--line);gap:8px;font-size:15px}
+.pairs li:last-child{border-bottom:none}
+.pairs li .sp{flex:1}
+.pairs li button{border:none;background:none;color:var(--muted);font-size:18px;line-height:1}
+.pairs li button:hover{color:var(--warn)}
+.pairs .none{color:var(--muted);font-size:14px;justify-content:center}
+.status{margin-top:16px;padding:10px 12px;border-radius:10px;font-size:14px;background:var(--bg)}
+.status.bad{background:#f8e6dd;color:var(--warn)}
+.panel .foot{display:flex;justify-content:space-between;align-items:center;margin-top:20px;gap:10px;flex-wrap:wrap}
+.panel hr{border:none;border-top:1px solid var(--line);margin:20px 0}
+.small{font-size:14px}
+.err{color:var(--warn);font-size:14px;min-height:1.2em;margin-top:6px}
+.mini{display:grid;gap:3px;margin-top:8px;max-width:420px}
+.mini div{height:24px;border-radius:4px}
+.mini .d{background:var(--c3);border:1px solid #c8d3e6;cursor:pointer}
+.mini .d:hover{background:#cdd9ee}
+.mini .d.taken{background:var(--absent);border-color:var(--absent)}
+.mini .d.sel{background:var(--accent);border-color:var(--accent)}
+.miniboard{max-width:420px;text-align:center;font-size:11px;letter-spacing:.12em;text-transform:uppercase;background:var(--ink);color:#fff;border-radius:4px;padding:2px;margin-top:8px}
+.filebtn{border:1px solid var(--line);background:var(--card);border-radius:999px;padding:5px 12px;font-size:13px;color:var(--muted)}
+.filebtn:hover{background:var(--bg)}
+.filebtn.ok::before{content:'';display:inline-block;width:8px;height:8px;border-radius:50%;background:#3a9a6a;margin-right:7px;vertical-align:1px}
+.filebtn.invite{color:var(--accent);border-color:var(--accent);font-weight:600}
+.filebtn.warn{color:var(--warn);border-color:#e7c3b2;background:#fbefe9;font-weight:600}
+.backlink{color:var(--muted);text-decoration:none;font-size:14px}
+.backlink:hover{color:var(--accent)}
+.who{font-size:13px;color:var(--muted);max-width:180px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.login{position:fixed;inset:0;z-index:30;background:var(--bg);display:flex;align-items:center;justify-content:center;padding:24px}
+.logincard{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:30px;max-width:440px;width:100%;box-shadow:0 10px 40px rgba(0,0,0,.06)}
+.logincard h1{margin:12px 0 8px;font-size:28px;letter-spacing:-.01em}
+.logincard p{color:var(--muted);margin:0 0 18px}
+.gbtn{width:100%;border:none;background:var(--accent);color:#fff;border-radius:12px;padding:14px;font-size:17px;font-weight:700;margin-bottom:10px}
+.gbtn:hover{background:var(--accent-2)}
+.loginmsg{font-size:14px;margin:0!important}
+/* Arkiv */
+.archlist{list-style:none;padding:0;margin:14px 0 0;display:flex;flex-direction:column;gap:6px}
+.archlist li > button{width:100%;text-align:left;border:1px solid var(--line);background:var(--card);border-radius:10px;padding:10px 12px;display:block}
+.archlist li > button:hover{background:var(--bg)}
+.archlist li > button.on{border-color:var(--accent);background:var(--c1)}
+.archlist .t{font-weight:600;display:block;margin-top:3px}
+.archlist .m{font-size:13px;color:var(--muted)}
+.tag{display:inline-block;font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.05em;padding:1px 6px;border-radius:4px;background:var(--c3);color:var(--b3)}
+.tag.seats{background:var(--c2);color:var(--b2)}
+.archtitle{font-size:20px;font-weight:700}
+.printtitle{display:none;font-size:24px;font-weight:700;margin:0 0 18px;text-align:center}
+body.present .printtitle{display:block}
+.iconbtn.done{color:var(--accent);border-color:var(--accent);font-weight:600}
+.toast{position:fixed;left:50%;bottom:24px;transform:translate(-50%,16px);background:var(--ink);color:#fff;padding:10px 18px;border-radius:10px;opacity:0;transition:opacity .25s,transform .25s;pointer-events:none;z-index:20;font-size:15px}
+.toast.show{opacity:1;transform:translate(-50%,0)}
+@media (max-width:760px){.wrap{grid-template-columns:1fr}.side{border-right:none;border-bottom:1px solid var(--line)}}
+@media print{
+  .top,.side,.resultbar,.exitp,.overlay,#unplacedWrap,.editnote{display:none!important}
+  .wrap{display:block}body{background:#fff}.main{padding:0}
+  .desk{box-shadow:none}.desk.sel{outline:none}
+  .group{opacity:1;transform:none;animation:none}
+  .printtitle{display:block}
+  .toast,.newgroup,.movehint{display:none!important}
+  .group li.mv{box-shadow:none!important;background:none!important}
+}
+</style>
+</head>
+<body>
+<header class="top">
+  <a class="backlink" href="../" title="Tilbake til matematikksiden">← Matematikk</a>
+  <h1>Klassehjelpen</h1>
+  <div class="tabs" id="tabs">
+    <button data-tab="groups">Grupper</button>
+    <button data-tab="seats">Klassekart</button>
+    <button data-tab="archive">Arkiv</button>
+  </div>
+  <select id="classSel" title="Velg klasse"></select>
+  <button class="iconbtn small" id="newClass">+ Ny klasse</button>
+  <div class="sp"></div>
+  <button class="filebtn" id="syncBtn" hidden></button>
+  <span class="who" id="who" hidden></span>
+  <button class="iconbtn small" id="logoutBtn" hidden>Logg ut</button>
+  <button class="gear" id="gear" title="Innstillinger">⚙</button>
+</header>
+
+<!-- ================= GRUPPER ================= -->
+<div class="wrap" id="groupsView">
+  <aside class="side">
+    <h2>Elever <span id="count"></span></h2>
+    <div id="chipView">
+      <div class="chips" id="chips"></div>
+      <p class="hint">Klikk på et navn for å markere at eleven er borte i dag.</p>
+      <p style="margin:10px 0 0"><button class="linkbtn" id="editNames">Rediger navneliste</button></p>
+    </div>
+    <div id="editView" hidden>
+      <textarea id="names" placeholder="Ett navn per linje&#10;&#10;Ola&#10;Kari&#10;Ahmed&#10;..."></textarea>
+      <p class="hint">Ett navn per linje. Du kan lime inn en liste fra Excel eller et dokument. Navnelista brukes både til grupper og klassekart.</p>
+      <p style="margin:10px 0 0"><button class="linkbtn" id="doneNames">Ferdig</button></p>
+      <p class="hint" id="openFileHint" hidden style="margin-top:14px">Har du brukt Klassehjelpen som fil på PC-en? Åpne den gamle versjonen, trykk ⚙ og «Last ned sikkerhetskopi». <button class="linkbtn" id="openFileLink">Hent den inn her</button>.</p>
+    </div>
+
+    <h2>Inndeling</h2>
+    <div class="seg" id="modeSeg">
+      <button data-mode="size">Elever per gruppe</button>
+      <button data-mode="count">Antall grupper</button>
+    </div>
+    <div class="row" style="margin-top:10px">
+      <div class="num"><button id="minus">−</button><span id="val">4</span><button id="plus">+</button></div>
+    </div>
+    <div class="summary" id="summary"></div>
+
+    <button class="primary" id="go">Lag grupper</button>
+  </aside>
+
+  <main class="main">
+    <div class="empty" id="empty"><div><b>Ingen grupper ennå</b>Legg inn navn og trykk «Lag grupper».</div></div>
+    <div id="result" hidden>
+      <div class="resultbar">
+        <h2>Grupper</h2>
+        <div class="sp"></div>
+        <button class="iconbtn small" id="again">↻ Ny inndeling</button>
+        <button class="iconbtn small" id="saveGroups">Lagre i arkiv</button>
+        <button class="iconbtn small printBtn">Skriv ut</button>
+        <button class="iconbtn small presentBtn">⛶ Vis på tavla</button>
+      </div>
+      <p class="hint movehint" style="margin:-8px 0 14px">Flytt elever ved å dra et navn til en annen gruppe, eller klikk på et navn og så på gruppen. Slipp på et annet navn for å bytte plass.</p>
+      <div class="groups" id="groups"></div>
+    </div>
+  </main>
+</div>
+
+<!-- ================= KLASSEKART ================= -->
+<div class="wrap" id="seatsView" hidden>
+  <aside class="side">
+    <h2>Elever</h2>
+    <div class="summary" id="seatNamesInfo" style="margin-top:0"></div>
+    <p style="margin:8px 0 0"><button class="linkbtn" id="seatEditNames">Rediger navneliste</button></p>
+
+    <h2>Klasserom</h2>
+    <button class="iconbtn small" id="editRoom">Rediger klasserom</button>
+    <div id="roomCtl" hidden>
+      <div class="row" style="margin-top:12px"><span class="lbl">Rader</span><div class="num"><button id="rMinus">−</button><span id="rVal"></span><button id="rPlus">+</button></div></div>
+      <div class="row" style="margin-top:8px"><span class="lbl">Kolonner</span><div class="num"><button id="cMinus">−</button><span id="cVal"></span><button id="cPlus">+</button></div></div>
+      <div class="seg" id="presetSeg" style="margin-top:12px">
+        <button data-preset="pairs">Parbord</button>
+        <button data-preset="single">Enkeltpulter</button>
+        <button data-preset="all">Alle ruter</button>
+      </div>
+      <p class="hint">Klikk på rutene i kartet for å legge til eller fjerne pulter. Tomme kolonner blir midtganger.</p>
+    </div>
+
+    <button class="primary" id="seatGo">Lag klassekart</button>
+    <p class="hint">Vil du flytte noen selv? Klikk på en elev i kartet, og så på pulten eleven skal flytte til. Står det noen der, bytter de plass.</p>
+  </aside>
+
+  <main class="main">
+    <div class="resultbar">
+      <h2>Klassekart</h2>
+      <div class="sp"></div>
+      <button class="iconbtn small" id="seatAgain">↻ Ny plassering</button>
+      <button class="iconbtn small" id="flipBtn" title="Vis kartet sett fra elevene eller fra lærerens plass">⇅ Snu kartet</button>
+      <button class="iconbtn small" id="saveSeats">Lagre i arkiv</button>
+      <button class="iconbtn small printBtn">Skriv ut</button>
+      <button class="iconbtn small presentBtn">⛶ Vis på tavla</button>
+    </div>
+    <div class="room" id="seatRoom">
+      <div class="board">Tavle</div>
+      <div class="editnote" id="editNote" hidden>Redigerer klasserommet – klikk på ruter for å legge til eller fjerne pulter</div>
+      <div class="seatgrid" id="seatGrid"></div>
+    </div>
+    <div id="unplacedWrap" hidden style="max-width:1150px;margin:24px auto 0">
+      <h2>Uten plass</h2>
+      <div class="chips" id="unplaced"></div>
+      <p class="hint">Klikk på en elev her og så på en ledig pult.</p>
+    </div>
+  </main>
+</div>
+
+<!-- ================= ARKIV ================= -->
+<div class="wrap" id="archiveView" hidden>
+  <aside class="side">
+    <h2>Arkiv <span id="archCount"></span></h2>
+    <div class="seg" id="archFilter">
+      <button data-f="all">Alle</button>
+      <button data-f="groups">Grupper</button>
+      <button data-f="seats">Klassekart</button>
+    </div>
+    <ul class="archlist" id="archList"></ul>
+  </aside>
+  <main class="main">
+    <div class="empty" id="archEmpty"><div><b>Arkivet er tomt</b>Lag grupper eller et klassekart og trykk «Lagre i arkiv».</div></div>
+    <div id="archDetail" hidden>
+      <div class="resultbar">
+        <div><div class="archtitle" id="archTitle"></div><div class="hint" id="archMeta" style="margin:2px 0 0"></div></div>
+        <div class="sp"></div>
+        <button class="iconbtn small" id="archReuse">Bruk igjen</button>
+        <button class="iconbtn small" id="archRename">Gi nytt navn</button>
+        <button class="iconbtn small printBtn">Skriv ut</button>
+        <button class="iconbtn small presentBtn">⛶ Vis på tavla</button>
+        <button class="iconbtn small" id="archDelete">Slett</button>
+      </div>
+      <div class="printtitle" id="archPrintTitle"></div>
+      <div id="archBody"></div>
+    </div>
+  </main>
+</div>
+
+<!-- Lagre-dialog -->
+<div class="overlay" id="saveOverlay">
+  <div class="panel" style="width:min(420px,100%)">
+    <h3>Lagre i arkiv</h3>
+    <p class="sub">Gi den et navn, så finner du den igjen senere.</p>
+    <input type="text" id="saveName" style="width:100%" autocomplete="off">
+    <div class="foot"><button class="iconbtn" id="saveCancel">Avbryt</button><button class="addbtn" id="saveOk">Lagre</button></div>
+  </div>
+</div>
+<div class="toast" id="toast"></div>
+
+<!-- Innlogging -->
+<div class="login" id="loginScreen">
+  <div class="logincard">
+    <a class="backlink" href="../">← Matematikk</a>
+    <h1>Grupper og klassekart</h1>
+    <p>Lag grupper og klassekart med skjulte betingelser. Logg inn med Google-kontoen din. Det du legger inn, lagres på kontoen din, og bare du kan se det.</p>
+    <button class="gbtn" id="loginBtn" hidden>Logg inn med Google</button>
+    <p class="loginmsg" id="loginMsg">Laster …</p>
+    <button class="iconbtn small" id="loginRetry" hidden>Prøv igjen</button>
+    <p class="err" id="loginErr"></p>
+  </div>
+</div>
+
+<button class="iconbtn small exitp" id="exitPresent">Avslutt visning</button>
+
+<!-- PIN -->
+<div class="overlay" id="pinOverlay">
+  <div class="panel" style="width:min(360px,100%)">
+    <h3>Lærertilgang</h3>
+    <p class="sub">Skriv inn PIN-koden.</p>
+    <input type="password" id="pinIn" inputmode="numeric" autocomplete="off" style="width:100%">
+    <div class="err" id="pinErr"></div>
+    <div class="foot"><button class="iconbtn" id="pinCancel">Avbryt</button><button class="addbtn" id="pinOk">Åpne</button></div>
+  </div>
+</div>
+
+<!-- Lærerpanel -->
+<div class="overlay" id="tOverlay">
+  <div class="panel">
+    <!-- Grupper -->
+    <div id="tpGroups">
+      <h3>Grupper: betingelser</h3>
+      <p class="sub">Bare synlig her. Gruppene viser aldri hvorfor noen havnet sammen.</p>
+
+      <h4>Skal ikke være sammen</h4>
+      <div class="row">
+        <select id="gA"></select><span class="x">og</span><select id="gB"></select>
+        <button class="addbtn" id="gAdd">Legg til</button>
+      </div>
+      <div class="err" id="gErr"></div>
+      <ul class="pairs" id="gList"></ul>
+
+      <h4>Skal være sammen</h4>
+      <p class="sub" style="margin-bottom:8px">Havner alltid i samme gruppe. Legger du inn Ola + Kari og Kari + Emma, blir alle tre sammen.</p>
+      <div class="row">
+        <select id="gtA"></select><span class="x">og</span><select id="gtB"></select>
+        <button class="addbtn" id="gtAdd">Legg til</button>
+      </div>
+      <div class="err" id="gtErr"></div>
+      <ul class="pairs" id="gtList"></ul>
+
+      <div class="status" id="gStatus"></div>
+    </div>
+
+    <!-- Klassekart -->
+    <div id="tpSeats">
+      <h3>Klassekart: betingelser</h3>
+      <p class="sub">Bare synlig her. Kartet viser aldri hvorfor noen sitter der de sitter.</p>
+
+      <h4>Hvor eleven skal sitte</h4>
+      <div class="row">
+        <select id="plName"></select>
+        <select id="plType">
+          <option value="front">Foran (nær tavla)</option>
+          <option value="back">Bak</option>
+          <option value="left">Venstre side</option>
+          <option value="right">Høyre side</option>
+          <option value="seat">Fast plass…</option>
+        </select>
+        <button class="addbtn" id="plAdd">Legg til</button>
+      </div>
+      <div id="miniWrap" hidden>
+        <div class="miniboard">Tavle</div>
+        <div class="mini" id="mini"></div>
+        <p class="hint">Klikk på pulten eleven skal ha. Grå pulter er allerede satt av til andre.</p>
+      </div>
+      <p class="hint">Venstre og høyre gjelder sett fra elevene, med tavla foran.</p>
+      <div class="err" id="plErr"></div>
+      <ul class="pairs" id="plList"></ul>
+
+      <h4>Skal ikke sitte nær hverandre</h4>
+      <p class="sub" style="margin-bottom:8px">Ikke ved siden av, foran, bak eller på skrå for hverandre. <button class="linkbtn" id="saCopy">Hent parene fra Grupper</button></p>
+      <div class="row">
+        <select id="saA"></select><span class="x">og</span><select id="saB"></select>
+        <button class="addbtn" id="saAdd">Legg til</button>
+      </div>
+      <div class="err" id="saErr"></div>
+      <ul class="pairs" id="saList"></ul>
+
+      <h4>Skal sitte ved siden av hverandre</h4>
+      <div class="row">
+        <select id="stA"></select><span class="x">og</span><select id="stB"></select>
+        <button class="addbtn" id="stAdd">Legg til</button>
+      </div>
+      <div class="err" id="stErr"></div>
+      <ul class="pairs" id="stList"></ul>
+
+      <div class="status" id="sStatus"></div>
+    </div>
+
+    <hr>
+    <h3 style="font-size:16px">PIN-kode</h3>
+    <p class="sub" id="pinInfo"></p>
+    <div class="row">
+      <input type="password" id="newPin" placeholder="Ny PIN (tom = ingen)" inputmode="numeric" autocomplete="off">
+      <button class="iconbtn small" id="setPin">Lagre PIN</button>
+    </div>
+
+    <hr>
+    <h3 style="font-size:16px">Klasse</h3>
+    <div class="row">
+      <input type="text" id="className" placeholder="Navn på klassen">
+      <button class="iconbtn small" id="renameClass">Gi nytt navn</button>
+      <button class="iconbtn small" id="deleteClass">Slett klassen</button>
+    </div>
+    <div class="row" style="margin-top:12px">
+      <button class="iconbtn small" id="exportBtn">Last ned sikkerhetskopi</button>
+      <button class="iconbtn small" id="importBtn">Hent inn sikkerhetskopi</button>
+      <input type="file" id="importFile" accept=".json,application/json" hidden>
+    </div>
+
+    <div class="foot">
+      <span class="hint">Panelet lukkes automatisk når du lager grupper eller klassekart.</span>
+      <button class="addbtn" id="tClose">Lukk</button>
+    </div>
+  </div>
+</div>
+
+<script>
+(function(){
+'use strict';
+const KEY = 'gruppemaker_v1';
+const $ = id => document.getElementById(id);
+const uid = () => Math.random().toString(36).slice(2, 10);
+const clamp = (v, a, b) => Math.max(a, Math.min(b, v));
+const byName = (a, b) => a.localeCompare(b, 'no');
+
+function presetDesks(p, R, C){
+  const out = [];
+  for (let r = 0; r < R; r++) for (let c = 0; c < C; c++) {
+    let on = true;
+    if (p === 'pairs') on = c % 3 !== 2;
+    else if (p === 'single') on = c % 2 === 0;
+    if (on) out.push(r + ',' + c);
+  }
+  return out;
+}
+function newSeat(){ return {rows:5, cols:8, preset:'pairs', desks:presetDesks('pairs', 5, 8), avoid:[], together:[], place:{}, chart:null}; }
+function defaults(){
+  const id = uid();
+  return {classes:{[id]:{name:'Min klasse', names:[], avoid:[]}}, order:[id], current:id, pin:'', mode:'size', value:4, tab:'groups', flip:false};
+}
+function load(){
+  try{
+    const s = JSON.parse(localStorage.getItem(KEY));
+    if (s && s.classes && s.current && s.classes[s.current]) {
+      if (!s.order) s.order = Object.keys(s.classes);
+      if (!s.tab) s.tab = 'groups';
+      return s;
+    }
+  }catch(e){}
+  return defaults();
+}
+function save(){
+  state.savedAt = Date.now();
+  scheduleCloudWrite();
+}
+
+let state = defaults();
+let absent = new Set();
+let lastResult = null;
+let user = null, lastRev = 0, syncState = 'idle';   // idle | saving | saved | error | offline
+const cls = () => state.classes[state.current];
+function seat(){ const c = cls(); if (!c.seat) c.seat = newSeat(); return c.seat; }
+function shuffle(a){ for (let i = a.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [a[i], a[j]] = [a[j], a[i]]; } return a; }
+
+/* ---------- Faner ---------- */
+function renderTabs(){
+  document.querySelectorAll('#tabs button').forEach(b => b.classList.toggle('on', b.dataset.tab === state.tab));
+  $('groupsView').hidden = state.tab !== 'groups';
+  $('seatsView').hidden = state.tab !== 'seats';
+  $('archiveView').hidden = state.tab !== 'archive';
+}
+function setTab(t){ state.tab = t; save(); renderTabs(); if (t === 'seats') renderSeats(); if (t === 'archive') renderArchive(); }
+document.querySelectorAll('#tabs button').forEach(b => b.addEventListener('click', () => setTab(b.dataset.tab)));
+
+/* ---------- Klasser ---------- */
+function renderClassSel(){
+  const sel = $('classSel'); sel.innerHTML = '';
+  state.order.forEach(id => {
+    const o = document.createElement('option');
+    o.value = id; o.textContent = state.classes[id].name;
+    if (id === state.current) o.selected = true;
+    sel.appendChild(o);
+  });
+}
+$('classSel').addEventListener('change', e => {
+  state.current = e.target.value; absent = new Set(); lastResult = null; selSeat = null; save(); renderAll();
+});
+$('newClass').addEventListener('click', () => {
+  const name = prompt('Navn på den nye klassen:', 'Ny klasse');
+  if (!name) return;
+  const id = uid();
+  state.classes[id] = {name:name.trim() || 'Ny klasse', names:[], avoid:[]};
+  state.order.push(id); state.current = id; absent = new Set(); lastResult = null; selSeat = null;
+  save(); renderAll(); setTab('groups'); showEdit(true);
+});
+
+/* ---------- Navn ---------- */
+function parseNames(txt){
+  const seen = new Set(), out = [];
+  txt.split(/\r?\n|;|\t/).forEach(l => {
+    const n = l.trim().replace(/\s+/g, ' ');
+    if (n && !seen.has(n.toLowerCase())) { seen.add(n.toLowerCase()); out.push(n); }
+  });
+  return out;
+}
+function renderChips(){
+  const c = $('chips'); c.innerHTML = '';
+  cls().names.forEach(n => {
+    const b = document.createElement('button');
+    b.className = 'chip' + (absent.has(n) ? ' absent' : '');
+    b.textContent = n;
+    b.title = absent.has(n) ? 'Borte i dag – klikk for å angre' : 'Klikk hvis eleven er borte i dag';
+    b.addEventListener('click', () => { absent.has(n) ? absent.delete(n) : absent.add(n); renderChips(); renderSummary(); });
+    c.appendChild(b);
+  });
+  if (!cls().names.length) {
+    const p = document.createElement('span'); p.className = 'hint'; p.textContent = 'Ingen elever lagt inn ennå.';
+    c.appendChild(p);
+  }
+  const present = presentNames().length, total = cls().names.length;
+  $('count').textContent = total ? `(${present}${present !== total ? ' av ' + total : ''})` : '';
+}
+function showEdit(on){
+  $('editView').hidden = !on; $('chipView').hidden = on;
+  if (on) { $('names').value = cls().names.join('\n'); $('names').focus(); }
+}
+$('editNames').addEventListener('click', () => showEdit(true));
+$('doneNames').addEventListener('click', () => showEdit(false));
+$('names').addEventListener('input', () => {
+  cls().names = parseNames($('names').value);
+  absent.forEach(n => { if (!cls().names.includes(n)) absent.delete(n); });
+  save(); renderChips(); renderSummary(); renderSync();
+});
+const presentNames = () => cls().names.filter(n => !absent.has(n));
+
+/* ---------- Grupper: inndeling ---------- */
+function renderMode(){
+  document.querySelectorAll('#modeSeg button').forEach(b => b.classList.toggle('on', b.dataset.mode === state.mode));
+  $('val').textContent = state.value;
+}
+document.querySelectorAll('#modeSeg button').forEach(b => b.addEventListener('click', () => {
+  state.mode = b.dataset.mode; save(); renderMode(); renderSummary();
+}));
+$('minus').addEventListener('click', () => { state.value = Math.max(state.mode === 'size' ? 2 : 1, state.value - 1); save(); renderMode(); renderSummary(); });
+$('plus').addEventListener('click', () => { state.value = Math.min(40, state.value + 1); save(); renderMode(); renderSummary(); });
+
+function groupSizes(n){
+  if (!n) return [];
+  let k = state.mode === 'size' ? Math.max(1, Math.round(n / state.value)) : state.value;
+  k = Math.max(1, Math.min(k, n));
+  const base = Math.floor(n / k), extra = n % k, sizes = [];
+  for (let i = 0; i < k; i++) sizes.push(base + (i < extra ? 1 : 0));
+  return sizes;
+}
+function renderSummary(){
+  const n = presentNames().length, sizes = groupSizes(n);
+  $('go').disabled = n < 2;
+  if (n < 2) { $('summary').textContent = 'Legg inn minst to elever.'; return; }
+  const counts = {};
+  sizes.forEach(s => counts[s] = (counts[s] || 0) + 1);
+  const parts = Object.keys(counts).sort((a,b) => b - a).map(s => `${counts[s]} ${counts[s] === 1 ? 'gruppe' : 'grupper'} à ${s}`);
+  $('summary').textContent = sizes.length === 1 ? `1 gruppe à ${sizes[0]}` : `${sizes.length} grupper: ${parts.join(' og ')}`;
+}
+
+function makeGroups(names, sizesIn, pairs, togetherPairs){
+  const has = new Set(names);
+  const av = pairs.filter(([a, b]) => has.has(a) && has.has(b));
+  const tg = (togetherPairs || []).filter(([a, b]) => has.has(a) && has.has(b));
+  const bad = new Map(names.map(n => [n, new Set()]));
+  av.forEach(([a, b]) => { bad.get(a).add(b); bad.get(b).add(a); });
+
+  // «Skal være sammen» slås sammen til enheter (Ola+Kari og Kari+Emma → én enhet på tre)
+  const parent = new Map(names.map(n => [n, n]));
+  const find = x => { while (parent.get(x) !== x) { parent.set(x, parent.get(parent.get(x))); x = parent.get(x); } return x; };
+  tg.forEach(([a, b]) => parent.set(find(a), find(b)));
+  const unitOf = new Map(), unitsMap = new Map();
+  names.forEach(n => { const r = find(n); unitOf.set(n, r); if (!unitsMap.has(r)) unitsMap.set(r, []); unitsMap.get(r).push(n); });
+  const units = [...unitsMap.values()];
+  const deg = u => u.reduce((s, n) => s + bad.get(n).size, 0);
+
+  const costOf = groups => {
+    const gi = new Map(); groups.forEach((g, i) => g.forEach(n => gi.set(n, i)));
+    let a = 0, t = 0;
+    av.forEach(([x, y]) => { if (gi.get(x) === gi.get(y)) a++; });
+    tg.forEach(([x, y]) => { if (gi.get(x) !== gi.get(y)) t++; });
+    return {a, t};
+  };
+
+  let best = null, bestC = Infinity, bestV = {a:0, t:0};
+  for (let t = 0; t < 4000 && bestC > 0; t++) {
+    const sizes = shuffle(sizesIn.slice());
+    const groups = sizes.map(() => []);
+    const order = shuffle(units.slice()).sort((x, y) => (y.length - x.length) || (deg(y) - deg(x)));
+    for (const u of order) {
+      // Prøv å plassere hele enheten i én gruppe
+      let cand = [], bestScore = Infinity;
+      groups.forEach((g, i) => {
+        if (sizes[i] - g.length < u.length) return;
+        let c = 0; u.forEach(p => g.forEach(m => { if (bad.get(p).has(m)) c++; }));
+        const score = c * 1000 + (g.length + u.length) / sizes[i];
+        if (score < bestScore - 1e-9) { bestScore = score; cand = [i]; }
+        else if (Math.abs(score - bestScore) < 1e-9) cand.push(i);
+      });
+      if (cand.length) { groups[cand[Math.random() * cand.length | 0]].push(...u); continue; }
+      // Får ikke plass samlet: plasser én og én, helst sammen med resten av enheten
+      for (const p of u) {
+        let c2 = [], bs = Infinity;
+        groups.forEach((g, i) => {
+          if (g.length >= sizes[i]) return;
+          let c = 0, same = 0; g.forEach(m => { if (bad.get(p).has(m)) c++; if (unitOf.get(m) === unitOf.get(p)) same++; });
+          const score = c * 1000 - same * 10 + g.length / sizes[i];
+          if (score < bs - 1e-9) { bs = score; c2 = [i]; }
+          else if (Math.abs(score - bs) < 1e-9) c2.push(i);
+        });
+        groups[c2[Math.random() * c2.length | 0]].push(p);
+      }
+    }
+    const v = costOf(groups), total = v.a + v.t;
+    if (total < bestC) { bestC = total; best = groups; bestV = v; }
+  }
+  best.forEach(g => shuffle(g));
+  return {groups: shuffle(best), conflicts: bestC, avoidC: bestV.a, togetherC: bestV.t};
+}
+
+function generate(){
+  const names = presentNames();
+  if (names.length < 2) return;
+  closeTeacher();
+  lastResult = makeGroups(names, groupSizes(names.length), cls().avoid, cls().together || []);
+  gSel = null;
+  renderResult(true);
+}
+$('go').addEventListener('click', generate);
+$('again').addEventListener('click', generate);
+
+function renderResult(animate){
+  if (!lastResult) { $('groups').innerHTML = ''; $('result').hidden = true; $('empty').hidden = false; return; }
+  $('result').hidden = false; $('empty').hidden = true;
+  groupCards($('groups'), lastResult.groups, {edit: true, animate: animate === true});
+  const sb = $('saveGroups'), saved = !!lastResult.savedId;
+  sb.textContent = saved ? (lastResult.dirty ? 'Lagre endringene i arkiv' : '✓ Lagret i arkiv') : 'Lagre i arkiv';
+  sb.classList.toggle('done', saved && !lastResult.dirty);
+}
+let gSel = null;   // navn som er valgt for flytting
+function dropTarget(el, onDrop){
+  el.addEventListener('dragover', e => { e.preventDefault(); e.stopPropagation(); el.classList.add('over'); });
+  el.addEventListener('dragleave', e => { if (!el.contains(e.relatedTarget)) el.classList.remove('over'); });
+  el.addEventListener('drop', e => {
+    e.preventDefault(); e.stopPropagation(); el.classList.remove('over');
+    const from = e.dataTransfer.getData('text/plain'); if (from) onDrop(from);
+  });
+}
+function groupCards(wrap, groups, opts){
+  opts = opts || {};
+  wrap.innerHTML = '';
+  wrap.classList.toggle('moving', !!(opts.edit && gSel));
+  groups.forEach((g, i) => {
+    const d = document.createElement('section');
+    d.className = 'group g' + ((i % 8) + 1) + (opts.animate ? '' : ' noanim');
+    if (opts.animate) d.style.animationDelay = (i * 70) + 'ms';
+    const h = document.createElement('h3'); h.textContent = 'Gruppe ' + (i + 1); d.appendChild(h);
+    const ul = document.createElement('ul');
+    g.forEach(n => {
+      const li = document.createElement('li'); li.textContent = n;
+      if (opts.edit) {
+        li.className = 'mv' + (gSel === n ? ' sel' : '');
+        li.draggable = true;
+        li.addEventListener('dragstart', e => { e.dataTransfer.setData('text/plain', n); e.dataTransfer.effectAllowed = 'move'; li.classList.add('dragging'); });
+        li.addEventListener('dragend', () => li.classList.remove('dragging'));
+        dropTarget(li, from => swapNames(from, n));
+        li.addEventListener('click', e => {
+          e.stopPropagation();
+          if (gSel && gSel !== n) { const a = gSel; gSel = null; swapNames(a, n); return; }
+          gSel = gSel === n ? null : n; renderResult();
+        });
+      }
+      ul.appendChild(li);
+    });
+    d.appendChild(ul);
+    if (opts.edit) {
+      dropTarget(d, from => moveName(from, i));
+      d.addEventListener('click', () => { if (gSel) { const a = gSel; gSel = null; moveName(a, i); } });
+    }
+    wrap.appendChild(d);
+  });
+  if (opts.edit) {
+    const add = document.createElement('section');
+    add.className = 'group newgroup noanim'; add.textContent = '+ Ny gruppe';
+    add.title = 'Dra et navn hit for å lage en ny gruppe';
+    dropTarget(add, from => moveName(from, groups.length));
+    add.addEventListener('click', () => { if (gSel) { const a = gSel; gSel = null; moveName(a, groups.length); } });
+    wrap.appendChild(add);
+  }
+}
+const findGroup = n => lastResult.groups.findIndex(g => g.includes(n));
+function moveName(n, to){
+  const G = lastResult.groups, from = findGroup(n);
+  if (from < 0 || from === to) { renderResult(); return; }
+  G[from].splice(G[from].indexOf(n), 1);
+  if (to >= G.length) G.push([]);
+  G[to].push(n);
+  afterMove();
+}
+function swapNames(a, b){
+  const G = lastResult.groups, ga = findGroup(a), gb = findGroup(b);
+  if (ga < 0 || gb < 0 || a === b) { renderResult(); return; }
+  const ia = G[ga].indexOf(a), ib = G[gb].indexOf(b);
+  G[ga][ia] = b; G[gb][ib] = a;
+  afterMove();
+}
+function afterMove(){
+  lastResult.groups = lastResult.groups.filter(g => g.length);
+  Object.assign(lastResult, groupConflicts(lastResult.groups));
+  if (lastResult.savedId) lastResult.dirty = true;
+  renderResult();
+}
+
+/* =================== KLASSEKART =================== */
+let roomEdit = false;
+let selSeat = null;          // {key} eller {name}
+let animateSeats = false;
+const ZONES = {front:'Foran (nær tavla)', back:'Bak', left:'Venstre side', right:'Høyre side'};
+
+const parseKey = k => k.split(',').map(Number);
+function deskObjs(s){ return s.desks.map(k => { const [r, c] = parseKey(k); return {k, r, c}; }); }
+function zoneTests(desks){
+  const rowsU = [...new Set(desks.map(d => d.r))].sort((a, b) => a - b);
+  const colsU = [...new Set(desks.map(d => d.c))].sort((a, b) => a - b);
+  const cnt = len => Math.max(1, Math.min(2, Math.round(len / 3)));
+  const fr = new Set(rowsU.slice(0, cnt(rowsU.length))), bk = new Set(rowsU.slice(-cnt(rowsU.length)));
+  const lf = new Set(colsU.slice(0, cnt(colsU.length))), rt = new Set(colsU.slice(-cnt(colsU.length)));
+  return {front: d => fr.has(d.r), back: d => bk.has(d.r), left: d => lf.has(d.c), right: d => rt.has(d.c)};
+}
+function seatLabel(s, key){
+  if (!s.desks.includes(key)) return 'pulten finnes ikke lenger';
+  const [r, c] = parseKey(key);
+  const rowsU = [...new Set(s.desks.map(k => parseKey(k)[0]))].sort((a, b) => a - b);
+  const n = s.desks.filter(k => { const [rr, cc] = parseKey(k); return rr === r && cc <= c; }).length;
+  return `rad ${rowsU.indexOf(r) + 1}, plass ${n}`;
+}
+
+function buildCtx(s, names){
+  const desks = deskObjs(s);
+  const idx = new Map(desks.map((d, i) => [d.k, i]));
+  const nameSet = new Set(names);
+  const zone = zoneTests(desks);
+  const fixedReq = [], zoneReq = [];
+  names.forEach(n => {
+    const p = s.place[n]; if (!p) return;
+    if (p.seat) { if (idx.has(p.seat)) fixedReq.push([n, p.seat]); }
+    else if (zone[p.zone]) zoneReq.push([n, zone[p.zone]]);
+  });
+  const ok = ([a, b]) => nameSet.has(a) && nameSet.has(b);
+  return {desks, idx, fixedReq, zoneReq, avoid: s.avoid.filter(ok), together: s.together.filter(ok)};
+}
+function score(pos, ctx){
+  let cost = 0; const v = {place:0, avoid:0, together:0};
+  for (const [n, key] of ctx.fixedReq) { const d = pos[n]; if (d && d.k !== key) { cost += 1000; v.place++; } }
+  for (const [n, t] of ctx.zoneReq) { const d = pos[n]; if (d && !t(d)) { cost += 100; v.place++; } }
+  for (const [a, b] of ctx.avoid) {
+    const x = pos[a], y = pos[b];
+    if (x && y && Math.abs(x.r - y.r) <= 1 && Math.abs(x.c - y.c) <= 1) { cost += 100; v.avoid++; }
+  }
+  for (const [a, b] of ctx.together) {
+    const x = pos[a], y = pos[b];
+    if (x && y && !(x.r === y.r && Math.abs(x.c - y.c) === 1)) { cost += 60 + 4 * (Math.abs(x.r - y.r) + Math.abs(x.c - y.c)); v.together++; }
+  }
+  return {cost, v};
+}
+function makeSeating(s, names){
+  const ctx = buildCtx(s, names), D = ctx.desks.length;
+  const base = new Array(D).fill(null), fixedIdx = new Set(), placed = new Set();
+  for (const [n, key] of ctx.fixedReq) {
+    const i = ctx.idx.get(key);
+    if (fixedIdx.has(i)) continue;
+    base[i] = n; fixedIdx.add(i); placed.add(n);
+  }
+  const free = [...Array(D).keys()].filter(i => !fixedIdx.has(i));
+  const rest = shuffle(names.filter(n => !placed.has(n)));
+  if (rest.length > free.length) return null;
+  const posOf = a => { const p = {}; a.forEach((n, i) => { if (n) p[n] = ctx.desks[i]; }); return p; };
+  let best = null, bestC = Infinity;
+  for (let rs = 0; rs < 4 && bestC > 0; rs++) {
+    const a = base.slice(), fr = shuffle(free.slice());
+    rest.forEach((n, i) => a[fr[i]] = n);
+    let cur = score(posOf(a), ctx).cost;
+    if (cur < bestC) { bestC = cur; best = a.slice(); }
+    let T = 60;
+    for (let it = 0; it < 20000 && bestC > 0; it++) {
+      const i = free[Math.random() * free.length | 0], j = free[Math.random() * free.length | 0];
+      if (i === j || (!a[i] && !a[j])) continue;
+      [a[i], a[j]] = [a[j], a[i]];
+      const c = score(posOf(a), ctx).cost, d = c - cur;
+      if (d <= 0 || Math.random() < Math.exp(-d / T)) { cur = c; if (c < bestC) { bestC = c; best = a.slice(); } }
+      else [a[i], a[j]] = [a[j], a[i]];
+      T = Math.max(0.5, T * 0.9996);
+    }
+  }
+  const chart = {};
+  best.forEach((n, i) => { if (n) chart[ctx.desks[i].k] = n; });
+  return chart;
+}
+function evalChart(s, names){
+  const ctx = buildCtx(s, names), pos = {};
+  const deskByKey = new Map(ctx.desks.map(d => [d.k, d]));
+  Object.entries(s.chart || {}).forEach(([k, n]) => { if (deskByKey.has(k)) pos[n] = deskByKey.get(k); });
+  return score(pos, ctx);
+}
+
+function cleanupChart(){
+  const s = seat(); if (!s.chart) return;
+  const deskSet = new Set(s.desks), nameSet = new Set(cls().names);
+  let changed = false;
+  Object.keys(s.chart).forEach(k => { if (!deskSet.has(k) || !nameSet.has(s.chart[k])) { delete s.chart[k]; changed = true; } });
+  if (changed) save();
+}
+
+function renderSeats(){
+  const s = seat(); cleanupChart();
+  const names = cls().names, nd = s.desks.length;
+  const info = $('seatNamesInfo');
+  info.textContent = `${names.length} elever · ${nd} pulter`;
+  info.className = 'summary' + (names.length > nd ? ' bad' : '');
+  if (names.length > nd) info.textContent += ` – legg til ${names.length - nd} pulter til`;
+  $('seatGo').disabled = names.length < 1 || names.length > nd;
+
+  $('editRoom').textContent = roomEdit ? 'Ferdig med klasserommet' : 'Rediger klasserom';
+  $('roomCtl').hidden = !roomEdit; $('editNote').hidden = !roomEdit;
+  $('rVal').textContent = s.rows; $('cVal').textContent = s.cols;
+  document.querySelectorAll('#presetSeg button').forEach(b => b.classList.toggle('on', b.dataset.preset === s.preset));
+
+  const room = $('seatRoom');
+  room.classList.toggle('editing', roomEdit);
+  room.classList.toggle('flipped', !!state.flip);
+
+  const deskSet = new Set(s.desks);
+  const colHas = c => s.desks.some(k => parseKey(k)[1] === c);
+  let rowsO = [...Array(s.rows).keys()], colsO = [...Array(s.cols).keys()];
+  if (state.flip) { rowsO.reverse(); colsO.reverse(); }
+  const grid = $('seatGrid'); grid.innerHTML = '';
+  grid.style.gridTemplateColumns = colsO.map(c => (roomEdit || colHas(c)) ? 'minmax(0,1fr)' : 'minmax(14px,.35fr)').join(' ');
+  let i = 0;
+  rowsO.forEach(r => colsO.forEach(c => {
+    const key = r + ',' + c, el = document.createElement('div');
+    if (deskSet.has(key)) {
+      const n = s.chart && s.chart[key];
+      el.className = 'desk' + (n ? '' : ' free') + (selSeat && selSeat.key === key ? ' sel' : '');
+      el.textContent = n || '';
+      if (animateSeats && n) { el.classList.add('pop'); el.style.animationDelay = (i++ * 18) + 'ms'; }
+    } else {
+      el.className = 'aisle';
+      if (!roomEdit && !rowsHasDesk(s, r)) el.style.minHeight = '18px';
+    }
+    el.addEventListener('click', () => seatClick(key));
+    grid.appendChild(el);
+  }));
+  animateSeats = false;
+
+  const placedSet = new Set(Object.values(s.chart || {}));
+  const unplaced = names.filter(n => !placedSet.has(n));
+  const showUn = s.chart && unplaced.length;
+  $('unplacedWrap').hidden = !showUn;
+  const u = $('unplaced'); u.innerHTML = '';
+  if (showUn) unplaced.forEach(n => {
+    const b = document.createElement('button');
+    b.className = 'chip' + (selSeat && selSeat.name === n ? ' sel' : '');
+    b.textContent = n;
+    b.addEventListener('click', () => { selSeat = (selSeat && selSeat.name === n) ? null : {name:n}; renderSeats(); });
+    u.appendChild(b);
+  });
+}
+function rowsHasDesk(s, r){ return s.desks.some(k => parseKey(k)[0] === r); }
+
+function seatClick(key){
+  const s = seat();
+  if (roomEdit) {
+    const i = s.desks.indexOf(key);
+    if (i >= 0) s.desks.splice(i, 1); else s.desks.push(key);
+    s.preset = 'custom'; save(); renderSeats(); return;
+  }
+  if (!s.desks.includes(key)) return;
+  if (!s.chart) s.chart = {};
+  const here = s.chart[key] || null;
+  if (!selSeat) { if (here) selSeat = {key}; renderSeats(); return; }
+  if (selSeat.key === key) { selSeat = null; renderSeats(); return; }
+  if (selSeat.key) {
+    const a = s.chart[selSeat.key];
+    if (here) s.chart[selSeat.key] = here; else delete s.chart[selSeat.key];
+    s.chart[key] = a;
+  } else {
+    s.chart[key] = selSeat.name;
+  }
+  selSeat = null; save(); renderSeats();
+}
+
+function resizeRoom(dr, dc){
+  const s = seat();
+  const R = clamp(s.rows + dr, 1, 12), C = clamp(s.cols + dc, 1, 14);
+  if (R === s.rows && C === s.cols) return;
+  if (s.preset !== 'custom') s.desks = presetDesks(s.preset, R, C);
+  else {
+    const d = s.desks.filter(k => { const [r, c] = parseKey(k); return r < R && c < C; });
+    if (R > s.rows) {
+      const lastCols = s.desks.filter(k => parseKey(k)[0] === s.rows - 1).map(k => parseKey(k)[1]);
+      for (let r = s.rows; r < R; r++) lastCols.forEach(c => { if (c < C) d.push(r + ',' + c); });
+    }
+    s.desks = d;
+  }
+  s.rows = R; s.cols = C; save(); renderSeats();
+}
+$('rMinus').addEventListener('click', () => resizeRoom(-1, 0));
+$('rPlus').addEventListener('click', () => resizeRoom(1, 0));
+$('cMinus').addEventListener('click', () => resizeRoom(0, -1));
+$('cPlus').addEventListener('click', () => resizeRoom(0, 1));
+document.querySelectorAll('#presetSeg button').forEach(b => b.addEventListener('click', () => {
+  const s = seat(); s.preset = b.dataset.preset; s.desks = presetDesks(s.preset, s.rows, s.cols); save(); renderSeats();
+}));
+$('editRoom').addEventListener('click', () => { roomEdit = !roomEdit; selSeat = null; renderSeats(); });
+$('seatEditNames').addEventListener('click', () => { setTab('groups'); showEdit(true); });
+$('flipBtn').addEventListener('click', () => { state.flip = !state.flip; save(); renderSeats(); });
+
+function generateSeats(){
+  const s = seat(), names = cls().names;
+  if (!names.length || names.length > s.desks.length) return;
+  closeTeacher(); roomEdit = false; selSeat = null;
+  const chart = makeSeating(s, names);
+  if (!chart) { alert('Det er ikke nok ledige pulter når de faste plassene er tatt med.'); return; }
+  s.chart = chart; animateSeats = true; save(); renderSeats();
+}
+$('seatGo').addEventListener('click', generateSeats);
+$('seatAgain').addEventListener('click', generateSeats);
+
+/* =================== ARKIV =================== */
+let archSel = null, archF = 'all', pendingSave = null, toastT = null;
+function archive(){ const c = cls(); if (!c.archive) c.archive = []; return c.archive; }
+const fmtDate = ts => new Date(ts).toLocaleDateString('no-NO', {weekday:'long', day:'numeric', month:'long', year:'numeric'});
+const shortDate = ts => new Date(ts).toLocaleDateString('no-NO', {day:'numeric', month:'short', year:'numeric'});
+function toast(msg){
+  const t = $('toast'); t.textContent = msg; t.classList.add('show');
+  clearTimeout(toastT); toastT = setTimeout(() => t.classList.remove('show'), 2400);
+}
+function groupConflicts(groups){
+  const gi = new Map(); groups.forEach((g, i) => g.forEach(n => gi.set(n, i)));
+  const ok = ([a, b]) => gi.has(a) && gi.has(b);
+  const avoidC = cls().avoid.filter(ok).filter(([a, b]) => gi.get(a) === gi.get(b)).length;
+  const togetherC = (cls().together || []).filter(ok).filter(([a, b]) => gi.get(a) !== gi.get(b)).length;
+  return {avoidC, togetherC, conflicts: avoidC + togetherC};
+}
+
+function openSave(type){
+  if (type === 'groups') {
+    if (!lastResult) return;
+    const prev = lastResult.savedId && archive().find(e => e.id === lastResult.savedId);
+    if (prev && lastResult.dirty) {
+      prev.groups = lastResult.groups.map(g => g.slice());
+      lastResult.dirty = false; save(); renderResult();
+      toast('Endringene er lagret i «' + prev.name + '»');
+      return;
+    }
+    if (prev) { archSel = prev.id; archF = 'all'; setTab('archive'); return; }
+  }
+  if (type === 'seats' && !(seat().chart && Object.keys(seat().chart).length)) { toast('Lag et klassekart først.'); return; }
+  pendingSave = type;
+  $('saveName').value = (type === 'groups' ? 'Grupper ' : 'Klassekart ') + shortDate(Date.now());
+  $('saveOverlay').classList.add('open');
+  setTimeout(() => { $('saveName').focus(); $('saveName').select(); }, 30);
+}
+function closeSave(){ $('saveOverlay').classList.remove('open'); pendingSave = null; }
+function doSave(){
+  if (!pendingSave) return;
+  const name = $('saveName').value.trim() || ((pendingSave === 'groups' ? 'Grupper ' : 'Klassekart ') + shortDate(Date.now()));
+  const e = {id: uid(), type: pendingSave, name, date: Date.now()};
+  if (pendingSave === 'groups') {
+    e.groups = lastResult.groups.map(g => g.slice());
+    e.absent = [...absent];
+    lastResult.savedId = e.id;
+  } else {
+    const s = seat();
+    e.seat = {rows: s.rows, cols: s.cols, desks: s.desks.slice(), chart: Object.assign({}, s.chart)};
+  }
+  archive().unshift(e); save();
+  closeSave(); renderResult();
+  toast('Lagret i arkivet: ' + name);
+}
+$('saveGroups').addEventListener('click', () => openSave('groups'));
+$('saveSeats').addEventListener('click', () => openSave('seats'));
+$('saveOk').addEventListener('click', doSave);
+$('saveCancel').addEventListener('click', closeSave);
+$('saveName').addEventListener('keydown', e => { if (e.key === 'Enter') doSave(); if (e.key === 'Escape') closeSave(); });
+$('saveOverlay').addEventListener('click', e => { if (e.target === $('saveOverlay')) closeSave(); });
+
+function seatChartEl(snap){
+  const room = document.createElement('div');
+  room.className = 'room' + (state.flip ? ' flipped' : '');
+  const board = document.createElement('div'); board.className = 'board'; board.textContent = 'Tavle';
+  const grid = document.createElement('div'); grid.className = 'seatgrid';
+  const deskSet = new Set(snap.desks);
+  const colHas = c => snap.desks.some(k => parseKey(k)[1] === c);
+  const rowHas = r => snap.desks.some(k => parseKey(k)[0] === r);
+  let rowsO = [...Array(snap.rows).keys()], colsO = [...Array(snap.cols).keys()];
+  if (state.flip) { rowsO.reverse(); colsO.reverse(); }
+  grid.style.gridTemplateColumns = colsO.map(c => colHas(c) ? 'minmax(0,1fr)' : 'minmax(14px,.35fr)').join(' ');
+  rowsO.forEach(r => colsO.forEach(c => {
+    const key = r + ',' + c, el = document.createElement('div');
+    if (deskSet.has(key)) { const n = snap.chart[key]; el.className = 'desk' + (n ? '' : ' free'); el.textContent = n || ''; el.style.cursor = 'default'; }
+    else { el.className = 'aisle'; if (!rowHas(r)) el.style.minHeight = '18px'; }
+    grid.appendChild(el);
+  }));
+  room.append(board, grid);
+  return room;
+}
+
+function renderArchive(){
+  const list = archive();
+  document.querySelectorAll('#archFilter button').forEach(b => b.classList.toggle('on', b.dataset.f === archF));
+  const shown = list.filter(e => archF === 'all' || e.type === archF);
+  if (!shown.some(e => e.id === archSel)) archSel = shown.length ? shown[0].id : null;
+  $('archCount').textContent = list.length ? `(${list.length})` : '';
+
+  const ul = $('archList'); ul.innerHTML = '';
+  if (!shown.length) {
+    const li = document.createElement('li'); li.className = 'hint';
+    li.textContent = list.length ? 'Ingenting lagret i denne kategorien.' : 'Ingenting lagret ennå.';
+    ul.appendChild(li);
+  }
+  shown.forEach(e => {
+    const li = document.createElement('li'), b = document.createElement('button');
+    if (e.id === archSel) b.className = 'on';
+    const tag = document.createElement('span'); tag.className = 'tag' + (e.type === 'seats' ? ' seats' : '');
+    tag.textContent = e.type === 'seats' ? 'Klassekart' : 'Grupper';
+    const t = document.createElement('span'); t.className = 't'; t.textContent = e.name;
+    const m = document.createElement('span'); m.className = 'm';
+    m.textContent = shortDate(e.date) + ' · ' + (e.type === 'seats'
+      ? Object.keys(e.seat.chart).length + ' elever'
+      : e.groups.length + ' grupper, ' + e.groups.reduce((s, g) => s + g.length, 0) + ' elever');
+    b.append(tag, t, m);
+    b.addEventListener('click', () => { archSel = e.id; renderArchive(); });
+    li.appendChild(b); ul.appendChild(li);
+  });
+
+  const e = list.find(x => x.id === archSel);
+  $('archEmpty').hidden = !!e; $('archDetail').hidden = !e;
+  if (!e) return;
+  $('archTitle').textContent = e.name;
+  $('archPrintTitle').textContent = e.name;
+  let meta = fmtDate(e.date);
+  if (e.type === 'groups' && e.absent && e.absent.length) meta += ' · Borte: ' + e.absent.join(', ');
+  $('archMeta').textContent = meta;
+  const body = $('archBody'); body.innerHTML = '';
+  if (e.type === 'seats') body.appendChild(seatChartEl(e.seat));
+  else { const g = document.createElement('div'); g.className = 'groups'; groupCards(g, e.groups); body.appendChild(g); }
+}
+document.querySelectorAll('#archFilter button').forEach(b => b.addEventListener('click', () => { archF = b.dataset.f; renderArchive(); }));
+const currentArch = () => archive().find(x => x.id === archSel);
+$('archRename').addEventListener('click', () => {
+  const e = currentArch(); if (!e) return;
+  const n = prompt('Nytt navn:', e.name);
+  if (n && n.trim()) { e.name = n.trim(); save(); renderArchive(); }
+});
+$('archDelete').addEventListener('click', () => {
+  const e = currentArch(); if (!e) return;
+  if (!confirm(`Slette «${e.name}» fra arkivet?`)) return;
+  const list = archive(); list.splice(list.indexOf(e), 1);
+  if (lastResult && lastResult.savedId === e.id) delete lastResult.savedId;
+  archSel = null; save(); renderArchive(); renderResult();
+});
+$('archReuse').addEventListener('click', () => {
+  const e = currentArch(); if (!e) return;
+  if (e.type === 'groups') {
+    const groups = e.groups.map(g => g.slice());
+    lastResult = Object.assign({groups, savedId: e.id}, groupConflicts(groups));
+    setTab('groups'); renderResult();
+    toast('Hentet fra arkivet: ' + e.name);
+  } else {
+    const s = seat(), snap = e.seat;
+    const same = s.rows === snap.rows && s.cols === snap.cols && s.desks.length === snap.desks.length && snap.desks.every(k => s.desks.includes(k));
+    if (!same && !confirm('Dette klassekartet har en annen pultoppstilling enn den du har nå. Vil du bruke den lagrede oppstillingen?')) return;
+    if (!same) { s.rows = snap.rows; s.cols = snap.cols; s.desks = snap.desks.slice(); s.preset = 'custom'; }
+    s.chart = Object.assign({}, snap.chart);
+    selSeat = null; roomEdit = false; save(); setTab('seats');
+    toast('Hentet fra arkivet: ' + e.name);
+  }
+});
+
+/* =================== INNLOGGING OG LAGRING I SKYEN =================== */
+// Verdiene finner du i Firebase: Prosjektinnstillinger → Dine apper → Konfigurasjon.
+// De er ikke hemmelige; tilgangen styres av innloggingen og Firestore-reglene.
+const FIREBASE_CONFIG = {
+  apiKey: '',
+  authDomain: '',
+  projectId: '',
+  appId: ''
+};
+const FB_URL = 'https://www.gstatic.com/firebasejs/10.12.2/';
+let fb = null, cloudTimer = null, writing = false, writeAgain = false;
+
+function validState(s){
+  if (!s || !s.classes || !s.current || !s.classes[s.current]) throw new Error('ugyldig');
+  if (!s.order) s.order = Object.keys(s.classes);
+  if (!s.tab) s.tab = 'groups';
+  return s;
+}
+function applyState(s){
+  state = s; absent = new Set(); lastResult = null; selSeat = null; gSel = null;
+  renderAll();
+}
+function showLogin(msg, canLogin){
+  $('loginScreen').hidden = false;
+  $('loginMsg').textContent = msg || '';
+  $('loginBtn').hidden = !canLogin;
+}
+async function initCloud(){
+  if (!FIREBASE_CONFIG.apiKey) { showLogin('Innloggingen er ikke satt opp ennå.', false); return; }
+  try {
+    const [appM, authM, fsM] = await Promise.all(['firebase-app.js', 'firebase-auth.js', 'firebase-firestore.js'].map(f => import(FB_URL + f)));
+    const app = appM.initializeApp(FIREBASE_CONFIG);
+    fb = {auth: authM.getAuth(app), db: fsM.getFirestore(app), A: authM, F: fsM};
+    showLogin('', false);
+    authM.onAuthStateChanged(fb.auth, u => { if (u) onLogin(u); else onLogout(); });
+  } catch(e){ showLogin('Fikk ikke kontakt med innloggingen. Sjekk nettforbindelsen og last inn siden på nytt.', false); }
+}
+$('loginBtn').addEventListener('click', async () => {
+  $('loginErr').textContent = '';
+  try {
+    const p = new fb.A.GoogleAuthProvider();
+    p.setCustomParameters({prompt: 'select_account'});
+    await fb.A.signInWithPopup(fb.auth, p);
+  } catch(e){
+    if (e.code === 'auth/popup-closed-by-user' || e.code === 'auth/cancelled-popup-request') return;
+    $('loginErr').textContent =
+      e.code === 'auth/unauthorized-domain' ? 'Denne nettadressen er ikke godkjent i Firebase ennå (Authentication → Settings → Authorized domains).' :
+      e.code === 'auth/popup-blocked' ? 'Nettleseren stoppet innloggingsvinduet. Tillat popup-vinduer for siden og prøv igjen.' :
+      'Innloggingen mislyktes. Prøv igjen.';
+  }
+});
+const userRef = () => fb.F.doc(fb.db, 'brukere', user.uid);
+async function onLogin(u){
+  user = u;
+  $('loginRetry').hidden = true; $('loginErr').textContent = '';
+  showLogin('Henter dataene dine …', false);
+  try {
+    const snap = await fb.F.getDoc(userRef());
+    let s = null;
+    if (snap.exists()) { const d = snap.data(); s = validState(JSON.parse(d.data)); lastRev = d.rev || 0; }
+    else lastRev = 0;
+    syncState = 'saved';
+    applyState(s || defaults());
+    $('who').textContent = u.displayName || u.email || '';
+    $('who').title = u.email || '';
+    $('loginScreen').hidden = true;
+    renderSync();
+  } catch(e){
+    showLogin(e.code === 'permission-denied'
+      ? 'Databasen avviste lesingen. Sjekk at Firestore-reglene er limt inn riktig.'
+      : 'Fikk ikke hentet dataene dine. Sjekk nettforbindelsen.', false);
+    $('loginRetry').hidden = false;
+  }
+}
+$('loginRetry').addEventListener('click', () => { if (user) onLogin(user); });
+function onLogout(){
+  user = null; clearTimeout(cloudTimer); cloudTimer = null; syncState = 'idle';
+  state = defaults(); absent = new Set(); lastResult = null; selSeat = null; gSel = null;
+  closeTeacher(); closeSave(); exitPresent();
+  renderAll();
+  $('loginRetry').hidden = true;
+  showLogin('', true);
+}
+$('logoutBtn').addEventListener('click', async () => {
+  if (cloudTimer) { clearTimeout(cloudTimer); cloudTimer = null; await writeCloud(); }
+  if ((syncState === 'error' || syncState === 'offline') && !confirm('De siste endringene er ikke lagret. Vil du logge ut likevel?')) return;
+  await fb.A.signOut(fb.auth);
+});
+
+function scheduleCloudWrite(){
+  if (!user || !fb) return;
+  syncState = 'saving'; renderSync();
+  clearTimeout(cloudTimer);
+  cloudTimer = setTimeout(() => { cloudTimer = null; writeCloud(); }, 1200);
+}
+async function writeCloud(){
+  if (!user || !fb) return;
+  if (writing) { writeAgain = true; return; }
+  writing = true; syncState = 'saving'; renderSync();
+  const json = JSON.stringify(state);
+  let conflict = null, newRev = lastRev;
+  try {
+    await fb.F.runTransaction(fb.db, async tx => {
+      conflict = null;
+      const snap = await tx.get(userRef());
+      const rev = snap.exists() ? (snap.data().rev || 0) : 0;
+      if (snap.exists() && rev !== lastRev) { conflict = snap.data(); return; }
+      newRev = rev + 1;
+      tx.set(userRef(), {data: json, rev: newRev, epost: user.email || '', oppdatert: fb.F.serverTimestamp()});
+    });
+    if (conflict) {
+      lastRev = conflict.rev || 0;
+      applyState(validState(JSON.parse(conflict.data)));
+      toast('Det var gjort endringer på en annen PC eller i en annen fane. De er hentet inn – sjekk at den siste endringen din er med.');
+    } else lastRev = newRev;
+    syncState = 'saved';
+    if (json.length > 800000) toast('Lagringsplassen er snart full. Slett gamle ting i arkivet.');
+  } catch(e){ syncState = navigator.onLine ? 'error' : 'offline'; }
+  writing = false; renderSync();
+  if (writeAgain) { writeAgain = false; writeCloud(); }
+}
+document.addEventListener('visibilitychange', async () => {
+  if (document.visibilityState !== 'visible' || !user || !fb || cloudTimer || writing || syncState !== 'saved') return;
+  try {
+    const snap = await fb.F.getDoc(userRef());
+    if (snap.exists() && (snap.data().rev || 0) !== lastRev && !cloudTimer && !writing) {
+      lastRev = snap.data().rev || 0;
+      applyState(validState(JSON.parse(snap.data().data)));
+      toast('Hentet inn endringer du har gjort på en annen PC.');
+    }
+  } catch(e){}
+});
+window.addEventListener('online', () => { if (user && (syncState === 'error' || syncState === 'offline')) writeCloud(); });
+window.addEventListener('beforeunload', e => {
+  if (cloudTimer) { clearTimeout(cloudTimer); cloudTimer = null; writeCloud(); }
+  if (writing || syncState === 'saving' || syncState === 'error' || syncState === 'offline') { e.preventDefault(); e.returnValue = ''; }
+});
+function renderSync(){
+  $('openFileHint').hidden = !!cls().names.length;
+  const b = $('syncBtn');
+  b.hidden = !user; $('who').hidden = !user; $('logoutBtn').hidden = !user;
+  if (!user) return;
+  b.className = 'filebtn'; b.title = '';
+  if (syncState === 'saving') b.textContent = 'Lagrer …';
+  else if (syncState === 'saved') { b.classList.add('ok'); b.textContent = 'Lagret'; b.title = 'Alt er lagret på Google-kontoen din'; }
+  else if (syncState === 'offline') { b.classList.add('warn'); b.textContent = 'Ingen nett – ikke lagret ennå'; b.title = 'Endringene lagres når du er på nett igjen'; }
+  else { b.classList.add('warn'); b.textContent = 'Ikke lagret – klikk for å prøve igjen'; }
+}
+$('syncBtn').addEventListener('click', () => { if (syncState === 'error' || syncState === 'offline') writeCloud(); });
+$('openFileLink').addEventListener('click', () => $('importFile').click());
+
+/* ---------- Visning og utskrift ---------- */
+document.querySelectorAll('.presentBtn').forEach(b => b.addEventListener('click', () => {
+  selSeat = null; roomEdit = false; if (state.tab === 'seats') renderSeats(); if (gSel) { gSel = null; renderResult(); }
+  document.body.classList.add('present');
+  try { document.documentElement.requestFullscreen && document.documentElement.requestFullscreen(); } catch(e){}
+}));
+document.querySelectorAll('.printBtn').forEach(b => b.addEventListener('click', () => {
+  selSeat = null; roomEdit = false; if (state.tab === 'seats') renderSeats(); if (gSel) { gSel = null; renderResult(); } setTimeout(() => window.print(), 50);
+}));
+function exitPresent(){
+  document.body.classList.remove('present');
+  try { if (document.fullscreenElement) document.exitFullscreen(); } catch(e){}
+}
+$('exitPresent').addEventListener('click', exitPresent);
+document.addEventListener('fullscreenchange', () => { if (!document.fullscreenElement) document.body.classList.remove('present'); });
+
+/* =================== LÆRERPANEL =================== */
+function openTeacher(){ renderTeacher(); $('tOverlay').classList.add('open'); }
+function closeTeacher(){ $('tOverlay').classList.remove('open'); ['gErr', 'gtErr', 'saErr', 'stErr', 'plErr'].forEach(id => $(id).textContent = ''); }
+$('gear').addEventListener('click', () => {
+  if (state.pin) { $('pinIn').value = ''; $('pinErr').textContent = ''; $('pinOverlay').classList.add('open'); setTimeout(() => $('pinIn').focus(), 30); }
+  else openTeacher();
+});
+function tryPin(){
+  if ($('pinIn').value === state.pin) { $('pinOverlay').classList.remove('open'); openTeacher(); }
+  else { $('pinErr').textContent = 'Feil PIN-kode.'; $('pinIn').select(); }
+}
+$('pinOk').addEventListener('click', tryPin);
+$('pinIn').addEventListener('keydown', e => { if (e.key === 'Enter') tryPin(); if (e.key === 'Escape') $('pinOverlay').classList.remove('open'); });
+$('pinCancel').addEventListener('click', () => $('pinOverlay').classList.remove('open'));
+$('tClose').addEventListener('click', closeTeacher);
+$('tOverlay').addEventListener('click', e => { if (e.target === $('tOverlay')) closeTeacher(); });
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape') { closeTeacher(); closeSave(); if (selSeat) { selSeat = null; renderSeats(); } if (gSel) { gSel = null; renderResult(); } }
+});
+
+function fillNameSelect(sel, placeholder){
+  const keep = sel.value; sel.innerHTML = '';
+  const o0 = document.createElement('option'); o0.value = ''; o0.textContent = placeholder || 'Velg elev…'; sel.appendChild(o0);
+  cls().names.slice().sort(byName).forEach(n => { const o = document.createElement('option'); o.value = n; o.textContent = n; sel.appendChild(o); });
+  if (cls().names.includes(keep)) sel.value = keep;
+}
+function listItem(parts, missing, onDelete){
+  const li = document.createElement('li');
+  parts.forEach(([txt, cls_]) => { const el = document.createElement(cls_ ? 'span' : 'strong'); if (cls_) el.className = cls_; el.textContent = txt; li.appendChild(el); });
+  const sp = document.createElement('span'); sp.className = 'sp';
+  if (missing) { sp.className = 'sp hint'; sp.style.margin = '0'; sp.textContent = missing; }
+  const del = document.createElement('button'); del.textContent = '×'; del.title = 'Fjern';
+  del.addEventListener('click', onDelete);
+  li.append(sp, del);
+  return li;
+}
+function emptyItem(text){ const li = document.createElement('li'); li.className = 'none'; li.textContent = text; return li; }
+
+/* Generisk par-liste */
+const PAIRS = {
+  g:  {get: () => cls().avoid,     word: 'ikke sammen med', opp: 'gt', oppName: 'skal være sammen'},
+  gt: {get: () => cls().together || (cls().together = []), word: 'sammen med', opp: 'g', oppName: 'skal ikke være sammen'},
+  sa: {get: () => seat().avoid,    word: 'ikke nær', opp: 'st', oppName: 'ved siden av'},
+  st: {get: () => seat().together, word: 'ved siden av', opp: 'sa', oppName: 'ikke nær hverandre'}
+};
+const samePair = (a, b) => ([x, y]) => (x === a && y === b) || (x === b && y === a);
+function renderPairs(p){
+  fillNameSelect($(p + 'A')); fillNameSelect($(p + 'B'));
+  const list = PAIRS[p].get(), ul = $(p + 'List'), names = cls().names;
+  ul.innerHTML = '';
+  if (!list.length) ul.appendChild(emptyItem('Ingen lagt inn.'));
+  list.forEach(([a, b], idx) => {
+    const miss = (!names.includes(a) || !names.includes(b)) ? '(navn finnes ikke i listen)' : '';
+    ul.appendChild(listItem([[a], [PAIRS[p].word, 'x'], [b]], miss, () => { list.splice(idx, 1); save(); renderTeacher(); }));
+  });
+}
+Object.keys(PAIRS).forEach(p => $(p + 'Add').addEventListener('click', () => {
+  const a = $(p + 'A').value, b = $(p + 'B').value, err = $(p + 'Err'), list = PAIRS[p].get();
+  if (!a || !b) { err.textContent = 'Velg to elever.'; return; }
+  if (a === b) { err.textContent = 'Velg to forskjellige elever.'; return; }
+  if (list.some(samePair(a, b))) { err.textContent = 'Dette paret finnes allerede.'; return; }
+  if (PAIRS[PAIRS[p].opp].get().some(samePair(a, b))) { err.textContent = `Disse to står allerede under «${PAIRS[p].oppName}». Fjern det først.`; return; }
+  list.push([a, b]); err.textContent = ''; $(p + 'B').value = '';
+  save(); renderTeacher();
+}));
+$('saCopy').addEventListener('click', () => {
+  const list = seat().avoid; let added = 0;
+  cls().avoid.forEach(([a, b]) => {
+    if (!list.some(([x, y]) => (x === a && y === b) || (x === b && y === a))) { list.push([a, b]); added++; }
+  });
+  $('saErr').textContent = added ? '' : 'Ingen nye par å hente.';
+  save(); renderTeacher();
+});
+
+/* Plassering */
+let miniPick = null;
+function renderMini(){
+  const s = seat(), mini = $('mini'); mini.innerHTML = '';
+  mini.style.gridTemplateColumns = `repeat(${s.cols}, 1fr)`;
+  const taken = {};
+  Object.entries(s.place).forEach(([n, p]) => { if (p.seat) taken[p.seat] = n; });
+  const deskSet = new Set(s.desks);
+  for (let r = 0; r < s.rows; r++) for (let c = 0; c < s.cols; c++) {
+    const key = r + ',' + c, el = document.createElement('div');
+    if (deskSet.has(key)) {
+      el.className = 'd' + (taken[key] ? ' taken' : '') + (miniPick === key ? ' sel' : '');
+      el.title = taken[key] ? 'Satt av til ' + taken[key] : seatLabel(s, key);
+      el.addEventListener('click', () => { miniPick = key; renderMini(); });
+    }
+    mini.appendChild(el);
+  }
+}
+$('plType').addEventListener('change', () => { $('miniWrap').hidden = $('plType').value !== 'seat'; miniPick = null; renderMini(); });
+$('plAdd').addEventListener('click', () => {
+  const s = seat(), n = $('plName').value, t = $('plType').value, err = $('plErr');
+  if (!n) { err.textContent = 'Velg en elev.'; return; }
+  if (t === 'seat') {
+    if (!miniPick) { err.textContent = 'Klikk på en pult i det lille kartet.'; return; }
+    const other = Object.keys(s.place).find(x => x !== n && s.place[x].seat === miniPick);
+    if (other) { err.textContent = `Pulten er allerede satt av til ${other}.`; return; }
+    s.place[n] = {seat: miniPick};
+  } else s.place[n] = {zone: t};
+  err.textContent = ''; miniPick = null; $('plName').value = '';
+  save(); renderTeacher();
+});
+
+function renderSeatTeacher(){
+  const s = seat(), names = cls().names;
+  fillNameSelect($('plName'));
+  $('miniWrap').hidden = $('plType').value !== 'seat';
+  renderMini();
+  const ul = $('plList'); ul.innerHTML = '';
+  const entries = Object.entries(s.place).sort((a, b) => byName(a[0], b[0]));
+  if (!entries.length) ul.appendChild(emptyItem('Ingen plasseringer lagt inn.'));
+  entries.forEach(([n, p]) => {
+    const label = p.seat ? 'Fast plass: ' + seatLabel(s, p.seat) : ZONES[p.zone];
+    ul.appendChild(listItem([[n], ['→ ' + label, 'x']], names.includes(n) ? '' : '(navn finnes ikke i listen)',
+      () => { delete s.place[n]; save(); renderTeacher(); }));
+  });
+  renderPairs('sa'); renderPairs('st');
+
+  const st = $('sStatus');
+  if (s.chart && Object.keys(s.chart).length) {
+    const {v} = evalChart(s, names);
+    const parts = [];
+    if (v.place) parts.push(`${v.place} plassering${v.place > 1 ? 'er' : ''}`);
+    if (v.avoid) parts.push(`${v.avoid} «ikke nær»-par`);
+    if (v.together) parts.push(`${v.together} «ved siden av»-par`);
+    if (parts.length) { st.className = 'status bad'; st.textContent = `Klassekartet nå: ${parts.join(', ')} er ikke oppfylt. Trykk «Ny plassering», eller flytt elever selv.`; }
+    else { st.className = 'status'; st.textContent = 'Klassekartet slik det er nå oppfyller alle betingelsene.'; }
+  } else {
+    st.className = 'status';
+    st.textContent = `${entries.length + s.avoid.length + s.together.length} betingelser lagt inn.`;
+  }
+}
+
+function renderGroupTeacher(){
+  renderPairs('g'); renderPairs('gt');
+  const ok = ([a, b]) => cls().names.includes(a) && cls().names.includes(b);
+  const valid = cls().avoid.filter(ok).concat((cls().together || []).filter(ok));
+  const st = $('gStatus');
+  if (lastResult && lastResult.conflicts > 0) {
+    const parts = [];
+    if (lastResult.avoidC) parts.push(`${lastResult.avoidC} «ikke sammen»-par`);
+    if (lastResult.togetherC) parts.push(`${lastResult.togetherC} «sammen»-par`);
+    st.className = 'status bad';
+    st.textContent = `Siste inndeling: ${parts.join(' og ')} kunne ikke oppfylles. Prøv større eller færre grupper, eller sjekk om betingelsene krasjer.`;
+  } else if (lastResult) {
+    st.className = 'status'; st.textContent = valid.length === 1 ? 'Siste inndeling oppfylte betingelsen.' : `Siste inndeling oppfylte alle ${valid.length} betingelser.`;
+  } else {
+    st.className = 'status'; st.textContent = `${valid.length} aktive betingelser.`;
+  }
+}
+
+function renderTeacher(){
+  const seats = state.tab === 'seats';
+  $('tpGroups').hidden = seats; $('tpSeats').hidden = !seats;
+  if (seats) renderSeatTeacher(); else renderGroupTeacher();
+  $('pinInfo').textContent = state.pin ? 'PIN er satt. Elevene kan ikke åpne dette panelet uten koden.' : 'Ingen PIN er satt. Sett en kode hvis elever kan komme til PC-en.';
+  $('className').value = cls().name;
+  $('deleteClass').disabled = state.order.length < 2;
+}
+
+$('setPin').addEventListener('click', () => { state.pin = $('newPin').value.trim(); $('newPin').value = ''; save(); renderTeacher(); });
+$('renameClass').addEventListener('click', () => {
+  const n = $('className').value.trim(); if (!n) return;
+  cls().name = n; save(); renderClassSel(); renderTeacher();
+});
+$('deleteClass').addEventListener('click', () => {
+  if (state.order.length < 2) return;
+  if (!confirm(`Slette klassen «${cls().name}» med alle navn, betingelser og klassekart?`)) return;
+  delete state.classes[state.current];
+  state.order = state.order.filter(id => id !== state.current);
+  state.current = state.order[0]; absent = new Set(); lastResult = null; selSeat = null;
+  save(); renderAll(); renderTeacher();
+});
+$('exportBtn').addEventListener('click', () => {
+  const blob = new Blob([JSON.stringify(state, null, 2)], {type: 'application/json'});
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = 'klassehjelpen-sikkerhetskopi.json';
+  document.body.appendChild(a); a.click(); a.remove();
+  setTimeout(() => URL.revokeObjectURL(a.href), 2000);
+});
+$('importBtn').addEventListener('click', () => $('importFile').click());
+$('importFile').addEventListener('change', e => {
+  const f = e.target.files[0]; if (!f) return;
+  const r = new FileReader();
+  r.onload = () => {
+    try {
+      const s = JSON.parse(r.result);
+      if (!s.classes || !s.current) throw 0;
+      if (!s.order) s.order = Object.keys(s.classes);
+      if (!s.tab) s.tab = 'groups';
+      if (!confirm('Erstatte alt som er lagret nå med innholdet i sikkerhetskopien?')) return;
+      state = s; absent = new Set(); lastResult = null; selSeat = null; save(); renderAll(); renderTeacher();
+    } catch(err) { alert('Kunne ikke lese filen.'); }
+  };
+  r.readAsText(f); e.target.value = '';
+});
+
+function renderAll(){
+  archSel = null;
+  renderClassSel(); renderTabs(); renderChips(); renderMode(); renderSummary(); renderResult(); renderSeats(); renderArchive(); showEdit(false); renderSync();
+  if (!cls().names.length && state.tab === 'groups') showEdit(true);
+}
+renderAll();
+initCloud();
+
+// Til testing
+window.__klassehjelpen = {makeSeating, evalChart, presetDesks};
+})();
+</script>
+</body>
+</html>
