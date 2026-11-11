@@ -157,6 +157,18 @@
   {"st": [2], "say": "Bildet har nøyaktig samme form og størrelse som originalen. Alle sidene er like lange, og alle vinklene er like store. Da sier vi at figurene er kongruente."},
   {"st": [2], "say": "Det samme gjelder om vi speiler eller roterer figuren. Regelen er: to figurer er kongruente når de har like sider og like vinkler, selv om de ligger forskjellig."}
  ]},
+ {"tid": "formlikhet", "m": "k9formlik", "title": "Formlikhet", "segs": [
+  {"st": [0], "say": "Her er to rettvinklede trekanter med samme form, men ulik størrelse. Den lille har sidene tre, fire og fem, og den store har sidene seks, åtte og ti. Vi skal finne ut hva som gjør at to figurer er formlike."},
+  {"st": [0], "say": "Legg merke til at vinklene er like store i begge trekantene. Den store er bare en forstørrelse av den lille, som om vi hadde zoomet inn på et bilde."},
+  {"st": [1], "say": "Vi sammenligner sidene som svarer til hverandre. Seks delt på tre er to, og ti delt på fem er også to. Forholdet mellom samsvarende sider er det samme hele veien. Dette tallet kalles forstørrelsesfaktoren, eller målestokken, og når forholdet er likt for alle sidene, er trekantene formlike."},
+  {"st": [2], "say": "Kongruente figurer er et spesialtilfelle: de er formlike med faktor én. Regelen er: formlike figurer har like vinkler, og alle sidene står i samme forhold."}
+ ]},
+ {"tid": "formlik-sider", "m": "k9formlikx", "title": "Utregning av sider", "segs": [
+  {"st": [0], "say": "Disse to trekantene er formlike. I den lille trekanten er sidene tre, fire og fem. I den store kjenner vi sidene seks og ti, men den ene siden er ukjent, og vi kaller den x. Vi skal regne ut x."},
+  {"st": [1], "say": "Først finner vi forstørrelsesfaktoren. Vi deler en side i den store trekanten på siden som svarer til den i den lille: seks delt på tre er to, og ti delt på fem er også to. Faktoren er to."},
+  {"st": [2], "say": "Den ukjente siden x svarer til siden fire i den lille trekanten. Da må x være fire ganger forstørrelsesfaktoren: fire ganger to er åtte. Den ukjente siden er åtte."},
+  {"st": [2], "say": "Regelen er: finn to samsvarende sider som begge er kjent, del for å finne forstørrelsesfaktoren, og gang den kjente siden med faktoren."}
+ ]},
  {"tid": "sammensatte", "m": "k9comp", "title": "Analyse av sammensatte figurer", "segs": [
   {"st": [0], "say": "Her er en sammensatt figur. Vi har ingen formel for akkurat denne formen, så vi deler den opp i figurer vi kan regne ut arealet av."},
   {"st": [1], "say": "Vi deler figuren i to rektangler med en vannrett strek. Det nederste rektangelet er åtte ganger tre, altså tjuefire. Det øverste er fire ganger tre, altså tolv. Arealet av et rektangel er alltid lengde ganger bredde."},
