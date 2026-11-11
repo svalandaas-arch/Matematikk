@@ -1,0 +1,293 @@
+[
+ {"tid": "datasett", "m": "k9freq", "title": "Data og datasett", "segs": [
+  {"st": [0], "say": "Tolv elever har svart på et spørsmål, og svarene står i den rekkefølgen de kom inn. Slike ubehandlede tall kaller vi rådata. Vi skal ordne dem, slik at vi kan se et mønster."},
+  {"st": [1], "say": "Første grep er å sortere fra minst til størst. Nå står like svar ved siden av hverandre, og det er lett å se hvor mange det er av hver verdi."},
+  {"st": [2], "say": "Så lager vi en telleliste. Hvert svar blir én strek, og hver femte strek går på tvers. Da kan vi telle fem og fem i stedet for én og én."},
+  {"st": [3], "say": "Antall streker på hver verdi er frekvensen. To pluss fem pluss tre pluss en pluss en er tolv, så alle svarene er med."},
+  {"st": [4], "say": "Relativ frekvens er frekvensen delt på totalen. Verdien én forekommer fem ganger, så den relative frekvensen er fem tolvdeler, altså førtien komma sju prosent. Regelen er: sorter, tell opp, og del på totalen for å se hvor stor del hver verdi utgjør."}
+ ]},
+ {"tid": "sentralmal", "m": "k9central", "title": "Sentralmål og spredningsmål", "segs": [
+  {"st": [0], "say": "Her er et datasett med åtte verdier. Vi skal finne tre sentralmål, som forteller hva som er typisk, og ett spredningsmål, som forteller hvor spredt tallene er."},
+  {"st": [1], "say": "Først sorterer vi verdiene fra minst til størst. Det gjør det mye lettere å finne midten og se hva som gjentar seg."},
+  {"st": [2], "say": "Typetallet er verdien som forekommer flest ganger. Her står sju tre ganger, så typetallet er sju."},
+  {"st": [3], "say": "Medianen er tallet i midten. Med åtte verdier er det to i midten, fem og sju. Da tar vi gjennomsnittet av dem: fem pluss sju delt på to er seks."},
+  {"st": [4], "say": "Gjennomsnittet finner vi ved å legge sammen alle verdiene og dele på antallet. Summen er førtifire, og førtifire delt på åtte er fem komma fem."},
+  {"st": [5], "say": "Variasjonsbredden er største verdi minus minste verdi, her sju. Typetall, median og gjennomsnitt sier noe om midten, mens variasjonsbredden sier hvor spredt tallene er."}
+ ]},
+ {"tid": "linjediagram", "m": "k9line", "title": "Linjediagram", "segs": [
+  {"st": [0], "say": "Tabellen viser middeltemperaturen hver måned fra januar til juni. Vi vil se hvordan temperaturen endrer seg over tid, og da passer et linjediagram godt."},
+  {"st": [1], "say": "Først tegner vi aksene. Tiden, altså månedene, står bortover, og temperaturen står oppover. Skalaen må gå fra minus fire til femten grader, så alle tallene får plass."},
+  {"st": [2, 3, 4], "say": "Så setter vi inn ett punkt for hver måned. Januar ligger på minus fire grader, februar på minus to, og mars på to grader."},
+  {"st": [5, 6, 7], "say": "April ligger på sju grader, mai på tolv, og juni på femten grader."},
+  {"st": [8], "say": "Til slutt trekker vi linjer mellom punktene. Nå ser vi utviklingen med én gang: linja er brattest mellom mars og april, der temperaturen steg fem grader. Et linjediagram viser endring over tid, og jo brattere linja er, jo raskere er endringen."}
+ ]},
+ {"tid": "stolpediagram", "m": "k9bar", "title": "Stolpediagram", "segs": [
+  {"st": [0], "say": "Tjueseks elever har svart på hvilken aktivitet de liker best. Vi vil sammenligne kategoriene, og da passer et stolpediagram."},
+  {"st": [1], "say": "Vi tegner aksene. Kategoriene står bortover, og antall står oppover med en jevn skala som starter på null."},
+  {"st": [2, 3], "say": "Så tegner vi én stolpe per kategori. Fotball fikk åtte svar, så den stolpen blir åtte høy. Håndball fikk fem."},
+  {"st": [4, 5, 6], "say": "Dans fikk seks, svømming fikk tre, og annet fikk fire. Alle stolpene er like brede og har like stor avstand, slik at bare høyden skiller dem."},
+  {"st": [7], "say": "Nå er det lett å sammenligne: fotball er mest populært med åtte av tjueseks svar, altså omtrent trettien prosent. Et stolpediagram sammenligner kategorier, og skalaen må starte på null for at høydene skal være ærlige."}
+ ]},
+ {"tid": "sektordiagram", "m": "k9pie", "title": "Sektordiagram", "segs": [
+  {"st": [0], "say": "Tretti elever har svart på hvordan de kommer seg til skolen. Et sektordiagram viser hvor stor del hver kategori er av helheten. Først finner vi totalen: tretti."},
+  {"st": [1], "say": "Hele sirkelen er tre hundre og seksti grader. Hver kategori får en vinkel som er andelen ganger tre hundre og seksti grader."},
+  {"st": [2, 3], "say": "Seks av tretti tar buss. Seks trettideler ganger tre hundre og seksti er syttito grader. Sykkel har ni av tretti, og det gir hundre og åtte grader. Vi tegner sektorene etter hverandre med gradskive."},
+  {"st": [4, 5], "say": "Tolv går, og det gir hundre og førtifire grader. Tre kjører bil, og det gir trettiseks grader."},
+  {"st": [6], "say": "I tegnforklaringen skriver vi prosenten, altså andelen ganger hundre. Sektorene blir til sammen tre hundre og seksti grader og hundre prosent. Regelen er: del på totalen, og gang med tre hundre og seksti for grader eller med hundre for prosent."}
+ ]},
+ {"tid": "tolke-diagram", "m": "k9mislead", "title": "Å lese av og tolke diagram", "segs": [
+  {"st": [0], "say": "Diagrammet viser salget i to butikker, A og B. Ved første øyekast ser det ut som B selger mye mer enn A. Men se på skalaen: den starter på førtifem, ikke på null."},
+  {"st": [1], "say": "Her er det samme diagrammet med skala fra null. Nå ser vi den egentlige forskjellen. Søylene er nesten like høye."},
+  {"st": [2], "say": "B selger femtiseks og A selger femtito, altså fire enheter mer. Fire delt på femtito er omtrent sju komma sju prosent. Regelen er: les alltid aksene før du trekker en konklusjon, for en avkuttet skala kan få små forskjeller til å se store ut."}
+ ]},
+ {"tid": "geo-monster", "m": "k9sticks", "title": "Geometriske mønstre", "segs": [
+  {"st": [0], "say": "Her bygger vi figurer av fyrstikker. Vi skal finne ut hvordan mønsteret vokser, slik at vi kan regne ut hvor mange fyrstikker en hvilken som helst figur trenger. Figur én består av fire fyrstikker."},
+  {"st": [1, 2], "say": "Figur to har sju fyrstikker. Den nye delen, som er rød, trengte tre fyrstikker til. Figur tre har ti, og igjen kom det tre nye. Hver ny rute deler en side med den forrige, og derfor trengs det bare tre nye hver gang."},
+  {"st": [3], "say": "I tabellen ser vi at antallet øker med tre for hver figur. Tre er økningen i mønsteret."},
+  {"st": [4], "say": "Da kan vi lage en formel: tre fyrstikker for hver figur, pluss den ene som var med helt fra starten. Figur fire trenger tre ganger fire pluss en, altså tretten fyrstikker. Regelen er: finn økningen, og legg til det som er fast."}
+ ]},
+ {"tid": "monster-alg", "m": "pattern", "title": "Beskrive mønstre algebraisk", "segs": [
+  {"st": [0], "say": "Her er de tre første figurene i et mønster. Vi skal beskrive mønsteret med en formel, slik at vi slipper å tegne for å finne store figurer."},
+  {"st": [1], "say": "Først teller vi rutene i hver figur og setter tallene i en tabell: fem, åtte og elleve."},
+  {"st": [2], "say": "For hver ny figur kommer det tre nye ruter, de røde. Økningen er tre, så figur nummer n har tre ganger n ruter som vokser."},
+  {"st": [3], "say": "De grønne rutene er like i alle figurene. Det er den faste delen, to ruter."},
+  {"st": [4], "say": "Formelen blir økningen ganger n pluss den faste delen. For dette mønsteret er det tre n pluss to."},
+  {"st": [5], "say": "Nå kan vi finne antallet i en hvilken som helst figur uten å tegne. Figur fire har tre ganger fire pluss to, altså fjorten ruter, og figur ti har trettito. Regelen er: økning ganger figurnummer, pluss den faste delen."}
+ ]},
+ {"tid": "vinkler", "m": "k9angle", "title": "Om vinkler", "segs": [
+  {"st": [0], "say": "En vinkel består av to vinkelbein som møtes i et toppunkt. Vi skal se hva som skjer når vi forlenger vinkelbeina. Denne vinkelen er femtifem grader."},
+  {"st": [1], "say": "Vinkelen er spiss, fordi den er mindre enn nitti grader. En vinkel på akkurat nitti grader er rett, og en større vinkel er stump."},
+  {"st": [2], "say": "Forlenger vi det ene vinkelbeinet, får vi en nabovinkel. De to vinklene ligger langs en rett linje, og en rett linje er hundre og åtti grader. Derfor er nabovinkelen hundre og åtti minus femtifem, altså hundre og tjuefem grader."},
+  {"st": [3], "say": "Forlenger vi begge vinkelbeina, får vi en toppvinkel på motsatt side. Toppvinkler er alltid like store, så den er også femtifem grader. Regelen er: nabovinkler er til sammen hundre og åtti grader, og toppvinkler er like store."}
+ ]},
+ {"tid": "vinkelsum", "m": "k9polysum", "title": "Vinkelsum i mangekanter", "segs": [
+  {"st": [0], "say": "Her er en mangekant med seks hjørner. Vi skal finne summen av alle vinklene inni figuren, uten å måle en eneste vinkel."},
+  {"st": [1], "say": "Vi vet at vinkelsummen i en trekant er hundre og åtti grader. Derfor trekker vi linjer fra ett hjørne, det røde, til alle de andre hjørnene."},
+  {"st": [2], "say": "Mangekanten blir delt i fire trekanter. Det er alltid to færre trekanter enn hjørner, fordi de to nabohjørnene ikke får noen egen linje."},
+  {"st": [3], "say": "Vinklene i trekantene er til sammen de samme som vinklene i mangekanten. Fire ganger hundre og åtti er sju hundre og tjue grader. Regelen er: vinkelsummen er antall hjørner minus to, ganger hundre og åtti grader."}
+ ]},
+ {"tid": "trekanter", "m": "k9spectri", "title": "Spesielle trekanter", "segs": [
+  {"st": [0], "say": "En likebeint trekant har to like lange sider. Vi skal finne de ukjente vinklene når vi bare kjenner toppvinkelen. Vinkelen mellom de like sidene er toppvinkelen, og den er førti grader."},
+  {"st": [1], "say": "Vinklene nede ved grunnlinja kalles grunnvinkler. Fordi de to sidene er like lange, er grunnvinklene også like store. Trekanten er helt symmetrisk."},
+  {"st": [2], "say": "Vinkelsummen i en trekant er hundre og åtti grader. Hundre og åtti minus førti er hundre og førti, og det skal deles likt på de to grunnvinklene."},
+  {"st": [2], "say": "Hundre og førti delt på to er sytti. Hver grunnvinkel er sytti grader. Regelen er: i en likebeint trekant er grunnvinklene like, så trekk toppvinkelen fra hundre og åtti og del på to."}
+ ]},
+ {"tid": "regulare", "m": "k9regpoly", "title": "Regulære mangekanter", "segs": [
+  {"st": [0], "say": "En regulær sekskant har seks like lange sider og seks like store vinkler. Vi skal finne hvor stor hver vinkel er."},
+  {"st": [1], "say": "Først finner vi vinkelsummen. Seks minus to er fire, og fire ganger hundre og åtti er sju hundre og tjue grader."},
+  {"st": [2], "say": "Fordi alle vinklene er like store, kan vi dele summen likt. Sju hundre og tjue delt på seks er hundre og tjue grader."},
+  {"st": [3], "say": "Fra sentrum kan vi dele figuren i seks like trekanter. Hele runden rundt sentrum er tre hundre og seksti grader, så vinkelen i sentrum er tre hundre og seksti delt på seks, altså seksti grader. Regelen er: i en regulær mangekant deler vi vinkelsummen likt på alle hjørnene."}
+ ]},
+ {"tid": "sirkelen", "m": "k9circle", "title": "Sirkelen", "segs": [
+  {"st": [0], "say": "En sirkel er alle punkter som har samme avstand til sentrum. Vi skal se hva radius, diameter og pi er, og finne omkretsen."},
+  {"st": [1], "say": "Radien er avstanden fra sentrum ut til sirkelen. Her er den tre centimeter."},
+  {"st": [2], "say": "Diameteren går tvers gjennom sentrum, fra kant til kant. Den er dobbelt så lang som radien: to ganger tre er seks centimeter."},
+  {"st": [3], "say": "Ruller vi sirkelen ut én runde, blir lengden litt over tre diametre. Forholdet mellom omkretsen og diameteren er alltid det samme, uansett hvor stor sirkelen er. Det kalles pi, og er omtrent tre komma fjorten."},
+  {"st": [4], "say": "Omkretsen er pi ganger diameteren, eller to ganger pi ganger radien. Tre komma fjorten ganger seks er omtrent atten komma åttifire centimeter. Regelen er: omkretsen er pi ganger diameteren."}
+ ]},
+ {"tid": "rektangel", "m": "k9rect", "title": "Rektangel", "segs": [
+  {"st": [0], "say": "Et rektangel har fire rette vinkler, og sidene som ligger overfor hverandre er like lange. Her er sidene seks centimeter og fire centimeter. Vi skal finne omkretsen og arealet."},
+  {"st": [1], "say": "Omkretsen er lengden rundt hele figuren. To sider er seks og to sider er fire: to ganger seks pluss to ganger fire er tjue centimeter."},
+  {"st": [2], "say": "Arealet er hvor mange kvadratcentimeter som får plass inni. Vi deler figuren i ruter som er én centimeter på hver side."},
+  {"st": [3], "say": "Det er fire rader med seks ruter i hver, altså tjuefire ruter. Arealet er lengde ganger bredde: seks ganger fire er tjuefire kvadratcentimeter. Regelen er: omkrets er rundt, areal er lengde ganger bredde."}
+ ]},
+ {"tid": "kvadrat", "m": "k9sq", "title": "Kvadrat", "segs": [
+  {"st": [0], "say": "Et kvadrat er et rektangel der alle sidene er like lange. Her er siden fem centimeter. Vi skal finne omkrets og areal, og se hvordan vi går motsatt vei."},
+  {"st": [1], "say": "Omkretsen er fire like sider: fire ganger fem er tjue centimeter."},
+  {"st": [2], "say": "Arealet er side ganger side, altså siden i andre. Derfor sier vi fem i andre: fem ganger fem er tjuefem kvadratcentimeter."},
+  {"st": [3], "say": "Kjenner vi arealet, kan vi finne siden ved å gå motsatt vei. Det kalles kvadratrot. Kvadratroten av tjuefem er fem, fordi fem ganger fem er tjuefem. Regelen er: areal er siden i andre, og kvadratroten gir siden tilbake."}
+ ]},
+ {"tid": "parallellogram", "m": "k9para", "title": "Parallellogram", "segs": [
+  {"st": [0], "say": "Et parallellogram har to par parallelle sider. Vi skal finne arealet ved å gjøre det om til et rektangel. Grunnlinja er sju centimeter."},
+  {"st": [1], "say": "Høyden står vinkelrett på grunnlinja og er fire centimeter. Pass på: høyden er ikke den skrå siden. Den skrå siden er lengre enn høyden."},
+  {"st": [2, 3], "say": "Vi klipper av trekanten til venstre og flytter den over til høyre. Ingenting er fjernet eller lagt til, så arealet er det samme. Nå har vi et rektangel."},
+  {"st": [4], "say": "Rektangelet er like langt som grunnlinja og like høyt som høyden. Arealet er grunnlinje ganger høyde: sju ganger fire er tjueåtte kvadratcentimeter. Regelen er: arealet av et parallellogram er grunnlinje ganger høyde."}
+ ]},
+ {"tid": "trapes", "m": "k9trap", "title": "Trapes", "segs": [
+  {"st": [0], "say": "Et trapes har to parallelle sider, som vi kaller a og b. Avstanden mellom dem er høyden h. Vi skal finne en formel for arealet."},
+  {"st": [1], "say": "Vi lager en kopi av trapeset, snur den opp ned og legger den inntil den første."},
+  {"st": [2], "say": "De to trapesene blir til sammen et parallellogram. Grunnlinja er a pluss b, altså tolv, og høyden er fire. Arealet av parallellogrammet er tolv ganger fire, altså førtiåtte."},
+  {"st": [3], "say": "Trapeset er halvparten av parallellogrammet. Førtiåtte delt på to er tjuefire kvadratcentimeter. Regelen er: arealet av et trapes er a pluss b, ganger høyden, delt på to."}
+ ]},
+ {"tid": "trekant-areal", "m": "k9tri", "title": "Trekant", "segs": [
+  {"st": [0], "say": "Vi skal finne arealet av en trekant. Grunnlinja er åtte centimeter."},
+  {"st": [1], "say": "Høyden går fra toppen og vinkelrett ned på grunnlinja. Den er fem centimeter."},
+  {"st": [2], "say": "Legger vi en kopi av trekanten inntil den første, får vi et parallellogram. Arealet av det er grunnlinje ganger høyde: åtte ganger fem er førti kvadratcentimeter."},
+  {"st": [3], "say": "Trekanten er halvparten av parallellogrammet. Førti delt på to er tjue kvadratcentimeter. Regelen er: arealet av en trekant er grunnlinje ganger høyde, delt på to."}
+ ]},
+ {"tid": "sirkel-areal", "m": "k9circa", "title": "Arealet av en sirkel", "segs": [
+  {"st": [0], "say": "Vi skal finne ut hvor formelen for arealet av en sirkel kommer fra. Vi deler en sirkel med radius fire centimeter i mange like kakestykker."},
+  {"st": [1], "say": "Så legger vi stykkene annenhver vei, med spissen opp og spissen ned. Figuren ligner et rektangel. Lengden er halve omkretsen, altså pi ganger r, og høyden er radien r."},
+  {"st": [2], "say": "Arealet av rektangelet er lengde ganger høyde: pi ganger r ganger r, altså pi ganger r i andre. Jo flere stykker vi deler i, jo mer likt et rektangel blir det."},
+  {"st": [3], "say": "Med radius fire blir arealet pi ganger fire i andre. Fire i andre er seksten, og tre komma fjorten ganger seksten er femti komma tjuefire kvadratcentimeter. Regelen er: arealet av en sirkel er pi ganger radien i andre."}
+ ]},
+ {"tid": "pytagoras", "m": "k9pythchk", "title": "Pytagoras-setningen", "segs": [
+  {"st": [0], "say": "En trekant har sidene seks, åtte og ti. Vi skal finne ut om den er rettvinklet uten å måle vinklene. Pytagoras-setningen sier at i en rettvinklet trekant er a i andre pluss b i andre lik c i andre, der c er den lengste siden."},
+  {"st": [1], "say": "Vi regner ut begge sidene av likningen. Seks i andre er trettiseks, og åtte i andre er sekstifire. Til sammen blir det hundre. Ti i andre er også hundre."},
+  {"st": [2], "say": "Tallene er like, så trekanten er rettvinklet. Hadde tallene vært ulike, ville den ikke vært det."},
+  {"st": [2], "say": "Regelen er: sett de to korteste sidene i andre og legg sammen. Blir det lik den lengste siden i andre, er trekanten rettvinklet."}
+ ]},
+ {"tid": "hypotenus", "m": "k9hyp", "title": "Regne ut hypotenusen", "segs": [
+  {"st": [0], "say": "Her er en rettvinklet trekant. De to korte sidene kalles kateter, og de er tre og fire. Den lengste siden, som ligger overfor den rette vinkelen, kalles hypotenusen. Den skal vi finne."},
+  {"st": [1], "say": "Vi tegner et kvadrat på hvert katet. Arealene er tre i andre, altså ni, og fire i andre, altså seksten."},
+  {"st": [2], "say": "Pytagoras-setningen sier at kvadratet på hypotenusen er like stort som de to andre kvadratene til sammen. Ni pluss seksten er tjuefem, så hypotenusen i andre er tjuefem."},
+  {"st": [3], "say": "Til slutt tar vi kvadratroten. Kvadratroten av tjuefem er fem, så hypotenusen er fem. Regelen er: hypotenusen er kvadratroten av katetene i andre lagt sammen."}
+ ]},
+ {"tid": "katet", "m": "k9kat", "title": "Regne ut en ukjent katet", "segs": [
+  {"st": [0], "say": "Nå kjenner vi hypotenusen, som er tretten, og det ene katetet, som er fem. Vi skal finne det andre katetet, b."},
+  {"st": [1], "say": "Pytagoras-setningen sier at a i andre pluss b i andre er lik c i andre. Det store kvadratet på hypotenusen er tretten i andre, altså hundre og sekstini, og det er like stort som de to små kvadratene til sammen."},
+  {"st": [2], "say": "Da må b i andre være det store kvadratet minus det vi kjenner. Fem i andre er tjuefem, og hundre og sekstini minus tjuefem er hundre og førtifire."},
+  {"st": [3], "say": "Kvadratroten av hundre og førtifire er tolv, så katetet er tolv. Regelen er: når vi skal finne et katet, trekker vi fra i stedet for å legge sammen."}
+ ]},
+ {"tid": "likebeint-rett", "m": "k9t45", "title": "Rettvinklet, likebeint trekant", "segs": [
+  {"st": [0], "say": "Deler vi et kvadrat langs diagonalen, får vi en rettvinklet, likebeint trekant. Vinklene er førtifem, førtifem og nitti grader. Vi skal finne en snarvei for hypotenusen i slike trekanter."},
+  {"st": [1], "say": "Begge katetene er like lange, fordi de var sider i kvadratet. Her er de fire centimeter."},
+  {"st": [2], "say": "Pytagoras gir hypotenusen i andre lik fire i andre pluss fire i andre. Det er seksten pluss seksten, altså trettito. Generelt blir det to ganger katetet i andre."},
+  {"st": [3], "say": "Kvadratroten av trettito er omtrent fem komma sju. Siden hypotenusen i andre alltid er to ganger katetet i andre, er hypotenusen alltid katetet ganger kvadratroten av to, altså omtrent katetet ganger en komma førtien. Regelen er: i en rettvinklet, likebeint trekant er hypotenusen katetet ganger kvadratroten av to."}
+ ]},
+ {"tid": "trekant-30-60", "m": "k9t30", "title": "Trekant med vinkler 30°, 60° og 90°", "segs": [
+  {"st": [0], "say": "Deler vi en likesidet trekant på midten, får vi en trekant med vinklene tretti, seksti og nitti grader. Vi skal se hva som er spesielt med sidene i en slik trekant."},
+  {"st": [1], "say": "Hypotenusen var en side i den likesidete trekanten. Den korteste siden er halve grunnlinja, altså halvparten av hypotenusen. Derfor er hypotenusen to ganger den korteste siden. Her er den korteste siden fire, så hypotenusen er åtte centimeter."},
+  {"st": [2], "say": "Den lengste kateten finner vi med Pytagoras. Åtte i andre minus fire i andre er sekstifire minus seksten, altså førtiåtte. Kvadratroten av førtiåtte er omtrent seks komma ni."},
+  {"st": [3], "say": "Det er det samme som den korteste siden ganger kvadratroten av tre. Regelen er: i en tretti-seksti-nitti-trekant er hypotenusen dobbelt så lang som den korteste siden, og den lengste kateten er den korteste siden ganger kvadratroten av tre."}
+ ]},
+ {"tid": "kongruens", "m": "k9cong", "title": "Kongruens", "segs": [
+  {"st": [0], "say": "Her er en figur tegnet på et rutenett. Vi skal flytte den og se hva som skjer med formen og størrelsen."},
+  {"st": [1], "say": "Vi lager et bilde av figuren med en parallellforskyvning. Det betyr at alle punktene flyttes like langt i samme retning."},
+  {"st": [2], "say": "Bildet har nøyaktig samme form og størrelse som originalen. Alle sidene er like lange, og alle vinklene er like store. Da sier vi at figurene er kongruente."},
+  {"st": [2], "say": "Det samme gjelder om vi speiler eller roterer figuren. Regelen er: to figurer er kongruente når de har like sider og like vinkler, selv om de ligger forskjellig."}
+ ]},
+ {"tid": "sammensatte", "m": "k9comp", "title": "Analyse av sammensatte figurer", "segs": [
+  {"st": [0], "say": "Her er en sammensatt figur. Vi har ingen formel for akkurat denne formen, så vi deler den opp i figurer vi kan regne ut arealet av."},
+  {"st": [1], "say": "Vi deler figuren i to rektangler. Det ene er åtte ganger tre, altså tjuefire. Det andre er fire ganger tre, altså tolv."},
+  {"st": [2], "say": "Til slutt legger vi sammen arealene. Tjuefire pluss tolv er trettiseks."},
+  {"st": [2], "say": "Regelen er: del en sammensatt figur i kjente figurer, regn ut hver del, og legg sammen."}
+ ]},
+ {"tid": "utforsking-plan", "m": "k9maxa", "title": "Utforsking og problemløsning", "segs": [
+  {"st": [0], "say": "Vi har tjuefire meter gjerde og vil lage et rektangulært område som er så stort som mulig. Hele gjerdet er omkretsen, så lengde pluss bredde må være halvparten av tjuefire, altså tolv meter."},
+  {"st": [1], "say": "Vi prøver systematisk. Vi velger en bredde, finner lengden som gjør at summen blir tolv, og regner ut arealet. Så gjør vi det samme for neste bredde."},
+  {"st": [2], "say": "Arealet blir størst, trettiseks kvadratmeter, når bredden er seks meter og lengden er seks meter. Det er et kvadrat."},
+  {"st": [2], "say": "Regelen vi finner er: når omkretsen er fast, gir kvadratet det største arealet. Å prøve systematisk i en tabell er en god måte å løse slike problemer på."}
+ ]},
+ {"tid": "prisme-volum", "m": "k9box", "title": "Volum av rektangulære prismer", "segs": [
+  {"st": [0], "say": "Her er et rett prisme med lengde fem, bredde tre og høyde fire centimeter. Vi skal finne volumet, altså hvor mange terninger på én kubikkcentimeter som får plass inni."},
+  {"st": [1], "say": "Det nederste laget har fem ganger tre, altså femten terninger. Det er det samme tallet som arealet av grunnflaten, femten kvadratcentimeter."},
+  {"st": [2, 3], "say": "Hvert nye lag har også femten terninger. Prismet er fire høyt, så det er fire lag. Femten ganger fire er seksti terninger."},
+  {"st": [4], "say": "Volumet er seksti kubikkcentimeter. Regelen er: volumet av et prisme er grunnflate ganger høyde."}
+ ]},
+ {"tid": "prisme-overflate", "m": "k9net", "title": "Overflaten av rektangulære prismer", "segs": [
+  {"st": [0], "say": "Overflaten av et prisme er det totale arealet av alle sideflatene, altså det vi måtte male for å dekke hele prismet. Vi skal finne overflaten av dette prismet."},
+  {"st": [1], "say": "Vi bretter prismet ut. Da ser vi alle de seks rektanglene som til sammen utgjør overflaten."},
+  {"st": [2], "say": "Topp og bunn er like store. Hver er fem ganger tre, så to av dem er tretti kvadratcentimeter."},
+  {"st": [3], "say": "Forsiden og baksiden er fem ganger fire hver. To av dem er førti kvadratcentimeter."},
+  {"st": [4], "say": "De to endeflatene er tre ganger fire hver, altså tjuefire til sammen."},
+  {"st": [5], "say": "Tretti pluss førti pluss tjuefire er nittifire kvadratcentimeter. Regelen er: finn arealet av hver flate, og legg sammen. Flatene kommer alltid i like par."}
+ ]},
+ {"tid": "kvadratisk-prisme", "m": "k9sqpr", "title": "Volum og overflate av kvadratiske prismer", "segs": [
+  {"st": [0], "say": "Et kvadratisk prisme har en grunnflate som er et kvadrat. Her er lengde og bredde tre centimeter, og høyden er fire. Vi skal finne både volumet og overflaten."},
+  {"st": [1], "say": "Det nederste laget har tre ganger tre, altså ni terninger. Det er det samme som arealet av grunnflaten, ni kvadratcentimeter."},
+  {"st": [2, 3], "say": "Hvert lag har ni terninger, og det er fire lag. Ni ganger fire er trettiseks terninger."},
+  {"st": [4], "say": "Volumet er grunnflate ganger høyde, trettiseks kubikkcentimeter."},
+  {"st": [5], "say": "Overflaten består av to kvadrater, topp og bunn, på ni hver, og fire like rektangler på tre ganger fire, altså tolv hver. Atten pluss førtiåtte er sekstiseks kvadratcentimeter. Regelen er: volum er grunnflate ganger høyde, og overflaten er summen av alle flatene."}
+ ]},
+ {"tid": "andre-prismer", "m": "k9tripr", "title": "Andre prismer", "segs": [
+  {"st": [0], "say": "Et prisme har to like, parallelle endeflater. Her er endeflaten en trekant, så dette er et trekantet prisme. Vi skal se at formelen for volum er den samme som før."},
+  {"st": [1], "say": "Grunnflaten er trekanten. Arealet av en trekant er grunnlinje ganger høyde delt på to. Seks ganger fire er tjuefire, og tjuefire delt på to er tolv."},
+  {"st": [2], "say": "Vi tenker oss at trekanten stables lag på lag langs hele lengden, som er åtte. Volumet er grunnflate ganger lengde: tolv ganger åtte er nittiseks."},
+  {"st": [2], "say": "Regelen er: alle prismer har volum lik grunnflate ganger høyde, uansett hvilken form grunnflaten har."}
+ ]},
+ {"tid": "pyramider", "m": "k9pyr", "title": "Pyramider", "segs": [
+  {"st": [0], "say": "En pyramide har en grunnflate og sideflater som møtes i en topp. Her er grunnflaten et kvadrat med side seks. Vi skal finne ut hvordan volumet henger sammen med et prisme."},
+  {"st": [1], "say": "Pyramiden får plass inni et prisme med samme grunnflate og samme høyde. Fyller vi pyramiden med vann og heller over i prismet, må vi gjøre det tre ganger før prismet er fullt."},
+  {"st": [2], "say": "Prismet har volum grunnflate ganger høyde. Grunnflaten er seks ganger seks, altså trettiseks, og høyden er seks. Trettiseks ganger seks er to hundre og seksten."},
+  {"st": [3], "say": "Pyramiden er en tredjedel av prismet. To hundre og seksten delt på tre er syttito. Regelen er: volumet av en pyramide er grunnflate ganger høyde, delt på tre."}
+ ]},
+ {"tid": "sylinder-volum", "m": "k9cylv", "title": "Volum av en sylinder", "segs": [
+  {"st": [0], "say": "En sylinder er som et rundt prisme. Grunnflaten er en sirkel. Vi skal finne volumet på samme måte som for prismer."},
+  {"st": [1], "say": "Først finner vi arealet av grunnflaten: pi ganger radien i andre. Radien er tre, så tre komma fjorten ganger ni er tjueåtte komma tjueseks."},
+  {"st": [2], "say": "Som for prismer tenker vi oss at grunnflaten stables i høyden. Høyden er åtte, så vi stabler åtte ganger."},
+  {"st": [3], "say": "Volumet er pi ganger r i andre ganger h. Tjueåtte komma tjueseks ganger åtte er omtrent to hundre og tjueseks komma null åtte. Regelen er: volumet av en sylinder er grunnflate ganger høyde, der grunnflaten er pi ganger radien i andre."}
+ ]},
+ {"tid": "sylinder-overflate", "m": "k9cylo", "title": "Areal av overflaten til en sylinder", "segs": [
+  {"st": [0], "say": "Vi skal finne overflaten av en sylinder, altså arealet av alt som er utenpå."},
+  {"st": [1], "say": "Bretter vi sylinderen ut, får vi to sirkler og et rektangel. Rektangelet er like langt som omkretsen av sirkelen, for det var viklet rundt den."},
+  {"st": [2], "say": "De to sirklene har areal to ganger pi ganger r i andre. Med radius tre blir det femtiseks komma femtito."},
+  {"st": [3], "say": "Rektangelet kalles sideflaten, eller mantelen. Det er omkretsen ganger høyden: to ganger pi ganger r ganger h. Med radius tre og høyde åtte blir det hundre og femti komma syttito."},
+  {"st": [4], "say": "Til sammen blir overflaten to hundre og sju komma tjuefire. Regelen er: overflaten av en sylinder er to sirkler pluss et rektangel med lengde lik omkretsen."}
+ ]},
+ {"tid": "kjegle-volum", "m": "k9cone", "title": "Volum av en kjegle", "segs": [
+  {"st": [0], "say": "En kjegle har en sirkel som grunnflate og en spiss topp. Vi skal finne volumet ved å sammenligne med en sylinder."},
+  {"st": [1], "say": "Kjeglen får plass i en sylinder med samme grunnflate og samme høyde. Akkurat som for pyramiden og prismet, går det tre kjegler på én sylinder."},
+  {"st": [2], "say": "Volumet av kjeglen er derfor volumet av sylinderen delt på tre: pi ganger r i andre ganger h, delt på tre. Radien er fire og høyden er ni. Tre komma fjorten ganger seksten ganger ni er fire hundre og femtito komma seksten, og delt på tre blir det hundre og femti komma syttito."},
+  {"st": [2], "say": "Regelen er: volumet av en kjegle er grunnflate ganger høyde, delt på tre, akkurat som for en pyramide."}
+ ]},
+ {"tid": "kule", "m": "k9sphere", "title": "Volum og overflate av en kule", "segs": [
+  {"st": [0], "say": "En kule har alle punktene på overflaten like langt fra sentrum. Avstanden er radien, og her er den tre. Vi skal finne volumet og overflaten."},
+  {"st": [1], "say": "Kulen passer akkurat inni en sylinder med samme radius og høyde lik to radier. Kulen fyller nøyaktig to tredjedeler av sylinderen."},
+  {"st": [2], "say": "Det gir formelen fire tredjedeler ganger pi ganger r i tredje. Tre i tredje er tjuesju, og fire tredjedeler ganger tre komma fjorten ganger tjuesju er omtrent hundre og tretten komma null fire."},
+  {"st": [3], "say": "Overflaten er like stor som fire sirkler med samme radius: fire ganger pi ganger r i andre. Med radius tre blir det også omtrent hundre og tretten komma null fire. Regelen er: volumet er fire tredjedeler pi r i tredje, og overflaten er fire pi r i andre."}
+ ]},
+ {"tid": "massetetthet", "m": "k9dens", "title": "Massetetthet", "segs": [
+  {"st": [0], "say": "En terning med side fem centimeter veier tre hundre og trettiåtte gram. Vi skal finne ut hva den er laget av, ved å regne ut massetettheten."},
+  {"st": [1], "say": "Først finner vi volumet. Fem ganger fem ganger fem er hundre og tjuefem kubikkcentimeter."},
+  {"st": [2], "say": "Massetetthet er masse per volum, altså massen delt på volumet. Tre hundre og trettiåtte delt på hundre og tjuefem er omtrent to komma sju gram per kubikkcentimeter. Det betyr at hver kubikkcentimeter veier to komma sju gram."},
+  {"st": [3], "say": "Vi sammenligner med en tabell over kjente stoffer. To komma sju passer best med aluminium. Siden vann har massetetthet én, synker terningen i vann. Regelen er: massetetthet er masse delt på volum."}
+ ]},
+ {"tid": "utforsking-rom", "m": "k9units", "title": "Utforsking og problemløsning", "segs": [
+  {"st": [0], "say": "Vi skal finne ut hvor mye vann et akvarium rommer. Først trenger vi sammenhengen mellom volum og liter. En terning med side ti centimeter, altså én desimeter, har volum én kubikkdesimeter. Den rommer nøyaktig én liter."},
+  {"st": [1], "say": "Hver gang vi går ett steg ned i volumenhet, fra kubikkmeter til kubikkdesimeter til kubikkcentimeter, ganger vi med tusen. Det er fordi lengde, bredde og høyde alle ganges med ti."},
+  {"st": [2], "say": "Akvariet er seksti ganger tretti ganger førti centimeter. Seksti ganger tretti er atten hundre, og atten hundre ganger førti er syttito tusen kubikkcentimeter."},
+  {"st": [3], "say": "Vi deler på tusen for å få kubikkdesimeter, altså liter: akvariet rommer syttito liter. Vi kunne også regnet i desimeter fra starten: seks ganger tre ganger fire er syttito. Regelen er: én kubikkdesimeter er én liter, og tusen kubikkcentimeter er én liter."}
+ ]},
+ {"tid": "kombinatorikk", "m": "k9tree", "title": "Kombinatorikk", "segs": [
+  {"st": [0], "say": "Du har tre T-skjorter og to bukser. Hvor mange ulike antrekk kan du lage? Vi tegner et valgtre. Først velger du T-skjorte, og det gir tre greiner."},
+  {"st": [1], "say": "Fra hver T-skjorte går det to greiner, én for hver bukse. Tre greiner med to på hver blir tre ganger to, altså seks kombinasjoner."},
+  {"st": [2], "say": "Dette kalles multiplikasjonsprinsippet: vi ganger antall valg på hvert trinn. Det blir seks antrekk."},
+  {"st": [2], "say": "Regelen er: når du velger flere ting etter hverandre, ganger du antall muligheter på hvert trinn."}
+ ]},
+ {"tid": "utfall", "m": "k9outcomes", "title": "Utfall og hendelser", "segs": [
+  {"st": [0], "say": "Vi kaster en mynt. Den kan lande på kron eller mynt. Vi skal lære tre ord som brukes om sannsynlighet: utfall, utfallsrom og hendelse."},
+  {"st": [1], "say": "Hvert mulig resultat kalles et utfall. Alle utfallene til sammen er utfallsrommet. For et myntkast er utfallsrommet kron og mynt, altså to utfall."},
+  {"st": [2], "say": "En hendelse er ett eller flere utfall vi er interessert i. Hendelsen kron består av ett av de to utfallene."},
+  {"st": [2], "say": "Regelen er: utfallene er alt som kan skje, utfallsrommet er alle utfallene samlet, og en hendelse er de utfallene vi ser etter."}
+ ]},
+ {"tid": "en-hendelse", "m": "k9bag", "title": "Sannsynlighet for én hendelse", "segs": [
+  {"st": [0], "say": "I en pose er det tre røde, fem blå og to grønne kuler. Vi trekker én kule uten å se. Vi skal finne sannsynligheten for å trekke en rød kule."},
+  {"st": [1], "say": "Alle kulene har like stor sjanse for å bli trukket. Til sammen er det ti kuler, altså ti mulige utfall."},
+  {"st": [2], "say": "Hendelsen vi ser etter, er rød kule. Tre av kulene er røde, så det er tre gunstige utfall."},
+  {"st": [3], "say": "Sannsynligheten er gunstige utfall delt på mulige utfall: tre delt på ti."},
+  {"st": [4], "say": "Vi kan skrive det som brøken tre tideler, desimaltallet null komma tre eller tretti prosent. En sannsynlighet er alltid mellom null og en."},
+  {"st": [5], "say": "Sannsynligheten for at vi ikke trekker rød, er én minus null komma tre, altså null komma sju. Regelen er: sannsynlighet er gunstige delt på mulige, når alle utfallene er like sannsynlige."}
+ ]},
+ {"tid": "flere-hendelser", "m": "k9dice2", "title": "Sannsynlighet for flere hendelser", "segs": [
+  {"st": [0], "say": "Vi kaster to terninger og legger sammen øynene. Hva er sannsynligheten for å få sum sju? Tabellen viser alle utfallene: seks ganger seks er trettiseks, og alle er like sannsynlige."},
+  {"st": [1], "say": "Vi markerer utfallene der summen er sju. Én og seks, to og fem, tre og fire, og så de samme motsatt vei. Det er seks slike utfall."},
+  {"st": [2], "say": "Sannsynligheten er seks av trettiseks, som kan forkortes til en sjettedel. Sum sju er den mest sannsynlige summen, fordi den kan komme på flest måter."},
+  {"st": [2], "say": "Regelen er: med to terninger teller vi gunstige ruter i tabellen og deler på trettiseks."}
+ ]},
+ {"tid": "multiplikasjonsprinsippet", "m": "k9mult", "title": "Multiplikasjonsprinsippet for sannsynlighet", "segs": [
+  {"st": [0], "say": "I en pose er det tre røde og to blå kuler. Vi trekker to kuler, og legger den første tilbake før vi trekker igjen. Vi skal finne sannsynligheten for to røde."},
+  {"st": [1], "say": "I første trekning er sannsynligheten for rød tre femdeler, og for blå to femdeler. Vi skriver sannsynlighetene på greinene i et tre."},
+  {"st": [2], "say": "I andre trekning er kula lagt tilbake, så posen er som før. Sannsynlighetene er de samme som første gang."},
+  {"st": [3], "say": "Multiplikasjonsprinsippet sier at sannsynligheten for rød og så rød finner vi ved å gange langs greinene: tre femdeler ganger tre femdeler er ni tjuefemdeler."},
+  {"st": [4], "say": "Hendelsen én av hver kan skje på to måter, rød og så blå, eller blå og så rød. Hver av dem har sannsynlighet seks tjuefemdeler, så vi legger sammen: seks tjuefemdeler pluss seks tjuefemdeler er tolv tjuefemdeler. Regelen er: gang langs greinene, og legg sammen greiner som gir samme hendelse."}
+ ]},
+ {"tid": "like-sannsynlig", "m": "k9fair", "title": "Like sannsynlige utfall", "segs": [
+  {"st": [0], "say": "Et lykkehjul har tre felt med hver sin farge. Er det like sannsynlig å lande på hver farge?"},
+  {"st": [1], "say": "Nei, feltene er ikke like store. Da er utfallene ikke like sannsynlige, og vi kan ikke si en tredjedel på hver. Et større felt gir større sjanse."},
+  {"st": [2], "say": "Sannsynligheten for hver farge er feltets andel av hele hjulet. Det blå feltet er hundre og åtti av tre hundre og seksti grader, altså en halv. Gul og rosa er nitti grader hver, altså en fjerdedel. Legger vi sammen alle sannsynlighetene, får vi alltid én, fordi hjulet må stoppe et sted."},
+  {"st": [2], "say": "Regelen er: utfallene er bare like sannsynlige når alle feltene er like store. Ellers må vi bruke andelen av helheten."}
+ ]},
+ {"tid": "stat-sanns", "m": "k9relfreq", "title": "Sannsynlighet ut fra statistikk", "segs": [
+  {"st": [0], "say": "En tegnestift kan lande med spissen opp eller ned. De to utfallene er ikke like sannsynlige, så vi kan ikke regne gunstige delt på mulige. I stedet gjør vi mange forsøk og teller."},
+  {"st": [1], "say": "Vi kastet to hundre ganger, og spissen landet opp hundre og tjueseks ganger. Den relative frekvensen er antall ganger delt på antall forsøk: hundre og tjueseks delt på to hundre er null komma sekstitre. Den bruker vi som et anslag for sannsynligheten."},
+  {"st": [2], "say": "Kaster vi tusen ganger til, kan vi forvente omtrent seks hundre og tretti med spissen opp, fordi den relative frekvensen var omtrent null komma sekstitre."},
+  {"st": [3], "say": "Jo flere forsøk vi gjør, desto sikrere blir anslaget. Regelen er: når utfallene ikke er like sannsynlige, bruker vi relativ frekvens fra mange forsøk som sannsynlighet."}
+ ]},
+ {"tid": "simulering", "m": "k9sim", "title": "Utforsking: simulering", "segs": [
+  {"st": [0], "say": "Datamaskinen simulerer tusen myntkast. Vi skal se hvordan den relative frekvensen av kron oppfører seg. Etter ti kast fikk vi kron seks ganger. Det gir relativ frekvens null komma seks, som er et godt stykke unna sannsynligheten null komma fem."},
+  {"st": [1], "say": "Etter hundre kast har vi fått kron førtiseks ganger. Relativ frekvens er null komma førtiseks, og kurven svinger mindre enn i starten."},
+  {"st": [2], "say": "Etter tusen kast er det fire hundre og nittitre kron. Relativ frekvens er null komma fire ni tre, og kurven legger seg tett inntil den stiplede linja ved null komma fem."},
+  {"st": [3], "say": "Dette kalles store talls lov: med mange forsøk kommer den relative frekvensen nær den egentlige sannsynligheten. Regelen er: få forsøk kan gi tilfeldige utslag, mange forsøk gir et pålitelig svar."}
+ ]}
+]
