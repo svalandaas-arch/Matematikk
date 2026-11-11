@@ -1,0 +1,1037 @@
+[
+ {
+  "tid": "multiplikasjon",
+  "m": "mult",
+  "v": {
+   "a": 84,
+   "b": 12
+  },
+  "segs": [
+   {
+    "st": [
+     0
+    ],
+    "say": "Vi skal regne ut åttifire ganger tolv. Vi tar ett siffer fra tolv av gangen, og begynner med enerne."
+   },
+   {
+    "st": [
+     1,
+     2,
+     3
+    ],
+    "say": "Først ganger vi åttifire med to. To ganger fire er åtte, og to ganger åtte er seksten. Det første delsvaret er hundre og sekstiåtte."
+   },
+   {
+    "st": [
+     4,
+     5
+    ],
+    "say": "Så ganger vi med ettallet. Det står på tierplassen, så det betyr ti. Derfor blir delsvaret åtte hundre og førti."
+   },
+   {
+    "st": [
+     6,
+     7,
+     8,
+     9
+    ],
+    "say": "Til slutt legger vi sammen delsvarene. Hundre og sekstiåtte pluss åtte hundre og førti er ett tusen og åtte."
+   },
+   {
+    "st": [
+     9
+    ],
+    "say": "Arealmodellen viser de samme delene. Alle rutene til sammen gir svaret."
+   }
+  ],
+  "title": "Multiplikasjon"
+ },
+ {
+  "tid": "divisjon",
+  "m": "div",
+  "v": {
+   "a": 936,
+   "b": 6
+  },
+  "segs": [
+   {
+    "st": [
+     0
+    ],
+    "say": "Vi skal dele ni hundre og trettiseks på seks. Hver runde har fire trinn: hent ned, del, gang og trekk fra."
+   },
+   {
+    "st": [
+     1,
+     2,
+     3,
+     4
+    ],
+    "say": "Seks går én gang opp i ni. Én ganger seks er seks, og ni minus seks gir tre i rest."
+   },
+   {
+    "st": [
+     5,
+     6,
+     7,
+     8
+    ],
+    "say": "Vi henter ned treet og får trettitre. Seks går fem ganger opp. Fem ganger seks er tretti, og resten er tre."
+   },
+   {
+    "st": [
+     9,
+     10,
+     11,
+     12
+    ],
+    "say": "Vi henter ned seksen og får trettiseks. Seks går seks ganger opp, uten rest. Svaret er hundre og femtiseks."
+   },
+   {
+    "st": [
+     12
+    ],
+    "say": "Sjekk alltid med ganging: hundre og femtiseks ganger seks er ni hundre og trettiseks."
+   }
+  ],
+  "title": "Divisjon"
+ },
+ {
+  "tid": "flere-ledd",
+  "m": "ledd",
+  "segs": [
+   {
+    "st": [
+     0
+    ],
+    "say": "Ti pluss fire ganger tre, minus tolv delt på to. Hvor begynner vi?"
+   },
+   {
+    "st": [
+     1
+    ],
+    "say": "Pluss og minus fungerer som sakser. De deler stykket i tre ledd. Ganging og deling holder tallene sammen inni hvert ledd."
+   },
+   {
+    "st": [
+     2
+    ],
+    "say": "Vi regner ut hvert ledd for seg. Fire ganger tre er tolv, og tolv delt på to er seks."
+   },
+   {
+    "st": [
+     3,
+     4
+    ],
+    "say": "Nå er det bare pluss og minus igjen. Ti pluss tolv er tjueto, og tjueto minus seks er seksten."
+   },
+   {
+    "st": [
+     4
+    ],
+    "say": "Husk rekkefølgen: parenteser, potenser, ganging og deling, og til slutt pluss og minus."
+   }
+  ],
+  "title": "Regning med flere ledd"
+ },
+ {
+  "tid": "negative-tall",
+  "m": "neg",
+  "segs": [
+   {
+    "load": {
+     "mode": "add",
+     "a": 2,
+     "b": -4,
+     "op": "-"
+    },
+    "st": [
+     0
+    ],
+    "say": "Hva er to minus minus fire? Vi starter på to på tallinja. Minustegnet gjør at vi snur oss mot venstre."
+   },
+   {
+    "st": [
+     1
+    ],
+    "say": "Det andre tallet er negativt. Da går vi baklengs fire steg."
+   },
+   {
+    "st": [
+     2
+    ],
+    "say": "Vi ser mot venstre, men går baklengs, altså mot høyre. Vi lander på seks. Å trekke fra et negativt tall er det samme som å legge til."
+   },
+   {
+    "load": {
+     "mode": "mult",
+     "a": -3,
+     "b": -2
+    },
+    "st": [
+     0
+    ],
+    "say": "Hva med minus tre ganger minus to? Minus tre betyr at vi skal fjerne tre hopp på minus to."
+   },
+   {
+    "st": [
+     1,
+     2
+    ],
+    "say": "Å fjerne hopp bakover flytter oss fremover. Tre hopp på pluss to gir seks. Derfor blir minus ganger minus pluss."
+   }
+  ],
+  "title": "Negative tall"
+ },
+ {
+  "tid": "potenser",
+  "m": "pow",
+  "v": {
+   "b": 3,
+   "e": 4
+  },
+  "segs": [
+   {
+    "st": [
+     0,
+     1
+    ],
+    "say": "Hva betyr tre opphøyd i fire? Tallet nede er grunntallet, tre. Tallet oppe er eksponenten, fire."
+   },
+   {
+    "st": [
+     2
+    ],
+    "say": "Eksponenten forteller hvor mange ganger grunntallet skal ganges med seg selv. Tre ganger tre ganger tre ganger tre."
+   },
+   {
+    "st": [
+     3,
+     4,
+     5
+    ],
+    "say": "Vi regner to og to. Tre ganger tre er ni. Ni ganger tre er tjuesju. Tjuesju ganger tre er åttien."
+   },
+   {
+    "st": [
+     6
+    ],
+    "say": "Tre opphøyd i fire er åttien. Pass på: det er ikke det samme som tre ganger fire."
+   }
+  ],
+  "title": "Potenser"
+ },
+ {
+  "tid": "faktorisering",
+  "m": "tree",
+  "v": {
+   "n": 60
+  },
+  "segs": [
+   {
+    "st": [
+     0
+    ],
+    "say": "Vi skal skrive seksti som et produkt av primtall. Til det bruker vi et faktortre."
+   },
+   {
+    "st": [
+     1
+    ],
+    "say": "Seksti er et partall, så vi deler på to. Seksti er to ganger tretti. To er et primtall, så den grenen er ferdig."
+   },
+   {
+    "st": [
+     2
+    ],
+    "say": "Tretti er også delelig med to. Tretti er to ganger femten."
+   },
+   {
+    "st": [
+     3
+    ],
+    "say": "Femten er tre ganger fem. Både tre og fem er primtall, så vi stopper."
+   },
+   {
+    "st": [
+     4
+    ],
+    "say": "Primtallene i de grønne sirklene gir svaret: seksti er to ganger to ganger tre ganger fem."
+   }
+  ],
+  "title": "Primtallsfaktorisering"
+ },
+ {
+  "tid": "forkorting",
+  "m": "equiv",
+  "segs": [
+   {
+    "load": {
+     "mode": "utvid",
+     "a": 2,
+     "b": 3,
+     "k": 4
+    },
+    "st": [
+     0
+    ],
+    "say": "To tredjedeler betyr to av tre like store deler."
+   },
+   {
+    "st": [
+     1,
+     2
+    ],
+    "say": "Vi deler hver del i fire mindre biter. Nå er det tolv biter, og åtte av dem er farget. To tredjedeler er lik åtte tolvdeler."
+   },
+   {
+    "st": [
+     3
+    ],
+    "say": "Å utvide betyr å gange teller og nevner med samme tall. Verdien endrer seg ikke."
+   },
+   {
+    "load": {
+     "mode": "fork",
+     "a": 6,
+     "b": 8
+    },
+    "st": [
+     0,
+     1
+    ],
+    "say": "Seks åttendedeler kan forkortes. Det største tallet som går opp i både seks og åtte, er to."
+   },
+   {
+    "st": [
+     2,
+     3
+    ],
+    "say": "Vi slår sammen to og to deler, og får tre fjerdedeler. Å forkorte betyr å dele teller og nevner med samme tall."
+   }
+  ],
+  "title": "Utvide og forkorte brøker"
+ },
+ {
+  "tid": "brok-desimal",
+  "m": "des",
+  "v": {
+   "a": 3,
+   "b": 4
+  },
+  "segs": [
+   {
+    "st": [
+     0,
+     1
+    ],
+    "say": "Tre fjerdedeler betyr tre av fire like store deler. På tallinja deler vi avstanden fra null til en i fire, og går tre deler."
+   },
+   {
+    "st": [
+     2
+    ],
+    "say": "Vi utvider til hundredeler. Fire ganger tjuefem er hundre, og tre ganger tjuefem er syttifem. Det skrives null komma syttifem."
+   },
+   {
+    "st": [
+     3
+    ],
+    "say": "I et hundrerutenett fyller tre fjerdedeler syttifem av hundre ruter."
+   },
+   {
+    "st": [
+     4
+    ],
+    "say": "Prosent betyr hundredeler. Tre fjerdedeler, null komma syttifem og syttifem prosent er det samme tallet."
+   }
+  ],
+  "title": "Brøk, desimaltall og prosent"
+ },
+ {
+  "tid": "brok-mul",
+  "m": "fmul",
+  "segs": [
+   {
+    "load": {
+     "mode": "helt",
+     "n": 3,
+     "a": 2,
+     "b": 5
+    },
+    "st": [
+     0,
+     1
+    ],
+    "say": "Tre ganger to femdeler betyr to femdeler tre ganger. Til sammen blir det seks femdeler. Vi ganger bare telleren."
+   },
+   {
+    "st": [
+     2,
+     3
+    ],
+    "say": "Seks femdeler er mer enn én hel. Det er én hel og en femdel."
+   },
+   {
+    "load": {
+     "mode": "brok",
+     "a": 3,
+     "b": 4,
+     "c": 2,
+     "d": 3
+    },
+    "st": [
+     0,
+     1
+    ],
+    "say": "Hva er to tredjedeler av tre fjerdedeler? Vi farger tre fjerdedeler blått, og tar to tredjedeler av den blå delen."
+   },
+   {
+    "st": [
+     2,
+     3
+    ],
+    "say": "Seks av tolv ruter er lilla. Svaret er seks tolvdeler, altså en halv. Vi ganger teller med teller og nevner med nevner."
+   }
+  ],
+  "title": "Brøk og multiplikasjon"
+ },
+ {
+  "tid": "brok-div",
+  "m": "fdiv",
+  "v": {
+   "a": 3,
+   "b": 4,
+   "c": 3,
+   "d": 8
+  },
+  "segs": [
+   {
+    "st": [
+     0
+    ],
+    "say": "Tre fjerdedeler delt på tre åttendedeler. Hvor mange ganger får tre åttendedeler plass i tre fjerdedeler?"
+   },
+   {
+    "st": [
+     1
+    ],
+    "say": "Vi gjør bitene like store. Tre fjerdedeler er seks åttendedeler."
+   },
+   {
+    "st": [
+     2,
+     3
+    ],
+    "say": "Nå teller vi grupper på tre biter i de seks bitene. Det blir to grupper. Svaret er to."
+   },
+   {
+    "st": [
+     4
+    ],
+    "say": "Snarvei: å dele med en brøk er det samme som å gange med den omvendte brøken."
+   }
+  ],
+  "title": "Divisjon av brøker"
+ },
+ {
+  "tid": "uttrykk",
+  "m": "subst",
+  "v": {
+   "a": 0,
+   "b": 3,
+   "c": 4,
+   "x": 5
+  },
+  "segs": [
+   {
+    "st": [
+     0
+    ],
+    "say": "Uttrykket tre x pluss fire har en variabel, x. Algebrabrikkene viser leddene: tre lange x-brikker og fire små enerbrikker."
+   },
+   {
+    "st": [
+     1
+    ],
+    "say": "Vi setter inn x lik fem. Da er hver x-brikke verdt fem."
+   },
+   {
+    "st": [
+     2,
+     3
+    ],
+    "say": "Først ganger vi: tre ganger fem er femten. Så legger vi til fire. Verdien av uttrykket er nitten."
+   },
+   {
+    "st": [
+     3
+    ],
+    "say": "Husk at tre x betyr tre ganger x."
+   }
+  ],
+  "title": "Algebraiske uttrykk"
+ },
+ {
+  "tid": "forenkling",
+  "m": "tiles",
+  "v": {
+   "a": 3,
+   "b": 2,
+   "c": 1,
+   "d": -4,
+   "op": "-"
+  },
+  "segs": [
+   {
+    "st": [
+     0
+    ],
+    "say": "Tre x pluss to, minus parentes x minus fire. Blå brikker er positive, og røde er negative."
+   },
+   {
+    "st": [
+     1
+    ],
+    "say": "Minus foran en parentes snur alle fortegnene inni. Blå brikker blir røde, og røde blir blå."
+   },
+   {
+    "st": [
+     2
+    ],
+    "say": "Vi sorterer like ledd sammen: x-brikker for seg og enerbrikker for seg."
+   },
+   {
+    "st": [
+     3
+    ],
+    "say": "En blå og en rød brikke av samme type blir null. Vi fjerner slike nullpar."
+   },
+   {
+    "st": [
+     4
+    ],
+    "say": "Det som er igjen, er to x pluss seks."
+   }
+  ],
+  "title": "Addisjon og subtraksjon av uttrykk"
+ },
+ {
+  "tid": "parenteser",
+  "m": "paren",
+  "v": {
+   "a": 3,
+   "b": 2,
+   "c": 4
+  },
+  "segs": [
+   {
+    "st": [
+     0
+    ],
+    "say": "Tre ganger parentes to x pluss fire. Alt inni parentesen skal ganges med tre."
+   },
+   {
+    "st": [
+     1
+    ],
+    "say": "Vi tegner et rektangel. Høyden er tre, og bredden er delt i to deler: to x og fire."
+   },
+   {
+    "st": [
+     2,
+     3
+    ],
+    "say": "Den første delen er tre ganger to x, altså seks x. Den andre delen er tre ganger fire, altså tolv."
+   },
+   {
+    "st": [
+     4
+    ],
+    "say": "Hele arealet er seks x pluss tolv. Tallet foran parentesen ganges med alle leddene."
+   }
+  ],
+  "title": "Parenteser i uttrykk"
+ },
+ {
+  "tid": "monster",
+  "m": "pattern",
+  "v": {
+   "a": 3,
+   "b": 2
+  },
+  "segs": [
+   {
+    "st": [
+     0,
+     1
+    ],
+    "say": "Her er de tre første figurene i et mønster. Vi teller rutene: fem, åtte og elleve."
+   },
+   {
+    "st": [
+     2
+    ],
+    "say": "For hver ny figur kommer det tre nye ruter. Økningen er tre."
+   },
+   {
+    "st": [
+     3
+    ],
+    "say": "De to grønne rutene er like i alle figurene. Det er den faste delen."
+   },
+   {
+    "st": [
+     4
+    ],
+    "say": "Formelen blir tre n pluss to: økningen ganger figurnummeret, pluss den faste delen."
+   },
+   {
+    "st": [
+     5
+    ],
+    "say": "Nå kan vi finne hvilken som helst figur. Figur ti har tre ganger ti pluss to, altså trettito ruter."
+   }
+  ],
+  "title": "Mønster i tall"
+ },
+ {
+  "tid": "likninger",
+  "m": "balance",
+  "v": {
+   "a": 3,
+   "b": 2,
+   "c": 1,
+   "d": 10
+  },
+  "segs": [
+   {
+    "st": [
+     0
+    ],
+    "say": "Tre x pluss to er lik x pluss ti. Tenk på en skålvekt i balanse. Hver boks er en ukjent x, og hver liten kloss veier én."
+   },
+   {
+    "st": [
+     1
+    ],
+    "say": "Vi tar bort én x fra begge sidene. Vekta er fortsatt i balanse."
+   },
+   {
+    "st": [
+     2
+    ],
+    "say": "Så tar vi bort to klosser fra begge sidene. Nå står to x alene på venstre side."
+   },
+   {
+    "st": [
+     3
+    ],
+    "say": "To x veier åtte. Vi deler klossene i to like grupper. Hver x svarer til fire."
+   },
+   {
+    "st": [
+     4
+    ],
+    "say": "x er lik fire. Vi sjekker ved å sette inn: begge sidene blir fjorten."
+   }
+  ],
+  "title": "Likninger"
+ },
+ {
+  "tid": "problemlosning",
+  "m": "tape",
+  "segs": [
+   {
+    "st": [
+     0
+    ],
+    "say": "Ida og Jonas har til sammen åttifire kort. Jonas har tolv flere enn Ida. Hvor mange kort har Ida?"
+   },
+   {
+    "st": [
+     1,
+     2
+    ],
+    "say": "Vi tegner et strimmeldiagram. Jonas har like mange som Ida, pluss tolv. Det ukjente tallet kaller vi x."
+   },
+   {
+    "st": [
+     3
+    ],
+    "say": "Til sammen blir det to x pluss tolv, og det er åttifire."
+   },
+   {
+    "st": [
+     4
+    ],
+    "say": "Vi trekker fra tolv på begge sider, og får to x lik syttito. Så deler vi på to: x er trettiseks."
+   },
+   {
+    "st": [
+     5
+    ],
+    "say": "Ida har trettiseks kort, og Jonas har førtiåtte. Til sammen blir det åttifire, så svaret stemmer."
+   }
+  ],
+  "title": "Problemløsning med likninger"
+ },
+ {
+  "tid": "koordinater",
+  "m": "coord",
+  "v": {
+   "x": 4,
+   "y": -3
+  },
+  "segs": [
+   {
+    "st": [
+     0
+    ],
+    "say": "Vi skal finne punktet fire, minus tre. Vi starter alltid i origo, der aksene krysser hverandre."
+   },
+   {
+    "st": [
+     1
+    ],
+    "say": "Det første tallet er x. Vi går fire steg til høyre."
+   },
+   {
+    "st": [
+     2
+    ],
+    "say": "Det andre tallet er y. Minus tre betyr tre steg ned."
+   },
+   {
+    "st": [
+     3
+    ],
+    "say": "Der ligger punktet A. Husk: alltid x først, så y."
+   },
+   {
+    "st": [
+     4
+    ],
+    "say": "Aksene deler planet i fire kvadranter. A ligger i fjerde kvadrant."
+   }
+  ],
+  "title": "Koordinatsystemet"
+ },
+ {
+  "tid": "funksjonsuttrykk",
+  "m": "situation",
+  "segs": [
+   {
+    "st": [
+     0
+    ],
+    "say": "En taxitur koster femti kroner i startpris og femten kroner per kilometer."
+   },
+   {
+    "st": [
+     1,
+     2
+    ],
+    "say": "Når vi har kjørt null kilometer, koster det femti kroner. Det er startverdien. For hver kilometer øker prisen med femten kroner."
+   },
+   {
+    "st": [
+     3
+    ],
+    "say": "Punktene ligger på en rett linje, fordi økningen er like stor hver gang."
+   },
+   {
+    "st": [
+     4
+    ],
+    "say": "Formelen blir f av x er lik femten x pluss femti. Femten er stigningstallet, og femti er konstantleddet."
+   },
+   {
+    "st": [
+     5
+    ],
+    "say": "En tur på ti kilometer koster femten ganger ti pluss femti, altså to hundre kroner."
+   }
+  ],
+  "title": "Fra situasjon til funksjon"
+ },
+ {
+  "tid": "grafer",
+  "m": "graph",
+  "v": {
+   "a": 2,
+   "b": -1
+  },
+  "segs": [
+   {
+    "st": [
+     0,
+     1
+    ],
+    "say": "Vi skal tegne grafen til f av x er lik to x minus en. Først lager vi en verditabell."
+   },
+   {
+    "st": [
+     2,
+     3
+    ],
+    "say": "Hvert tallpar blir et punkt i koordinatsystemet. Punktene ligger på en rett linje."
+   },
+   {
+    "st": [
+     4
+    ],
+    "say": "Konstantleddet, minus en, er der grafen krysser y-aksen."
+   },
+   {
+    "st": [
+     5
+    ],
+    "say": "Stigningstallet er to. Går vi én til høyre, går grafen to opp."
+   }
+  ],
+  "title": "Tegne grafer",
+  "row": true
+ },
+ {
+  "tid": "addisjon",
+  "title": "Addisjon og subtraksjon",
+  "m": "addsub",
+  "segs": [
+   {
+    "load": {
+     "a": 356,
+     "b": 278,
+     "op": "+"
+    },
+    "st": [
+     0
+    ],
+    "say": "Vi skal regne ut tre hundre og femtiseks pluss to hundre og syttiåtte. Vi starter alltid med enerne, lengst til høyre."
+   },
+   {
+    "st": [
+     1
+    ],
+    "say": "Seks pluss åtte er fjorten. Vi skriver fire, og fører én tier over som mente."
+   },
+   {
+    "st": [
+     2,
+     3
+    ],
+    "say": "Tierne: fem pluss sju pluss menten er tretten. Vi skriver tre og har én i mente. Hundrerne gir seks. Svaret er seks hundre og trettifire."
+   },
+   {
+    "load": {
+     "a": 703,
+     "b": 268,
+     "op": "-"
+    },
+    "st": [
+     0,
+     1
+    ],
+    "say": "Nå trekker vi fra. Sju hundre og tre minus to hundre og sekstiåtte. Tre minus åtte går ikke, så vi låner ti fra naboen."
+   },
+   {
+    "st": [
+     2,
+     3
+    ],
+    "say": "Tretten minus åtte er fem, ni minus seks er tre, og seks minus to er fire. Svaret er fire hundre og trettifem."
+   }
+  ]
+ },
+ {
+  "tid": "potensregler",
+  "title": "Regning med potenser",
+  "m": "powrules",
+  "segs": [
+   {
+    "st": [
+     0
+    ],
+    "say": "Vi skal forenkle to i andre ganger to i fjerde, delt på to i tredje. Alle potensene har samme grunntall."
+   },
+   {
+    "st": [
+     1,
+     2
+    ],
+    "say": "Skriver vi ut gangingen, får vi seks totall ganget sammen. Når vi ganger, legger vi sammen eksponentene."
+   },
+   {
+    "st": [
+     3
+    ],
+    "say": "Deling er som en brøk. Tre totall over og tre under streken kan strykes mot hverandre. Da står tre igjen."
+   },
+   {
+    "st": [
+     4,
+     5
+    ],
+    "say": "Når vi deler, trekker vi fra eksponentene. Svaret er to i tredje, altså åtte."
+   }
+  ]
+ },
+ {
+  "tid": "delelighet",
+  "title": "Delelighet og primtall",
+  "m": "prim",
+  "v": {
+   "n": 12
+  },
+  "segs": [
+   {
+    "st": [
+     0
+    ],
+    "say": "Vi har tolv prikker. Alle tall kan legges i én rad. Kan vi lage et rektangel med flere rader?"
+   },
+   {
+    "st": [
+     1
+    ],
+    "say": "To rader går opp, med seks i hver. Da er to og seks faktorer i tolv."
+   },
+   {
+    "st": [
+     2
+    ],
+    "say": "Tre rader går også opp, med fire i hver."
+   },
+   {
+    "st": [
+     3
+    ],
+    "say": "Tolv kan legges som flere rektangler, så tolv er et sammensatt tall. Et primtall kan bare legges i én rad, for eksempel tretten."
+   }
+  ]
+ },
+ {
+  "tid": "gange-alg",
+  "title": "Multiplikasjon, divisjon og potenser",
+  "m": "algmul",
+  "segs": [
+   {
+    "st": [
+     0,
+     1
+    ],
+    "say": "Vi kan se på ganging som arealet av et rektangel. Her er sidene to x og tre x."
+   },
+   {
+    "st": [
+     2
+    ],
+    "say": "Hver rute er x ganger x, altså x i andre. Det blir to ganger tre, altså seks slike ruter."
+   },
+   {
+    "st": [
+     3
+    ],
+    "say": "To x ganger tre x er seks x i andre. Vi ganger tallene for seg og bokstavene for seg."
+   },
+   {
+    "click": [
+     "[data-g=mode] button[data-v=dele]"
+    ],
+    "st": [
+     0,
+     1
+    ],
+    "say": "Nå deler vi. Tolv x delt på tre betyr tolv x-brikker i tre like grupper. Hver gruppe får fire."
+   },
+   {
+    "st": [
+     2
+    ],
+    "say": "Tolv x delt på tre er fire x. Vi deler tallet, og bokstaven blir stående."
+   }
+  ]
+ },
+ {
+  "tid": "diagrammer",
+  "title": "Avlesing og tolking",
+  "m": "trip",
+  "segs": [
+   {
+    "st": [
+     0
+    ],
+    "say": "Grafen viser hvor langt Emma er fra hjemmet sitt på en sykkeltur. Se først på aksene: tid bortover og avstand oppover."
+   },
+   {
+    "st": [
+     1
+    ],
+    "say": "De første femten minuttene stiger grafen. Emma sykler bort fra hjemmet."
+   },
+   {
+    "st": [
+     2
+    ],
+    "say": "Så er grafen vannrett. Avstanden endrer seg ikke, så Emma tar en pause."
+   },
+   {
+    "st": [
+     3
+    ],
+    "say": "Nå stiger grafen brattere. Emma sykler fortere enn i starten."
+   },
+   {
+    "st": [
+     4,
+     5
+    ],
+    "say": "Til slutt synker grafen til null. Emma sykler hjem. Jo brattere grafen er, jo fortere går det."
+   }
+  ]
+ },
+ {
+  "tid": "brok-add",
+  "title": "Addisjon av brøker",
+  "m": "fadd",
+  "v": {
+   "a": 1,
+   "b": 2,
+   "c": 1,
+   "d": 3,
+   "op": "+"
+  },
+  "segs": [
+   {
+    "st": [
+     0
+    ],
+    "say": "Vi skal legge sammen en halv og en tredjedel. Brøkstrimlene viser at bitene har ulik størrelse."
+   },
+   {
+    "st": [
+     1
+    ],
+    "say": "Vi trenger like store biter. Det minste tallet som finnes i både to-gangen og tre-gangen, er seks. Seks blir fellesnevneren."
+   },
+   {
+    "st": [
+     2
+    ],
+    "say": "Vi deler bitene i seksdeler. En halv er tre seksdeler, og en tredjedel er to seksdeler."
+   },
+   {
+    "st": [
+     3
+    ],
+    "say": "Nå kan vi legge sammen bitene. Tre seksdeler pluss to seksdeler er fem seksdeler."
+   },
+   {
+    "st": [
+     4
+    ],
+    "say": "Vi legger sammen tellerne og beholder nevneren. Svaret er fem seksdeler."
+   }
+  ]
+ }
+]
