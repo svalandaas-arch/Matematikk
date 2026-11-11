@@ -159,7 +159,7 @@
  ]},
  {"tid": "sammensatte", "m": "k9comp", "title": "Analyse av sammensatte figurer", "segs": [
   {"st": [0], "say": "Her er en sammensatt figur. Vi har ingen formel for akkurat denne formen, så vi deler den opp i figurer vi kan regne ut arealet av."},
-  {"st": [1], "say": "Vi deler figuren i to rektangler. Det ene er åtte ganger tre, altså tjuefire. Det andre er fire ganger tre, altså tolv."},
+  {"st": [1], "say": "Vi deler figuren i to rektangler med en vannrett strek. Det nederste rektangelet er åtte ganger tre, altså tjuefire. Det øverste er fire ganger tre, altså tolv. Arealet av et rektangel er alltid lengde ganger bredde."},
   {"st": [2], "say": "Til slutt legger vi sammen arealene. Tjuefire pluss tolv er trettiseks."},
   {"st": [2], "say": "Regelen er: del en sammensatt figur i kjente figurer, regn ut hver del, og legg sammen."}
  ]},

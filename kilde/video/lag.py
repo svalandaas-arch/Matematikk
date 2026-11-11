@@ -26,8 +26,16 @@ def tts(text,out,a):
         r=run(['ffmpeg','-y','-loglevel','error','-f','lavfi','-i','anullsrc=r=44100:cl=mono','-t',f'{max(1.0,len(text)*0.065):.2f}','-q:a','9',out])
         if r.returncode: raise RuntimeError(r.stderr[-300:])
     elif a.tts=='edge':
-        import edge_tts
-        asyncio.run(edge_tts.Communicate(text, a.stemme, rate=a.fart).save(out))
+        import edge_tts, time
+        # Tjenesten svarer av og til «No audio was received»; prøv igjen med økende pause.
+        for forsok in range(6):
+            try:
+                asyncio.run(edge_tts.Communicate(text, a.stemme, rate=a.fart).save(out))
+                if os.path.exists(out) and os.path.getsize(out)>1000: break
+                raise RuntimeError('tom lydfil')
+            except Exception as e:
+                if forsok==5: raise
+                print('  prøver igjen etter feil:',str(e)[:60]); time.sleep(3*(forsok+1))
     elif a.tts=='elevenlabs':
         key=os.environ.get('ELEVENLABS_API_KEY'); vid=os.environ.get('ELEVENLABS_VOICE_ID')
         if not key or not vid: sys.exit('Sett miljøvariablene ELEVENLABS_API_KEY og ELEVENLABS_VOICE_ID først.')
@@ -39,8 +47,8 @@ def clip(text,d,i,a):
     """Lager (eller gjenbruker) lydklipp nr. i. Gjenbrukes når tekst, stemme og innstillinger er uendret."""
     key=hashlib.sha1(json.dumps([text,a.tts,a.stemme,a.fart,a.modell,os.environ.get('ELEVENLABS_VOICE_ID','')]).encode()).hexdigest()[:16]
     mp3=os.path.join(d,f'a{i:02d}.mp3'); tag=os.path.join(d,f'a{i:02d}.key'); wav=os.path.join(d,f'a{i:02d}.wav')
-    if not (os.path.exists(mp3) and os.path.exists(tag) and open(tag).read()==key):
-        tts(text,mp3,a); open(tag,'w').write(key)
+    if not (os.path.exists(mp3) and os.path.exists(tag) and open(tag,encoding='utf-8').read()==key):
+        tts(text,mp3,a); open(tag,'w',encoding='utf-8').write(key)
     # trim stillhet i start/slutt og gjør om til likt format
     r=run(['ffmpeg','-y','-loglevel','error','-i',mp3,'-af','silenceremove=start_periods=1:start_threshold=-45dB:start_silence=0.05,areverse,silenceremove=start_periods=1:start_threshold=-45dB:start_silence=0.05,areverse','-ar','44100','-ac','1',wav])
     if r.returncode or not os.path.exists(wav) or dur(wav)<0.2:
@@ -51,7 +59,7 @@ def clip(text,d,i,a):
 def build(s,a):
     tid=s['tid']; d=os.path.join(UT,tid)
     if not os.path.exists(os.path.join(d,'beats.json')): print('MANGLER BILDER',tid,'(kjør render.js først)'); return False
-    beats=json.load(open(os.path.join(d,'beats.json')))
+    beats=json.load(open(os.path.join(d,'beats.json'),encoding='utf-8'))
     frames=sorted(f for f in os.listdir(d) if f.startswith('f') and f.endswith('.png') and f not in('f00-title.png','f99-end.png'))
     assert len(frames)==len(beats),(tid,len(frames),len(beats))
     texts=[s['title']+'.']+[g['say'] for g in s['segs']]+[s.get('slutt',SLUTT)]
@@ -91,7 +99,7 @@ def build(s,a):
 if __name__=='__main__':
     ap=argparse.ArgumentParser(); ap.add_argument('specs'); ap.add_argument('tids',nargs='*'); ap.add_argument('--tts',default='edge',choices=['edge','elevenlabs','stille'])
     ap.add_argument('--stemme',default='nb-NO-FinnNeural'); ap.add_argument('--fart',default='-6%'); ap.add_argument('--modell',default='eleven_multilingual_v2')
-    a=ap.parse_args(); S=json.load(open(a.specs)); bad=0
+    a=ap.parse_args(); S=json.load(open(a.specs,encoding='utf-8')); bad=0
     for s in S:
         if a.tids and s['tid'] not in a.tids: continue
         try:

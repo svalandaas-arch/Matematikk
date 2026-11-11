@@ -1,0 +1,305 @@
+[
+ {"tid": "faktor-alg", "m": "k10fak", "title": "Faktorisering", "segs": [
+  {"st": [0], "say": "Vi skal faktorisere uttrykket fire x i andre minus ti x. Å faktorisere betyr å skrive uttrykket som en multiplikasjon av faktorer, altså det motsatte av å gange ut en parentes."},
+  {"st": [1], "say": "Først skriver vi hvert ledd som et produkt av primtall og variabler. Fire x i andre er to ganger to ganger x ganger x, og ti x er to ganger fem ganger x."},
+  {"st": [2], "say": "Faktorene som finnes i begge leddene, er markert med rødt: ett totall og én x. Til sammen er den felles faktoren to x."},
+  {"st": [3], "say": "Vi setter to x utenfor en parentes. Inne i parentesen står det som er igjen av hvert ledd: to x minus fem. Uttrykket er to x ganger parentes to x minus fem."},
+  {"st": [4], "say": "Vi kontrollerer ved å gange inn igjen. To x ganger to x er fire x i andre, og to x ganger fem er ti x. Vi får det samme uttrykket, så faktoriseringen er riktig. Regelen er: finn den største felles faktoren, og sett den utenfor parentesen."}
+ ]},
+ {"tid": "forkort-alg", "m": "k10fork", "title": "Forkorting", "segs": [
+  {"st": [0], "say": "Vi skal forkorte brøken tretti x delt på førtito x. Å forkorte betyr å dele teller og nevner med det samme, slik at brøken blir enklere uten å endre verdi."},
+  {"st": [1], "say": "Det er lettest å se hva vi kan forkorte med når teller og nevner er faktorisert. Tretti x er to ganger tre ganger fem ganger x, og førtito x er to ganger tre ganger sju ganger x."},
+  {"st": [2], "say": "Nå ser vi at to, tre og x finnes både oppe og nede. Vi stryker de like faktorene i teller og nevner."},
+  {"st": [2], "say": "Igjen står fem over sju. Svaret er fem sjudeler. Regelen er: faktoriser teller og nevner, og stryk faktorene som er like oppe og nede."}
+ ]},
+ {"tid": "parentes-alg", "m": "k10par", "title": "Sammentrekking av uttrykk med parenteser", "segs": [
+  {"st": [0], "say": "Vi skal se hvordan vi ganger ut parenteser og trekker sammen uttrykk. Først en arealmodell: et rektangel har sidene x og x pluss to. Arealet er x ganger parentes x pluss to."},
+  {"st": [1], "say": "Rektangelet består av to deler. Den ene er x ganger x, altså x i andre, og den andre er x ganger to, altså to x. Arealet er summen av delene: x i andre pluss to x. Vi ganger x med hvert ledd inne i parentesen."},
+  {"load": {"mode": "minus"}, "st": [0, 1], "say": "Nå et større uttrykk: to ganger parentes x minus to, minus tre x ganger parentes to x minus fire. Vi ganger tallet foran hver parentes inn i parentesen. Det gir parentes to x minus fire, minus parentes seks x i andre minus tolv x."},
+  {"st": [2], "say": "Når vi løser opp en parentes med minus foran, bytter alle leddene inni fortegn. Seks x i andre blir minus seks x i andre, og minus tolv x blir pluss tolv x."},
+  {"st": [3], "say": "Til slutt trekker vi sammen like ledd og ordner etter synkende potens: minus seks x i andre pluss fjorten x minus fire. Regelen er: gang inn, pass på fortegnene når det står minus foran parentesen, og trekk sammen like ledd."}
+ ]},
+ {"tid": "brokuttrykk", "m": "k10brok", "title": "Sammentrekking av brøkuttrykk", "segs": [
+  {"st": [0], "say": "Vi skal legge sammen fem x tolvdeler og to x fjerdedeler. Før vi kan trekke sammen brøker, må de ha samme nevner, en fellesnevner."},
+  {"st": [1], "say": "Tolv er delelig med både tolv og fire, så tolv kan være fellesnevner. Den første brøken har allerede tolv under streken. Den andre utvider vi med tre: to x ganger tre over fire ganger tre, altså seks x tolvdeler."},
+  {"st": [2], "say": "Når nevnerne er like, legger vi sammen tellerne og beholder nevneren. Fem x pluss seks x er elleve x, så vi får elleve x tolvdeler."},
+  {"st": [3], "say": "Til slutt sjekker vi om svaret kan forkortes. Elleve og tolv har ingen felles faktor, så elleve x tolvdeler er svaret. Regelen er: finn fellesnevner, utvid brøkene, legg sammen tellerne, og forkort hvis det går."}
+ ]},
+ {"tid": "polynom", "m": "k10poly", "title": "Multiplikasjon av polynom", "segs": [
+  {"st": [0], "say": "Vi skal gange to parentesuttrykk med hverandre: parentes x pluss tre, ganger parentes x pluss to."},
+  {"st": [1], "say": "Hvert ledd i den første parentesen skal ganges med hvert ledd i den andre. Arealmodellen viser hvorfor: et rektangel med sidene x pluss tre og x pluss to har fire deler."},
+  {"st": [2], "say": "Vi ganger ledd for ledd. x ganger x er x i andre, x ganger to er to x, tre ganger x er tre x, og tre ganger to er seks. Vi får fire ledd."},
+  {"st": [3], "say": "To x og tre x er like ledd, så vi trekker dem sammen til fem x. Svaret er x i andre pluss fem x pluss seks. Regelen er: alle ledd i den ene parentesen ganges med alle ledd i den andre, og så trekker vi sammen."}
+ ]},
+ {"tid": "kvsetn1", "m": "k10kv", "title": "Første kvadratsetning", "segs": [
+  {"st": [0], "say": "Et kvadrat har sider x pluss tre. Arealet er parentes x pluss tre, i andre. Vi skal finne en rask måte å regne ut slike uttrykk på."},
+  {"st": [0], "say": "Figuren viser at kvadratet består av fire deler: et stort kvadrat på x i andre, to like rektangler på tre x hver, og et lite kvadrat på tre i andre, altså ni."},
+  {"st": [1], "say": "Vi kan også regne det ut ved å gange parentesene: x ganger x pluss x ganger tre pluss tre ganger x pluss tre ganger tre. Det gir x i andre pluss seks x pluss ni."},
+  {"st": [2], "say": "Første kvadratsetning gir svaret direkte: parentes a pluss b, i andre, er lik a i andre pluss to a b pluss b i andre. Her blir det x i andre pluss to ganger x ganger tre pluss tre i andre. Regelen er: kvadratet av en sum er første ledd i andre, pluss det dobbelte produktet, pluss andre ledd i andre."}
+ ]},
+ {"tid": "kvsetn2", "m": "k10kv", "title": "Andre kvadratsetning", "segs": [
+  {"load": {"mode": "2"}, "st": [0], "say": "Andre kvadratsetning handler om kvadratet av en differanse: parentes a minus b, i andre, er lik a i andre minus to a b pluss b i andre. Vi skal se hvorfor det stemmer."},
+  {"st": [1], "say": "Vi ganger ut parentes x minus tre, i andre, som to parenteser: x ganger x, minus x ganger tre, minus tre ganger x, pluss tre ganger tre. De to leddene i midten er begge minus tre x, så til sammen blir det x i andre minus seks x pluss ni."},
+  {"st": [2], "say": "Med andre kvadratsetning går det raskere: x i andre minus to ganger x ganger tre pluss tre i andre, altså x i andre minus seks x pluss ni."},
+  {"st": [2], "say": "Legg merke til at det siste leddet alltid blir positivt, fordi minus tre ganger minus tre er pluss ni. Regelen er: kvadratet av en differanse er første ledd i andre, minus det dobbelte produktet, pluss andre ledd i andre."}
+ ]},
+ {"tid": "kvsetn3", "m": "k10kv", "title": "Tredje kvadratsetning", "segs": [
+  {"load": {"mode": "3"}, "st": [0], "say": "Tredje kvadratsetning kalles også konjugatsetningen: parentes a pluss b, ganger parentes a minus b, er lik a i andre minus b i andre. Vi skal se hvorfor leddene i midten forsvinner."},
+  {"st": [1], "say": "Vi ganger ut parentes x pluss tre, ganger parentes x minus tre: x ganger x, minus x ganger tre, pluss tre ganger x, minus tre ganger tre. De to leddene i midten er minus tre x og pluss tre x."},
+  {"st": [1], "say": "Minus tre x pluss tre x er null, så de to leddene i midten forsvinner. Igjen står x i andre minus ni."},
+  {"st": [2], "say": "Setningen kan også brukes baklengs til å faktorisere. x i andre minus ni er x i andre minus tre i andre, og det er lik parentes x pluss tre, ganger parentes x minus tre. Regelen er: en sum ganger en differanse av de samme leddene gir kvadratet av det første minus kvadratet av det andre."}
+ ]},
+ {"tid": "likn10", "m": "k10likn", "title": "Å løse likninger", "segs": [
+  {"st": [0], "say": "Vi skal løse likningen tre x minus fem er lik to x minus en. En likning er som en vekt i balanse: det vi gjør på den ene siden, må vi også gjøre på den andre."},
+  {"st": [1], "say": "Først samler vi leddene med x på venstre side. Vi trekker fra to x på begge sider. Tre x minus to x er x, så vi får x minus fem er lik minus en."},
+  {"st": [2], "say": "Så samler vi tallene på høyre side. Vi legger til fem på begge sider, og får x er lik minus en pluss fem, altså fire. Løsningen er x er lik fire."},
+  {"st": [3], "say": "Vi kontrollerer ved å sette inn fire. Venstre side blir tre ganger fire minus fem, altså sju. Høyre side blir to ganger fire minus en, også sju. Begge sidene er like, så løsningen er riktig. Regelen er: samle x på den ene siden og tall på den andre, og gjør det samme på begge sider."}
+ ]},
+ {"tid": "kvadratisk-likn", "m": "k10kvl", "title": "Kvadratiske likninger", "segs": [
+  {"st": [0], "say": "Figuren består av et kvadrat med side x og et rektangel som er to ganger fem centimeter. Arealet er til sammen femtini kvadratcentimeter. Hvor lang er siden x?"},
+  {"st": [1], "say": "Kvadratet har areal x ganger x, altså x i andre, og rektangelet har areal to ganger fem, altså ti. Det gir likningen x i andre pluss ti er lik femtini."},
+  {"st": [2], "say": "Vi trekker fra ti på begge sider, og får x i andre er lik førtini. For å finne x tar vi kvadratroten på begge sider. Kvadratroten av førtini er sju, så siden i kvadratet er sju centimeter."},
+  {"st": [3], "say": "Vi kontrollerer: sju ganger sju pluss to ganger fem er førtini pluss ti, altså femtini. Venstre side er lik høyre side. Regelen er: få x i andre alene, og ta kvadratroten på begge sider."}
+ ]},
+ {"tid": "proporsjon", "m": "k10prop", "title": "Proporsjoner", "segs": [
+  {"st": [0], "say": "En oppskrift bruker fem hundre gram kyllingfilet til fire personer. Hvor mye trenger vi til seks personer? Forholdet mellom gram og personer er det samme uansett hvor mange som skal spise. Vi setter opp en proporsjon: fem hundre delt på fire er lik x delt på seks."},
+  {"st": [1], "say": "Vi løser proporsjonen som en likning. For å få x alene ganger vi alle ledd med seks og forkorter. Da står det fem hundre ganger seks delt på fire er lik x."},
+  {"st": [2], "say": "Fem hundre ganger seks er tre tusen, og tre tusen delt på fire er sju hundre og femti. Vi trenger sju hundre og femti gram kyllingfilet til seks personer."},
+  {"st": [2], "say": "Regelen er: når to størrelser er proporsjonale, er forholdet mellom dem konstant, og da kan vi sette opp to like brøker og løse som en likning."}
+ ]},
+ {"tid": "brokliknx", "m": "k10brl", "title": "Likninger med flere brøker", "v": {"a": 6, "b": 1, "d": 2, "c": 4}, "segs": [
+  {"st": [0], "say": "Likningen seks delt på x minus en fjerdedel er lik to fjerdedeler har brøker, og x står i en nevner. Vi starter med å trekke sammen like ledd, altså brøkene med fire i nevneren."},
+  {"st": [1], "say": "Vi legger til en fjerdedel på begge sider. To fjerdedeler pluss en fjerdedel er tre fjerdedeler. Nå står brøken med x alene: seks delt på x er lik tre fjerdedeler."},
+  {"st": [2], "say": "Vi ganger alle ledd med x og forkorter, så x forsvinner fra nevneren: seks er lik tre x fjerdedeler. Så ganger vi med fire: tjuefire er lik tre x. Til slutt deler vi på tre, og får x er lik åtte."},
+  {"st": [2], "say": "Regelen er: trekk sammen like ledd, gang med nevnerne for å bli kvitt brøkene, og løs likningen som vanlig."}
+ ]},
+ {"tid": "likningssett", "m": "k10sett", "title": "Likningssett", "segs": [
+  {"st": [0], "say": "Et likningssett har to ukjente og to likninger. Likning én er to x pluss to y er lik seksti, og likning to er y er lik x pluss tjue. Vi skal finne både x og y med innsettingsmetoden."},
+  {"st": [1], "say": "I likning to står y alene. Da kan vi sette uttrykket x pluss tjue inn i stedet for y i likning én. Vi får to x pluss to ganger parentes x pluss tjue er lik seksti, altså to x pluss to x pluss førti er lik seksti."},
+  {"st": [2], "say": "Nå er det en vanlig likning med bare én ukjent: fire x pluss førti er lik seksti. Vi trekker fra førti på begge sider og får fire x er lik tjue. Så deler vi på fire: x er lik fem."},
+  {"st": [3], "say": "Til slutt setter vi x er lik fem inn i likning to: y er lik fem pluss tjue, altså tjuefem. Løsningen er x er lik fem og y er lik tjuefem. Regelen er: finn et uttrykk for den ene ukjente, sett det inn i den andre likningen, og løs."}
+ ]},
+ {"tid": "grafisk-sett", "m": "k10graf", "title": "Grafisk løsning av likningssett", "segs": [
+  {"st": [0], "say": "Likning én sier at x pluss y er lik åttito, og likning to sier at y er lik x pluss femti. Vi skal løse settet grafisk, ved å tegne begge likningene i samme koordinatsystem."},
+  {"st": [1], "say": "Likning én er alle punktene der x pluss y er åttito. For å tegne den skriver vi den om til y er lik åttito minus x. Det er en rett linje som synker."},
+  {"st": [2], "say": "Likning to, y er lik x pluss femti, er en rett linje som stiger. Begge linjene viser alle tallparene som passer i hver sin likning."},
+  {"st": [3], "say": "Der linjene krysser hverandre, passer tallparet i begge likningene. Skjæringspunktet A er seksten komma sekstiseks, så løsningen er x er lik seksten og y er lik sekstiseks. Regelen er: løsningen på et likningssett er skjæringspunktet mellom grafene."}
+ ]},
+ {"tid": "problem-alg", "m": "k10prob", "title": "Utforskning og problemløsning", "segs": [
+  {"st": [0], "say": "Tante Klara og onkel Karl er like gamle. Martin er tjueåtte år yngre enn dem. Til sammen er de hundre og fire år. Hvor gamle er Klara og Karl? Vi skal løse oppgaven med en likning."},
+  {"st": [1], "say": "Vi kaller alderen til Klara for x. Karl er like gammel, så han er også x. Martin er tjueåtte år yngre, altså x minus tjueåtte."},
+  {"st": [2], "say": "Summen av alderen gir likningen x pluss x pluss x minus tjueåtte er lik hundre og fire, altså tre x minus tjueåtte er lik hundre og fire. Vi legger til tjueåtte på begge sider og får tre x er lik hundre og trettito. Så deler vi på tre: x er lik førtifire."},
+  {"st": [3], "say": "Klara og Karl er førtifire år, og Martin er førtifire minus tjueåtte, altså seksten år. Vi kontrollerer: førtifire pluss førtifire pluss seksten er hundre og fire. Regelen er: kall det ukjente x, uttrykk alt annet med x, og sett opp en likning."}
+ ]},
+ {"tid": "koord-10", "m": "k10koord", "title": "Koordinatsystemet", "segs": [
+  {"st": [0], "say": "Koordinatsystemet har en vannrett x-akse, som også kalles førsteaksen, og en loddrett y-akse, andreaksen. De møtes i origo, punktet null komma null. Vi skal plassere punktet A med koordinatene tre komma minus to."},
+  {"st": [1], "say": "Det første tallet er x-koordinaten. Fra origo går vi tre til høyre langs x-aksen, fordi tre er positiv."},
+  {"st": [2], "say": "Det andre tallet er y-koordinaten. Minus to betyr at vi går to ned, parallelt med y-aksen."},
+  {"st": [3], "say": "Der ligger punktet A med koordinatene tre komma minus to. Aksene deler planet i fire kvadranter, og A ligger i fjerde kvadrant, der x er positiv og y er negativ. Regelen er: alltid x først, så y."}
+ ]},
+ {"tid": "funksjon-graf", "m": "k10fgraf", "title": "Sammenhengen mellom funksjon og graf", "segs": [
+  {"st": [0], "say": "En funksjon er en regel som gir nøyaktig én y-verdi for hver x-verdi. Vi skriver f av x i stedet for y. Her er funksjonen f av x er lik to x minus en. Vi skal se hvordan regelen blir til en graf."},
+  {"st": [1], "say": "Vi lager en verditabell. Vi velger noen x-verdier og regner ut f av x for hver. For eksempel er f av en lik to ganger en minus en, altså en. For x lik to får vi tre, og for x lik minus to får vi minus fem."},
+  {"st": [2], "say": "Hvert par i tabellen blir et punkt i koordinatsystemet, med x-verdien bortover og f av x oppover."},
+  {"st": [3], "say": "Vi trekker en linje gjennom punktene. Linja er grafen til funksjonen, og den viser alle tallparene som passer med regelen. Regelen er: verditabell, punkter, og så en linje gjennom punktene."}
+ ]},
+ {"tid": "tegne-lineaer", "m": "k10fgraf", "title": "Tegne lineære grafer", "v": {"a": 3, "b": 2}, "segs": [
+  {"st": [0], "say": "Vi skal tegne grafen til f av x er lik tre x pluss to. Fordi x bare er ganget med et tall og lagt til et tall, er dette en lineær funksjon, og grafen blir en rett linje."},
+  {"st": [1], "say": "Vi lager en verditabell med x-verdiene fra minus to til to. For x lik en blir f av x tre ganger en pluss to, altså fem. For x lik null blir det to, og for x lik minus to blir det minus fire."},
+  {"st": [2], "say": "Vi setter inn punktene. For hvert steg til høyre går punktene tre opp, fordi tallet foran x er tre."},
+  {"st": [3], "say": "Vi trekker en rett linje gjennom punktene. Legg merke til at linja skjærer y-aksen i to, som er konstantleddet. Regelen er: for en lineær funksjon holder det egentlig med to punkter, men flere punkter gir en god kontroll."}
+ ]},
+ {"tid": "stigningstall", "m": "k10stig", "title": "Stigningstall", "segs": [
+  {"st": [0], "say": "Stigningstallet forteller hvor mye y endrer seg når x øker med én. Vi skal finne stigningstallet til linja gjennom punktene en komma en og fire komma sju."},
+  {"st": [1], "say": "Vi tegner en trekant mellom punktene. Fra punkt én til punkt to øker x med tre, og y endrer seg med seks."},
+  {"st": [2], "say": "Stigningstallet er endring i y delt på endring i x. Sju minus en, delt på fire minus en, er seks tredjedeler, altså to. For hvert steg til høyre går linja to opp."},
+  {"st": [2], "say": "Stigningstallet er positivt, så grafen stiger. Hadde det vært negativt, ville grafen sunket. Regelen er: stigningstallet er endring i y delt på endring i x."}
+ ]},
+ {"tid": "konstantledd", "m": "k10konst", "title": "Konstantledd", "segs": [
+  {"st": [0], "say": "Lineære funksjoner kan skrives f av x er lik a x pluss b. Tallet a er stigningstallet, og tallet b er konstantleddet. Vi skal se hva konstantleddet gjør med grafen."},
+  {"st": [1], "say": "Grafen til f av x er lik x pluss tre er parallell med grafen til y er lik x, den stiplede linja, men flyttet tre opp. Konstantleddet flytter altså hele linja opp eller ned."},
+  {"st": [2], "say": "Konstantleddet b lik tre er der grafen skjærer y-aksen. Det er fordi f av null er lik a ganger null pluss b, altså bare b."},
+  {"st": [2], "say": "Regelen er: konstantleddet er verdien når x er null, og det er punktet der grafen krysser y-aksen."}
+ ]},
+ {"tid": "lin-funk", "m": "k10lin", "title": "Lineære funksjoner", "segs": [
+  {"st": [0], "say": "En taxi koster femti kroner i fastpris og tolv kroner per kilometer. Vi skal beskrive prisen med en lineær funksjon."},
+  {"st": [1], "say": "Prisen for x kilometer er f av x er lik tolv x pluss femti. Stigningstallet tolv er prisen per kilometer, og konstantleddet femti er fastprisen vi betaler uansett."},
+  {"st": [2], "say": "Grafen starter i fastprisen på femti kroner, og stiger like mye for hver kilometer. Derfor er den en rett linje."},
+  {"st": [3], "say": "En tur på femten kilometer koster tolv ganger femten pluss femti, altså hundre og åtti pluss femti, som er to hundre og tretti kroner. Regelen er: i en lineær funksjon er stigningstallet prisen per enhet, og konstantleddet er startverdien."}
+ ]},
+ {"tid": "lin-graf", "m": "k10stig", "title": "Grafen til lineære funksjoner", "v": {"x1": -2, "y1": 5, "x2": 2, "y2": -3}, "segs": [
+  {"st": [0], "say": "Grafen til en lineær funksjon er en rett linje. Her går linja gjennom punktene minus to komma fem og to komma minus tre. Vi skal lese stigningstallet ut fra grafen."},
+  {"st": [1], "say": "Vi tegner en trekant mellom punktene. Fra punkt én til punkt to øker x med fire, mens y endrer seg med minus åtte, altså åtte ned."},
+  {"st": [2], "say": "Stigningstallet er endring i y delt på endring i x: minus tre minus fem, delt på to minus minus to, er minus åtte fjerdedeler, altså minus to."},
+  {"st": [2], "say": "Stigningstallet er negativt, så grafen synker. For hvert steg til høyre går linja to ned. Regelen er: stigende linje gir positivt stigningstall, synkende linje gir negativt."}
+ ]},
+ {"tid": "brokfunk", "m": "k10brokf", "title": "Brøkfunksjoner", "segs": [
+  {"st": [0], "say": "I en brøkfunksjon står x i nevneren. Her er f av x er lik tolv delt på x. Vi skal se hva som skjer med funksjonsverdien når x endrer seg."},
+  {"st": [1], "say": "Verditabellen viser at når x dobles, halveres f av x. For x lik en er verdien tolv, for x lik to er den seks, og for x lik fire er den tre. Produktet x ganger f av x er alltid tolv. Vi sier at størrelsene er omvendt proporsjonale."},
+  {"st": [2], "say": "Grafen er en kurve som kalles en hyperbel. Den kommer nærmere og nærmere aksene, men treffer dem aldri. x kan ikke være null, for vi kan ikke dele på null."},
+  {"st": [2], "say": "Regelen er: i en brøkfunksjon er produktet av x og f av x konstant, og grafen er en hyperbel som aldri når aksene."}
+ ]},
+ {"tid": "brok-graf", "m": "k10brokf", "title": "Grafen til brøkfunksjoner", "v": {"k": 24}, "segs": [
+  {"st": [0], "say": "Vi skal tegne grafen til brøkfunksjonen f av x er lik tjuefire delt på x."},
+  {"st": [1], "say": "Vi lager en verditabell. For x lik en er verdien tjuefire, for to er den tolv, for tre er den åtte, for fire er den seks, og for seks er den fire. Produktet x ganger f av x er alltid tjuefire."},
+  {"st": [2], "say": "Vi setter inn punktene og tegner en jevn kurve gjennom dem. Kurven faller bratt i starten og flater ut etter hvert, men den treffer aldri aksene."},
+  {"st": [2], "say": "Regelen er: grafen til en brøkfunksjon er en hyperbel. Jo større x blir, jo nærmere null kommer f av x, og x kan aldri være null."}
+ ]},
+ {"tid": "andregrad", "m": "k10andre", "title": "Andregradsfunksjoner", "segs": [
+  {"st": [0], "say": "En andregradsfunksjon har et ledd med x i andre. Her er f av x er lik x i andre minus fire x pluss tre. Grafen er en krum kurve som kalles en parabel."},
+  {"st": [1], "say": "Vi lager en verditabell. For x lik null er verdien tre, for en er den null, for to er den minus en, for tre er den null igjen, og for fire er den tre. Tabellen er symmetrisk rundt x lik to."},
+  {"st": [2], "say": "Vi setter inn punktene og tegner kurven. Når tallet foran x i andre er positivt, vender parabelen åpningen opp, som en glad munn."},
+  {"st": [3], "say": "Grafen har et bunnpunkt i to komma minus en. Det kalles et ekstremalpunkt. Grafen er symmetrisk om den loddrette linja x lik to. Regelen er: en andregradsfunksjon gir en parabel med et topp- eller bunnpunkt."}
+ ]},
+ {"tid": "andregrad-graf", "m": "k10andre", "title": "Grafen til andregradsfunksjoner", "v": {"a": -1, "b": 2, "c": 3}, "segs": [
+  {"st": [0], "say": "Vi skal tegne grafen til f av x er lik minus x i andre pluss to x pluss tre. Dette er en andregradsfunksjon, så grafen blir en parabel."},
+  {"st": [1], "say": "Vi lager en verditabell. For x lik minus en er verdien null, for null er den tre, for en er den fire, for to er den tre, og for tre er den null. Tabellen er symmetrisk rundt x lik en."},
+  {"st": [2], "say": "Vi setter inn punktene og tegner en jevn kurve. Her er tallet foran x i andre negativt, så parabelen vender åpningen ned, som en sur munn."},
+  {"st": [3], "say": "Grafen har et toppunkt i en komma fire, og den er symmetrisk om linja x lik en. Regelen er: positivt tall foran x i andre gir bunnpunkt, negativt tall gir toppunkt."}
+ ]},
+ {"tid": "ekstremal", "m": "k10andre", "title": "Ekstremalpunkt", "v": {"a": 1, "b": 2, "c": -3}, "segs": [
+  {"st": [0], "say": "Ekstremalpunktet til en parabel er det høyeste eller laveste punktet på grafen. Vi skal finne ekstremalpunktet til f av x er lik x i andre pluss to x minus tre."},
+  {"st": [1], "say": "Verditabellen er symmetrisk rundt x lik minus en. For x lik minus tre er verdien null, for minus to er den minus tre, for minus en er den minus fire, for null er den minus tre, og for en er den null."},
+  {"st": [2], "say": "Tallet foran x i andre er positivt, så parabelen vender åpningen opp. Da er ekstremalpunktet et bunnpunkt."},
+  {"st": [3], "say": "Bunnpunktet ligger på symmetrilinja. Vi kan finne den med formelen x er lik minus b delt på to a: minus to delt på to, altså minus en. Bunnpunktet er minus en komma minus fire. Regelen er: ekstremalpunktet ligger på symmetrilinja x er lik minus b delt på to a."}
+ ]},
+ {"tid": "eksp-funk", "m": "k10eksp", "title": "Eksponentialfunksjoner", "segs": [
+  {"st": [0], "say": "Når noe øker med ti prosent per år, ganger vi med vekstfaktoren en komma en hvert år. Vi skal se hva slags funksjon det gir."},
+  {"st": [1], "say": "Startverdien er tusen. Hvert år ganger vi med en komma en: tusen, tusen ett hundre, tusen to hundre og ti, tusen tre hundre og trettien. Økningen er ikke like stor hvert år, den blir større og større."},
+  {"st": [2], "say": "Når vi tegner punktene, ser vi at grafen krummer oppover. Det kalles eksponentiell vekst. Hadde vekstfaktoren vært mindre enn én, ville grafen sunket, og det kalles eksponentiell nedgang."},
+  {"st": [3], "say": "Funksjonen kan skrives f av x er lik tusen ganger en komma en opphøyd i x. Etter fem år er verdien tusen ganger en komma en i femte, altså omtrent tusen seks hundre og ti komma femtien. Regelen er: i en eksponentialfunksjon står x i eksponenten, og vi ganger med den samme vekstfaktoren hver gang."}
+ ]},
+ {"tid": "eksp-vekst", "m": "k10eksp", "title": "Eksponentiell vekst", "v": {"a": 2000, "p": -20, "n": 4}, "segs": [
+  {"st": [0], "say": "En verdi avtar med tjue prosent per år. Da ganger vi med vekstfaktoren en minus tjue hundredeler, altså null komma åtte, hvert år. Vi skal se hvordan verdien utvikler seg."},
+  {"st": [1], "say": "Startverdien er to tusen. Hvert år ganger vi med null komma åtte: to tusen, seksten hundre, tolv hundre og åtti, tusen og tjuefire. Nedgangen blir mindre for hvert år, fordi vi tar tjue prosent av et stadig mindre tall."},
+  {"st": [2], "say": "Grafen krummer og flater ut. Dette er eksponentiell nedgang. Verdien nærmer seg null, men blir aldri null."},
+  {"st": [3], "say": "Funksjonen er f av x er lik to tusen ganger null komma åtte opphøyd i x. Etter fire år er verdien to tusen ganger null komma åtte i fjerde, altså åtte hundre og nitten komma to. Regelen er: eksponentiell endring betyr at vi ganger med samme faktor hver gang, og faktoren er større enn én ved vekst og mindre enn én ved nedgang."}
+ ]},
+ {"tid": "mat-modell", "m": "k10regr", "title": "Matematiske modeller", "segs": [
+  {"st": [0], "say": "Vi har seks målinger som punkter i et koordinatsystem: tolv, femten, nitten, tjueen, tjuefem og tjueåtte. En matematisk modell er en funksjon som beskriver slike data. Først må vi se om punktene ligger omtrent på en linje, eller om de krummer."},
+  {"st": [1], "say": "Her ligger punktene nesten på en rett linje, så vi velger en lineær modell. Regresjon finner funksjonen som passer best med punktene. I GeoGebra bruker vi verktøyet Regresjonsanalyse. Modellen blir f av x er lik tre komma to x pluss tolv."},
+  {"st": [2], "say": "Vi kan bruke modellen til å anslå neste verdi: f av seks er omtrent trettien komma to. Men en modell er en forenkling av virkeligheten, så svaret er usikkert."},
+  {"st": [2], "say": "Regelen er: velg en modell som passer med formen på punktene, finn funksjonen med regresjon, og husk at anslagene er usikre."}
+ ]},
+ {"tid": "regresjon", "m": "k10regr", "title": "Regresjonsanalyse", "v": {"mode": "eksp"}, "segs": [
+  {"st": [0], "say": "Vi har seks målinger: ti, tretten, sytten, tjueto, tjueni og trettisju. Vi skal finne en funksjon som passer til dataene. Punktene stiger brattere og brattere, så de ligger ikke på en rett linje."},
+  {"st": [1], "say": "Når punktene krummer oppover på denne måten, passer en eksponentiell modell bedre enn en lineær. Regresjonsanalyse i GeoGebra finner den eksponentialfunksjonen som ligger nærmest punktene. Her blir modellen f av x er lik omtrent ti ganger en komma tre null en opphøyd i x."},
+  {"st": [2], "say": "Modellen kan brukes til å anslå neste verdi, altså f av seks. Den røde kurven gir omtrent førtiåtte komma fem. Jo lenger fram vi anslår, jo mer usikkert blir svaret."},
+  {"st": [2], "say": "Regelen er: se på formen til punktene, velg lineær modell når de ligger på en linje og eksponentiell modell når de krummer, og la regresjonen finne funksjonen."}
+ ]},
+ {"tid": "prosentendring", "m": "k10pros", "title": "Prosentvis endring", "segs": [
+  {"st": [0], "say": "En vare kostet åtte hundre kroner. Nå koster den seks hundre kroner. Vi skal finne ut hvor mange prosent prisen har gått ned."},
+  {"st": [1], "say": "Først finner vi endringen i kroner. Seks hundre minus åtte hundre er minus to hundre, så prisen har gått ned med to hundre kroner."},
+  {"st": [2], "say": "Så deler vi endringen på det vi sammenligner med, altså den gamle prisen. To hundre delt på åtte hundre er null komma tjuefem, og ganger hundre prosent gir det tjuefem prosent. Prisen har gått ned med tjuefem prosent."},
+  {"st": [2], "say": "Regelen er: prosentvis endring er endringen delt på den opprinnelige verdien, ganger hundre prosent. Del alltid på det gamle tallet, ikke det nye."}
+ ]},
+ {"tid": "vekstfaktor10", "m": "k10vf", "title": "Vekstfaktor", "segs": [
+  {"st": [0], "say": "En vare til fem hundre kroner settes ned med tjue prosent. En nedgang på tjue prosent gir vekstfaktoren en minus tjue hundredeler, altså null komma åtte. Vi betaler åtti prosent av prisen."},
+  {"st": [1], "say": "Den nye prisen finner vi ved å gange med vekstfaktoren i ett steg: fem hundre ganger null komma åtte er fire hundre kroner."},
+  {"st": [2], "say": "Så settes prisen opp igjen med ti prosent. Ved flere endringer ganger vi med vekstfaktorene etter hverandre: fem hundre ganger null komma åtte ganger en komma en er fire hundre og førti kroner."},
+  {"st": [2], "say": "Legg merke til at minus tjue prosent og pluss ti prosent ikke blir minus ti prosent. Samlet vekstfaktor er null komma åtte ganger en komma en, altså null komma åttiåtte, som er en nedgang på tolv prosent. Regelen er: vekstfaktoren er en pluss eller minus prosenten som desimaltall, og flere endringer ganges sammen."}
+ ]},
+ {"tid": "finne-prosent", "m": "k10finnp", "title": "Å finne prosenten", "segs": [
+  {"st": [0], "say": "En pris er satt opp med tjue prosent, og er nå ni hundre og seksti kroner. Hva var den opprinnelige prisen? Vi kaller den x. Vekstfaktoren for tjue prosent økning er en komma to, så x ganger en komma to er lik ni hundre og seksti."},
+  {"st": [1], "say": "Vi løser likningen ved å dele alle ledd med en komma to. Ni hundre og seksti delt på en komma to er åtte hundre. Den opprinnelige prisen var åtte hundre kroner. Vi finner altså den gamle prisen ved å dele på vekstfaktoren."},
+  {"st": [2], "say": "Pass på en vanlig feil: vi kan ikke bare trekke fra tjue prosent av ni hundre og seksti, fordi prosenten er regnet av den gamle prisen. Ni hundre og seksti ganger null komma åtte er sju hundre og sekstiåtte, og det er feil."},
+  {"st": [2], "say": "Regelen er: ny verdi er gammel verdi ganger vekstfaktor, så gammel verdi er ny verdi delt på vekstfaktoren."}
+ ]},
+ {"tid": "mva", "m": "k10mva", "title": "Merverdiavgift", "segs": [
+  {"st": [0], "say": "Merverdiavgift, som forkortes mva, er en avgift til staten som legges på det meste vi kjøper. Prisen uten mva er fire hundre kroner, og mva er tjuefem prosent av prisen uten mva. Vi skal finne prisen med mva."},
+  {"st": [0], "say": "Figuren viser prisen uten mva som hundre prosent, og mva som tjuefem prosent i tillegg. Prisen med mva blir dermed hundre og tjuefem prosent av prisen uten mva."},
+  {"st": [1], "say": "Mva i kroner er fire hundre ganger null komma tjuefem, altså hundre kroner. Prisen med mva er fire hundre pluss hundre, altså fem hundre kroner."},
+  {"st": [1], "say": "Vi kan også legge til mva i ett steg ved å gange med vekstfaktoren en komma tjuefem: fire hundre ganger en komma tjuefem er fem hundre. Regelen er: pris med mva er pris uten mva ganger en komma tjuefem."}
+ ]},
+ {"tid": "toll-mva", "m": "k10toll", "title": "Toll og mva på varer fra utlandet", "segs": [
+  {"st": [0], "say": "Når vi handler varer fra utlandet, må vi ofte betale mva, og noen ganger toll, i tillegg til prisen. Her koster varen seksten hundre kroner, og frakten er to hundre kroner. Vi skal finne ut hva varen koster til sammen."},
+  {"st": [1], "say": "Tollen regnes av varepris pluss frakt, altså atten hundre kroner. Med ti prosent toll blir det atten hundre ganger null komma en, altså hundre og åtti kroner."},
+  {"st": [2], "say": "Mva regnes av varepris pluss frakt pluss toll, altså nitten hundre og åtti kroner. Tjuefem prosent av det er fire hundre og nittifem kroner. Mva legges altså på et beløp som allerede inneholder toll."},
+  {"st": [3], "say": "I tillegg kommer et fortollingsgebyr på hundre og femti kroner. Til sammen koster varen seksten hundre pluss to hundre pluss hundre og åtti pluss fire hundre og nittifem pluss hundre og femti, altså to tusen seks hundre og tjuefem kroner. Regelen er: toll regnes av vare og frakt, mva regnes av alt inkludert toll, og gebyrer kommer i tillegg."}
+ ]},
+ {"tid": "finne-mva", "m": "k10mva", "title": "Å finne merverdiavgiften", "v": {"mode": "finn"}, "segs": [
+  {"st": [0], "say": "En vare koster fire hundre kroner i butikken, og mva er inkludert i prisen. Hvor mye av prisen er mva? Prisen uten mva er hundre prosent, og med tjuefem prosent mva blir prisen i butikken hundre og tjuefem prosent."},
+  {"st": [0], "say": "Mange tror at mva er tjuefem prosent av butikkprisen, men det er feil. De tjuefem prosentene er regnet av prisen uten mva, som er et mindre tall."},
+  {"st": [1], "say": "Vi finner prisen uten mva ved å dele på vekstfaktoren: fire hundre delt på en komma tjuefem er tre hundre og tjue kroner. Mva er differansen: fire hundre minus tre hundre og tjue, altså åtti kroner."},
+  {"st": [1], "say": "Legg merke til at mva utgjør tjue prosent av prisen med mva, fordi tjuefem delt på hundre og tjuefem er null komma to. Regelen er: del butikkprisen på en komma tjuefem for å finne prisen uten mva, og mva er differansen."}
+ ]},
+ {"tid": "sparing", "m": "k10spar", "title": "Sparing", "segs": [
+  {"st": [0], "say": "Du setter inn ti tusen kroner i banken med fire prosent rente per år. Rentene legges til kontoen hvert år. Vi skal finne ut hvor mye du har etter fem år."},
+  {"st": [1], "say": "Første år får du fire prosent av ti tusen, altså fire hundre kroner, og saldoen blir ti tusen fire hundre. Andre år får du rente av hele saldoen, også av rentene fra året før: fire hundre og seksten kroner. Det kalles renters rente, og det gjør at sparepengene vokser litt raskere for hvert år."},
+  {"st": [2], "say": "Med vekstfaktor går det raskere å regne. Fire prosent økning gir vekstfaktoren en komma null fire. Etter fem år har du ti tusen ganger en komma null fire i femte, altså tolv tusen hundre og sekstiseks kroner og femtitre øre."},
+  {"st": [2], "say": "Regelen er: med renters rente ganger vi startbeløpet med vekstfaktoren opphøyd i antall år."}
+ ]},
+ {"tid": "lan", "m": "k10lan", "title": "Lån", "segs": [
+  {"st": [0], "say": "Du låner tjue tusen kroner med tolv prosent rente og betaler alt tilbake etter ett år. Vi skal finne ut hva lånet egentlig koster."},
+  {"st": [1], "say": "Et lån koster renter og ofte gebyrer. Renten er tjue tusen ganger null komma tolv, altså to tusen fire hundre kroner. I tillegg kommer et etableringsgebyr på fem hundre kroner og et termingebyr på førti kroner hver måned, altså fire hundre og åtti kroner i året. Summen av kostnadene er tre tusen tre hundre og åtti kroner."},
+  {"st": [2], "say": "For å se hva lånet koster i prosent, deler vi kostnadene på lånebeløpet. Tre tusen tre hundre og åtti delt på tjue tusen, ganger hundre prosent, er seksten komma ni prosent. Med gebyrer koster lånet altså seksten komma ni prosent, ikke bare tolv."},
+  {"st": [2], "say": "Dette ligner på det bankene kaller effektiv rente. Regelen er: den virkelige prisen på et lån er renter pluss alle gebyrer, og sammenlign alltid effektiv rente."}
+ ]},
+ {"tid": "serielan", "m": "k10serie", "title": "Serielån", "segs": [
+  {"st": [0], "say": "Du låner hundre tusen kroner som serielån over fem år med fem prosent rente. I et serielån betaler du like stort avdrag hvert år. Avdraget er lånebeløpet delt på antall år: hundre tusen delt på fem er tjue tusen kroner."},
+  {"st": [1], "say": "Renten regnes av det du fortsatt skylder, altså restlånet. Første år skylder du hundre tusen, så renten er fem tusen kroner. Terminbeløpet er rente pluss avdrag, tjuefem tusen. Andre år er restlånet åtti tusen, renten fire tusen, og terminbeløpet tjuefire tusen."},
+  {"st": [2], "say": "Restlånet blir mindre hvert år, så renten og terminbeløpet synker. Det siste året skylder du tjue tusen, og renten er bare tusen kroner. Til sammen betaler du fem tusen pluss fire tusen pluss tre tusen pluss to tusen pluss tusen, altså femten tusen kroner i renter."},
+  {"st": [2], "say": "Regelen er: i et serielån er avdraget fast, renten regnes av restlånet, og terminbeløpet synker for hvert år."}
+ ]},
+ {"tid": "kredittkort", "m": "k10kort", "title": "Kredittkort", "segs": [
+  {"st": [0], "say": "Du handler for fem tusen kroner med kredittkort. Betaler du hele beløpet innen fristen, som ofte er tretti til femti dager, er det rentefritt. Vi skal se hva som skjer hvis du ikke betaler."},
+  {"st": [1], "say": "Betaler du ikke, får du en komma åtte prosent rente per måned, og renten legges til gjelden hver måned. Det er renters rente med vekstfaktor en komma null atten. Etter seks måneder skylder du fem tusen ganger en komma null atten i sjette, altså fem tusen fem hundre og sekstifire kroner og åttini øre."},
+  {"st": [2], "say": "En komma åtte prosent per måned høres lite ut, men på ett år blir vekstfaktoren en komma null atten i tolvte, som er omtrent en komma to tre ni. Det betyr tjuetre komma ni prosent rente per år."},
+  {"st": [2], "say": "Kredittkortgjeld er dyr. Regelen er: månedsrente ganges sammen tolv ganger for å finne årsrenten, og den blir mye høyere enn tolv ganger månedsrenten."}
+ ]},
+ {"tid": "lonn-skatt", "m": "k10lonn", "title": "Lønn og skatt", "segs": [
+  {"st": [0], "say": "Du har en timelønn på hundre og åtti kroner og har jobbet seksti timer, pluss fem timer overtid med femti prosent tillegg. Vi skal finne bruttolønn, nettolønn og feriepenger."},
+  {"st": [0], "say": "Bruttolønn er lønnen før skatt. Seksti timer ganger hundre og åtti er ti tusen åtte hundre kroner. Overtid med femti prosent tillegg betales med en komma fem ganger timelønnen: fem ganger hundre og åtti ganger en komma fem er tusen tre hundre og femti. Bruttolønnen er tolv tusen hundre og femti kroner."},
+  {"st": [1], "say": "Arbeidsgiveren trekker skatt før lønnen utbetales. Det kalles forskuddstrekk. Med tjueto prosent skatt trekkes to tusen seks hundre og syttitre kroner. Det du får utbetalt, er nettolønnen: ni tusen fire hundre og syttisju kroner."},
+  {"st": [2], "say": "Av lønnen du tjener i år, får du også feriepenger året etter. Vanligvis er de tolv prosent av bruttolønnen: tolv tusen hundre og femti ganger null komma tolv er tusen fire hundre og femtiåtte kroner. Regelen er: brutto er før skatt, netto er etter skatt, og feriepengene regnes av bruttolønnen."}
+ ]},
+ {"tid": "utgifter", "m": "k10budsj", "title": "Utgifter", "segs": [
+  {"st": [0], "say": "Et budsjett er en plan for inntekter og utgifter. Her er inntekten to tusen fem hundre kroner i måneden. Utgiftene er mobil to hundre og nittini, mat og kantine ni hundre, fritid sju hundre og sparing fire hundre. Vi skal se om pengene strekker til."},
+  {"st": [0], "say": "Vi legger sammen utgiftene: to hundre og nittini pluss ni hundre pluss sju hundre pluss fire hundre er to tusen to hundre og nittini kroner."},
+  {"st": [1], "say": "Inntekt minus utgifter er to tusen fem hundre minus to tusen to hundre og nittini, altså to hundre og en kroner. Budsjettet går i balanse med et overskudd på to hundre og en kroner."},
+  {"st": [2], "say": "Et regnskap viser hva du faktisk brukte. Mat og kantine ble tusen og trettifem kroner, hundre og trettifem mer enn planlagt, mens fritid ble seks hundre og tretti, sytti kroner mindre. Avviket viser hvor budsjettet ikke holdt. Regelen er: budsjett er planen, regnskap er det som skjedde, og avviket er forskjellen."}
+ ]},
+ {"tid": "budsjett", "m": "k10budsj", "title": "Budsjett og regnskap", "v": {"i": 1800, "u1": 299, "u2": 800, "u3": 600, "u4": 300}, "segs": [
+  {"st": [0], "say": "Vi setter opp et budsjett for en måned. Inntekten er tusen åtte hundre kroner. Utgiftene er mobil to hundre og nittini, mat og kantine åtte hundre, fritid seks hundre og sparing tre hundre."},
+  {"st": [0], "say": "Summen av utgiftene er to hundre og nittini pluss åtte hundre pluss seks hundre pluss tre hundre, altså tusen ni hundre og nittini kroner. Det er mer enn inntekten."},
+  {"st": [1], "say": "Tusen åtte hundre minus tusen ni hundre og nittini er minus hundre og nittini. Budsjettet har et underskudd på hundre og nittini kroner, så noe må kuttes, for eksempel litt av fritiden eller sparingen."},
+  {"st": [2], "say": "Når måneden er over, fører vi regnskap. Mat og kantine ble ni hundre og tjue kroner, hundre og tjue mer enn budsjettet, mens fritid ble fem hundre og førti, seksti kroner mindre. Regelen er: sett opp budsjettet før måneden, før regnskap etterpå, og bruk avvikene til å lage et bedre budsjett neste gang."}
+ ]},
+ {"tid": "valuta", "m": "k10val", "title": "Valuta", "segs": [
+  {"st": [0], "say": "Valutakursen forteller hvor mange norske kroner én enhet av den andre valutaen koster. Her koster én euro elleve komma fem kroner. Vi skal veksle begge veier."},
+  {"st": [1], "say": "Fra utenlandsk valuta til kroner ganger vi med kursen. Førti euro er førti ganger elleve komma fem, altså fire hundre og seksti kroner."},
+  {"load": {"mode": "fra"}, "st": [0], "say": "Nå motsatt vei: du har to tusen kroner og vil veksle til euro. Hver euro koster elleve komma fem kroner, så vi må finne ut hvor mange ganger elleve komma fem går opp i to tusen."},
+  {"st": [1], "say": "Fra kroner til utenlandsk valuta deler vi på kursen. To tusen delt på elleve komma fem er omtrent hundre og syttitre komma nittien euro. Regelen er: til kroner ganger vi med kursen, fra kroner deler vi på kursen."}
+ ]},
+ {"tid": "moped", "m": "k10moped", "title": "Moped og sertifikat", "segs": [
+  {"st": [0], "say": "Du skal kjøpe en moped til tjueto tusen kroner. I tillegg kommer forsikring og bensin hvert år, og førerkortet koster også penger. Vi skal regne ut hva det koster å bruke mopeden i ett år."},
+  {"st": [1], "say": "Først bensinen. Mopeden bruker null komma tre liter per mil, og du kjører tre hundre mil i året. Det blir null komma tre ganger tre hundre, altså nitti liter. Med en bensinpris på tjueen kroner per liter koster det nitti ganger tjueen, altså tusen åtte hundre og nitti kroner."},
+  {"st": [2], "say": "Forsikringen koster tre tusen seks hundre kroner i året. Forsikring pluss bensin er fem tusen fire hundre og nitti kroner per år, uten kjøpsprisen."},
+  {"st": [2], "say": "Deler vi på tre hundre mil, får vi omtrent atten komma tre kroner per mil. Regelen er: faste utgifter som forsikring kommer uansett, mens bensin avhenger av hvor mye du kjører, og summen delt på antall mil gir prisen per mil."}
+ ]},
+ {"tid": "bolig", "m": "k10bolig", "title": "Bolig og økonomi", "segs": [
+  {"st": [0], "say": "En leilighet består av to rektangulære deler. Den ene er seks ganger fire meter, og den andre er tre ganger to komma fem meter. Vi skal finne arealet, prisen og hvor mye vi må ha i egenkapital."},
+  {"st": [1], "say": "Arealet er seks ganger fire pluss tre ganger to komma fem, altså tjuefire pluss sju komma fem, som er trettien komma fem kvadratmeter."},
+  {"st": [2], "say": "Prisen per kvadratmeter er femtifem tusen kroner. Trettien komma fem ganger femtifem tusen er en million sju hundre og trettito tusen fem hundre kroner."},
+  {"st": [2], "say": "Når du kjøper bolig, må du ha minst femten prosent egenkapital. Femten prosent av prisen er to hundre og femtini tusen åtte hundre og syttifem kroner. Resten, en million fire hundre og syttito tusen seks hundre og tjuefem kroner, kan du låne. Regelen er: egenkapitalen er minst femten prosent av prisen, og lånet er resten."}
+ ]},
+ {"tid": "jorda", "m": "k10jord", "title": "Jorda og beregninger", "segs": [
+  {"st": [0], "say": "Jorda er nesten en kule med radius seks tusen tre hundre og syttien kilometer. Vi skal regne ut hvor fort et punkt på ekvator beveger seg, og hvorfor vi har tidssoner. Omkretsen rundt ekvator er to ganger pi ganger radien: to ganger tre komma fjorten ganger seks tusen tre hundre og syttien, altså omtrent førti tusen og ti kilometer."},
+  {"st": [1], "say": "Jorda snurrer én gang rundt på tjuefire timer. Et punkt på ekvator reiser hele omkretsen på et døgn, så farten er omtrent førti tusen og ti delt på tjuefire, altså omtrent tusen seks hundre og sekstisju kilometer i timen."},
+  {"load": {"mode": "sone"}, "st": [0], "say": "Siden jorda roterer tre hundre og seksti grader på tjuefire timer, blir det tre hundre og seksti delt på tjuefire, altså femten lengdegrader per time. Derfor har vi tidssoner."},
+  {"st": [1], "say": "To steder med seksti lengdegrader mellom seg har omtrent seksti delt på femten, altså fire timer tidsforskjell. Mot øst er klokka mer, og mot vest er den mindre. Regelen er: femten lengdegrader tilsvarer én times tidsforskjell."}
+ ]},
+ {"tid": "kryptering", "m": "k10krypt", "title": "Kryptering", "segs": [
+  {"st": [0], "say": "I et Cæsar-chiffer flytter vi hver bokstav like mange plasser fram i alfabetet. Nøkkelen er tre, og vi bruker det norske alfabetet med tjueni bokstaver. Vi skal kryptere ordet matte."},
+  {"st": [0], "say": "Den øverste raden viser det vanlige alfabetet, og den nederste viser alfabetet forskjøvet tre plasser. Hver bokstav byttes ut med den som står rett under."},
+  {"st": [1], "say": "Vi bytter hver bokstav: M blir P, A blir D, T blir W, T blir W igjen, og E blir H."},
+  {"st": [2], "say": "Den krypterte teksten er P D W W H. For å dekryptere flytter vi tre plasser bakover igjen. Etter Å fortsetter vi fra A, som på en klokke. Regelen er: samme nøkkel brukes fram for å kryptere og bakover for å dekryptere."}
+ ]},
+ {"tid": "tallsystem", "m": "k10tall", "title": "Ulike tallsystemer", "segs": [
+  {"st": [0], "say": "I totallsystemet, som også kalles det binære tallsystemet, bruker vi bare sifrene null og en. Plassene har verdiene en, to, fire, åtte, seksten og så videre, altså dobbelt så mye for hver plass. Vi skal skrive tallet tretten binært."},
+  {"st": [1], "say": "Vi legger sammen verdiene på plassene der det står en: åtte pluss fire pluss en er tretten. Plassen med verdi to har null, og telles ikke med."},
+  {"st": [2], "say": "Tallet tretten skrives en en null en i totallsystemet. Datamaskiner bruker totallsystemet, fordi hvert siffer kan lagres som av eller på."},
+  {"load": {"mode": "rom"}, "st": [0], "say": "Romertall er et annet tallsystem. Her brukes bokstaver: I er en, V er fem, X er ti, L er femti, C er hundre, D er fem hundre og M er tusen. Står en mindre verdi foran en større, betyr det minus. I V er fire, og I X er ni."},
+  {"st": [1, 2], "say": "For å skrive tusen ni hundre og nittifire deler vi tallet opp: M er tusen, C M er ni hundre, X C er nitti, og I V er fire. Tallet skrives M C M X C I V. Regelen er: alle tallsystemer bygger på plassverdier, men totallsystemet bruker toerpotenser, og romertall bruker bokstaver med faste verdier."}
+ ]}
+]
