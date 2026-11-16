@@ -1,5 +1,5 @@
 <!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
-<title>Matematikk 8.–10. trinn</title>
+<title>Matte og naturfag 8.–10. trinn</title>
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -878,6 +878,29 @@ section.group .box.act+.box.act{margin-top:16px}.act-own .box.act+.box.act{margi
 .gq-row{display:flex;gap:10px;flex-wrap:wrap}
 @media (max-width:520px){.gq-opts{grid-template-columns:1fr}.g-hud{font-size:.66rem;gap:4px 6px}.g-hud span{padding:1px 7px}.g-card{padding:12px 14px;gap:6px}.g-card h3{font-size:1.15rem}.g-card p{font-size:.82rem}.g-card .g-ico{display:none}}
 /*K9CSSSTART*/
+.fag-sw{display:grid;grid-template-columns:1fr 1fr;gap:4px;background:var(--line);padding:3px;border-radius:10px;margin-bottom:18px}
+.fag-sw a{font-size:.88rem;font-weight:700;text-align:center;text-decoration:none;color:var(--muted);padding:7px 6px;border-radius:8px}
+.fag-sw a[aria-current="true"]{background:var(--surface);color:var(--ink);box-shadow:0 1px 3px rgba(0,0,0,.15)}
+.fag-sw a:focus-visible{outline:3px solid var(--pen);outline-offset:1px}
+body.fag-nat{--pen:#1B7646;--pen-soft:rgba(27,118,70,.09)}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) body.fag-nat{--pen:#63D398;--pen-soft:rgba(99,211,152,.12)}}
+:root[data-theme="dark"] body.fag-nat{--pen:#63D398;--pen-soft:rgba(99,211,152,.12)}
+body.fag-start .side,body.fag-start .menu-btn,body.fag-start .scrim{display:none!important}
+body.fag-start .app{grid-template-columns:minmax(0,1fr)}
+.col.start{max-width:920px}
+.fag-cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:18px}
+.fag-card{--c:var(--pen);display:flex;flex-direction:column;gap:10px;align-items:flex-start;background:var(--surface);border:2px solid var(--ink);border-radius:14px;padding:26px 26px 24px;text-decoration:none;color:var(--ink);box-shadow:6px 6px 0 var(--c);transition:transform .12s ease,box-shadow .12s ease}
+.fag-card.nat{--c:var(--ok)}
+.fag-card:hover{transform:translate(-2px,-2px);box-shadow:8px 8px 0 var(--c)}
+.fag-card:focus-visible{outline:3px solid var(--c);outline-offset:3px}
+.fag-card h2{font-family:var(--f-display);font-weight:800;font-size:2.1rem;line-height:1.05;margin:0}
+.fag-card p{margin:0;color:var(--muted)}.fag-card .fag-meta{font-family:var(--f-mono);font-size:.78rem;letter-spacing:.04em;margin-bottom:6px}
+.fag-card .btn{background:var(--c);border-color:var(--c);margin-top:auto}
+.fag-ico{display:grid;place-items:center;width:64px;height:64px;border-radius:14px;background:color-mix(in srgb,var(--c,var(--pen)) 12%,var(--surface));color:var(--c,var(--pen));flex:none}.fag-ico svg{width:40px;height:40px}
+.nat-empty{display:flex;gap:18px;align-items:center;border:2px dashed var(--line);border-radius:12px;padding:22px 24px;background:var(--surface)}
+.nat-empty h3{margin:0 0 4px;font-size:1.15rem}.nat-empty p{margin:0;color:var(--muted)}
+@media (prefers-reduced-motion:reduce){.fag-card{transition:none}}
+@media (max-width:520px){.nat-empty{flex-direction:column;align-items:flex-start}}
 .grade-sw{display:flex;gap:4px;margin:10px 0 14px;background:var(--line);padding:3px;border-radius:99px;width:max-content}
 .grade-sw button{font:inherit;font-size:.85rem;font-weight:700;border:0;background:transparent;color:var(--muted);padding:5px 12px;border-radius:99px;cursor:pointer}
 .grade-sw button[aria-pressed="true"]{background:var(--surface);color:var(--ink);box-shadow:0 1px 3px rgba(0,0,0,.15)}
@@ -956,7 +979,7 @@ section.group .box.act+.box.act{margin-top:16px}.act-own .box.act+.box.act{margi
     <button class="menu-btn" id="menuBtn" aria-controls="side" aria-expanded="false">
       <svg viewBox="0 0 20 20" aria-hidden="true"><path d="M3 5h14M3 10h14M3 15h14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>Innhold
     </button>
-    <a class="brand" href="#">Matematikk 8</a>
+    <a class="brand" id="brand" href="#">Matte og naturfag</a>
   </div>
   <div class="scrim" id="scrim" hidden></div>
   <nav class="side" id="side" aria-label="Innhold"></nav>
@@ -2682,7 +2705,10 @@ function chapterOf(tid){ for(const ch of BOOK.chapters) for(const g of ch.groups
 const order = ch => ch.groups.flatMap(g=>g.topics);
 const gradeOf = ch => (ch&&ch.grade)||8;
 let GRADE=(()=>{ try{ const g=+localStorage.getItem('mat8-grade'); return g===9||g===10?g:8; }catch(e){ return 8; } })();
-const setGrade=g=>{ GRADE=g; try{ localStorage.setItem('mat8-grade',String(g)); }catch(e){} document.title=`Matematikk ${g}. trinn`; };
+let FAG=null; // null = startsiden (velg fag), 'mat' = matematikk, 'nat' = naturfag
+const setTitle=()=>{ document.title=FAG==='nat'?`Naturfag ${GRADE}. trinn`:FAG==='mat'?`Matematikk ${GRADE}. trinn`:'Matte og naturfag 8.–10. trinn'; };
+const setGrade=g=>{ GRADE=g; try{ localStorage.setItem('mat8-grade',String(g)); }catch(e){} setTitle(); };
+const fagSw=()=>`<div class="fag-sw" role="group" aria-label="Velg fag"><a href="#matte" ${FAG==='mat'?'aria-current="true"':''}>Matematikk</a><a href="#naturfag" ${FAG==='nat'?'aria-current="true"':''}>Naturfag</a></div>`;
 const CHS = () => BOOK.chapters.filter(c=>gradeOf(c)===GRADE);
 const gradeTids = (g) => BOOK.chapters.filter(c=>gradeOf(c)===(g||GRADE)).flatMap(order);
 const gradeSw = () => `<div class="grade-sw" role="group" aria-label="Velg trinn">${[8,9,10].map(g=>`<button type="button" data-grade="${g}" aria-pressed="${GRADE===g}">${g}. trinn</button>`).join('')}</div>`;
@@ -2690,7 +2716,8 @@ const bar = s => `<div class="bar" role="progressbar" aria-valuemin="0" aria-val
 const tally = s => s.t && s.n>=s.t ? `<span class="tally done">✓ mestret</span>` : `<span class="tally">${pct(s)} %</span>`;
 let curRoute='';
 function renderNav(route){
-  let h=`<a class="brand-big" href="#">Matematikk<small>${GRADE}. trinn</small></a>${gradeSw()}<ul class="nav"><li><a href="#" ${route===''?'aria-current="page"':''}><span>Forside</span></a></li><li><a href="#spill" ${route==='spill'?'aria-current="page"':''}><span>Spill</span><span class="tally">5 spill</span></a></li><li><a href="#aktiviteter" ${route==='aktiviteter'?'aria-current="page"':''}><span>Klasseaktiviteter</span><span class="tally">${ACTS.length} opplegg</span></a></li><li><a href="#laerer" ${route==='laerer'?'aria-current="page"':''}><span>For lærere</span><span class="tally">PDF</span></a></li><li class="grp">Lærerverktøy</li><li><a class="tool" href="grupper/"><span>👥 Grupper og klassekart</span><span class="tally">Logg inn</span></a></li>`;
+  if(FAG==='nat'){ renderNatNav(route); return; }
+  let h=`${fagSw()}<a class="brand-big" href="#matte">Matematikk<small>${GRADE}. trinn</small></a>${gradeSw()}<ul class="nav"><li><a href="#matte" ${route==='matte'?'aria-current="page"':''}><span>Forside</span></a></li><li><a href="#spill" ${route==='spill'?'aria-current="page"':''}><span>Spill</span><span class="tally">5 spill</span></a></li><li><a href="#aktiviteter" ${route==='aktiviteter'?'aria-current="page"':''}><span>Klasseaktiviteter</span><span class="tally">${ACTS.length} opplegg</span></a></li><li><a href="#laerer" ${route==='laerer'?'aria-current="page"':''}><span>For lærere</span><span class="tally">PDF</span></a></li><li class="grp">Lærerverktøy</li><li><a class="tool" href="grupper/"><span>👥 Grupper og klassekart</span><span class="tally">Logg inn</span></a></li>`;
   CHS().forEach(ch=>{
     h+=`<li><a class="chap" href="#${ch.id}" ${route===ch.id?'aria-current="page"':''}><span>Kap ${ch.num} · ${ch.title}</span></a></li>`;
     ch.groups.forEach(g=>{ h+=`<li class="grp">${g.title}</li>`; g.topics.forEach(tid=>{ const r=`${ch.id}-${tid}`; h+=`<li class="sub"><a href="#${r}" ${route===r?'aria-current="page"':''}><span>${TOPICS[tid].title}</span>${tally(topicStat(tid))}</a></li>`; }); });
@@ -2712,11 +2739,11 @@ function renderHome(){
       <li><b>Lær med modellen</b><span>Velg dine egne tall og trykk «Neste steg». Forklaringen under viser hva som skjer og hvorfor.</span></li>
       <li><b>Øv på tre nivåer</b><span>Nye oppgaver hver gang. Bommer du, ser du føringen, og ofte kan du åpne oppgaven i modellen.</span></li>
       <li><b>Bli ferdig</b><span>Ti riktige svar i en øvingsdel gir full fremgang. Fremgangen lagres i nettleseren din.</span></li></ol></section>
-    <footer class="foot">Matematikk ${GRADE}. trinn · Fremgangen lagres bare i denne nettleseren.</footer></div>`;
+    <footer class="foot">Matematikk ${GRADE}. trinn · Fremgangen lagres bare i denne nettleseren. · <a href="#">Bytt fag</a></footer></div>`;
 }
 function renderChapter(ch){
   main.innerHTML=`<div class="col">
-    <nav class="crumb" aria-label="Brødsmuler"><a href="#">Forside</a><span>›</span><span>Kapittel ${ch.num}</span></nav>
+    <nav class="crumb" aria-label="Brødsmuler"><a href="#matte">Forside</a><span>›</span><span>Kapittel ${ch.num}</span></nav>
     <header class="chap-hero"><span class="num" aria-hidden="true">${ch.num}</span><p class="eyebrow">Kapittel ${ch.num}</p><h1>${ch.title.replace(/(\S+)$/,'<span class="hl">$1</span>')}</h1><p class="lede">${ch.intro}</p></header>
     <section class="goals" aria-labelledby="gh"><h2 id="gh">Etter kapitlet skal du kunne</h2><ul>${ch.goals.map(g=>`<li>${g}</li>`).join('')}</ul></section>
     ${ch.groups.map((g,gi)=>`<section class="group"><div class="group-head"><span class="eyebrow">Tema ${gi+1}</span><h2>${g.title}</h2></div>
@@ -2727,7 +2754,7 @@ function renderChapter(ch){
 function renderTopic(ch, tid){
   const t=TOPICS[tid], {g}=chapterOf(tid), ord=order(ch), idx=ord.indexOf(tid), prev=ord[idx-1], next=ord[idx+1];
   main.innerHTML=`<div class="col">
-    <nav class="crumb" aria-label="Brødsmuler"><a href="#">Forside</a><span>›</span><a href="#${ch.id}">Kapittel ${ch.num}</a><span>›</span><span>${g.title}</span></nav>
+    <nav class="crumb" aria-label="Brødsmuler"><a href="#matte">Forside</a><span>›</span><a href="#${ch.id}">Kapittel ${ch.num}</a><span>›</span><span>${g.title}</span></nav>
     <header class="topic-head"><h1>${t.title}</h1><p class="lede">${t.short}</p>
       <div class="jump"><button class="btn ghost small" data-jump="laer">Lær</button><button class="btn ghost small" data-jump="ov">Øv</button></div></header>
     <section class="part" id="laer" aria-labelledby="lh"><div class="part-title"><span class="tag">Lær</span><h2 id="lh">Slik gjør du det</h2></div>${VIDS.includes(tid)?`<figure class="vid"><video controls preload="none" playsinline poster="video/${tid}.jpg" src="video/${tid}.mp4"></video><figcaption>Video · forklaring med tale, cirka ett minutt</figcaption></figure>`:''}<div class="learn">${t.learn}</div>${actBox(tid)}</section>
@@ -5727,7 +5754,7 @@ try{ window.__ALG=typeof ALG!=='undefined'?ALG:null; window.__k9={TP,WS_R,WS_MAL
 /*K9END*/
 function renderTeacher(){
   main.innerHTML=`<div class="col">
-    <nav class="crumb" aria-label="Brødsmuler"><a href="#">Forside</a><span>›</span><span>For lærere</span></nav>
+    <nav class="crumb" aria-label="Brødsmuler"><a href="#matte">Forside</a><span>›</span><span>For lærere</span></nav>
     <header class="topic-head"><p class="eyebrow">For lærere</p><h1>Oppgave<span class="hl">ark</span></h1>
       <p class="lede">Ferdige ark til hvert delkapittel på tre nivåer, klare til utskrift i A4. Velg nivå etter hva eleven trenger. Fasiten med kort føring ligger på egen side bakerst i hver fil, så du skriver bare ut elevsidene til klassen. Trykk på et nivå for å se arket før du laster det ned.${(n=>n?' '+n+' delkapitler har også en forklaringsvideo med tale som du kan laste ned og vise på storskjerm.':'')(VIDS.filter(v=>BOOK.chapters.some(c=>(c.grade||8)===GRADE&&c.groups.some(g=>g.topics.includes(v)))).length)}</p></header>
     <section class="group" aria-labelledby="ph"><h2 id="ph">Slik er arkene bygd opp</h2>
@@ -6053,7 +6080,7 @@ function refreshBest(){ document.querySelectorAll('[data-best]').forEach(el=>{ e
 function renderGames(){
   const chips=ch=>order(ch).map(t=>`<label class="g-chk"><input type="checkbox" data-t="${t}" ${GS.topics.includes(t)?'checked':''}><span>${TOPICS[t].title}</span></label>`).join('');
   main.innerHTML=`<div class="col">
-    <nav class="crumb" aria-label="Brødsmuler"><a href="#">Forside</a><span>›</span><span>Spill</span></nav>
+    <nav class="crumb" aria-label="Brødsmuler"><a href="#matte">Forside</a><span>›</span><span>Spill</span></nav>
     <header class="topic-head"><p class="eyebrow">Spill</p><h1>Matte<span class="hl">spill</span></h1>
       <p class="lede">Spill så lenge du klarer. Med jevne mellomrom stopper spillet, og du får et mattespørsmål. Svarer du riktig, spiller du videre og får 3 ekstra poeng. Du har så lang tid du vil på å svare, men svarer du feil, er spillet over.</p></header>
     <section class="g-step" aria-labelledby="gs1"><div class="g-step-h"><span class="g-n">1</span><h2 id="gs1">Kryss av for hva du vil få spørsmål om</h2></div><p class="g-note" style="margin:0">Viser temaene for ${GRADE}. trinn. ${gradeSw()}</p>
@@ -6149,7 +6176,7 @@ function renderActivities(focus){
   const grade=g=>{ const chs=BOOK.chapters.filter(c=>gradeOf(c)===g), n=ACTS.filter(a=>a.grade===g).length;
     return `<details class="ov-g" data-g="${g}"${g===GRADE?' open':''}><summary><span>${g}. trinn</span><span class="ov-n">${n} opplegg <span class="dn" data-dn-g="${g}"></span></span></summary><div class="ov-gb">${chs.map(chap).join('')}</div></details>`; };
   main.innerHTML=`<div class="col">
-    <nav class="crumb" aria-label="Brødsmuler"><a href="#">Forside</a><span>›</span><span>Klasseaktiviteter</span></nav>
+    <nav class="crumb" aria-label="Brødsmuler"><a href="#matte">Forside</a><span>›</span><span>Klasseaktiviteter</span></nav>
     <header class="topic-head"><p class="eyebrow">For lærere</p><h1>Klasse<span class="hl">aktiviteter</span></h1>
       <p class="lede">${ACTS.length} opplegg for 8.–10. trinn: ett temaopplegg til hvert tema og en aktivitet til hvert delkapittel. Åpne et trinn og et kapittel for å se oppleggene.</p></header>
     <div class="ov-tools"><label class="ov-search"><span class="sr">Søk</span><input type="search" id="ov-q" placeholder="Søk, for eksempel brøk, bingo eller Pytagoras" autocomplete="off"></label>
@@ -6183,7 +6210,7 @@ const bdSet=(k,v)=>{ try{ localStorage.setItem('tavle-'+k,JSON.stringify(v)); }c
 const svgXY=(svg,e)=>{ const p=svg.createSVGPoint(); p.x=e.clientX; p.y=e.clientY; const m=svg.getScreenCTM(); return m?p.matrixTransform(m.inverse()):{x:0,y:0}; };
 function bdShell(o){ // o: id,title,tools,stage,side,help,act
   main.innerHTML=`<div class="col pb-col">
-    <nav class="crumb" aria-label="Brødsmuler"><a href="#">Forside</a><span>›</span><a href="#aktiviteter${o.act?'/'+o.act:''}">Klasseaktiviteter</a><span>›</span><span>${o.title}</span></nav>
+    <nav class="crumb" aria-label="Brødsmuler"><a href="#matte">Forside</a><span>›</span><a href="#aktiviteter${o.act?'/'+o.act:''}">Klasseaktiviteter</a><span>›</span><span>${o.title}</span></nav>
     <section class="pb bd" id="pb" aria-label="${o.title}, interaktiv tavle">
       <div class="pb-bar" role="toolbar" aria-label="Verktøy">${o.tools}<span class="sp"></span>
         <button type="button" class="btn ghost small" data-pb="undo">Angre</button><button type="button" class="btn ghost small" data-pb="reset">Nullstill</button><button type="button" class="btn ghost small" data-pb="fs">Fullskjerm</button></div>
@@ -6632,7 +6659,7 @@ function pbSave(){ try{ localStorage.setItem('primtavle2',JSON.stringify(PB.s));
 function renderPrimBoard(){
   PB={s:pbLoad(), tool:'1', drag:null, timer:null};
   main.innerHTML=`<div class="col pb-col">
-    <nav class="crumb" aria-label="Brødsmuler"><a href="#">Forside</a><span>›</span><a href="#aktiviteter">Klasseaktiviteter</a><span>›</span><span>Primtallsjakten på tavla</span></nav>
+    <nav class="crumb" aria-label="Brødsmuler"><a href="#matte">Forside</a><span>›</span><a href="#aktiviteter">Klasseaktiviteter</a><span>›</span><span>Primtallsjakten på tavla</span></nav>
     <section class="pb" id="pb" aria-label="Primtallsjakten, interaktiv tavle">
       <div class="pb-bar" role="toolbar" aria-label="Verktøy">
         ${PB_COL.slice(1).map((o,i)=>`<button type="button" class="pb-t" data-tool="${i+1}" style="--c:${o.c}" aria-pressed="false"><i></i>${o.t}</button>`).join('')}
@@ -6685,21 +6712,72 @@ document.addEventListener('keydown',e=>{ const root=document.getElementById('pb'
   if(map[k]){ root.querySelector(`[data-tool="${map[k]}"]`).click(); }
   else if(k==='f') root.querySelector('[data-pb=fs]').click();
   else if(k==='escape'&&root.classList.contains('pb-fake')) root.querySelector('[data-pb=fs]').click(); });
+/* ===================== startside: velg fag ===================== */
+const ICO={mat:`<svg viewBox="0 0 64 64" aria-hidden="true"><rect x="8" y="8" width="48" height="48" rx="8" fill="none" stroke="currentColor" stroke-width="4"/><path d="M20 22h10M25 17v10M36 22h10M21 38l8 8M29 38l-8 8M36 39h10M36 45h10" stroke="currentColor" stroke-width="4" stroke-linecap="round" fill="none"/></svg>`,
+  nat:`<svg viewBox="0 0 64 64" aria-hidden="true"><path d="M25 8h14M28 8v16L13 50a5 5 0 0 0 4.4 7.5h29.2A5 5 0 0 0 51 50L36 24V8" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/><path d="M20 42h24" stroke="currentColor" stroke-width="4" stroke-linecap="round"/><circle cx="29" cy="49" r="2.2" fill="currentColor"/><circle cx="37" cy="47" r="1.6" fill="currentColor"/></svg>`};
+function renderStart(){
+  const nTop=BOOK.chapters.flatMap(order).length, nNat=NAT.chapters.length;
+  main.innerHTML=`<div class="col start">
+    <header class="home-hero"><p class="eyebrow">Digital lærebok · 8.–10. trinn</p><h1>Matte og <span class="hl">naturfag</span></h1>
+      <p class="lede">Velg fag for å komme i gang. Du kan bytte fag når som helst øverst i menyen.</p></header>
+    <div class="fag-cards">
+      <a class="fag-card mat" href="#matte"><span class="fag-ico">${ICO.mat}</span><h2>Matematikk</h2>
+        <p>Trinnvise modeller, øving på tre nivåer, forklaringsvideoer, spill og klasseaktiviteter.</p>
+        <p class="fag-meta">${nTop} delkapitler · ${VIDS.length} videoer · ${ACTS.length} klasseopplegg</p><span class="btn">Gå til matematikk →</span></a>
+      <a class="fag-card nat" href="#naturfag"><span class="fag-ico">${ICO.nat}</span><h2>Naturfag</h2>
+        <p>${nNat?'Kapitler med forklaringer, modeller og oppgaver.':'Naturfagsiden er klar til å fylles med kapitler, forklaringer og oppgaver.'}</p>
+        <p class="fag-meta">${nNat?`${nNat} kapitler`:'Ingen kapitler ennå'}</p><span class="btn">Gå til naturfag →</span></a>
+    </div>
+    <section class="group" aria-labelledby="stv"><h2 id="stv">Lærerverktøy</h2><a class="chap-card" href="grupper/"><span class="num" style="font-size:2.6rem">Grupper</span><h3>Grupper og klassekart</h3><p class="meta">Lag grupper og klassekart med skjulte betingelser for hvem som skal eller ikke skal være sammen. Logg inn med Google.</p></a></section>
+    <footer class="foot">Matte og naturfag 8.–10. trinn · Fremgangen lagres bare i denne nettleseren.</footer></div>`;
+}
+/* ===================== naturfag ===================== */
+// Legg kapitler her: {id:'nat8-celler', grade:8, num:1, title:'Celler', intro:'…', html:'…'}
+const NAT={chapters:[]};
+const natCHS=()=>NAT.chapters.filter(c=>c.grade===GRADE);
+function renderNatNav(route){
+  let h=`${fagSw()}<a class="brand-big" href="#naturfag">Naturfag<small>${GRADE}. trinn</small></a>${gradeSw()}<ul class="nav"><li><a href="#naturfag" ${route==='naturfag'?'aria-current="page"':''}><span>Forside</span></a></li><li class="grp">Lærerverktøy</li><li><a class="tool" href="grupper/"><span>👥 Grupper og klassekart</span><span class="tally">Logg inn</span></a></li>`;
+  natCHS().forEach(c=>{ h+=`<li><a class="chap" href="#${c.id}" ${route===c.id?'aria-current="page"':''}><span>Kap ${c.num} · ${c.title}</span></a></li>`; });
+  side.innerHTML=h+`</ul>`;
+}
+function renderNatHome(){ const CH=natCHS();
+  main.innerHTML=`<div class="col">
+    <header class="home-hero"><p class="eyebrow">Digital lærebok · ${GRADE}. trinn</p><h1>Naturfag <span class="hl">${GRADE}. trinn</span></h1>
+      <p class="lede">Her samles naturfaget for ungdomstrinnet: kapitler med forklaringer, modeller og oppgaver.</p>
+      <div class="hero-row">${gradeSw()}</div></header>
+    <section class="group" aria-labelledby="nkh"><h2 id="nkh">Kapitler</h2>${CH.length?`<div class="chapters">${CH.map(c=>`<a class="chap-card" href="#${c.id}"><span class="num">${c.num}</span><h3>${c.title}</h3><p class="meta">${c.intro||''}</p></a>`).join('')}</div>`
+      :`<div class="nat-empty"><span class="fag-ico">${ICO.nat}</span><div><h3>Ingen kapitler for ${GRADE}. trinn ennå</h3><p>Naturfagsiden er satt opp og klar. Kapitlene dukker opp her etter hvert som de blir lagt inn.</p></div></div>`}</section>
+    <section class="group" aria-labelledby="nlv"><h2 id="nlv">Lærerverktøy</h2><a class="chap-card" href="grupper/"><span class="num" style="font-size:2.6rem">Grupper</span><h3>Grupper og klassekart</h3><p class="meta">Lag grupper og klassekart med skjulte betingelser for hvem som skal eller ikke skal være sammen. Logg inn med Google.</p></a></section>
+    <footer class="foot">Naturfag ${GRADE}. trinn · <a href="#">Bytt fag</a></footer></div>`;
+}
+function renderNatChapter(c){
+  main.innerHTML=`<div class="col"><nav class="crumb" aria-label="Brødsmuler"><a href="#naturfag">Forside</a><span>›</span><span>Kapittel ${c.num}</span></nav>
+    <header class="chap-hero"><span class="num" aria-hidden="true">${c.num}</span><p class="eyebrow">Kapittel ${c.num}</p><h1>${c.title}</h1><p class="lede">${c.intro||''}</p></header>${c.html||''}</div>`;
+}
 function route(){
   const r=decodeURIComponent(location.hash.slice(1));
   const ch=BOOK.chapters.find(c=>r===c.id||r.startsWith(c.id+'-'));
   let cur='';
   if(GAME){ GAME.destroy(); GAME=null; }
+  const nch=NAT.chapters.find(c=>r===c.id);
+  FAG = r===''?null : (r==='naturfag'||nch)?'nat' : 'mat';
+  if(nch&&nch.grade!==GRADE) setGrade(nch.grade);
   if(ch&&gradeOf(ch)!==GRADE) setGrade(gradeOf(ch));
-  if (r==='laerer'){ renderTeacher(); cur=r; }
+  document.body.classList.toggle('fag-nat',FAG==='nat'); document.body.classList.toggle('fag-start',!FAG); setTitle();
+  const br=document.getElementById('brand'); if(br){ br.textContent=FAG==='nat'?`Naturfag ${GRADE}`:FAG==='mat'?`Matematikk ${GRADE}`:'Matte og naturfag'; br.setAttribute('href',FAG==='nat'?'#naturfag':FAG==='mat'?'#matte':'#'); }
+  if (r===''){ renderStart(); }
+  else if (r==='naturfag'){ renderNatHome(); cur=r; }
+  else if (nch){ renderNatChapter(nch); cur=r; }
+  else if (r==='matte'){ renderHome(); cur=r; }
+  else if (r==='laerer'){ renderTeacher(); cur=r; }
   else if (r==='spill'){ renderGames(); cur=r; }
   else if (r==='aktiviteter'){ renderActivities(); cur=r; }
   else if (r.startsWith('aktiviteter/')){ const a=ACTS.find(x=>x.id===r.slice(12)); if(a&&a.grade!==GRADE) setGrade(a.grade); renderActivities(a&&a.id); cur='aktiviteter'; }
   else if (BOARDS[r]){ BOARDS[r](); cur='aktiviteter'; }
   else if (ch && r===ch.id){ renderChapter(ch); cur=r; }
   else if (ch && TOPICS[r.slice(ch.id.length+1)]){ renderTopic(ch, r.slice(ch.id.length+1)); cur=r; }
-  else renderHome();
-  curRoute=cur; renderNav(cur); closeMenu(); window.scrollTo(0,0);
+  else { FAG='mat'; document.body.classList.remove('fag-start'); setTitle(); renderHome(); cur='matte'; }
+  curRoute=cur; if(FAG) renderNav(cur); else side.innerHTML=''; closeMenu(); window.scrollTo(0,0);
   if (location.hash) main.focus({preventScroll:true});
 }
 main.addEventListener('click', e=>{
@@ -6715,7 +6793,7 @@ scrim.addEventListener('click', closeMenu);
 document.addEventListener('keydown', e=>{ if(e.key==='Escape'&&side.classList.contains('open')){ closeMenu(); menuBtn.focus(); } });
 try{ window.__mat8={TRAINERS,poly,parsePoly,polyEq,TOPICS,BOOK,F,P,fmt,powStr,pfac,MODELS}; }catch(e){}
 document.addEventListener('click',e=>{ const b=e.target.closest('[data-grade]'); if(!b) return; const g=+b.dataset.grade; if(g===GRADE) return; setGrade(g);
-  const r=decodeURIComponent(location.hash.slice(1)); if(r==='laerer'||r==='spill'||r==='aktiviteter'||BOARDS[r]||r==='') route(); else location.hash=''; });
+  const r=decodeURIComponent(location.hash.slice(1)); if(r==='laerer'||r==='spill'||r==='aktiviteter'||BOARDS[r]||r===''||r==='matte'||r==='naturfag') route(); else location.hash=FAG==='nat'?'naturfag':'matte'; });
 setGrade(GRADE);
 window.addEventListener('hashchange', route);
 route();
