@@ -2708,7 +2708,7 @@ let GRADE=(()=>{ try{ const g=+localStorage.getItem('mat8-grade'); return g===9|
 let FAG=null; // null = startsiden (velg fag), 'mat' = matematikk, 'nat' = naturfag
 const setTitle=()=>{ document.title=FAG==='nat'?`Naturfag ${GRADE}. trinn`:FAG==='mat'?`Matematikk ${GRADE}. trinn`:'Matte og naturfag 8.–10. trinn'; };
 const setGrade=g=>{ GRADE=g; try{ localStorage.setItem('mat8-grade',String(g)); }catch(e){} setTitle(); };
-const fagSw=()=>`<div class="fag-sw" role="group" aria-label="Velg fag"><a href="#matte" ${FAG==='mat'?'aria-current="true"':''}>Matematikk</a><a href="#naturfag" ${FAG==='nat'?'aria-current="true"':''}>Naturfag</a></div>`;
+const fagSw=()=>`<div class="fag-sw" role="group" aria-label="Velg fag"><a href="#matte" ${FAG==='mat'?'aria-current="true"':''}>Matematikk</a><a href="naturfag/" ${FAG==='nat'?'aria-current="true"':''}>Naturfag</a></div>`;
 const CHS = () => BOOK.chapters.filter(c=>gradeOf(c)===GRADE);
 const gradeTids = (g) => BOOK.chapters.filter(c=>gradeOf(c)===(g||GRADE)).flatMap(order);
 const gradeSw = () => `<div class="grade-sw" role="group" aria-label="Velg trinn">${[8,9,10].map(g=>`<button type="button" data-grade="${g}" aria-pressed="${GRADE===g}">${g}. trinn</button>`).join('')}</div>`;
@@ -6724,9 +6724,9 @@ function renderStart(){
       <a class="fag-card mat" href="#matte"><span class="fag-ico">${ICO.mat}</span><h2>Matematikk</h2>
         <p>Trinnvise modeller, øving på tre nivåer, forklaringsvideoer, spill og klasseaktiviteter.</p>
         <p class="fag-meta">${nTop} delkapitler · ${VIDS.length} videoer · ${ACTS.length} klasseopplegg</p><span class="btn">Gå til matematikk →</span></a>
-      <a class="fag-card nat" href="#naturfag"><span class="fag-ico">${ICO.nat}</span><h2>Naturfag</h2>
-        <p>${nNat?'Kapitler med forklaringer, modeller og oppgaver.':'Naturfagsiden er klar til å fylles med kapitler, forklaringer og oppgaver.'}</p>
-        <p class="fag-meta">${nNat?`${nNat} kapitler`:'Ingen kapitler ennå'}</p><span class="btn">Gå til naturfag →</span></a>
+      <a class="fag-card nat" href="naturfag/"><span class="fag-ico">${ICO.nat}</span><h2>Naturfag</h2>
+        <p>Fagtekst, interaktive modeller, oppgaver på tre nivåer, forsøksbank og kompetansemål.</p>
+        <p class="fag-meta">15 kapitler · 71 forsøk</p><span class="btn">Gå til naturfag →</span></a>
     </div>
     <section class="group" aria-labelledby="stv"><h2 id="stv">Lærerverktøy</h2><a class="chap-card" href="grupper/"><span class="num" style="font-size:2.6rem">Grupper</span><h3>Grupper og klassekart</h3><p class="meta">Lag grupper og klassekart med skjulte betingelser for hvem som skal eller ikke skal være sammen. Logg inn med Google.</p></a></section>
     <footer class="foot">Matte og naturfag 8.–10. trinn · Fremgangen lagres bare i denne nettleseren.</footer></div>`;
@@ -6756,6 +6756,7 @@ function renderNatChapter(c){
 }
 function route(){
   const r=decodeURIComponent(location.hash.slice(1));
+  if(r==='naturfag'){ location.replace('naturfag/'); return; }
   const ch=BOOK.chapters.find(c=>r===c.id||r.startsWith(c.id+'-'));
   let cur='';
   if(GAME){ GAME.destroy(); GAME=null; }
