@@ -478,6 +478,81 @@ pre.out{font-family:var(--f-mono);background:var(--paper);border-radius:6px;padd
 .fag-sw a{font-size:.88rem;font-weight:700;text-align:center;text-decoration:none;color:var(--muted);padding:7px 6px;border-radius:8px}
 .fag-sw a[aria-current="true"]{background:var(--surface);color:var(--ink);box-shadow:0 1px 3px rgba(0,0,0,.15)}
 .fag-sw a:focus-visible{outline:3px solid var(--pen);outline-offset:1px}
+/* fenomenmodeller */
+@keyframes spin{to{transform:rotate(360deg)}}
+.fs-wrap{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,1fr);gap:16px;align-items:center}
+@media (max-width:600px){.fs-wrap{grid-template-columns:1fr}}
+.svgfig .glass{fill:none;stroke:var(--ink);stroke-width:2}
+.svgfig .water2{fill:rgba(60,130,220,.18)}
+.svgfig .stem{stroke:#3F7F35;stroke-width:4;fill:none}
+.svgfig .leaf{fill:#5DA84E}
+.svgfig .bub2{fill:#fff;stroke:#3E8ED0;stroke-width:1.2}
+.big-n{display:flex;flex-direction:column;font-family:var(--f-display);font-weight:800;font-size:3rem;line-height:1;color:var(--pen)}
+.big-n small{font-family:var(--f-body);font-size:.9rem;font-weight:400;color:var(--muted)}
+.eq .lt{color:#D79A12}
+.web-svg .web{stroke:var(--muted);stroke-width:1.5}
+.web-svg .web.off{stroke:var(--line);stroke-dasharray:4 4}
+.web-svg .sp{cursor:pointer}
+.web-svg .sp rect{fill:var(--surface);stroke:var(--ink);stroke-width:1.5}
+.web-svg .sp.p rect{fill:var(--ok-soft);stroke:var(--ok)}
+.web-svg .sp.r rect{fill:var(--red-soft);stroke:var(--red)}
+.web-svg .sp text{font-size:13px;fill:var(--ink);font-family:var(--f-body)}
+.web-svg .sp.dead{opacity:.3}
+.web-svg .sp.rm rect{stroke-dasharray:4 3}
+.web-svg .sp.up rect{stroke-width:3;stroke:#D79A12}
+.web-svg .sp:focus{outline:none}.web-svg .sp:focus rect{stroke-width:3}
+.svgfig .catch{fill:rgba(60,130,220,.35)}
+.pcanvas{width:100%;height:auto;background:var(--surface);border-radius:8px}
+.pstate{display:flex;gap:8px;flex-wrap:wrap}
+.pstate .st{border:1.5px solid var(--line);border-radius:99px;padding:3px 12px;font-size:.9rem;color:var(--muted)}
+.pstate .st.on{background:var(--ink);color:var(--surface);border-color:var(--ink)}
+.svgfig .mv{stroke:var(--red);stroke-width:3;stroke-dasharray:6 4}
+.svgfig .ionNa{fill:#3E8ED0}.svgfig .ionCl{fill:#2E9E5B}
+.kv-ctl{display:flex;gap:14px;flex-wrap:wrap;flex-basis:100%}
+.kvsvg .turb{fill:var(--surface);stroke:var(--ink);stroke-width:2}
+.kvsvg .wind{stroke:var(--muted);stroke-width:2;stroke-dasharray:10 6}
+.kvsvg .panel{fill:#2C4A7A;stroke:#9CB6DE}
+.kvsvg .rot{transform-box:view-box}
+.svgfig .tank{fill:none;stroke:var(--ink);stroke-width:2}
+.svgfig .rock{fill:#A08060}
+.svgfig .water3{fill:rgba(60,130,220,.35)}
+.svgfig .icebl{fill:#EAF6FF;stroke:#8FC3E8;stroke-width:1.5}
+.svgfig .rbc{fill:#D9534F;stroke:#9C2B28;stroke-width:2;transition:all .3s}
+.svgfig .rbc2{fill:#B33A36;transition:all .3s}
+.svgfig .burst{stroke:#9C2B28;stroke-width:4;fill:none}
+.svgfig .pwall{fill:none;stroke:#5DA84E;stroke-width:8}
+.svgfig .pmem{fill:rgba(93,168,78,.25);stroke:#3F7F35;stroke-width:2;transition:all .3s}
+.svgfig .wa{stroke:#3E8ED0;stroke-width:3}
+.svgfig .cellm{fill:#F4F1E4;stroke:var(--ink);stroke-width:2}
+.svgfig .nucm{fill:#E5DCF5;stroke:#8C72C2;stroke-width:2}
+.lgc::before{content:"";display:inline-block;width:18px;height:4px;border-radius:2px;margin-right:6px;vertical-align:middle;background:var(--c)}
+.uterus{display:flex;flex-direction:column;gap:4px}
+.uterus .lab{font-family:var(--f-mono);font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+.ut-bar{height:18px;background:var(--paper);border:1px solid var(--line);border-radius:4px;overflow:hidden}
+.ut-bar i{display:block;height:100%;background:#E8A0A8;transition:width .2s}
+.birds{display:flex;gap:30px;flex-wrap:wrap}
+.birds > div{display:flex;flex-direction:column;align-items:flex-start;gap:4px}
+.beak{display:block;width:var(--w);height:18px;background:#D79A12;clip-path:polygon(0 0,100% 50%,0 100%);transition:width .3s}
+.svgfig .star{fill:#FFD76A;stroke:#E0A400}
+.svgfig .exo{fill:#22303a}
+.lc .lcp{stroke-width:2.5}
+.syn .pumpr{fill:#7A5A9A}
+.svgfig .blood{fill:rgba(217,83,79,.25);stroke:#D9534F}
+.svgfig .tc rect{fill:var(--surface);stroke:var(--line);stroke-width:2;transition:all .3s}
+.svgfig .tc.on rect{fill:var(--hl);stroke:var(--ink)}
+.svgfig .rcp{fill:none;stroke-width:3}
+.svgfig .rcp.ins,.svgfig .hm.ins{stroke:#3E8ED0;fill:#3E8ED0}
+.svgfig .rcp.adr,.svgfig .hm.adr{stroke:#E8553A;fill:#E8553A}
+.svgfig .rcp{fill:none!important}
+.hbars{display:flex;flex-direction:column;gap:8px;margin-top:10px}
+.hbar{display:grid;grid-template-columns:minmax(150px,200px) 1fr 40px;gap:10px;align-items:center;font-size:.92rem}
+.hbar > div{height:18px;background:var(--paper);border-radius:4px;overflow:hidden}
+.hbar i{display:block;height:100%;transition:width .3s}
+.hbar i.own{background:var(--ok)}.hbar i.add{background:var(--red)}.hbar i.tot{background:var(--pen)}
+.svgfig .mantle{fill:#B5643C}
+.svgfig .crust{fill:#8A7A62;stroke:#5A4E3C}
+.svgfig .icecap{fill:#EAF6FF;stroke:#8FC3E8;stroke-width:2}
+.svgfig .mv2{stroke:#C2362B;stroke-width:3}
 </style></head><body>
 <div class="app">
   <div class="topbar">
@@ -701,6 +776,7 @@ CONTENT.naeringskjeder = {
   <h3>Stoffer går i kretsløp</h3>
   <p>Energien går gjennom systemet, men <b>stoffene</b> brukes om igjen. Karbon er et godt eksempel. Plantene tar opp karbondioksid (CO₂) fra lufta i <b>fotosyntesen</b> og bygger sukker. Dyr og planter bryter ned sukkeret igjen i <b>celleåndingen</b> og slipper ut CO₂. Når organismer dør, sørger nedbryterne for at karbonet kommer tilbake til lufta og jorda.</p>
   <figure class="fig">${FIG.carbon}<figcaption>Karbonkretsløpet forenklet.</figcaption></figure>
+  <div class="model" data-model="fotosyntese"></div>
   <div class="box"><span class="lab">To viktige prosesser</span><p class="eq">Fotosyntese: karbondioksid + vann + lysenergi → sukker + oksygen</p><p class="eq">Celleånding: sukker + oksygen → karbondioksid + vann + energi</p><p>Celleåndingen er fotosyntesen «baklengs». Den skjer i alle levende celler, også i plantene.</p></div>
   <div class="trap"><span class="lab">Vanlig feil</span><p>Planter puster <b>ikke</b> bare ut oksygen. De har celleånding hele døgnet, akkurat som dyr. Om dagen lager de mer oksygen i fotosyntesen enn de bruker.</p></div>`,
  defs:{'produsent':'Organisme som lager sin egen næring ved fotosyntese, for eksempel planter og alger.','konsument':'Organisme som får næring ved å spise andre organismer.','nedbryter':'Organisme, for eksempel sopp og bakterier, som bryter ned dødt materiale til enkle stoffer.','næringskjede':'En rekke som viser hvem som spiser hvem, fra produsent til toppkonsument.','næringsnett':'Mange næringskjeder som henger sammen.','karbonkretsløp':'Hvordan karbon går mellom luft, levende organismer, jord og hav.','fotosyntese':'Prosessen der planter bruker lysenergi til å lage sukker og oksygen av karbondioksid og vann.'},
@@ -768,6 +844,7 @@ CONTENT.mangfold = {
   <p>Forskerne sorterer artene i grupper etter slektskap. Dette kalles <b>klassifisering</b>. Hver art har et vitenskapelig navn med to ord, for eksempel <i>Lynx lynx</i> for gaupe. Det første ordet er slekten, det andre arten.</p>
   <div class="box"><span class="lab">Fra stort til smått</span><p class="eq" style="text-align:left">rike → rekke → klasse → orden → familie → slekt → art</p><p>Eksempel: dyreriket → ryggstrengdyr → pattedyr → rovdyr → kattefamilien → <i>Lynx</i> → gaupe</p></div>
   <p>Arter har <b>tilpasninger</b> til miljøet de lever i: fjellrypa skifter til hvit fjærdrakt om vinteren, og bjørnen går i hi.</p>
+  <div class="model" data-model="naeringsnett"></div>
   <div class="rule"><span class="lab">Hvorfor er mangfold viktig?</span><ul><li>Mange arter gir et mer <b>robust</b> økosystem som tåler endringer bedre.</li><li>Naturen gir oss mat, medisiner, rent vann og pollinering.</li><li>Genetisk mangfold gjør at en art kan overleve sykdommer og endringer i klimaet.</li></ul></div>
   <div class="model" data-model="mangfoldniva"></div>
   <p><b>Norsk rødliste for arter</b> viser hvilke arter som kan dø ut i Norge. Den viktigste trusselen er at artenes leveområder blir ødelagt eller endret.</p>`,
@@ -800,6 +877,7 @@ CONTENT['bruk-natur'] = {
    <tr><td>fisk, skog, vann, vind, sollys</td><td>olje, gass, kull, metaller, mineraler</td></tr></tbody></table></div></div>
   <div class="model" data-model="fornybar"></div>
   <div class="trap"><span class="lab">Vanlig feil</span><p>En fornybar ressurs kan også bli brukt opp. Fisker vi mer enn bestanden klarer å erstatte, kan bestanden kollapse. Torskebestanden utenfor Canada kollapset på 1990-tallet og har ikke kommet seg helt.</p></div>
+  <div class="model" data-model="fiske"></div>
   <p>Bruk av naturen blir <b>misbruk</b> når vi tar mer enn naturen tåler, eller ødelegger leveområder. Den største trusselen mot naturen i Norge er endret <b>arealbruk</b>: veier, hytter, boligfelt og kraftlinjer bygger ned natur bit for bit.</p>
   <div class="rule"><span class="lab">Bærekraft</span><p>Å bruke naturen <b>bærekraftig</b> betyr å dekke våre behov i dag uten å ødelegge mulighetene for dem som kommer etter oss.</p></div>
   <h3>Tradisjonell kunnskap</h3>
@@ -954,6 +1032,7 @@ CONTENT.hjernen = {
   <h3>Sansene kan lure oss</h3>
   <figure class="fig">${FIG.illusion}<figcaption>Er de grønne strekene like lange? Mål med linjal.</figcaption></figure>
   <p>Et <b>synsbedrag</b> oppstår når hjernen tolker det øynene ser på en feil måte. Hjernen fyller inn hull og bruker sammenhengen rundt for å gjette.</p>
+  <div class="model" data-model="illusjon"></div>
   <h3>Tankefeller</h3>
   <ul><li><b>Bekreftelsesfeil:</b> Vi legger mer merke til det som støtter det vi allerede tror, og overser det som ikke passer.</li><li><b>Korrelasjon er ikke årsak:</b> At to ting skjer samtidig, betyr ikke at den ene forårsaker den andre. Is-salget og antall drukningsulykker øker begge om sommeren, men isen er ikke årsaken – varmt vær er.</li><li><b>Tilfeldigheter:</b> Vi ser mønstre selv i tilfeldige ting, som ansikter i skyer.</li><li><b>Enkelthistorier:</b> «Min bestefar røykte og ble 95» sier lite om hva som gjelder for de fleste.</li></ul>
   <div class="model" data-model="aarsak"></div>
@@ -1115,6 +1194,7 @@ CONTENT['kjemiske-stoffer'] = {
   <h3>Kjemiske bindinger</h3>
   <p>Atomer binder seg for å få fullt ytterste skall.</p>
   <ul><li><b>Kovalent binding:</b> Ikke-metaller <i>deler</i> elektroner. Atomene danner <b>molekyler</b>, som vann (H₂O) og karbondioksid (CO₂).</li><li><b>Ionebinding:</b> Et metall <i>gir fra seg</i> elektroner til et ikke-metall. Da blir atomene til ladde partikler, <b>ioner</b>, som trekker hverandre til seg. Natrium blir Na⁺ og klor blir Cl⁻, og sammen danner de salt.</li></ul>
+  <div class="model" data-model="ionebinding"></div>
   <div class="rule"><span class="lab">Egenskaper</span><p>Salter (ionebinding) har ofte høyt smeltepunkt og leder strøm når de er løst i vann. Mange molekylære stoffer, som sukker, leder ikke strøm i vann.</p></div>
   <h3>Kjemiske reaksjoner</h3>
   <p>I en <b>kjemisk reaksjon</b> blir stoffene du starter med (<b>reaktantene</b>) til nye stoffer (<b>produktene</b>). Atomene bytter partnere, men ingen atomer forsvinner eller blir laget. Derfor er massen den samme før og etter. Dette kalles <b>massebevaring</b>.</p>
@@ -1200,6 +1280,7 @@ CONTENT['energi-hva'] = {
   <h3>Energiomforming</h3>
   <p>Når du slipper en ball, blir stillingsenergi til bevegelsesenergi. Når ballen treffer gulvet, blir noe av energien til lyd og varme. Derfor spretter ballen ikke like høyt igjen.</p>
   <div class="model" data-model="ball"></div>
+  <div class="model" data-model="partikler"></div>
   <div class="trap"><span class="lab">Vanlig feil</span><p>Vi sier ofte at vi «bruker opp» energi. Egentlig blir energien omformet, som oftest til varme som sprer seg i omgivelsene og blir vanskelig å bruke igjen.</p></div>`,
  defs:{'energi':'Evnen til å utføre arbeid eller gi varme. Måles i joule.','energibevaring':'Energi kan ikke lages eller forsvinne, bare omformes.','bevegelsesenergi':'Energi et legeme har fordi det beveger seg.','stillingsenergi':'Energi et legeme har på grunn av høyden eller plasseringen sin.','joule':'Enheten for energi (J). 1 kJ = 1000 J.'},
  quiz:[
@@ -1236,6 +1317,7 @@ CONTENT.energikilder = {
   <div class="rule"><span class="lab">Norge</span><p>Nesten 90 % av strømmen i Norge kommer fra <b>vannkraft</b>, og rundt 10 % fra vindkraft. Samtidig er Norge en stor eksportør av olje og gass.</p></div>
   <div class="model" data-model="energikilde"></div>
   <figure class="fig">${FIG.hydro}<figcaption>Vannkraftverk: stillingsenergi → bevegelsesenergi → elektrisk energi.</figcaption></figure>
+  <div class="model" data-model="kraftverk"></div>
   <div class="box"><span class="lab">Fordeler og ulemper</span><div class="scroll"><table class="t tl"><thead><tr><th>Kilde</th><th>Fordel</th><th>Ulempe</th></tr></thead><tbody>
    <tr><td>Vannkraft</td><td>Fornybar, kan lagres i magasiner, lite utslipp</td><td>Demninger og tørrlagte elver endrer naturen</td></tr>
    <tr><td>Vindkraft</td><td>Fornybar, lite utslipp</td><td>Varierer med vinden, tar areal, kan skade fugler</td></tr>
@@ -1372,6 +1454,7 @@ CONTENT.atmosfaeren = {
    <tr><td>Nitrogen (N₂)</td><td>ca. 78 %</td></tr><tr><td>Oksygen (O₂)</td><td>ca. 21 %</td></tr><tr><td>Argon (Ar)</td><td>ca. 0,9 %</td></tr><tr><td>Karbondioksid (CO₂)</td><td>ca. 0,04 %</td></tr></tbody></table></div><p>I tillegg er det vanndamp, som varierer mye fra sted til sted, og små mengder metan, lystgass og ozon.</p></div>
   <h3>Lagene i atmosfæren</h3>
   <ol class="order"><li><span><b>Troposfæren</b> (0 til ca. 10 km): Her skjer været. Temperaturen synker jo høyere opp du kommer.</span></li><li><span><b>Stratosfæren</b> (ca. 10–50 km): Her ligger <b>ozonlaget</b>, som stopper det meste av den farlige UV-strålingen.</span></li><li><span><b>Mesosfæren</b> og <b>termosfæren</b> lenger ute: Her brenner meteorer opp, og her oppstår nordlyset.</span></li></ol>
+  <div class="model" data-model="atmprofil"></div>
   <div class="model" data-model="klimagass"></div>
   <div class="rule"><span class="lab">Vær og klima</span><p><b>Vær</b> er tilstanden i atmosfæren på et bestemt sted og tidspunkt: regn, sol, vind og temperatur i dag. <b>Klima</b> er gjennomsnittet av været over lang tid, vanligvis 30 år.</p></div>
   <div class="trap"><span class="lab">Vanlig feil</span><p>Ozonhullet og drivhuseffekten er to forskjellige ting. Ozonhullet handler om UV-stråling, og ble skapt av gasser (KFK) som nå er forbudt. Drivhuseffekten handler om varmestråling og klimagasser.</p></div>`,
@@ -1444,6 +1527,7 @@ CONTENT['klima-na'] = {
   <div class="model" data-model="keeling"></div>
   <h3>Konsekvenser</h3>
   <ul><li><b>Havnivået stiger</b> fordi isbreer smelter og fordi vann utvider seg når det blir varmere.</li><li><b>Mer ekstremvær:</b> kraftigere regn, flere hetebølger og lengre tørkeperioder.</li><li><b>Havforsuring:</b> Havet tar opp CO₂ og blir surere. Det gjør det vanskeligere for dyr med kalkskall.</li><li><b>Arter flytter seg</b> nordover eller høyere opp i fjellet. Arter som ikke klarer å flytte seg, kan dø ut.</li><li><b>I Norge:</b> mildere vintre, mer regn og flere skred og flommer.</li></ul>
+  <div class="model" data-model="isoghav"></div>
   <h3>Scenarier</h3>
   <p>Forskerne bruker <b>klimamodeller</b> til å beregne ulike framtider – <b>scenarier</b> – ut fra hvor mye vi slipper ut. Med store kutt kan oppvarmingen begrenses. Med høye utslipp kan den bli 3–4 °C eller mer innen år 2100.</p>
   <div class="rule"><span class="lab">Klimatilpasning</span><p>Kommuner i Norge må planlegge for mer nedbør: større avløpsrør, flomvoller og regler for hvor det kan bygges.</p></div>
@@ -1502,6 +1586,7 @@ CONTENT['alt-celler'] = {
   <p><b>Encellede</b> organismer, som bakterier og gjær, består av én eneste celle som gjør alt. <b>Flercellede</b> organismer, som planter og dyr, består av mange celler som samarbeider. Et menneske har rundt 30 000 milliarder celler.</p>
   <h3>Osmose</h3>
   <p>Vann går gjennom cellemembranen fra der det er lite oppløst stoff til der det er mye. Dette kalles <b>osmose</b>. Derfor skrumper celler i saltvann og sveller i ferskvann.</p>
+  <div class="model" data-model="osmose"></div>
   <div class="rule"><span class="lab">Husk</span><p>Virus regnes vanligvis <b>ikke</b> som levende, fordi de ikke er celler og ikke kan formere seg uten å bruke en vertscelle.</p></div>`,
  defs:{'celleteori':'Teorien om at alt levende består av celler, og at nye celler kommer fra celler som deler seg.','prokaryot':'Celle uten cellekjerne, for eksempel bakterier.','eukaryot':'Celle med cellekjerne, for eksempel plante-, dyre- og soppceller.','encellet':'Organisme som består av bare én celle.','flercellet':'Organisme som består av mange celler som samarbeider.'},
  quiz:[
@@ -1559,6 +1644,7 @@ CONTENT.celletyper = {
   <p><b>Stamceller</b> er celler som ennå ikke er spesialisert. De kan dele seg og bli til mange ulike celletyper. Stamceller i beinmargen lager hele tiden nye blodceller.</p>
   <h3>Celledeling</h3>
   <p>Ved vanlig <b>celledeling</b> (mitose) kopieres DNA-et, og cellen deler seg i to like celler. Slik vokser vi og reparerer skader. Kjønnsceller lages ved en spesiell deling (meiose), slik at de får halvparten av arvestoffet.</p>
+  <div class="model" data-model="mitose"></div>
   <div class="trap"><span class="lab">Når delingen går galt</span><p>Kreft oppstår når celler deler seg ukontrollert. Det skyldes skader i genene som styrer celledelingen.</p></div>`,
  defs:{'spesialisering':'At celler får ulike oppgaver og former i en flercellet organisme.','stamcelle':'Celle som ikke er spesialisert og kan bli til ulike celletyper.','vev':'Gruppe av like celler som samarbeider.','organ':'Del av kroppen bygd av flere vev, for eksempel hjertet.','celledeling':'Når en celle deler seg i to.'},
  quiz:[
@@ -1606,6 +1692,7 @@ CONTENT.puberteten = {
   <h3>Menstruasjonssyklusen</h3>
   <ol class="order"><li><span>Et egg modnes i eggstokken, og slimhinnen i livmoren blir tykkere.</span></li><li><span><b>Eggløsning</b>: Egget slippes ut, omtrent midt i syklusen. Egget kan befruktes i et døgn, men sædceller kan leve i flere dager.</span></li><li><span>Blir egget ikke befruktet, støtes slimhinnen ut. Det er <b>menstruasjonen</b>, som varer 3–7 dager.</span></li></ol>
   <p>En syklus varer ofte 21–35 dager, og i starten er den ofte uregelmessig.</p>
+  <div class="model" data-model="syklus"></div>
   <h3>Gutter</h3>
   <p>Testiklene lager <b>sædceller</b> hele tiden fra puberteten. Sædcellene blandes med væske og kommer ut ved utløsning. Det er normalt med sædavgang i søvne.</p>
   <div class="rule"><span class="lab">Husk</span><p>Alle kropper utvikler seg i sitt eget tempo. Følelser kan også svinge mer i puberteten – det henger sammen med hormonene og med at hjernen utvikler seg.</p></div>`,
@@ -1732,6 +1819,7 @@ CONTENT['store-smellet'] = {
   <div class="model" data-model="univers"></div>
   <h3>Bevisene</h3>
   <ul><li><b>Rødforskyvning:</b> Lyset fra fjerne galakser er forskjøvet mot rødt. Det betyr at galaksene beveger seg bort fra oss – og jo lenger unna de er, jo raskere. Universet utvider seg.</li><li><b>Bakgrunnsstrålingen:</b> Svak mikrobølgestråling kommer fra alle retninger i verdensrommet. Den er «ekkoet» fra det varme, unge universet.</li><li><b>Mengden lette grunnstoffer:</b> Forholdet mellom hydrogen og helium i universet stemmer med det teorien forutsier.</li></ul>
+  <div class="model" data-model="rodforskyvning"></div>
   <div class="rule"><span class="lab">Stjerner lager grunnstoffer</span><p>Etter Big Bang fantes nesten bare hydrogen og helium. Tyngre grunnstoffer, som karbon, oksygen og jern, er laget inne i <b>stjerner</b>. Når store stjerner eksploderer, spres stoffene ut i rommet. Atomene i kroppen din har altså vært inne i en stjerne.</p></div>
   <p>En <b>galakse</b> er en samling av milliarder av stjerner. Vår galakse heter Melkeveien. Avstander i verdensrommet måles ofte i <b>lysår</b> – hvor langt lyset går på ett år, omtrent 9 500 milliarder km.</p>
   <div class="trap"><span class="lab">Vanlig feil</span><p>Big Bang var ikke en eksplosjon <i>i</i> rommet. Det var selve rommet som begynte å utvide seg.</p></div>`,
@@ -1778,6 +1866,7 @@ CONTENT.skandinavia = {
   <div class="model" data-model="geotid"></div>
   <h3>Istidene formet landskapet</h3>
   <p>De siste 2,6 millioner årene har det vært mange <b>istider</b>. Isbreer på opptil 3 km tykkelse dekket Skandinavia. Isen gravde ut <b>U-daler</b> og <b>fjorder</b> og la igjen morener. Da isen smeltet for rundt 10 000 år siden, hevet landet seg fordi vekten ble borte. Landet hever seg fortsatt litt.</p>
+  <div class="model" data-model="landheving"></div>
   <div class="rule"><span class="lab">Erosjon</span><p><b>Erosjon</b> er når vann, is og vind bryter ned og flytter bergarter. Den kaledonske fjellkjeden var en gang like høy som Himalaya, men er slitt ned til dagens norske fjell.</p></div>`,
  defs:{'bergart':'Fast stoff som består av ett eller flere mineraler, for eksempel granitt.','istid':'Periode med kaldt klima da store isbreer dekket landet.','fossil':'Rester eller avtrykk av organismer som levde for lenge siden.','erosjon':'Når vann, is og vind bryter ned og flytter bergarter.','geologisk tid':'Jordas historie delt inn i tidsperioder over milliarder av år.'},
  quiz:[
@@ -1895,6 +1984,7 @@ CONTENT.evolusjon = {
   <div class="model" data-model="utvalg"></div>
   <h3>Artsdannelse</h3>
   <p>Når en populasjon deles – for eksempel av et hav, en fjellkjede eller en elv – kan de to gruppene utvikle seg i hver sin retning. Etter lang tid kan de bli så forskjellige at de ikke lenger kan få avkom sammen. Da har det oppstått nye arter.</p>
+  <div class="model" data-model="artsdannelse"></div>
   <h3>Evolusjon vi kan se</h3>
   <ul><li><b>Antibiotikaresistens:</b> Bakterier som tåler antibiotika, overlever og formerer seg.</li><li><b>Bjørkemåleren</b> i England ble mørkere under industrialiseringen, da trærne ble svarte av sot.</li></ul>
   <div class="rule"><span class="lab">Slektskap</span><p>Alle levende organismer er i slekt. Ved å sammenligne DNA kan forskere lage <b>slektstrær</b> som viser hvor nært arter er beslektet. Mennesker og sjimpanser har en felles stamform som levde for 6–7 millioner år siden. Vi stammer altså ikke fra sjimpanser – vi er «søskenbarn».</p></div>
@@ -1919,6 +2009,7 @@ CONTENT['liv-planeter'] = {
   <h3>Eksoplaneter</h3>
   <p>En <b>eksoplanet</b> er en planet som går rundt en annen stjerne enn sola. Den første ble funnet i 1995. I dag kjenner vi til over 6000. Noen av dem ligger i den <b>beboelige sonen</b> rundt stjernen sin.</p>
   <div class="model" data-model="liv"></div>
+  <div class="model" data-model="transitt"></div>
   <h3>I vårt eget solsystem</h3>
   <ul><li><b>Mars</b> hadde trolig elver og innsjøer for milliarder av år siden. Roboter undersøker om det kan ha levd mikroorganismer der.</li><li><b>Europa</b> (en av Jupiters måner) og <b>Enceladus</b> (en av Saturns måner) har trolig hav av flytende vann under isen.</li></ul>
   <h3>Hvordan leter man?</h3>
@@ -1999,6 +2090,7 @@ CONTENT['stoffer-nerve'] = {
   <p>Når vi gjør noe som er bra for overlevelse – spiser, er sammen med venner, mestrer noe – skilles signalstoffet <b>dopamin</b> ut i hjernen. Det gir en god følelse og gjør at vi vil gjøre det igjen. Dette kalles <b>belønningssystemet</b>.</p>
   <div class="box"><span class="lab">Rusmidler</span><ul><li><b>Dempende stoffer</b> (alkohol, cannabis i høye doser, beroligende midler): demper aktiviteten i nervesystemet. Gir dårligere reaksjonsevne, balanse og vurderingsevne.</li><li><b>Sentralstimulerende stoffer</b> (nikotin, koffein, amfetamin, kokain): øker aktiviteten og gir mer energi, men også økt puls og uro.</li><li><b>Hallusinogener</b> (LSD, sopp): endrer sanseinntrykk og virkelighetsoppfatning.</li></ul></div>
   <div class="model" data-model="rus"></div>
+  <div class="model" data-model="dopamin"></div>
   <h3>Avhengighet</h3>
   <p>Mange rusmidler gir en kraftig dopaminøkning. Ved gjentatt bruk tilpasser hjernen seg: man trenger mer for å få samme effekt (<b>toleranse</b>), og man får ubehag uten stoffet (<b>abstinenser</b>). Til slutt kan man bli <b>avhengig</b>. Hjernen hos ungdom er ekstra sårbar fordi den fortsatt utvikler seg.</p>
   <h3>Legemidler</h3>
@@ -2021,6 +2113,7 @@ CONTENT['stoffer-nerve'] = {
 /* ===================== 10. trinn · Kapittel 4 · Hormonsystemet ===================== */
 CONTENT['kjemiske-budbringere'] = {
  learn:`<p><b>Hormoner</b> er kjemiske budbringere. De lages i <b>kjertler</b>, slippes ut i blodet og fraktes rundt i hele kroppen. Men bare celler som har riktig <b>reseptor</b> – <b>målcellene</b> – reagerer på hormonet. Reseptoren og hormonet passer sammen som lås og nøkkel.</p>
+  <div class="model" data-model="reseptor"></div>
   <div class="box"><span class="lab">Viktige kjertler</span><div class="scroll"><table class="t tl"><thead><tr><th>Kjertel</th><th>Hormon</th><th>Virkning</th></tr></thead><tbody>
    <tr><td><b>Hypofysen</b> (i hjernen)</td><td>Veksthormon og hormoner som styrer andre kjertler</td><td>«Sjefskjertelen»</td></tr>
    <tr><td><b>Skjoldbruskkjertelen</b></td><td>Tyroksin</td><td>Styrer stoffskiftet</td></tr>
@@ -2078,6 +2171,7 @@ CONTENT['hormon-pavirkes'] = {
   <h3>Doping</h3>
   <p><b>Doping</b> er bruk av forbudte stoffer eller metoder for å prestere bedre i idrett. <b>Anabole steroider</b> er syntetiske stoffer som ligner testosteron. De gir større muskler, men har alvorlige bivirkninger:</p>
   <ul><li>Kroppens egen hormonproduksjon kan stoppe opp.</li><li>Gutter kan få brystvekst og mindre testikler. Jenter kan få mørkere stemme og mer kroppshår.</li><li>Kviser, høyt blodtrykk, skader på hjerte og lever.</li><li>Humørsvingninger, aggresjon og depresjon.</li></ul>
+  <div class="model" data-model="steroider"></div>
   <p>I Norge er det ulovlig å bruke, kjøpe og ha dopingmidler. Kosttilskudd fra nettet kan inneholde dopingmidler uten at det står på pakken.</p>
   <div class="model" data-model="doping"></div>
   <h3>Miljøgifter</h3>
@@ -2109,6 +2203,7 @@ CONTENT['hvorfor-syk'] = {
    <tr><td><b>Sopp</b></td><td>Kan være encellede eller flercellede.</td><td>Fotsopp, soppinfeksjon i munnen</td></tr>
    <tr><td><b>Parasitter</b></td><td>Lever på eller i en vert.</td><td>Lus, bendelorm, malaria</td></tr></tbody></table></div></div>
   <div class="model" data-model="mikrober"></div>
+  <div class="model" data-model="bakterievekst"></div>
   <h3>Smitteveier</h3>
   <ul><li><b>Dråpesmitte og luftsmitte:</b> hosting, nysing</li><li><b>Kontaktsmitte:</b> hender, overflater, kyssing, sex</li><li><b>Mat og vann</b></li><li><b>Blod</b> og <b>insekter</b> (flått, mygg)</li></ul>
   <div class="rule"><span class="lab">Hvordan virus formerer seg</span><ol class="order"><li><span>Viruset fester seg til en celle og sprøyter inn arvestoffet sitt.</span></li><li><span>Cellen «lures» til å lage nye virus.</span></li><li><span>De nye virusene sprenger seg ut og angriper nye celler.</span></li></ol></div>
@@ -3146,6 +3241,317 @@ const MODELS = (()=>{
   const L=['bestand = 100','for aar in range(3):','    bestand = bestand * 1.2','    print(aar + 1, round(bestand))'];
   const T=[[0,{bestand:100},'',`Variabelen <code>bestand</code> får verdien 100.`],[1,{bestand:100,aar:0},'',`Løkken starter. <code>aar</code> er 0.`],[2,{bestand:120,aar:0},'',`100 · 1,2 = 120.`],[3,{bestand:120,aar:0},'1 120',`Programmet skriver ut 0 + 1 = 1 og 120.`],[1,{bestand:120,aar:1},'1 120',`Løkken kjører igjen. <code>aar</code> er nå 1.`],[2,{bestand:144,aar:1},'1 120',`120 · 1,2 = 144.`],[3,{bestand:144,aar:1},'1 120\n2 144',`Skriver ut 2 og 144.`],[1,{bestand:144,aar:2},'1 120\n2 144',`Siste runde: <code>aar</code> er 2.`],[2,{bestand:172.8,aar:2},'1 120\n2 144',`144 · 1,2 = 172,8.`],[3,{bestand:172.8,aar:2},'1 120\n2 144\n3 173',`Skriver ut 3 og 173 (avrundet). Løkken er ferdig etter 3 runder.`]];
   stepsModel(el,'Kodesporing','Følg programmet linje for linje',T.map(([ln,vars,out,txt])=>({v:`<div class="trace"><pre class="code">${L.map((l,i)=>`<span class="cl${i===ln?' on':''}">${esc(l)}</span>`).join('')}</pre><div class="vars2"><span class="lab">Variabler</span>${Object.entries(vars).map(([k,v])=>`<div><code>${k}</code> = <b>${nf(v)}</b></div>`).join('')}<span class="lab" style="margin-top:8px">Utskrift</span><pre class="out">${out||' '}</pre></div></div>`,t:`<p>${txt}</p>`})));
+ };
+
+ /* ======== fenomenmodeller (runde 3) ======== */
+ const loop=(el,fn)=>{ let last=performance.now(); const f=t=>{ if(!el.isConnected) return; const dt=Math.min(.05,(t-last)/1000); last=t; fn(dt); requestAnimationFrame(f); }; requestAnimationFrame(f); };
+ const RM=()=>matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+ /* --- fotosyntese og lys --- */
+ M.fotosyntese = el=>{
+  const a=uid('fs'); const s=shell(el,'Fenomen','Fotosyntese: lys gir oksygen', rng(a,'Lysstyrke (%)',60,0,100,5));
+  s.view.innerHTML=`<div class="fs-wrap"><svg viewBox="0 0 320 260" class="svgfig fs-svg"><circle cx="40" cy="40" r="24" class="sun lamp"/><rect x="110" y="40" width="160" height="210" rx="10" class="glass"/><rect x="112" y="80" width="156" height="168" rx="8" class="water2"/>
+    <path d="M190 245 C186 200 196 170 188 120" class="stem"/>${[0,1,2,3,4,5].map(i=>`<ellipse cx="${188+(i%2?14:-14)}" cy="${225-i*20}" rx="14" ry="5" class="leaf" transform="rotate(${i%2?-25:25} ${188+(i%2?14:-14)} ${225-i*20})"/>`).join('')}<g class="bubbles"></g></svg>
+    <div class="fs-stats"><div class="big-n"><span data-r>0</span><small>bobler O₂ per minutt</small></div><p class="eq" style="font-size:.85rem">CO₂ + H₂O + <b class="lt">lys</b> → sukker + <b>O₂</b></p></div></div>`;
+  const g=s.view.querySelector('.bubbles'), lamp=s.view.querySelector('.lamp'); let bs=[], acc=0;
+  const rate=()=>{ const L=+s.q('#'+a).value; return Math.round(40*L/(L+35)); };
+  const upd=()=>{ const L=+s.q('#'+a).value; s.q(`[data-out="${a}"]`).textContent=L; lamp.style.opacity=.15+L/120; s.view.querySelector('[data-r]').textContent=rate();
+   s.exp.innerHTML=`<p>${L===0?'Uten lys stopper fotosyntesen. Planten lager ikke oksygen – men den har fortsatt celleånding.':`Mer lys gir raskere fotosyntese og flere oksygenbobler. ${L>70?'Men økningen flater ut: Nå er det andre ting, som CO₂-mengden eller temperaturen, som begrenser.':''}`}</p><p class="muted">Dette er det samme som du kan måle i forsøket «Fotosyntese i vannpest».</p>`; };
+  s.q('#'+a).addEventListener('input',upd); upd();
+  loop(el,dt=>{ acc+=dt*rate()/60*6; while(acc>=1){ acc--; const c=document.createElementNS('http://www.w3.org/2000/svg','circle'); c.setAttribute('r',2.5+Math.random()*2); c.setAttribute('class','bub2'); g.appendChild(c); bs.push({c,x:180+Math.random()*20,y:200-Math.random()*90}); }
+   bs=bs.filter(b=>{ b.y-=dt*(RM()?200:45); b.c.setAttribute('cx',b.x+Math.sin(b.y/9)*2); b.c.setAttribute('cy',b.y); if(b.y<84){ b.c.remove(); return false; } return true; }); });
+ };
+
+ /* --- næringsnett: fjern en art --- */
+ M.naeringsnett = el=>{
+  const SP={gras:['Gras',0,60,'p'],bla:['Blåbærlyng',0,200,'p'],tre:['Bjørk',0,340,'p'],mus:['Skogmus',1,100,'k'],hare:['Hare',1,230,'k'],elg:['Elg',1,350,'k'],rev:['Rev',2,60,'r'],ugle:['Hubro',2,180,'r'],gaupe:['Gaupe',2,300,'r']};
+  const EAT={mus:['gras','bla'],hare:['gras','bla','tre'],elg:['tre','bla'],rev:['mus','hare'],ugle:['mus','hare'],gaupe:['hare','elg']};
+  const s=shell(el,'Fenomen','Næringsnett: hva skjer hvis en art forsvinner?','<span class="muted">Klikk på en art for å fjerne den. Klikk igjen for å sette den tilbake.</span>');
+  const gone=new Set();
+  const calc=()=>{ const dead=new Set(gone); let ch=true; while(ch){ ch=false; for(const [k,f] of Object.entries(EAT)){ if(!dead.has(k)&&f.every(x=>dead.has(x))){ dead.add(k); ch=true; } } }
+   const up=new Set(); for(const k of Object.keys(SP)){ const preds=Object.entries(EAT).filter(([p,f])=>f.includes(k)).map(x=>x[0]); if(!dead.has(k)&&preds.length&&preds.some(p=>gone.has(p))) up.add(k); } return {dead,up}; };
+  const draw=()=>{ const {dead,up}=calc(); const X=k=>SP[k][2]+20, Y=k=>200-SP[k][1]*80;
+   let e=''; for(const [k,f] of Object.entries(EAT)) f.forEach(x=>{ e+=`<line x1="${X(x)}" y1="${Y(x)-16}" x2="${X(k)}" y2="${Y(k)+16}" class="web${dead.has(k)||dead.has(x)?' off':''}"/>`; });
+   s.view.innerHTML=`<svg viewBox="0 0 420 240" class="svgfig web-svg">${e}${Object.entries(SP).map(([k,v])=>`<g class="sp ${v[3]}${dead.has(k)?' dead':''}${gone.has(k)?' rm':''}${up.has(k)?' up':''}" data-sp="${k}" role="button" tabindex="0" aria-label="${v[0]}"><rect x="${X(k)-42}" y="${Y(k)-16}" width="84" height="32" rx="16"/><text x="${X(k)}" y="${Y(k)+5}" text-anchor="middle">${v[0]}</text></g>`).join('')}</svg>`;
+   const lost=[...dead].filter(k=>!gone.has(k));
+   s.exp.innerHTML=!gone.size?`<p>Pilene går fra mat til den som spiser. Planteeterne har flere matkilder, så nettet tåler en del endringer.</p>`:`<p>Du fjernet: <b>${[...gone].map(k=>SP[k][0]).join(', ')}</b>.</p>${lost.length?`<p>Dette fører til at <b>${lost.map(k=>SP[k][0]).join(', ')}</b> også forsvinner – de har ikke mer mat.</p>`:'<p>Ingen andre arter forsvinner, fordi alle har annen mat å spise.</p>'}${up.size?`<p>Bestanden av <b>${[...up].map(k=>SP[k][0]).join(', ')}</b> kan øke, fordi noen av dem som spiser dem, er borte.</p>`:''}<p class="muted">Jo flere matkilder hver art har, jo mer robust er økosystemet.</p>`; };
+  s.view.addEventListener('click',e=>{ const g=e.target.closest('[data-sp]'); if(!g) return; const k=g.dataset.sp; gone.has(k)?gone.delete(k):gone.add(k); draw(); });
+  s.view.addEventListener('keydown',e=>{ if(e.key==='Enter'||e.key===' '){ const g=e.target.closest('[data-sp]'); if(g){ e.preventDefault(); g.dispatchEvent(new MouseEvent('click',{bubbles:true})); } } });
+  draw();
+ };
+
+ /* --- bærekraftig fiske --- */
+ M.fiske = el=>{
+  const a=uid('fi'); const s=shell(el,'Simulering','Bærekraftig fiske', rng(a,'Fiskekvote (tonn per år)',80,0,200,10));
+  const run=()=>{ const q=+s.q('#'+a).value; s.q(`[data-out="${a}"]`).textContent=q; const K=1000,r=.4; let B=[700], C=[];
+   for(let t=1;t<=40;t++){ const b=B[t-1], catchT=Math.min(q,b*0.9); C.push(catchT); B.push(Math.max(0,b+r*b*(1-b/K)-catchT)); }
+   const W=600,H=210,x=t=>40+t*(W-60)/40,y=v=>H-24-v*(H-40)/1000, col=B[40]<50;
+   s.view.innerHTML=`<svg viewBox="0 0 ${W} ${H}" class="svgfig chart"><line x1="40" y1="${H-24}" x2="${W-20}" y2="${H-24}" class="ax"/><line x1="40" y1="10" x2="40" y2="${H-24}" class="ax"/>${[0,10,20,30,40].map(t=>`<text x="${x(t)}" y="${H-8}" text-anchor="middle" class="ft s">${t}</text>`).join('')}<text x="${W-20}" y="${H-28}" text-anchor="end" class="ft s">år</text><text x="46" y="20" class="ft s">fiskebestand (tonn)</text>
+    <path d="${B.map((v,t)=>`${t?'L':'M'}${x(t)} ${y(v)}`).join('')}" class="ln ${col?'p':'h'}"/>${C.map((v,t)=>`<rect x="${x(t+1)-4}" y="${y(v)}" width="8" height="${H-24-y(v)}" class="catch"/>`).join('')}</svg><div class="legend"><span class="lg h">Bestand</span><span class="lg ins">Fangst</span></div>`;
+   const tot=Math.round(C.reduce((s,v)=>s+v,0));
+   s.exp.innerHTML=col?`<p><b>Bestanden kollapser!</b> Med en kvote på ${q} tonn tar vi mer enn bestanden klarer å vokse. Etter hvert er det nesten ikke fisk igjen – og fangsten blir også nesten null.</p>`:`<p>Bestanden holder seg${q>0?` med en kvote på ${q} tonn`:''}. Samlet fangst over 40 år: <b>${tot} tonn</b>.</p>${q>=80&&q<=110?'<p>Dette er nær det største uttaket bestanden tåler over tid (ca. 100 tonn i denne modellen).</p>':''}`;
+   s.exp.innerHTML+=`<p class="muted">Forenklet modell: Bestanden vokser raskest når den er middels stor. Prøv å finne kvoten som gir størst fangst over tid uten at bestanden kollapser.</p>`; };
+  s.q('#'+a).addEventListener('input',run); run();
+ };
+
+ /* --- synsbedrag --- */
+ M.illusjon = el=>{
+  const a=uid('il'); const s=shell(el,'Fenomen','Lur øynene dine', rng(a,'Lengde på nederste strek',200,120,280,1));
+  let shown=false;
+  const fin=(x,y,d)=>`<line x1="${x}" y1="${y}" x2="${x+d*24}" y2="${y-18}" class="fl"/><line x1="${x}" y1="${y}" x2="${x+d*24}" y2="${y+18}" class="fl"/>`;
+  const draw=()=>{ const L=+s.q('#'+a).value; s.q(`[data-out="${a}"]`).textContent=''; const x1=300-100, x2=300-L/2;
+   s.view.innerHTML=`<svg viewBox="0 0 600 170" class="svgfig"><line x1="${x1}" y1="50" x2="${x1+200}" y2="50" class="fl acc" stroke-width="4"/>${fin(x1,50,-1)}${fin(x1+200,50,1)}<line x1="${x2}" y1="125" x2="${x2+L}" y2="125" class="fl acc" stroke-width="4"/>${fin(x2,125,1)}${fin(x2+L,125,-1)}${shown?`<line x1="${x1}" y1="20" x2="${x1}" y2="150" class="mean"/><line x1="${x1+200}" y1="20" x2="${x1+200}" y2="150" class="mean"/>`:''}</svg>`;
+   s.nav.innerHTML=`<button class="btn small" data-show>Jeg tror de er like lange – vis fasit</button><button class="btn ghost small" data-new>Prøv igjen</button>`;
+   s.exp.innerHTML=shown?`<p>Den nederste streken er <b>${L} piksler</b>, den øverste er <b>200</b>. ${Math.abs(L-200)<6?'Imponerende nøyaktig!':`Du bommet med ${Math.abs(L-200)} piksler (${Math.round(Math.abs(L-200)/2)} %). De fleste gjør den nederste streken for ${L>200?'lang':'kort'}.`}</p><p>Hjernen tolker pilene som om streken er nær eller langt unna, og «justerer» lengden. Derfor måler vi i naturfag i stedet for å anslå.</p>`:`<p>Juster den nederste streken med glidebryteren til du synes begge er like lange.</p>`; };
+  s.q('#'+a).addEventListener('input',()=>{ shown=false; draw(); });
+  el.addEventListener('click',e=>{ if(e.target.closest('[data-show]')){ shown=true; draw(); } if(e.target.closest('[data-new]')){ shown=false; s.q('#'+a).value=String(130+Math.round(Math.random()*20)); draw(); } });
+  s.q('#'+a).value='140'; draw();
+ };
+
+ /* --- partikkelmodell --- */
+ M.partikler = el=>{
+  const a=uid('pa'); const s=shell(el,'Fenomen','Partiklene i vann', rng(a,'Temperatur (°C)',20,-40,140,5));
+  s.view.innerHTML=`<canvas width="560" height="220" class="pcanvas" aria-label="Animasjon av vannmolekyler"></canvas><div class="pstate"></div>`;
+  const cv=s.view.querySelector('canvas'), cx=cv.getContext('2d'), N=48; let P=[];
+  for(let i=0;i<N;i++){ const gx=i%8, gy=Math.floor(i/8); P.push({hx:200+gx*22,hy:90+gy*22,x:200+gx*22,y:90+gy*22,vx:Math.random()-.5,vy:Math.random()-.5}); }
+  const T=()=>+s.q('#'+a).value, state=()=>T()<0?'fast':T()<100?'flytende':'gass';
+  const upd=()=>{ s.q(`[data-out="${a}"]`).textContent=T(); const st=state();
+   s.view.querySelector('.pstate').innerHTML=`<span class="st ${st==='fast'?'on':''}">Is (fast)</span><span class="st ${st==='flytende'?'on':''}">Vann (flytende)</span><span class="st ${st==='gass'?'on':''}">Vanndamp (gass)</span>`;
+   s.exp.innerHTML=st==='fast'?`<p><b>Fast stoff:</b> Partiklene sitter fast i et mønster og kan bare vibrere på stedet. Jo kaldere, jo mindre vibrerer de.</p>`:st==='flytende'?`<p><b>Væske:</b> Partiklene er tett i tett, men kan gli forbi hverandre. Derfor tar vann formen til beholderen.</p>`:`<p><b>Gass:</b> Partiklene beveger seg raskt og fritt og fyller hele rommet.</p>`;
+   s.exp.innerHTML+=`<p class="muted">Temperatur er et mål på hvor raskt partiklene beveger seg. Ved 0 °C smelter is, og ved 100 °C koker vann (ved vanlig lufttrykk).</p>`; };
+  s.q('#'+a).addEventListener('input',upd); upd();
+  const css=getComputedStyle(document.documentElement);
+  loop(el,dt=>{ const t=T(), sp=Math.sqrt((t+273)/293), st=state(); cx.clearRect(0,0,560,220);
+   cx.strokeStyle=css.getPropertyValue('--line'); cx.lineWidth=2; cx.strokeRect(1,1,558,218);
+   P.forEach(p=>{ if(st==='fast'){ const j=1.2*sp; p.x=p.hx+(Math.random()-.5)*j*2; p.y=p.hy+(Math.random()-.5)*j*2; }
+    else { const v=(st==='gass'?260:70)*sp; p.vx+=(Math.random()-.5)*.4; p.vy+=(Math.random()-.5)*.4; const m=Math.hypot(p.vx,p.vy)||1; p.vx=p.vx/m; p.vy=p.vy/m;
+     p.x+=p.vx*v*dt*(RM()?.2:1); p.y+=p.vy*v*dt*(RM()?.2:1); const top=st==='flytende'?112:8;
+     if(p.x<8){p.x=8;p.vx=Math.abs(p.vx);} if(p.x>552){p.x=552;p.vx=-Math.abs(p.vx);} if(p.y<top){p.y=top;p.vy=Math.abs(p.vy);} if(p.y>212){p.y=212;p.vy=-Math.abs(p.vy);} }
+    cx.beginPath(); cx.arc(p.x,p.y,7,0,7); cx.fillStyle=st==='fast'?'#7FB6E6':st==='flytende'?'#3E8ED0':'#9CC7EC'; cx.fill(); });
+   if(st!=='fast'){ P.forEach(p=>{ p.hx=p.x; p.hy=p.y; }); } else if(P[0].hy>150||P[0].hx<150){ P.forEach((p,i)=>{ p.hx=200+(i%8)*22; p.hy=90+Math.floor(i/8)*22; }); } });
+ };
+
+ /* --- ionebinding --- */
+ M.ionebinding = el=>{
+  const atom=(cx,sh,lab,col,gift,extra)=>{ const R=[0,22,40,58]; let g=`<circle cx="${cx}" cy="110" r="14" class="nuc"/><text x="${cx}" y="114" text-anchor="middle" class="ft b" style="font-size:11px">${lab}</text>`;
+   sh.forEach((c,k)=>{ g+=`<circle cx="${cx}" cy="110" r="${R[k+1]}" class="shell on"/>`; for(let j=0;j<c;j++){ const an=-Math.PI/2+j*2*Math.PI/Math.max(c,1), last=gift&&k===sh.length-1&&j===c-1; g+=`<circle cx="${cx+R[k+1]*Math.cos(an)}" cy="${110+R[k+1]*Math.sin(an)}" r="${last?6.5:5}" style="fill:${last?'#3E8ED0':col};${last?'stroke:#000;stroke-width:1.5':''}"/>`; } });
+   return g+(extra||''); };
+  const S=[
+   [()=>atom(150,[2,8,1],'Na','#3E8ED0')+atom(420,[2,8,7],'Cl','#2E9E5B'),'<b>Natrium</b> (blå elektroner) har 1 elektron i ytterste skall. <b>Klor</b> (grønne elektroner) har 7. Ingen av dem har fullt ytterste skall.'],
+   [()=>atom(150,[2,8,1],'Na','#3E8ED0',1,`<path d="M160 52 Q290 0 410 52" class="mv" fill="none" marker-end="url(#ib)"/>`)+atom(420,[2,8,7],'Cl','#2E9E5B'),'Det er lettere for natrium å <b>gi bort</b> ett elektron enn å få sju. Klor «tar imot» elektronet.'],
+   [()=>atom(150,[2,8],'Na⁺','#3E8ED0')+atom(420,[2,8,8],'Cl⁻','#2E9E5B',1),'Nå har begge fullt ytterste skall. Klor har fått natriums elektron (det blå). Natrium har nå ett proton mer enn elektroner og blir et positivt ion, <b>Na⁺</b>. Klor blir et negativt ion, <b>Cl⁻</b>.'],
+   [()=>atom(200,[2,8],'Na⁺','#3E8ED0')+atom(370,[2,8,8],'Cl⁻','#2E9E5B',1)+`<path d="M232 198 L338 198" class="mv2" marker-end="url(#ib)" marker-start="url(#ib2)"/><text x="285" y="216" text-anchor="middle" class="ft s">+ og − tiltrekker hverandre</text>`,'Pluss og minus tiltrekker hverandre. Kraften mellom ionene kalles en <b>ionebinding</b>.'],
+   [()=>`<g>${Array.from({length:24},(_,i)=>{ const r=Math.floor(i/6), c=i%6, na=(r+c)%2===0; return `<circle cx="${130+c*62}" cy="${30+r*52}" r="${na?14:22}" class="${na?'ionNa':'ionCl'}"/><text x="${130+c*62}" y="${34+r*52}" text-anchor="middle" class="ft s" style="fill:#fff;font-weight:700">${na?'+':'−'}</text>`; }).join('')}</g>`,'Milliarder av ioner ordner seg i et fast mønster – et <b>krystallgitter</b>. Dette er koksalt, NaCl. Saltkornene er terningformet nettopp på grunn av dette mønsteret.']];
+  stepsModel(el,'Fenomen','Slik dannes salt (ionebinding)',S.map(([v,t])=>({v:()=>`<svg viewBox="0 0 560 222" class="svgfig atom"><defs><marker id="ib" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0 0L10 5L0 10z" fill="#C2362B"/></marker><marker id="ib2" viewBox="0 0 10 10" refX="2" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M10 0L0 5L10 10z" fill="#C2362B"/></marker></defs>${v()}</svg>`,t:`<p>${t}</p>`})));
+ };
+
+ /* --- kraftverk --- */
+ M.kraftverk = el=>{
+  const s=shell(el,'Fenomen','Hvor mye strøm gir kraftverket?',`<div class="seg" role="group"><button type="button" data-kv2="vann" aria-pressed="true">Vannkraft</button><button type="button" data-kv2="vind" aria-pressed="false">Vindkraft</button><button type="button" data-kv2="sol" aria-pressed="false">Solkraft</button></div><div class="kv-ctl"></div>`);
+  let k='vann'; const ctl=s.q('.kv-ctl'); let spin=0;
+  const ids={h:uid('kv'),q:uid('kv'),v:uid('kv'),a:uid('kv'),i:uid('kv')};
+  const setup=()=>{ ctl.innerHTML=k==='vann'?rng(ids.h,'Fallhøyde (m)',300,10,1000,10)+rng(ids.q,'Vannmengde (m³ per sekund)',20,1,100,1):k==='vind'?rng(ids.v,'Vindfart (m/s)',10,0,30,1):rng(ids.a,'Areal med solceller (m²)',1000,10,10000,10)+sel(ids.i,'Når?',['Sommerdag i Sør-Norge','Vinterdag i Sør-Norge','Overskyet dag']);
+   ctl.querySelectorAll('input,select').forEach(x=>x.addEventListener('input',run)); run(); };
+  const run=()=>{ let P=0, txt='', vis='';
+   if(k==='vann'){ const h=+s.q('#'+ids.h).value, q=+s.q('#'+ids.q).value; s.q(`[data-out="${ids.h}"]`).textContent=h; s.q(`[data-out="${ids.q}"]`).textContent=q; P=1000*9.81*h*q*0.9/1e6;
+    txt=`<p class="eq">effekt ≈ massetetthet · g · høyde · vannmengde · virkningsgrad = 1000 · 9,81 · ${h} · ${q} · 0,9 ≈ <b>${nf(Math.round(P*10)/10)} MW</b></p><p>Dobbelt så stor fallhøyde gir dobbelt så mye strøm. Vannet har stillingsenergi som blir til bevegelsesenergi og så til elektrisk energi.</p>`;
+    vis=`<path d="M10 40 H120 V180 H10 Z" class="water"/><path d="M120 ${180-h/7} L300 170" class="pipe" style="stroke-width:${4+q/6}"/><circle cx="320" cy="170" r="24" class="turb"/><g class="rot" style="transform-origin:320px 170px"><path d="M320 150 V190 M300 170 H340" stroke="var(--ink)" stroke-width="4"/></g>`; }
+   else if(k==='vind'){ const v=+s.q('#'+ids.v).value; s.q(`[data-out="${ids.v}"]`).textContent=v; const A=Math.PI*60*60; P=v<3||v>25?0:Math.min(5,0.5*1.225*A*v**3*0.4/1e6);
+    txt=`<p>${v<3?'For lite vind – turbinen står stille.':v>25?'For sterk vind – turbinen stoppes for å unngå skader.':`Effekten er omtrent <b>${nf(Math.round(P*10)/10)} MW</b>.`}</p><p>Energien i vinden øker med vindfarten <b>i tredje potens</b>: dobbelt så sterk vind gir åtte ganger så mye energi. Turbinen har en øvre grense (her 5 MW).</p><p class="muted">Turbin med 120 m rotordiameter og 40 % utnyttelse.</p>`;
+    vis=`<line x1="300" y1="200" x2="300" y2="80" stroke="var(--ink)" stroke-width="6"/><g class="rot" style="transform-origin:300px 80px">${[0,120,240].map(r=>`<path d="M300 80 L300 20" stroke="var(--ink)" stroke-width="7" stroke-linecap="round" transform="rotate(${r} 300 80)"/>`).join('')}</g>${Array.from({length:Math.min(8,Math.ceil(v/3))},(_,i)=>`<path d="M${20+i*14} ${60+i*14} h60" class="wind"/>`).join('')}`; }
+   else { const A=+s.q('#'+ids.a).value, I=[700,150,80][+s.q('#'+ids.i).value]; s.q(`[data-out="${ids.a}"]`).textContent=A; P=A*I*0.2/1e6;
+    txt=`<p class="eq">effekt ≈ areal · sollys · virkningsgrad = ${A} m² · ${I} W/m² · 0,2 ≈ <b>${nf(Math.round(P*1000))} kW</b></p><p>Solceller gir mye mindre om vinteren og når det er overskyet. I Norge gir de mest fra april til september.</p>`;
+    vis=`<circle cx="70" cy="50" r="${10+I/30}" class="sun"/>${Array.from({length:6},(_,i)=>`<rect x="${180+i*45}" y="150" width="40" height="30" class="panel" transform="skewX(-15)"/>`).join('')}`; }
+   const spd=Math.min(6,P/(k==='vann'?20:k==='vind'?1:.05));
+   s.view.innerHTML=`<svg viewBox="0 0 460 210" class="svgfig kvsvg">${vis}<text x="440" y="30" text-anchor="end" class="ft b">${k==='sol'?nf(Math.round(P*1000))+' kW':nf(Math.round(P*10)/10)+' MW'}</text></svg>`;
+   const r=s.view.querySelector('.rot'); if(r&&spd>0&&!RM()) r.style.animation=`spin ${2.5/spd}s linear infinite`;
+   s.exp.innerHTML=txt+`<p class="muted">1 MW tilsvarer omtrent strømforbruket til 500–700 husstander i gjennomsnitt gjennom året.</p>`; };
+  el.addEventListener('click',e=>{ const b=e.target.closest('[data-kv2]'); if(!b) return; k=b.dataset.kv2; el.querySelectorAll('[data-kv2]').forEach(x=>x.setAttribute('aria-pressed',x===b)); setup(); });
+  setup();
+ };
+
+ /* --- atmosfæren: temperatur med høyden --- */
+ M.atmprofil = el=>{
+  const a=uid('ap'); const s=shell(el,'Fenomen','Reis opp gjennom atmosfæren', rng(a,'Høyde (km)',0,0,110,1));
+  const T=h=>h<=11?15-6.5*h:h<=20?-56.5:h<=32?-56.5+(h-20):h<=47?-44.5+2.8*(h-32):h<=51?-2.5:h<=71?-2.5-2.8*(h-51):h<=86?-58.5-2*(h-71):-88.5+Math.max(0,(h-90))*4;
+  const lay=h=>h<11?'Troposfæren':h<50?'Stratosfæren':h<85?'Mesosfæren':'Termosfæren';
+  const ev=[[0,'Havnivå'],[2.5,'Galdhøpiggen (2,5 km)'],[8.8,'Mount Everest'],[10,'Rutefly'],[25,'Ozonlaget (15–35 km)'],[40,'Rekordhopp med fallskjerm (ca. 40 km)'],[80,'Meteorer brenner opp'],[100,'Nordlys og grensen til verdensrommet']];
+  const run=()=>{ const h=+s.q('#'+a).value; s.q(`[data-out="${a}"]`).textContent=h; const W=600,H=260,x=t=>320+t*2.4,y=k=>H-20-k*(H-30)/110;
+   let pts=[]; for(let k=0;k<=110;k++) pts.push(`${k?'L':'M'}${x(T(k))} ${y(k)}`);
+   s.view.innerHTML=`<svg viewBox="0 0 ${W} ${H}" class="svgfig chart">${[[0,11,'#E8F1FB'],[11,50,'#EEF0FA'],[50,85,'#F2EDF8'],[85,110,'#F6EAF0']].map(([a,b,c])=>`<rect x="0" y="${y(b)}" width="${W}" height="${y(a)-y(b)}" fill="${c}" opacity=".6"/>`).join('')}
+    ${[[5,'Troposfæren'],[30,'Stratosfæren'],[67,'Mesosfæren'],[97,'Termosfæren']].map(([k,n])=>`<text x="8" y="${y(k)}" class="ft s">${n}</text>`).join('')}
+    <line x1="${x(0)}" y1="10" x2="${x(0)}" y2="${H-20}" class="grid"/><text x="${x(0)+4}" y="${H-6}" class="ft s">0 °C</text><text x="${x(-80)}" y="${H-6}" class="ft s" text-anchor="middle">−80</text><text x="${x(40)}" y="${H-6}" class="ft s" text-anchor="middle">+40</text>
+    <path d="${pts.join('')}" class="ln p"/><line x1="0" x2="${W}" y1="${y(h)}" y2="${y(h)}" class="mean"/><circle cx="${x(T(h))}" cy="${y(h)}" r="7" class="dot"/></svg>`;
+   const e=ev.filter(x=>x[0]<=h).pop();
+   s.exp.innerHTML=`<p>På <b>${h} km</b> er du i <b>${lay(h)}</b>. Temperaturen er omtrent <b>${Math.round(T(h))} °C</b>, og lufttrykket er ca. <b>${h>40?'under 0,3':nf(Math.round(1013*Math.exp(-h/8)))} hPa</b> (${Math.max(0,Math.round(100*Math.exp(-h/8)))} % av trykket ved havet).</p>${e?`<p class="muted">I nærheten: ${e[1]}.</p>`:''}<p class="muted">I stratosfæren blir det varmere med høyden fordi ozonet tar opp UV-stråling.</p>`; };
+  s.q('#'+a).addEventListener('input',run); run();
+ };
+
+ /* --- is og hav --- */
+ M.isoghav = el=>{
+  const a=uid('ih'); const s=shell(el,'Fenomen','Hva skjer med havnivået når isen smelter?', rng(a,'Hvor mye av isen har smeltet (%)',0,0,100,5));
+  const run=()=>{ const m=+s.q('#'+a).value/100; s.q(`[data-out="${a}"]`).textContent=Math.round(m*100);
+   const tank=(x,land)=>{ const base=150, wl=base-(land?m*28:0), ice=1-m;
+    return `<rect x="${x}" y="40" width="240" height="150" class="tank"/>${land?`<path d="M${x+20} 190 L${x+20} 110 L${x+110} 110 L${x+110} 190 Z" class="rock"/>`:''}<rect x="${x+2}" y="${wl}" width="236" height="${188-wl}" class="water3"/>
+     ${ice>0?(land?`<rect x="${x+30}" y="${110-60*ice}" width="70" height="${60*ice}" class="icebl"/>`:`<rect x="${x+90}" y="${wl-8*ice}" width="${70*Math.sqrt(ice)}" height="${40*ice}" class="icebl"/>`):''}
+     <line x1="${x}" x2="${x+240}" y1="${base}" y2="${base}" class="mean"/><text x="${x+120}" y="30" text-anchor="middle" class="ft b">${land?'Landis (isbre)':'Sjøis (flyter)'}</text>`; };
+   s.view.innerHTML=`<svg viewBox="0 0 560 200" class="svgfig">${tank(20,false)}${tank(300,true)}</svg>`;
+   s.exp.innerHTML=`<p><b>Sjøis</b> flyter allerede i havet og fortrenger like mye vann som den blir til når den smelter. Havnivået endres ikke.</p><p><b>Landis</b> – isbreer på Grønland og i Antarktis – renner ut i havet når den smelter. ${m>0?'Havnivået stiger.':''}</p><p class="muted">I tillegg utvider havvannet seg når det blir varmere. Det bidrar også til havnivåstigning.</p>`; };
+  s.q('#'+a).addEventListener('input',run); run();
+ };
+
+ /* --- osmose --- */
+ M.osmose = el=>{
+  const a=uid('os'); const s=shell(el,'Fenomen','Osmose: vann inn og ut av cellen', rng(a,'Salt i vannet rundt cellen (%)',0.9,0,5,0.1)+`<div class="seg" role="group"><button type="button" data-ot="b" aria-pressed="true">Rød blodcelle</button><button type="button" data-ot="p" aria-pressed="false">Plantecelle</button></div>`);
+  let t='b';
+  const run=()=>{ const c=+s.q('#'+a).value; s.q(`[data-out="${a}"]`).textContent=nf(c); const d=0.9-c; // + => vann inn
+   const sc=Math.max(.55,Math.min(1.35,1+d*0.35)), burst=t==='b'&&c<0.3;
+   const arrows=Math.min(6,Math.round(Math.abs(d)*4)), dir=d>0?1:-1;
+   let ar=''; for(let i=0;i<arrows;i++){ const an=i*2*Math.PI/Math.max(arrows,1); const r1=dir>0?115:70, r2=dir>0?80:110; ar+=`<line x1="${280+r1*Math.cos(an)}" y1="${115+r1*Math.sin(an)*.75}" x2="${280+r2*Math.cos(an)}" y2="${115+r2*Math.sin(an)*.75}" class="wa" marker-end="url(#om)"/>`; }
+   const cell=t==='b'?(burst?`<path d="M220 80 l20 30 l-25 10 l30 20 l-10 30 M340 80 l-15 25 l25 15 l-20 25 l15 25" class="burst"/>`:`<ellipse cx="280" cy="115" rx="${70*sc}" ry="${48*sc}" class="rbc"/><ellipse cx="280" cy="115" rx="${30*sc}" ry="${18*sc}" class="rbc2"/>`)
+     :`<rect x="190" y="55" width="180" height="120" rx="10" class="pwall"/><rect x="${280-84*Math.min(1,sc)}" y="${115-54*Math.min(1,sc)}" width="${168*Math.min(1,sc)}" height="${108*Math.min(1,sc)}" rx="10" class="pmem"/>`;
+   s.view.innerHTML=`<svg viewBox="0 0 560 230" class="svgfig"><defs><marker id="om" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0 0L10 5L0 10z" fill="#3E8ED0"/></marker></defs><rect x="0" y="0" width="560" height="230" fill="rgba(60,130,220,${.08+c/12})"/>${cell}${burst?'':ar}<text x="10" y="220" class="ft s">Vannet rundt: ${nf(c)} % salt · Inne i cellen: ca. 0,9 %</text></svg>`;
+   s.exp.innerHTML=Math.abs(d)<0.15?`<p>Saltinnholdet er omtrent likt inne og ute. Like mye vann går inn som ut – cellen beholder formen.</p>`:d>0?`<p>Det er mindre salt utenfor enn inne i cellen. <b>Vann går inn</b> i cellen ved osmose${t==='b'?(burst?', og den røde blodcellen sprekker!':', og den sveller.'):'. Plantecellen blir stram, men celleveggen hindrer at den sprekker. Det gjør at planter står oppreist.'}</p>`:`<p>Det er mer salt utenfor cellen. <b>Vann går ut</b> av cellen ved osmose, og den ${t==='b'?'skrumper':'mister trykket – membranen trekker seg bort fra celleveggen, og planten visner'}.</p>`;
+   s.exp.innerHTML+=`<p class="muted">Derfor får pasienter saltvannsløsning med 0,9 % salt i drypp, og derfor tåler ikke de fleste planter saltvann.</p>`; };
+  s.q('#'+a).addEventListener('input',run);
+  el.addEventListener('click',e=>{ const b=e.target.closest('[data-ot]'); if(!b) return; t=b.dataset.ot; el.querySelectorAll('[data-ot]').forEach(x=>x.setAttribute('aria-pressed',x===b)); run(); }); run();
+ };
+
+ /* --- mitose --- */
+ M.mitose = el=>{
+  const chr=(x,y,c,dbl,rot=0)=>`<g transform="rotate(${rot} ${x} ${y})">${dbl?`<rect x="${x-7}" y="${y-18}" width="6" height="36" rx="3" fill="${c}"/><rect x="${x+1}" y="${y-18}" width="6" height="36" rx="3" fill="${c}"/><circle cx="${x}" cy="${y}" r="3" fill="var(--ink)"/>`:`<rect x="${x-3}" y="${y-18}" width="6" height="36" rx="3" fill="${c}"/>`}</g>`;
+  const C=['#3E8ED0','#E8553A'];
+  const S=[
+   ['Cellen før deling',`<ellipse cx="280" cy="110" rx="150" ry="90" class="cellm"/><circle cx="280" cy="110" r="45" class="nucm"/>${chr(265,105,C[0],0,20)+chr(295,115,C[1],0,-30)}`,'Cellen har en cellekjerne med arvestoffet. Her er det vist bare to kromosomer.'],
+   ['DNA kopieres',`<ellipse cx="280" cy="110" rx="150" ry="90" class="cellm"/><circle cx="280" cy="110" r="45" class="nucm"/>${chr(265,105,C[0],1,20)+chr(295,115,C[1],1,-30)}`,'Før delingen kopieres alt DNA. Hvert kromosom består nå av to like kopier som henger sammen.'],
+   ['Kromosomene ordner seg',`<ellipse cx="280" cy="110" rx="150" ry="90" class="cellm"/><line x1="280" y1="30" x2="280" y2="190" class="mean"/>${chr(280,80,C[0],1)+chr(280,140,C[1],1)}`,'Kjernemembranen løses opp. Kromosomene legger seg på rekke på midten av cellen.'],
+   ['Kopiene trekkes fra hverandre',`<ellipse cx="280" cy="110" rx="170" ry="85" class="cellm"/>${chr(200,80,C[0],0)+chr(200,140,C[1],0)+chr(360,80,C[0],0)+chr(360,140,C[1],0)}<path d="M260 110 H215 M300 110 H345" class="mv"/>`,'Trådene trekker de to kopiene av hvert kromosom til hver sin side av cellen.'],
+   ['To nye celler',`<ellipse cx="170" cy="110" rx="105" ry="80" class="cellm"/><ellipse cx="390" cy="110" rx="105" ry="80" class="cellm"/><circle cx="170" cy="110" r="38" class="nucm"/><circle cx="390" cy="110" r="38" class="nucm"/>${chr(160,105,C[0],0,20)+chr(185,115,C[1],0,-30)+chr(380,105,C[0],0,20)+chr(405,115,C[1],0,-30)}`,'Cellen deler seg i to. Hver ny celle har <b>nøyaktig det samme arvestoffet</b> som den opprinnelige. Slik vokser vi og reparerer skader.']];
+  stepsModel(el,'Fenomen','Celledeling (mitose)',S.map(([h,v,t])=>({v:`<svg viewBox="0 0 560 220" class="svgfig">${v}</svg>`,t:`<p><b>${h}:</b> ${t}</p>`})));
+ };
+
+ /* --- menstruasjonssyklus --- */
+ M.syklus = el=>{
+  const a=uid('sy'); const s=shell(el,'Fenomen','Menstruasjonssyklusen dag for dag', rng(a,'Dag i syklusen',1,1,28,1));
+  const E=d=>d<=14?20+70*Math.exp(-((d-13)**2)/12):20+35*Math.exp(-((d-21)**2)/18), Pg=d=>d<15?5:5+75*Math.exp(-((d-21)**2)/16), LH=d=>5+90*Math.exp(-((d-14)**2)/1.2), Li=d=>d<=5?30-d*4:d<=14?10+(d-5)*5:55+Math.min(20,(d-14)*2.5)-(d>26?(d-26)*20:0);
+  const run=()=>{ const d=+s.q('#'+a).value; s.q(`[data-out="${a}"]`).textContent=d; const W=600,H=200,x=k=>40+(k-1)*(W-60)/27,y=v=>H-24-v*(H-40)/100;
+   const line=(f,c)=>`<path d="${Array.from({length:28},(_,i)=>`${i?'L':'M'}${x(i+1)} ${y(f(i+1))}`).join('')}" fill="none" stroke="${c}" stroke-width="3"/>`;
+   const ph=d<=5?'Menstruasjon':d<14?'Egget modnes':d===14?'Eggløsning':'Etter eggløsning';
+   s.view.innerHTML=`<svg viewBox="0 0 ${W} ${H}" class="svgfig chart"><rect x="${x(1)}" y="10" width="${x(5)-x(1)}" height="${H-34}" fill="var(--red-soft)"/><rect x="${x(13)}" y="10" width="${x(15)-x(13)}" height="${H-34}" fill="var(--ok-soft)"/><line x1="40" y1="${H-24}" x2="${W-20}" y2="${H-24}" class="ax"/>${[1,7,14,21,28].map(k=>`<text x="${x(k)}" y="${H-8}" text-anchor="middle" class="ft s">${k}</text>`).join('')}
+    ${line(E,'#D79A12')}${line(Pg,'#5B3E99')}${line(LH,'#2C6A8A')}<line x1="${x(d)}" x2="${x(d)}" y1="10" y2="${H-24}" class="mean"/></svg>
+    <div class="legend"><span class="lgc" style="--c:#D79A12">Østrogen</span><span class="lgc" style="--c:#2C6A8A">LH (utløser eggløsning)</span><span class="lgc" style="--c:#5B3E99">Progesteron</span></div>
+    <div class="uterus"><span class="lab">Slimhinnen i livmoren</span><div class="ut-bar"><i style="width:${Math.max(4,Li(d))}%"></i></div></div>`;
+   s.exp.innerHTML=`<p><b>Dag ${d} – ${ph}.</b> ${d<=5?'Slimhinnen i livmoren støtes ut fordi egget i forrige syklus ikke ble befruktet.':d<14?'Østrogen får et nytt egg til å modnes og slimhinnen til å bli tykkere.':d===14?'Et kraftig utslag av hormonet LH gjør at egget slippes ut fra eggstokken.':d<26?'Progesteron holder slimhinnen tykk og klar til å ta imot et befruktet egg.':'Hvis egget ikke er befruktet, synker hormonnivåene. Snart starter en ny menstruasjon.'}</p><p class="muted">Modellen viser en «typisk» syklus på 28 dager. I virkeligheten varierer lengden, særlig de første årene.</p>`; };
+  s.q('#'+a).addEventListener('input',run); run();
+ };
+
+ /* --- artsdannelse --- */
+ M.artsdannelse = el=>{
+  const s=shell(el,'Simulering','Artsdannelse: én art blir til to','<span class="muted">En bestand finker deles av havet. På den ene øya er frøene store og harde, på den andre små.</span>');
+  let A=[], B=[], g=0;
+  const reset=()=>{ A=[10]; B=[10]; g=0; draw(); };
+  const step=()=>{ const a=A[A.length-1], b=B[B.length-1]; A.push(a+(14-a)*0.06+(Math.random()-.5)*.4); B.push(b+(6.5-b)*0.06+(Math.random()-.5)*.4); g+=10; };
+  const draw=()=>{ const W=600,H=200,x=i=>40+i*(W-60)/40,y=v=>H-24-(v-4)*(H-40)/12, a=A[A.length-1], b=B[B.length-1], diff=Math.abs(a-b);
+   s.view.innerHTML=`<div class="birds"><div><b>Øy A</b><span class="beak" style="--w:${a*4}px"></span><small>${nf(Math.round(a*10)/10)} mm</small></div><div><b>Øy B</b><span class="beak" style="--w:${b*4}px"></span><small>${nf(Math.round(b*10)/10)} mm</small></div></div>
+    <svg viewBox="0 0 ${W} ${H}" class="svgfig chart"><line x1="40" y1="${H-24}" x2="${W-20}" y2="${H-24}" class="ax"/><line x1="40" y1="10" x2="40" y2="${H-24}" class="ax"/><text x="46" y="20" class="ft s">gjennomsnittlig nebbstørrelse (mm)</text><text x="${W-20}" y="${H-6}" text-anchor="end" class="ft s">generasjoner</text>
+    <path d="${A.map((v,i)=>`${i?'L':'M'}${x(i)} ${y(v)}`).join('')}" class="ln p"/><path d="${B.map((v,i)=>`${i?'L':'M'}${x(i)} ${y(v)}`).join('')}" class="ln h"/></svg>`;
+   s.nav.innerHTML=`<span class="m-count">${g} generasjoner</span><button class="btn ghost small" data-rs>Start på nytt</button><button class="btn small" data-g ${A.length>40?'disabled':''}>+10 generasjoner →</button>`;
+   s.exp.innerHTML=g===0?`<p>Ved start er fuglene på begge øyene like, med nebb på ca. 10 mm. Havet hindrer dem i å møtes og få unger sammen.</p>`:`<p>Naturlig utvalg virker ulikt på de to øyene: Store nebb er en fordel der frøene er harde, små nebb der frøene er små.</p>${diff>5?'<p><b>Bestandene er nå så forskjellige at de trolig ikke ville fått unger sammen om de møttes igjen. Det har oppstått to nye arter.</b></p>':''}<p class="muted">Hver «generasjon» i modellen tilsvarer mange generasjoner i virkeligheten.</p>`; };
+  s.nav.addEventListener('click',e=>{ if(e.target.closest('[data-g]')){ step(); draw(); } if(e.target.closest('[data-rs]')) reset(); }); reset();
+ };
+
+ /* --- eksoplanettransitt --- */
+ M.transitt = el=>{
+  const a=uid('tr'); const s=shell(el,'Fenomen','Slik finner vi planeter rundt andre stjerner', rng(a,'Planetens størrelse (jordradier)',4,1,20,1));
+  s.view.innerHTML=`<svg viewBox="0 0 600 140" class="svgfig"><circle cx="300" cy="70" r="60" class="star"/><circle class="exo" cy="70" r="5"/></svg><svg viewBox="0 0 600 140" class="svgfig chart lc"><line x1="20" y1="20" x2="580" y2="20" class="grid"/><text x="24" y="14" class="ft s">lysstyrke fra stjernen</text><path class="lcp ln h"/></svg>`;
+  const exo=s.view.querySelector('.exo'), lcp=s.view.querySelector('.lcp'); let t=0, pts=[];
+  const R=()=>+s.q('#'+a).value, dip=()=>Math.pow(R()*0.00916*60/60/0.25,2); // skalert visuelt
+  const upd=()=>{ s.q(`[data-out="${a}"]`).textContent=R(); const real=Math.pow(R()/109,2)*100; exo.setAttribute('r',R()*2.2); pts=[];
+   s.exp.innerHTML=`<p>Når planeten passerer foran stjernen, blokkerer den litt av lyset. Teleskoper måler at stjernen blir litt svakere med jevne mellomrom. Dette kalles <b>transittmetoden</b>.</p><p>En planet på ${R()} jordradier foran en stjerne som sola gir et fall i lysstyrken på ca. <b>${real<0.1?nf(Math.round(real*1000)/1000):nf(Math.round(real*100)/100)} %</b>. ${R()===1?'Jorda gir bare 0,008 % – svært vanskelig å måle!':R()>=11?'Det tilsvarer omtrent en Jupiter-planet.':''}</p><p class="muted">Fallet i figuren er forstørret. Avstanden mellom fallene viser hvor lang tid planeten bruker på én runde.</p>`; };
+  s.q('#'+a).addEventListener('input',upd); upd();
+  loop(el,dt=>{ t=(t+dt*(RM()?.05:.18))%1; const px=60+t*480, r=R()*2.2; exo.setAttribute('cx',px); const over=Math.abs(px-300)<60;
+   const depth=over?Math.min(80,(r*r)/(60*60)*100*4):0; pts.push([20+t*560,20+depth]); if(pts.length>1&&pts[pts.length-1][0]<pts[pts.length-2][0]) pts=[pts[pts.length-1]];
+   lcp.setAttribute('d',pts.map((p,i)=>`${i?'L':'M'}${p[0]} ${p[1]}`).join('')); });
+ };
+
+ /* --- dopamin og rusmidler --- */
+ M.dopamin = el=>{
+  const s=shell(el,'Fenomen','Dopamin i synapsen',`<div class="seg" role="group"><button type="button" data-dm="0" aria-pressed="true">Normalt</button><button type="button" data-dm="1" aria-pressed="false">Med kokain</button><button type="button" data-dm="2" aria-pressed="false">Med nikotin</button></div>`);
+  let m=0, D=[], level=0, hist=[];
+  s.view.innerHTML=`<svg viewBox="0 0 600 170" class="svgfig syn"><path d="M20 30 H240 Q290 30 290 85 Q290 140 240 140 H20" class="cellA"/><path d="M580 20 H350 Q320 20 320 85 Q320 150 350 150 H580" class="cellB"/><g class="pump">${[55,115].map(y=>`<rect x="278" y="${y-8}" width="12" height="16" rx="3" class="pumpr"/>`).join('')}</g>${[0,1,2,3].map(k=>`<rect x="318" y="${44+k*24}" width="8" height="14" class="rec on"/>`).join('')}<g class="dots"></g></svg>
+   <svg viewBox="0 0 600 110" class="svgfig chart"><text x="10" y="14" class="ft s">dopamin i synapsespalten</text><path class="dpath ln p"/></svg>`;
+  const g=s.view.querySelector('.dots'), dp=s.view.querySelector('.dpath'); let acc=0;
+  const txt=()=>{ s.exp.innerHTML=[`<p>Ved hvert signal slippes dopamin ut i synapsespalten. Litt binder seg til reseptorene, og resten pumpes raskt tilbake (gjenopptak). Signalet blir kort.</p>`,`<p><b>Kokain blokkerer pumpene</b> som tar dopamin tilbake. Dopaminet blir liggende i spalten og gir et kraftig og langvarig signal – en rus. Over tid tilpasser hjernen seg, og man trenger mer for samme virkning.</p>`,`<p><b>Nikotin</b> får nervecellen til å slippe ut mer dopamin. Det gir en kortvarig god følelse, og hjernen lærer å ønske mer. Derfor er nikotin svært avhengighetsskapende.</p>`][m]; };
+  el.addEventListener('click',e=>{ const b=e.target.closest('[data-dm]'); if(!b) return; m=+b.dataset.dm; el.querySelectorAll('[data-dm]').forEach(x=>x.setAttribute('aria-pressed',x===b)); s.view.querySelector('.pump').style.opacity=m===1?.25:1; txt(); }); txt();
+  let tt=0;
+  loop(el,dt=>{ tt+=dt; acc+=dt; if(acc>1.4){ acc=0; const n=m===2?14:8; for(let i=0;i<n;i++){ const c=document.createElementNS('http://www.w3.org/2000/svg','circle'); c.setAttribute('r',3.5); c.setAttribute('class','nt'); g.appendChild(c); D.push({c,x:290,y:50+Math.random()*70,vx:20+Math.random()*30,vy:(Math.random()-.5)*30,age:0}); } }
+   D=D.filter(d=>{ d.age+=dt; d.x+=d.vx*dt*(RM()?.3:1); d.y+=d.vy*dt; if(d.x>314){ d.x=314; d.vx=-Math.abs(d.vx); } if(d.x<291){ if(m!==1&&d.age>.6){ d.c.remove(); return false; } d.x=291; d.vx=Math.abs(d.vx); } if(d.y<40||d.y>130) d.vy*=-1; d.c.setAttribute('cx',d.x); d.c.setAttribute('cy',d.y); if(m===1&&d.age>6){ d.c.remove(); return false; } return true; });
+   hist.push(D.length); if(hist.length>300) hist.shift(); dp.setAttribute('d',hist.map((v,i)=>`${i?'L':'M'}${10+i*1.95} ${100-Math.min(85,v*3)}`).join('')); });
+ };
+
+ /* --- hormon og reseptor --- */
+ M.reseptor = el=>{
+  const s=shell(el,'Fenomen','Hormoner finner målcellene sine',`<div class="seg" role="group"><button type="button" data-hr="ins">Slipp ut insulin</button><button type="button" data-hr="adr">Slipp ut adrenalin</button></div>`);
+  const cells=[['Muskelcelle',['ins','adr'],80,40],['Levercelle',['ins','adr'],80,140],['Hjertecelle',['adr'],520,40],['Fettcelle',['ins'],520,140],['Hudcelle',[],300,180]];
+  let H=null, mols=[], lit=new Set();
+  s.view.innerHTML=`<svg viewBox="0 0 600 220" class="svgfig"><path d="M0 100 C150 70 450 130 600 100 L600 120 C450 150 150 90 0 120 Z" class="blood"/><text x="300" y="98" text-anchor="middle" class="ft s">blodåre</text>${cells.map((c,i)=>`<g class="tc" data-i="${i}"><rect x="${c[2]-60}" y="${c[3]-22}" width="120" height="44" rx="12"/><text x="${c[2]}" y="${c[3]+5}" text-anchor="middle" class="ft s">${c[0]}</text>${c[1].map((r,k)=>`<path d="M${c[2]-40+k*30} ${c[3]+(c[3]<100?22:-22)} l6 ${c[3]<100?8:-8} l6 ${c[3]<100?-8:8}" class="rcp ${r}"/>`).join('')}</g>`).join('')}<g class="mols"></g></svg>`;
+  const g=s.view.querySelector('.mols');
+  const txt=()=>{ s.exp.innerHTML=!H?`<p>Velg et hormon. Hormonet slippes ut i blodet og når alle cellene – men bare noen reagerer.</p><p class="muted">De små hakkene på cellene er reseptorer. Fargen viser hvilket hormon de passer til.</p>`:H==='ins'?`<p><b>Insulin</b> fra bukspyttkjertelen når hele kroppen, men bare celler med insulinreseptorer reagerer: muskel-, lever- og fettceller tar opp sukker fra blodet.</p>`:`<p><b>Adrenalin</b> fra binyrene får hjertet til å slå raskere, musklene til å få mer energi og leveren til å slippe ut sukker. Huden har ikke reseptorer for adrenalin i denne modellen, og reagerer ikke.</p>`; };
+  el.addEventListener('click',e=>{ const b=e.target.closest('[data-hr]'); if(!b) return; H=b.dataset.hr; lit.clear(); g.innerHTML=''; mols=[]; for(let i=0;i<30;i++){ const c=document.createElementNS('http://www.w3.org/2000/svg','circle'); c.setAttribute('r',4); c.setAttribute('class','hm '+H); g.appendChild(c); mols.push({c,x:Math.random()*40,y:105+Math.random()*10,vx:60+Math.random()*80,vy:(Math.random()-.5)*20}); } s.view.querySelectorAll('.tc').forEach(x=>x.classList.remove('on')); txt(); });
+  txt();
+  loop(el,dt=>{ if(!H) return; mols.forEach(m=>{ m.x+=m.vx*dt*(RM()?.3:1); m.y+=m.vy*dt; if(m.y<95||m.y>125) m.vy*=-1; if(m.x>600) m.x=0; m.c.setAttribute('cx',m.x); m.c.setAttribute('cy',m.y);
+    cells.forEach((c,i)=>{ if(Math.abs(m.x-c[2])<50&&c[1].includes(H)&&!lit.has(i)){ lit.add(i); s.view.querySelector(`.tc[data-i="${i}"]`).classList.add('on'); } }); }); });
+ };
+
+ /* --- steroider og tilbakekobling --- */
+ M.steroider = el=>{
+  const a=uid('st'); const s=shell(el,'Fenomen','Anabole steroider og kroppens egen produksjon', rng(a,'Tilført steroid (dose)',0,0,10,1));
+  const run=()=>{ const d=+s.q('#'+a).value; s.q(`[data-out="${a}"]`).textContent=d; const own=Math.max(5,100-d*13), tot=own+d*30, signal=Math.max(5,100-d*13);
+   const bar=(lab,v,cls)=>`<div class="hbar"><span>${lab}</span><div><i class="${cls}" style="width:${Math.min(100,v/4)}%"></i></div><b>${Math.round(v)}</b></div>`;
+   s.view.innerHTML=`<div class="flow"><span class="fstep cur">Hjernen (hypofysen)</span><span class="farr">→ signal ${Math.round(signal)} % →</span><span class="fstep cur">Testiklene</span><span class="farr">→</span><span class="fstep cur">Testosteron</span></div>
+    <div class="hbars">${bar('Kroppens egen produksjon',own,'own')}${bar('Tilført steroid',d*30,'add')}${bar('Totalt i blodet',tot,'tot')}</div>`;
+   s.exp.innerHTML=d===0?`<p>Hjernen måler mengden testosteron i blodet og sender signal til testiklene om å lage mer eller mindre. Det er <b>negativ tilbakekobling</b>.</p>`:`<p>Når man tilfører steroider, «tror» hjernen at det er mer enn nok testosteron. Den sender svakere signal, og <b>kroppens egen produksjon synker til ${Math.round(own)} %</b>.${d>=5?' Testiklene kan skrumpe, og når man slutter, kan det ta lang tid før produksjonen kommer i gang igjen.':''}</p><p class="muted">Forenklet modell. Steroider har også mange andre bivirkninger.</p>`; };
+  s.q('#'+a).addEventListener('input',run); run();
+ };
+
+ /* --- bakterievekst --- */
+ M.bakterievekst = el=>{
+  const a=uid('bv'), b=uid('bv'); const s=shell(el,'Fenomen','Hvor raskt vokser bakterier?', sel(a,'Temperatur',['4 °C (kjøleskap)','20 °C (rom)','37 °C (kroppen)'])+rng(b,'Timer',6,0,12,1)+`<label class="done-check" style="padding:6px 10px;font-weight:400"><input type="checkbox" data-ab> Antibiotika etter 4 timer</label>`);
+  const run=()=>{ const D=[600,60,20][+s.q('#'+a).value], h=+s.q('#'+b).value, ab=s.q('[data-ab]').checked; s.q(`[data-out="${b}"]`).textContent=h;
+   const N=t=>{ let n=Math.pow(2,t*60/D); if(ab&&t>4){ n=Math.pow(2,4*60/D)*Math.pow(0.25,(t-4)); } return Math.max(1,n); };
+   const W=600,H=200,x=t=>40+t*(W-60)/12,y=n=>H-24-Math.log10(n)*(H-40)/11;
+   s.view.innerHTML=`<svg viewBox="0 0 ${W} ${H}" class="svgfig chart"><line x1="40" y1="${H-24}" x2="${W-20}" y2="${H-24}" class="ax"/><line x1="40" y1="10" x2="40" y2="${H-24}" class="ax"/>${[0,3,6,9,11].map(k=>`<text x="34" y="${y(10**k)+4}" text-anchor="end" class="ft s">10${['⁰','','','³','','','⁶','','','⁹','','¹¹'][k]||''}</text>`).join('')}${[0,4,8,12].map(t=>`<text x="${x(t)}" y="${H-8}" text-anchor="middle" class="ft s">${t} t</text>`).join('')}
+    <path d="${Array.from({length:121},(_,i)=>i/10).map((t,i)=>`${i?'L':'M'}${x(t)} ${y(N(t))}`).join('')}" class="ln p"/><circle cx="${x(h)}" cy="${y(N(h))}" r="6" class="dot"/></svg>`;
+   const n=N(h);
+   s.exp.innerHTML=`<p>Én bakterie som deler seg hvert ${D>=60?D/60+'. time':D+'. minutt'}, blir etter ${h} timer til omtrent <b>${n>1e6?nf(Math.round(n/1e5)/10)+' millioner':nf(Math.round(n))}</b> bakterier${n>1e9?' (over en milliard!)':''}.</p><p>${D===20?'I kroppen kan bakterier formere seg svært raskt. Derfor kan en infeksjon utvikle seg i løpet av et døgn.':D===600?'I kjøleskapet vokser bakteriene svært langsomt. Derfor holder maten seg lenger der.':'I romtemperatur vokser mange bakterier raskt – derfor bør ikke mat stå ute lenge.'}${ab?' Antibiotika dreper bakteriene, og antallet synker.':''}</p><p class="muted">Y-aksen er logaritmisk: hvert steg er ti ganger mer.</p>`; };
+  [a,b].forEach(x=>s.q('#'+x).addEventListener('input',run)); s.q('[data-ab]').addEventListener('change',run); s.q('#'+a).value='2'; run();
+ };
+
+ /* --- rødforskyvning --- */
+ M.rodforskyvning = el=>{
+  const a=uid('rf'); const s=shell(el,'Fenomen','Rødforskyvning: galakser som fjerner seg', rng(a,'Galaksens fart bort fra oss (km/s)',0,0,60000,1000));
+  const L=[410,434,486,656];
+  const run=()=>{ const v=+s.q('#'+a).value; s.q(`[data-out="${a}"]`).textContent=nf(v); const z=v/300000, X=w=>20+(w-380)*(560/(750-380));
+   const grad=Array.from({length:20},(_,i)=>{ const w=380+i*370/19, h=w<440?270:w<490?230:w<510?180:w<580?110:w<600?60:w<640?30:0; return `<stop offset="${i/19}" stop-color="hsl(${h},90%,55%)"/>`; }).join('');
+   s.view.innerHTML=`<svg viewBox="0 0 600 160" class="svgfig"><defs><linearGradient id="sp${a}">${grad}</linearGradient></defs>
+    <text x="20" y="18" class="ft s">Lys fra hydrogen i laboratoriet</text><rect x="20" y="24" width="560" height="36" fill="url(#sp${a})"/>${L.map(w=>`<rect x="${X(w)-2}" y="24" width="4" height="36" fill="#000"/>`).join('')}
+    <text x="20" y="88" class="ft s">Lys fra galaksen</text><rect x="20" y="94" width="560" height="36" fill="url(#sp${a})"/>${L.map(w=>{ const w2=w*(1+z); return w2<750?`<rect x="${X(w2)-2}" y="94" width="4" height="36" fill="#000"/>`:''; }).join('')}
+    ${L.map(w=>{ const w2=w*(1+z); return w2<750&&v>0?`<line x1="${X(w)}" y1="62" x2="${X(w2)}" y2="92" class="mean"/>`:''; }).join('')}<text x="20" y="150" class="ft s">fiolett</text><text x="580" y="150" text-anchor="end" class="ft s">rødt</text></svg>`;
+   const d=v/70*3.26;
+   s.exp.innerHTML=v===0?`<p>Hydrogen gir alltid de samme mørke linjene i spekteret. Flytt glidebryteren for å la galaksen bevege seg bort fra oss.</p>`:`<p>Linjene er forskjøvet mot <b>rødt</b> – lyset er «strukket ut» fordi galaksen fjerner seg. Jo større fart, jo større forskyvning.</p><p>Edwin Hubble oppdaget at jo lenger unna en galakse er, jo raskere fjerner den seg. En galakse med fart ${nf(v)} km/s er omtrent <b>${nf(Math.round(d))} millioner lysår</b> unna. Dette er et av de viktigste bevisene for at universet utvider seg.</p>`; };
+  s.q('#'+a).addEventListener('input',run); run();
+ };
+
+ /* --- istid og landheving --- */
+ M.landheving = el=>{
+  const a=uid('lh'); const s=shell(el,'Fenomen','Isen presset landet ned', rng(a,'År siden isen smeltet',0,0,20000,500));
+  const run=()=>{ const t=+s.q('#'+a).value; s.q(`[data-out="${a}"]`).textContent=nf(t); const ice=t===0, D0=60, dep=ice?D0:D0*Math.exp(-t/4000);
+   s.view.innerHTML=`<svg viewBox="0 0 600 220" class="svgfig"><rect x="0" y="150" width="600" height="70" class="mantle"/><text x="590" y="210" text-anchor="end" class="ft s" style="fill:#fff">mantelen (seig stein)</text>
+    <path d="M0 110 Q150 ${110+dep*0.2} 300 ${110+dep} Q450 ${110+dep*0.2} 600 110 L600 150 Q450 ${150+dep*0.2} 300 ${150+dep} Q150 ${150+dep*0.2} 0 150 Z" class="crust"/>
+    ${ice?`<path d="M80 ${110+dep*0.05} Q300 ${-10} 520 ${110+dep*0.05} Q450 ${110+dep*0.2} 300 ${110+dep} Q150 ${110+dep*0.2} 80 ${110+dep*0.05} Z" class="icecap"/><text x="300" y="70" text-anchor="middle" class="ft b">Innlandsis opptil 3 km tykk</text>`:''}
+    <line x1="0" x2="600" y1="110" y2="110" class="mean"/><text x="6" y="104" class="ft s">opprinnelig høyde</text></svg>`;
+   s.exp.innerHTML=ice?`<p>Under istiden lå en enorm iskappe over Skandinavia. Vekten presset jordskorpa ned i den seige mantelen – flere hundre meter enkelte steder.</p>`:`<p>${nf(t)} år etter at isen smeltet, har landet hevet seg ${Math.round(100*(1-dep/D0))} % av veien tilbake. ${t>=10000?'Det tilsvarer omtrent i dag. Landet hever seg fortsatt noen millimeter i året enkelte steder, for eksempel rundt Oslofjorden og i Nord-Sverige.':'Hevingen går raskest rett etter at isen er borte.'}</p><p class="muted">Derfor finner vi gamle strandlinjer og skjell langt over dagens havnivå.</p>`; };
+  s.q('#'+a).addEventListener('input',run); run();
  };
 
  return M;
