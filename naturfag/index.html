@@ -554,6 +554,7 @@ pre.out{font-family:var(--f-mono);background:var(--paper);border-radius:6px;padd
 .svgfig .icecap{fill:#EAF6FF;stroke:#8FC3E8;stroke-width:2}
 .svgfig .mv2{stroke:#C2362B;stroke-width:3}
 .tool-btn{align-self:flex-start}
+.tool-row{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
 </style></head><body>
 <div class="app">
   <div class="topbar">
@@ -2516,11 +2517,12 @@ L('prevensjonsmyter','n9k4','prevensjon','Aktivitet',45,'Myter om prevensjon','H
 /* ---------- Klasseaktiviteter med tavleverktøy ---------- */
 L('periodesystem-bingo','n8k4','atomer','Aktivitet',30,'Periodesystem-bingo','Kan du kjenne igjen grunnstoffer ut fra atomnummer, plassering i periodesystemet og elektronfordeling?',
  ['Hvilken type hint læreren trekker (atomnummer, periode og gruppe, elektronfordeling, navn)','Hvor raskt og sikkert elevene finner riktig grunnstoff','Samme utvalg av grunnstoffer for alle (1–20, 1–36 eller 1–54)'],
- ['Projektor eller storskjerm med bingoen (åpnes med knappen over)','Et bingobrett per elev: et rutenett på 4 × 4 ruter','Periodesystem, gjerne ett per elev','Blyant'],
- ['Læreren velger utvalg av grunnstoffer i menyen på tavla (for eksempel 1–20) og hvilke typer hint som skal brukes.','Hver elev tegner et rutenett på 4 × 4 ruter og fyller det med 16 ulike grunnstoffsymboler fra utvalget.','Læreren trykker «Trekk». Tavla viser et hint, for eksempel «Periode 3, gruppe 1» eller «2 + 8 + 1».','Elevene finner grunnstoffet i periodesystemet. Har de symbolet på brettet, krysser de det ut.','Trykk «Vis svar» etter litt tid, så alle kan sjekke.','Den som først får fire på rad (vannrett, loddrett eller diagonalt), roper «Bingo!». Sjekk mot listen «Hint så langt» i menyen.'],
+ ['Projektor eller storskjerm med bingoen (åpnes med knappen over)','Ett utskrevet bingobrett per elev – velg brettene som passer til utvalget (se lenkene over)','Periodesystem, gjerne ett per elev','Blyant'],
+ ['Læreren velger utvalg av grunnstoffer i menyen på tavla (for eksempel 1–20) og hvilke typer hint som skal brukes.','Del ut bingobrett som passer til utvalget: 1–20 (4 × 4 ruter), 1–36 eller 1–54 (5 × 5 ruter). Alle brettene er forskjellige.','Læreren trykker «Trekk». Tavla viser et hint, for eksempel «Periode 3, gruppe 1» eller «2 + 8 + 1».','Elevene finner grunnstoffet i periodesystemet. Har de symbolet på brettet, krysser de det ut.','Trykk «Vis svar» etter litt tid, så alle kan sjekke.','Den som først får en hel rad (vannrett, loddrett eller diagonalt), roper «Bingo!». Sjekk mot listen «Hint så langt» i menyen.'],
  ['Ingen fysiske farer.'],
  ['Hvilke hint var lettest og vanskeligst? Hvorfor?','Hvordan henger elektronfordelingen sammen med plasseringen i periodesystemet?','Hvorfor har grunnstoffer i samme gruppe like mange elektroner i ytterste skall?']);
 BANK[BANK.length-1].tool={href:'https://svalandaas-arch.github.io/Matematikk/naturfag/aktiviteter/periodesystem-bingo.html',label:'Åpne bingoen på tavla'};
+BANK[BANK.length-1].files=[['Bingobrett_grunnstoff_1-20.pdf','Bingobrett 1–20 (4 × 4)'],['Bingobrett_grunnstoff_1-36.pdf','Bingobrett 1–36 (5 × 5)'],['Bingobrett_grunnstoff_1-54.pdf','Bingobrett 1–54 (5 × 5)']].map(([f,l])=>({href:'https://svalandaas-arch.github.io/Matematikk/naturfag/aktiviteter/'+f,label:l}));
 /* ---------- 10. trinn · Kapittel 1 · Jordas utvikling ---------- */
 L('ballongunivers','n10k1','store-smellet','Modell',30,'Universet som en ballong','Hvordan kan alle galakser bevege seg bort fra hverandre samtidig?',
  ['Hvor mye ballongen blåses opp','Avstanden mellom prikkene','Samme ballong, samme prikker'],
@@ -3654,7 +3656,7 @@ const termPool = (tids, scope) => { const D=dedupe(defsOf(tids)), all=dedupe(def
 /* ---------- forsøk ---------- */
 const labHTML = (lab, ch, tid, meta) => `<article class="labx">
   <header><span class="ltags">${meta?`<span class="ltype t-${meta.type.toLowerCase()}">${meta.type}</span><span class="lmin">ca. ${meta.min} min</span>`:'<span class="ltype t-forsøk">Forsøk</span>'}</span><h3>${lab.title}</h3>${ch?`<a class="muted" href="#${tid?ch.id+'-'+tid:ch.id}">${ch.grade}. trinn · Kapittel ${ch.num} · ${tid?TOPICS[tid].title:ch.title}</a>`:''}</header>
-  <p class="lab-q"><b>Forskerspørsmål:</b> ${lab.q}</p>${meta&&meta.tool?`<a class="btn tool-btn" href="${meta.tool.href}" target="_blank" rel="noopener">▶ ${meta.tool.label}</a>`:''}
+  <p class="lab-q"><b>Forskerspørsmål:</b> ${lab.q}</p>${meta&&(meta.tool||meta.files)?`<div class="tool-row">${meta.tool?`<a class="btn" href="${meta.tool.href}" target="_blank" rel="noopener">▶ ${meta.tool.label}</a>`:''}${(meta.files||[]).map(f=>`<a class="btn ghost small" href="${f.href}" target="_blank" rel="noopener">📄 ${f.label}</a>`).join('')}</div>${meta.files?'<p class="muted">Hver PDF har 30 ulike brett, to per side.</p>':''}`:''}
   <div class="scroll"><table class="t tl vars"><tbody><tr><th>Uavhengig variabel<small>det du endrer</small></th><td>${lab.vars.uavh}</td></tr><tr><th>Avhengig variabel<small>det du måler</small></th><td>${lab.vars.avh}</td></tr><tr><th>Kontrollvariabler<small>det du holder likt</small></th><td>${lab.vars.konst}</td></tr></tbody></table></div>
   <div class="lab-cols"><div><h4>Utstyr</h4><ul>${lab.utstyr.map(x=>`<li>${x}</li>`).join('')}</ul></div>
   <div><h4>Fremgangsmåte</h4><ol class="order">${lab.steg.map(x=>`<li><span>${x}</span></li>`).join('')}</ol></div></div>
