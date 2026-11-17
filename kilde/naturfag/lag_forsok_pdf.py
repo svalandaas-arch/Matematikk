@@ -85,57 +85,25 @@ def make(lab, out):
     s = []
     s.append(Paragraph(meta + f" · ca. {lab['min']} min", st['eyebrow']))
     s.append(Paragraph(clean(L['title']), st['h1']))
-    nm = Paragraph('<b>Navn:</b> ________________________________ &nbsp; <b>Klasse:</b> ________ &nbsp; <b>Dato:</b> ______________', st['p'])
-    s += [Spacer(1, 4), nm, Spacer(1, 8)]
+    s.append(Spacer(1, 6))
 
-    s.append(boxed(Paragraph(f"<b>Forskerspørsmål:</b> {clean(L['q'])}", st['p']), SOFT, PEN))
-    s.append(Paragraph('Hypotese', st['h2']))
-    s.append(Paragraph('Skriv hypotesen din som «Hvis … så … fordi …».', st['small']))
-    s.append(Lines(2))
-
-    s.append(Paragraph('Variabler', st['h2']))
-    v = L['vars']
-    rows = [[Paragraph('<b>Uavhengig variabel</b><br/><font size="8" color="#56685E">det du endrer</font>', st['cell']), Paragraph(clean(v['uavh']), st['cell'])],
-            [Paragraph('<b>Avhengig variabel</b><br/><font size="8" color="#56685E">det du måler</font>', st['cell']), Paragraph(clean(v['avh']), st['cell'])],
-            [Paragraph('<b>Kontrollvariabler</b><br/><font size="8" color="#56685E">det du holder likt</font>', st['cell']), Paragraph(clean(v['konst']), st['cell'])]]
-    t = Table(rows, colWidths=[42*mm, W - 42*mm])
-    t.setStyle(TableStyle([('GRID', (0, 0), (-1, -1), .6, LINE), ('BACKGROUND', (0, 0), (0, -1), SOFT), ('VALIGN', (0, 0), (-1, -1), 'TOP'),
-                           ('TOPPADDING', (0, 0), (-1, -1), 4), ('BOTTOMPADDING', (0, 0), (-1, -1), 5)]))
+    s.append(Paragraph('Dette trenger du', st['h2']))
+    ut = [[Paragraph('•', st['p']), Paragraph(clean(x), st['p'])] for x in L['utstyr']]
+    t = Table(ut, colWidths=[5*mm, W - 5*mm]); t.setStyle(TableStyle([('LEFTPADDING', (0, 0), (-1, -1), 0), ('TOPPADDING', (0, 0), (-1, -1), 1.5), ('BOTTOMPADDING', (0, 0), (-1, -1), 1.5), ('VALIGN', (0, 0), (-1, -1), 'TOP')]))
     s.append(t)
 
-    s.append(Paragraph('Utstyr', st['h2']))
-    ut = [[Paragraph('☐', st['cell']), Paragraph(clean(x), st['cell'])] for x in L['utstyr']]
-    t = Table(ut, colWidths=[6*mm, W - 6*mm]); t.setStyle(TableStyle([('LEFTPADDING', (0, 0), (-1, -1), 0), ('TOPPADDING', (0, 0), (-1, -1), 1), ('BOTTOMPADDING', (0, 0), (-1, -1), 1), ('VALIGN', (0, 0), (-1, -1), 'TOP')]))
+    risk = [Paragraph('<b><font color="#C2362B">Sikkerhet</font></b>', st['p']), Spacer(1, 3)]
+    risk += [Paragraph('• ' + clean(x), st['p']) for x in L['risiko']]
+    s += [Spacer(1, 10), boxed(risk, REDSOFT, RED)]
+
+    s.append(Spacer(1, 4))
+    s.append(Paragraph('Slik gjør du det', st['h2']))
+    big = ParagraphStyle('pb', parent=st['p'], fontSize=10.5, leading=15)
+    pr = [[Paragraph(f'<b>{i+1}</b>', ParagraphStyle('n', parent=big, textColor=white, alignment=1)), Paragraph(clean(x), big)] for i, x in enumerate(L['steg'])]
+    t = Table(pr, colWidths=[8*mm, W - 8*mm])
+    t.setStyle(TableStyle([('BACKGROUND', (0, 0), (0, -1), PEN), ('VALIGN', (0, 0), (-1, -1), 'TOP'), ('LINEBELOW', (0, 0), (-1, -1), 4, white),
+                           ('TOPPADDING', (0, 0), (-1, -1), 4), ('BOTTOMPADDING', (0, 0), (-1, -1), 4), ('LEFTPADDING', (1, 0), (1, -1), 8)]))
     s.append(t)
-
-    risk = [Paragraph('<b><font color="#C2362B">Risikovurdering – les før du starter</font></b>', st['p']), Spacer(1, 3)]
-    risk += [Paragraph('• ' + clean(x), st['cell']) for x in L['risiko']]
-    risk += [Spacer(1, 6), Paragraph('Har du noe å legge til? Hva kan gå galt, og hva gjør du da?', st['small']), Lines(2, gap=6.5*mm),
-             Spacer(1, 2), Paragraph('Godkjent av lærer: ______________________', st['small'])]
-    s += [Spacer(1, 8), boxed(risk, REDSOFT, RED)]
-
-    s.append(Paragraph('Fremgangsmåte', st['h2']))
-    pr = [[Paragraph(f'<b>{i+1}</b>', ParagraphStyle('n', parent=st['cell'], textColor=white, alignment=1)), Paragraph(clean(x), st['cell'])] for i, x in enumerate(L['steg'])]
-    t = Table(pr, colWidths=[7*mm, W - 7*mm])
-    t.setStyle(TableStyle([('BACKGROUND', (0, 0), (0, -1), PEN), ('VALIGN', (0, 0), (-1, -1), 'TOP'), ('LINEBELOW', (0, 0), (-1, -1), 2.5, white),
-                           ('TOPPADDING', (0, 0), (-1, -1), 3), ('BOTTOMPADDING', (0, 0), (-1, -1), 3), ('LEFTPADDING', (1, 0), (1, -1), 6)]))
-    s.append(t)
-
-    res = [Paragraph('Resultater', st['h2']), Paragraph('Fyll inn tabellen. Skriv enheter i overskriftene.', st['small']), Spacer(1, 3)]
-    cols = 5; head = [Paragraph('<b>Det du endret</b><br/><font size="7.5" color="#56685E">uavhengig variabel</font>', st['cell']), Paragraph('<b>Måling 1</b>', st['cell']),
-                      Paragraph('<b>Måling 2</b>', st['cell']), Paragraph('<b>Måling 3</b>', st['cell']), Paragraph('<b>Gj.snitt</b>', st['cell'])]
-    t = Table([head] + [[''] * cols for _ in range(5)], colWidths=[W * .32] + [W * .17] * 4, rowHeights=[None] + [7.5*mm] * 5)
-    t.setStyle(TableStyle([('GRID', (0, 0), (-1, -1), .6, LINE), ('BACKGROUND', (0, 0), (-1, 0), SOFT), ('VALIGN', (0, 0), (-1, -1), 'MIDDLE')]))
-    res.append(t)
-    s.append(KeepTogether(res))
-    s.append(KeepTogether([Paragraph('Graf eller tegning', st['h2']), Grid(h=45*mm)]))
-
-    s.append(Paragraph('Analyse og drøfting', st['h2']))
-    for i, q in enumerate(L['analyse']):
-        s.append(KeepTogether([Paragraph(f'<b>{i+1}.</b> ' + clean(q), st['p']), Lines(2)]))
-        s.append(Spacer(1, 3))
-    s.append(KeepTogether([Paragraph('Feilkilder', st['h2']), Paragraph('Hva kan ha gjort resultatene unøyaktige?', st['small']), Lines(2),
-                           Paragraph('Konklusjon', st['h2']), Paragraph('Svar på forskerspørsmålet. Stemte hypotesen din?', st['small']), Lines(2)]))
     doc.build(s)
 
 if __name__ == '__main__':
