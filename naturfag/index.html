@@ -553,6 +553,7 @@ pre.out{font-family:var(--f-mono);background:var(--paper);border-radius:6px;padd
 .svgfig .crust{fill:#8A7A62;stroke:#5A4E3C}
 .svgfig .icecap{fill:#EAF6FF;stroke:#8FC3E8;stroke-width:2}
 .svgfig .mv2{stroke:#C2362B;stroke-width:3}
+.tool-btn{align-self:flex-start}
 </style></head><body>
 <div class="app">
   <div class="topbar">
@@ -2511,6 +2512,15 @@ L('prevensjonsmyter','n9k4','prevensjon','Aktivitet',45,'Myter om prevensjon','H
  ['Hver gruppe trekker to påstander.','Finn svaret i minst to pålitelige kilder.','Skriv riktig forklaring med egne ord.','Presenter for klassen.','Lag en felles plakat med «Fakta om prevensjon».'],
  ['Ingen fysiske farer. Bruk bare seriøse nettsider.'],
  ['Hvilke myter var vanligst?','Hvilken prevensjon beskytter både mot graviditet og kjønnssykdommer?','Hvorfor sprer myter seg?']);
+
+/* ---------- Klasseaktiviteter med tavleverktøy ---------- */
+L('periodesystem-bingo','n8k4','atomer','Aktivitet',30,'Periodesystem-bingo','Kan du kjenne igjen grunnstoffer ut fra atomnummer, plassering i periodesystemet og elektronfordeling?',
+ ['Hvilken type hint læreren trekker (atomnummer, periode og gruppe, elektronfordeling, navn)','Hvor raskt og sikkert elevene finner riktig grunnstoff','Samme utvalg av grunnstoffer for alle (1–20, 1–36 eller 1–54)'],
+ ['Projektor eller storskjerm med bingoen (åpnes med knappen over)','Et bingobrett per elev: et rutenett på 4 × 4 ruter','Periodesystem, gjerne ett per elev','Blyant'],
+ ['Læreren velger utvalg av grunnstoffer i menyen på tavla (for eksempel 1–20) og hvilke typer hint som skal brukes.','Hver elev tegner et rutenett på 4 × 4 ruter og fyller det med 16 ulike grunnstoffsymboler fra utvalget.','Læreren trykker «Trekk». Tavla viser et hint, for eksempel «Periode 3, gruppe 1» eller «2 + 8 + 1».','Elevene finner grunnstoffet i periodesystemet. Har de symbolet på brettet, krysser de det ut.','Trykk «Vis svar» etter litt tid, så alle kan sjekke.','Den som først får fire på rad (vannrett, loddrett eller diagonalt), roper «Bingo!». Sjekk mot listen «Hint så langt» i menyen.'],
+ ['Ingen fysiske farer.'],
+ ['Hvilke hint var lettest og vanskeligst? Hvorfor?','Hvordan henger elektronfordelingen sammen med plasseringen i periodesystemet?','Hvorfor har grunnstoffer i samme gruppe like mange elektroner i ytterste skall?']);
+BANK[BANK.length-1].tool={href:'https://svalandaas-arch.github.io/Matematikk/naturfag/aktiviteter/periodesystem-bingo.html',label:'Åpne bingoen på tavla'};
 /* ---------- 10. trinn · Kapittel 1 · Jordas utvikling ---------- */
 L('ballongunivers','n10k1','store-smellet','Modell',30,'Universet som en ballong','Hvordan kan alle galakser bevege seg bort fra hverandre samtidig?',
  ['Hvor mye ballongen blåses opp','Avstanden mellom prikkene','Samme ballong, samme prikker'],
@@ -3600,7 +3610,7 @@ const bankFor = chId => BANK.filter(b=>b.ch===(BANK_ALIAS[chId]||chId)||b.ch===c
 const bankGrade = g => BOOK.chapters.filter(c=>c.grade===g).flatMap(c=>bankFor(c.id));
 const bankById = id => { const b=BANK.find(x=>x.id===id); return b; };
 const TYPES=['Forsøk','Feltarbeid','Modell','Demonstrasjon','Aktivitet','Programmering'];
-const labCard = b => { const ch=BOOK.chapters.find(c=>c.id===b.ch); return `<a class="lcard" href="#forsok-${b.id}"><span class="ltags"><span class="ltype t-${b.type.toLowerCase()}">${b.type}</span><span class="lmin">ca. ${b.min} min</span></span><b>${b.lab.title}</b><span class="lq">${b.lab.q}</span><span class="lch">Kap ${ch.num} · ${b.t?TOPICS[b.t].title:ch.title}</span></a>`; };
+const labCard = b => { const ch=BOOK.chapters.find(c=>c.id===b.ch); return `<a class="lcard" href="#forsok-${b.id}"><span class="ltags"><span class="ltype t-${b.type.toLowerCase()}">${b.type}</span><span class="lmin">ca. ${b.min} min</span>${b.tool?'<span class="lmin">· tavleverktøy</span>':''}</span><b>${b.lab.title}</b><span class="lq">${b.lab.q}</span><span class="lch">Kap ${ch.num} · ${b.t?TOPICS[b.t].title:ch.title}</span></a>`; };
 const shuffle = a => { a=a.slice(); for(let i=a.length-1;i>0;i--){ const j=Math.floor(Math.random()*(i+1)); [a[i],a[j]]=[a[j],a[i]]; } return a; };
 const defsOf = tids => tids.flatMap(t=>has(t)?Object.entries(CONTENT[t].defs).map(([w,d])=>({w,d,t})):[]);
 const dedupe = arr => { const seen=new Set(); return arr.filter(x=>{ const k=x.w.toLowerCase(); if(seen.has(k)) return false; seen.add(k); return true; }); };
@@ -3644,7 +3654,7 @@ const termPool = (tids, scope) => { const D=dedupe(defsOf(tids)), all=dedupe(def
 /* ---------- forsøk ---------- */
 const labHTML = (lab, ch, tid, meta) => `<article class="labx">
   <header><span class="ltags">${meta?`<span class="ltype t-${meta.type.toLowerCase()}">${meta.type}</span><span class="lmin">ca. ${meta.min} min</span>`:'<span class="ltype t-forsøk">Forsøk</span>'}</span><h3>${lab.title}</h3>${ch?`<a class="muted" href="#${tid?ch.id+'-'+tid:ch.id}">${ch.grade}. trinn · Kapittel ${ch.num} · ${tid?TOPICS[tid].title:ch.title}</a>`:''}</header>
-  <p class="lab-q"><b>Forskerspørsmål:</b> ${lab.q}</p>
+  <p class="lab-q"><b>Forskerspørsmål:</b> ${lab.q}</p>${meta&&meta.tool?`<a class="btn tool-btn" href="${meta.tool.href}" target="_blank" rel="noopener">▶ ${meta.tool.label}</a>`:''}
   <div class="scroll"><table class="t tl vars"><tbody><tr><th>Uavhengig variabel<small>det du endrer</small></th><td>${lab.vars.uavh}</td></tr><tr><th>Avhengig variabel<small>det du måler</small></th><td>${lab.vars.avh}</td></tr><tr><th>Kontrollvariabler<small>det du holder likt</small></th><td>${lab.vars.konst}</td></tr></tbody></table></div>
   <div class="lab-cols"><div><h4>Utstyr</h4><ul>${lab.utstyr.map(x=>`<li>${x}</li>`).join('')}</ul></div>
   <div><h4>Fremgangsmåte</h4><ol class="order">${lab.steg.map(x=>`<li><span>${x}</span></li>`).join('')}</ol></div></div>

@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<html lang="nb">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Periodesystem-bingo</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,800&family=Atkinson+Hyperlegible:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  /* Én visuell verden for projektor: dyp lilla flate, varm oransje for handling, grønn for trukket. */
+  /* Layout: hele skjermen er scenen for hintet; alt lærerverktøy ligger i en meny som skyves inn fra høyre. */
+  --bg: #1f1838;
+  --panel: #2c2350;
+  --ink: #f6f3ff;
+  --muted: #b7afd6;
+  --accent: #f07a5a;
+  --drawn: #2fb3a3;
+  --tile: #3a2f66;
+  --font-display: "Fraunces", Georgia, "Times New Roman", serif;
+  --font-body: "Atkinson Hyperlegible", "Segoe UI", Arial, sans-serif;
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+html, body { height: 100%; margin: 0; }
+body {
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: 18px;
+  line-height: 1.4;
+  overflow: hidden;
+}
+
+/* ---------- Scene ---------- */
+.stage {
+  height: 100%;
+  display: grid;
+  grid-template-rows: minmax(0, 1fr) auto auto;
+}
+
+/* Periodesystem på skjermen */
+.pt {
+  --cell: min(calc((96vw - 30px) / 18), calc((100vh - 400px) / var(--rows, 5)), 82px);
+  display: grid;
+  grid-template-columns: 22px repeat(18, var(--cell));
+  grid-template-rows: 22px;
+  grid-auto-rows: var(--cell);
+  gap: 3px;
+  justify-content: center;
+  padding: 8px 16px 0;
+}
+.pt[hidden] { display: none; }
+.pt .lbl { color: var(--muted); font-size: clamp(10px, calc(var(--cell) * .26), 15px); font-weight: 700; display: flex; align-items: center; justify-content: center; font-variant-numeric: tabular-nums; }
+.pt .glbl { align-items: flex-end; padding-bottom: 2px; }
+.pt .el {
+  background: var(--tile); border-radius: 5px; position: relative;
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  line-height: 1;
+}
+.pt .el .n { position: absolute; top: 3px; left: 4px; font-size: clamp(7px, calc(var(--cell) * .17), 11px); color: var(--muted); font-variant-numeric: tabular-nums; }
+.pt .el .s { font-weight: 700; font-size: clamp(12px, calc(var(--cell) * .36), 28px); margin-top: 3px; }
+.pt .el .nm { font-size: clamp(6px, calc(var(--cell) * .14), 11.5px); color: var(--muted); margin-top: 2px; max-width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; padding: 0 2px; }
+.pt .el.tm { background: #342a5c; }
+.pt .corner { grid-row: 1; grid-column: 1; }
+.show {
+  position: relative;
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  padding: 24px 24px 0;
+  min-height: 0;
+  text-align: center;
+}
+.hint-text {
+  font-family: var(--font-display); font-weight: 800;
+  font-size: clamp(40px, min(8.5vw, 12vh), 140px); line-height: 1.05;
+  text-wrap: balance; max-width: 16ch; margin: 0;
+}
+.hint-text.idle { font-size: clamp(28px, 3.6vw, 48px); color: var(--muted); font-weight: 600; }
+.answer {
+  margin-top: 28px; display: inline-flex; align-items: center; gap: 18px;
+  border: 2px solid var(--drawn); border-radius: 16px; padding: 10px 22px;
+}
+.answer[hidden] { display: none; }
+.answer .sym { font-family: var(--font-display); font-weight: 800; font-size: clamp(40px, 4.5vw, 64px); color: var(--drawn); line-height: 1; }
+.answer .nm { font-size: clamp(20px, 2vw, 26px); text-align: left; }
+.answer .nm small { display: block; color: var(--muted); font-size: .7em; }
+
+/* Atommodell som animasjon */
+.atom {
+  position: absolute; inset: 0; margin: auto;
+  width: min(40vmin, 360px); height: min(40vmin, 360px);
+  max-height: 100%;
+  pointer-events: none; opacity: 0;
+}
+.atom.idle { position: static; opacity: .9; width: min(16vh, 200px); height: min(16vh, 200px); margin-bottom: 16px; }
+.atom .ring { fill: none; stroke: var(--muted); stroke-opacity: .45; stroke-width: 1.5; }
+.atom .e { fill: var(--drawn); }
+.atom .nuc { fill: var(--accent); }
+.atom .shell { transform-origin: 0 0; transform-box: view-box; }
+.atom.spin .s1 { animation: rot .55s linear infinite; }
+.atom.spin .s2 { animation: rot .8s linear infinite reverse; }
+.atom.spin .s3 { animation: rot 1.1s linear infinite; }
+.atom.spin .nuc { animation: pulse .5s ease-in-out infinite alternate; transform-origin: 0 0; transform-box: view-box; }
+.atom.idle .s1 { animation: rot 6s linear infinite; }
+.atom.idle .s2 { animation: rot 9s linear infinite reverse; }
+.atom.idle .s3 { animation: rot 12s linear infinite; }
+@keyframes rot { to { transform: rotate(360deg); } }
+@keyframes pulse { from { transform: scale(.9); } to { transform: scale(1.12); } }
+
+/* ---------- Verktøylinje ---------- */
+.bar {
+  display: flex; align-items: center; justify-content: center; gap: 12px; flex-wrap: wrap;
+  padding: 16px 24px 22px;
+}
+button {
+  font: inherit; font-weight: 700; cursor: pointer; border-radius: 12px; border: 2px solid transparent;
+  padding: 12px 20px; color: var(--ink); background: var(--tile);
+}
+button:hover { filter: brightness(1.12); }
+button:focus-visible, input:focus-visible { outline: 3px solid var(--ink); outline-offset: 2px; }
+button:disabled { opacity: .4; cursor: not-allowed; filter: none; }
+.btn-primary { background: var(--accent); color: #1f1838; font-size: 21px; padding: 12px 34px; }
+.count { color: var(--muted); font-variant-numeric: tabular-nums; min-width: 7ch; text-align: center; }
+.count b { color: var(--ink); }
+
+/* ---------- Meny ---------- */
+.scrim { position: fixed; inset: 0; background: rgba(10, 6, 24, .55); opacity: 0; pointer-events: none; transition: opacity .2s; }
+.scrim.open { opacity: 1; pointer-events: auto; }
+.drawer {
+  position: fixed; top: 0; right: 0; height: 100%; width: min(440px, 100%);
+  background: var(--panel); padding: 22px 22px 28px; overflow-y: auto;
+  transform: translateX(100%); transition: transform .25s ease;
+  display: flex; flex-direction: column; gap: 22px;
+}
+.drawer.open { transform: none; }
+.drawer-head { display: flex; justify-content: space-between; align-items: center; }
+.drawer-head h2 { font-family: var(--font-display); font-size: 26px; margin: 0; }
+.drawer h3 { font-size: 14px; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); margin: 0 0 10px; }
+.opts { display: grid; gap: 8px; }
+.opts label { display: flex; gap: 10px; align-items: center; font-size: 16px; cursor: pointer; }
+.opts input { width: 20px; height: 20px; accent-color: var(--accent); flex: none; }
+.note { color: var(--muted); font-size: 14px; margin: 8px 0 0; }
+.row { display: flex; gap: 10px; flex-wrap: wrap; }
+.link-btn { background: none; padding: 2px 6px; font-size: 14px; color: var(--accent); }
+.sub-head { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; }
+.sub-head h3 { margin: 0; }
+
+.board { display: grid; gap: 3px; }
+.board .lbl { font-size: 9px; color: var(--muted); text-align: center; font-variant-numeric: tabular-nums; }
+.cell {
+  aspect-ratio: 1; border-radius: 4px; background: var(--tile); color: var(--muted);
+  display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 11px;
+}
+.cell.on { background: var(--drawn); color: #10302c; }
+.cell.last { outline: 2px solid var(--accent); outline-offset: 1px; }
+.cell.gap { background: transparent; }
+.board.hide .cell:not(.gap) { color: transparent; }
+
+.history { margin: 0; padding-left: 26px; font-size: 16px; display: grid; gap: 3px; }
+.history li::marker { color: var(--muted); font-variant-numeric: tabular-nums; }
+.history .ans { color: var(--drawn); font-weight: 700; }
+.empty { color: var(--muted); margin: 0; font-size: 15px; }
+
+.confirm { display: none; background: var(--bg); border-radius: 12px; padding: 14px; gap: 10px; }
+.confirm.open { display: grid; }
+.confirm p { margin: 0; }
+.keys { color: var(--muted); font-size: 14px; margin: 0; }
+</style>
+</head>
+<body>
+<div class="stage">
+  <section class="show" aria-live="polite">
+    <svg class="atom idle" id="atom" viewBox="-130 -130 260 260" aria-hidden="true"></svg>
+    <p class="hint-text idle" id="hintText">Klar til å trekke</p>
+    <div class="answer" id="answer" hidden>
+      <span class="sym" id="ansSym"></span>
+      <span class="nm" id="ansName"></span>
+    </div>
+  </section>
+
+  <section class="pt" id="pt" aria-label="Periodesystemet"></section>
+
+  <nav class="bar">
+    <button class="btn-primary" id="drawBtn" type="button">Trekk</button>
+    <button id="revealBtn" type="button" disabled>Vis svar</button>
+    <span class="count" id="count"><b>0</b> / 36</span>
+    <button id="menuBtn" type="button" aria-expanded="false" aria-controls="drawer">Meny</button>
+  </nav>
+</div>
+
+<div class="scrim" id="scrim"></div>
+<aside class="drawer" id="drawer" aria-label="Meny">
+  <div class="drawer-head">
+    <h2>Innstillinger</h2>
+    <button id="closeBtn" type="button">Lukk</button>
+  </div>
+
+  <section>
+    <h3>Grunnstoffer i spillet</h3>
+    <div class="opts" id="rangeOpts"></div>
+    <p class="note">Bytter du utvalg, starter et nytt spill. Bruk bingobrettene som passer til utvalget.</p>
+  </section>
+
+  <section>
+    <h3>Visning</h3>
+    <div class="opts">
+      <label for="ptShow"><input type="checkbox" id="ptShow" checked> Vis periodesystemet under hintet</label>
+    </div>
+  </section>
+
+  <section>
+    <h3>Typer hint</h3>
+    <div class="opts" id="hintOpts"></div>
+    <p class="note">Elektronfordeling og skall-hint brukes bare for grunnstoffene i gruppe 1, 2 og 13–18. Overgangsmetallene får de andre hinttypene.</p>
+  </section>
+
+  <section>
+    <div class="sub-head">
+      <h3>Kontrolltavle</h3>
+      <button class="link-btn" id="boardToggle" type="button" aria-pressed="false">Vis symboler</button>
+    </div>
+    <div class="board hide" id="board"></div>
+    <p class="note">Grønt = trukket. Oransje ramme = siste trekk.</p>
+  </section>
+
+  <section>
+    <h3>Hint så langt</h3>
+    <p class="empty" id="histEmpty">Ingen hint trukket ennå.</p>
+    <ol class="history" id="history"></ol>
+  </section>
+
+  <section class="row">
+    <button id="resetBtn" type="button">Nytt spill</button>
+    <button id="fsBtn" type="button">Fullskjerm</button>
+  </section>
+  <div class="confirm" id="confirm">
+    <p>Starte et nytt spill? Alle trukne hint blir nullstilt.</p>
+    <div class="row">
+      <button id="noBtn" type="button">Avbryt</button>
+      <button class="btn-primary" id="yesBtn" type="button">Nytt spill</button>
+    </div>
+  </div>
+  <p class="keys">Hurtigtaster: mellomrom = trekk · S = vis svar · M = meny</p>
+</aside>
+
+<script>
+const DATA = "H Hydrogen|He Helium|Li Litium|Be Beryllium|B Bor|C Karbon|N Nitrogen|O Oksygen|F Fluor|Ne Neon|Na Natrium|Mg Magnesium|Al Aluminium|Si Silisium|P Fosfor|S Svovel|Cl Klor|Ar Argon|K Kalium|Ca Kalsium|Sc Scandium|Ti Titan|V Vanadium|Cr Krom|Mn Mangan|Fe Jern|Co Kobolt|Ni Nikkel|Cu Kobber|Zn Sink|Ga Gallium|Ge Germanium|As Arsen|Se Selen|Br Brom|Kr Krypton|Rb Rubidium|Sr Strontium|Y Yttrium|Zr Zirkonium|Nb Niob|Mo Molybden|Tc Technetium|Ru Ruthenium|Rh Rhodium|Pd Palladium|Ag Sølv|Cd Kadmium|In Indium|Sn Tinn|Sb Antimon|Te Tellur|I Jod|Xe Xenon";
+
+const ELEMENTS = DATA.split("|").map((s, i) => {
+  const [sym, name] = s.split(" ");
+  const z = i + 1;
+  let period, group;
+  if (z <= 2) { period = 1; group = z === 1 ? 1 : 18; }
+  else if (z <= 10) { period = 2; group = z <= 4 ? z - 2 : z + 8; }
+  else if (z <= 18) { period = 3; group = z <= 12 ? z - 10 : z; }
+  else if (z <= 36) { period = 4; group = z - 18; }
+  else { period = 5; group = z - 36; }
+  const main = group <= 2 || group >= 13;
+  let shells = null;
+  if (main) {
+    const v = z === 2 ? 2 : group <= 2 ? group : group - 10;
+    const inner = { 1: [], 2: [2], 3: [2, 8], 4: group <= 2 ? [2, 8, 8] : [2, 8, 18], 5: group <= 2 ? [2, 8, 18, 8] : [2, 8, 18, 18] }[period];
+    shells = [...inner, v];
+  }
+  return { z, sym, name, period, group, main, shells };
+});
+
+const RANGES = [
+  { max: 20, label: "1–20 (Hydrogen til kalsium)" },
+  { max: 36, label: "1–36 (Hydrogen til krypton)" },
+  { max: 54, label: "1–54 (Hydrogen til xenon)" },
+];
+
+const HINTS = {
+  pg:    { label: "Periode og gruppe", ok: () => true, text: e => `Periode ${e.period}, gruppe ${e.group}` },
+  z:     { label: "Atomnummer", ok: () => true, text: e => `Atomnummer ${e.z}` },
+  ec:    { label: "Elektronfordeling", ok: e => e.main, text: e => e.shells.join(" + ") },
+  shell: { label: "Skall og ytterste elektroner", ok: e => e.main, text: e => `${e.shells.length} skall, ${e.shells.at(-1)} ${e.shells.at(-1) === 1 ? "elektron" : "elektroner"} ytterst` },
+  name:  { label: "Navn (finn symbolet)", ok: () => true, text: e => e.name },
+};
+
+const state = { max: 36, order: [], hints: [], revealed: new Set(), enabled: new Set(Object.keys(HINTS)), busy: false };
+const $ = id => document.getElementById(id);
+const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+function shuffle(a) { for (let i = a.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [a[i], a[j]] = [a[j], a[i]]; } return a; }
+function pool() { return ELEMENTS.slice(0, state.max); }
+
+/* ---------- Atommodell ---------- */
+function buildAtom() {
+  const svg = $("atom");
+  const ns = "http://www.w3.org/2000/svg";
+  const shells = [[42, 2], [78, 8], [114, 6]];
+  shells.forEach(([r, n], i) => {
+    const ring = document.createElementNS(ns, "circle");
+    ring.setAttribute("class", "ring"); ring.setAttribute("r", r);
+    svg.appendChild(ring);
+  });
+  shells.forEach(([r, n], i) => {
+    const g = document.createElementNS(ns, "g");
+    g.setAttribute("class", `shell s${i + 1}`);
+    for (let k = 0; k < n; k++) {
+      const a = (2 * Math.PI * k) / n + i * 0.4;
+      const c = document.createElementNS(ns, "circle");
+      c.setAttribute("class", "e"); c.setAttribute("r", 7);
+      c.setAttribute("cx", (r * Math.cos(a)).toFixed(2)); c.setAttribute("cy", (r * Math.sin(a)).toFixed(2));
+      g.appendChild(c);
+    }
+    svg.appendChild(g);
+  });
+  const nuc = document.createElementNS(ns, "circle");
+  nuc.setAttribute("class", "nuc"); nuc.setAttribute("r", 20);
+  svg.appendChild(nuc);
+}
+
+/* ---------- Spill ---------- */
+function newGame() {
+  state.order = shuffle(pool().map(e => e.z));
+  state.hints = [];
+  state.revealed = new Set();
+  const atom = $("atom");
+  atom.getAnimations().forEach(a => a.cancel());
+  atom.className.baseVal = "atom idle";
+  $("hintText").className = "hint-text idle";
+  $("hintText").textContent = "Klar til å trekke";
+  $("hintText").getAnimations().forEach(a => a.cancel());
+  buildBoard();
+  buildPT();
+  render();
+}
+
+function buildPT() {
+  const pt = $("pt");
+  pt.innerHTML = "";
+  const els = pool();
+  const periods = Math.max(...els.map(e => e.period));
+  pt.style.setProperty("--rows", periods);
+  const corner = document.createElement("div");
+  corner.className = "corner";
+  pt.appendChild(corner);
+  for (let g = 1; g <= 18; g++) {
+    const d = document.createElement("div");
+    d.className = "lbl glbl"; d.textContent = g;
+    d.style.gridRow = 1; d.style.gridColumn = g + 1;
+    pt.appendChild(d);
+  }
+  for (let p = 1; p <= periods; p++) {
+    const d = document.createElement("div");
+    d.className = "lbl"; d.textContent = p;
+    d.style.gridRow = p + 1; d.style.gridColumn = 1;
+    pt.appendChild(d);
+  }
+  els.forEach(e => {
+    const d = document.createElement("div");
+    d.className = "el" + (e.main ? "" : " tm");
+    d.style.gridRow = e.period + 1; d.style.gridColumn = e.group + 1;
+    d.innerHTML = `<span class="n">${e.z}</span><span class="s">${e.sym}</span><span class="nm">${e.name}</span>`;
+    pt.appendChild(d);
+  });
+}
+
+function pickHint(e) {
+  const ok = [...state.enabled].filter(k => HINTS[k].ok(e));
+  if (ok.length) return ok[Math.floor(Math.random() * ok.length)];
+  return "pg";
+}
+
+async function draw() {
+  if (state.busy || state.hints.length >= state.max || state.enabled.size === 0) return;
+  const z = state.order[state.hints.length];
+  const e = ELEMENTS[z - 1];
+  const key = pickHint(e);
+  state.busy = true;
+  render();
+
+  const atom = $("atom"), tx = $("hintText"), ans = $("answer");
+  ans.hidden = true;
+
+  if (!reduceMotion) {
+    await tx.animate([{ opacity: 1 }, { opacity: 0, transform: "scale(.9)" }], { duration: 180, fill: "forwards" }).finished;
+    atom.getAnimations().forEach(a => a.cancel());
+    atom.className.baseVal = "atom spin";
+    await atom.animate(
+      [{ opacity: 0, transform: "scale(.4) rotate(-40deg)" }, { opacity: 1, transform: "scale(1) rotate(0deg)", offset: .25 }, { opacity: 1, transform: "scale(1.05) rotate(20deg)" }],
+      { duration: 1500, easing: "ease-out", fill: "forwards" }
+    ).finished;
+    const burst = atom.animate([{ opacity: 1, transform: "scale(1.05) rotate(20deg)" }, { opacity: 0, transform: "scale(2.4) rotate(40deg)" }], { duration: 380, easing: "ease-in", fill: "forwards" });
+    setTimeout(() => {
+      tx.className = "hint-text";
+      tx.textContent = HINTS[key].text(e);
+      tx.animate([{ opacity: 0, transform: "scale(.6)", filter: "blur(8px)" }, { opacity: 1, transform: "scale(1.04)", filter: "blur(0)", offset: .7 }, { opacity: 1, transform: "none", filter: "blur(0)" }], { duration: 520, easing: "cubic-bezier(.2,.9,.3,1.2)", fill: "forwards" });
+    }, 140);
+    await burst.finished;
+  } else {
+    atom.className.baseVal = "atom";
+    tx.className = "hint-text";
+    tx.textContent = HINTS[key].text(e);
+  }
+
+  state.hints.push({ z, key });
+  state.busy = false;
+  render();
+}
+
+function reveal() {
+  if (state.busy || !state.hints.length) return;
+  const i = state.hints.length - 1;
+  if (state.revealed.has(i)) return;
+  state.revealed.add(i);
+  render();
+  if (!reduceMotion) $("answer").animate([{ opacity: 0, transform: "translateY(12px)" }, { opacity: 1, transform: "none" }], { duration: 300, easing: "ease-out" });
+}
+
+function render() {
+  const n = state.hints.length;
+  $("count").innerHTML = `<b>${n}</b> / ${state.max}`;
+  const last = state.hints[n - 1];
+
+  const shown = last && state.revealed.has(n - 1) && !state.busy;
+  $("answer").hidden = !shown;
+  if (shown) {
+    const e = ELEMENTS[last.z - 1];
+    $("ansSym").textContent = e.sym;
+    $("ansName").innerHTML = `${e.name}<small>Atomnummer ${e.z} · periode ${e.period}, gruppe ${e.group}</small>`;
+  }
+
+  const done = n >= state.max;
+  $("drawBtn").disabled = state.busy || done || state.enabled.size === 0;
+  $("drawBtn").textContent = done ? "Alle er trukket" : "Trekk";
+  $("revealBtn").disabled = state.busy || !last || state.revealed.has(n - 1);
+
+  const ol = $("history");
+  ol.innerHTML = "";
+  state.hints.forEach((hh, i) => {
+    const e = ELEMENTS[hh.z - 1];
+    const li = document.createElement("li");
+    li.textContent = HINTS[hh.key].text(e) + "  ";
+    const s = document.createElement("span");
+    s.className = "ans"; s.textContent = `→ ${e.sym}`;
+    li.appendChild(s);
+    ol.appendChild(li);
+  });
+  $("histEmpty").hidden = n > 0;
+
+  const drawn = new Set(state.hints.map(h => h.z));
+  document.querySelectorAll(".cell[data-z]").forEach(c => {
+    const z = +c.dataset.z;
+    c.classList.toggle("on", drawn.has(z));
+    c.classList.toggle("last", !!last && last.z === z);
+  });
+}
+
+function buildBoard() {
+  const board = $("board");
+  board.innerHTML = "";
+  const groups = state.max <= 20 ? [1, 2, 13, 14, 15, 16, 17, 18] : Array.from({ length: 18 }, (_, i) => i + 1);
+  board.style.gridTemplateColumns = `repeat(${groups.length}, 1fr)`;
+  groups.forEach(g => { const d = document.createElement("div"); d.className = "lbl"; d.textContent = g; board.appendChild(d); });
+  const periods = Math.max(...pool().map(e => e.period));
+  for (let p = 1; p <= periods; p++) {
+    groups.forEach(g => {
+      const e = pool().find(x => x.period === p && x.group === g);
+      const d = document.createElement("div");
+      if (e) { d.className = "cell"; d.dataset.z = e.z; d.textContent = e.sym; d.title = `${e.z} ${e.name}`; }
+      else d.className = "cell gap";
+      board.appendChild(d);
+    });
+  }
+}
+
+function buildOpts() {
+  RANGES.forEach(r => {
+    const id = "range-" + r.max;
+    const lab = document.createElement("label");
+    lab.htmlFor = id;
+    lab.innerHTML = `<input type="radio" name="range" id="${id}" ${r.max === state.max ? "checked" : ""}> ${r.label}`;
+    lab.querySelector("input").addEventListener("change", () => { state.max = r.max; newGame(); });
+    $("rangeOpts").appendChild(lab);
+  });
+  Object.entries(HINTS).forEach(([k, h]) => {
+    const id = "hint-" + k;
+    const lab = document.createElement("label");
+    lab.htmlFor = id;
+    lab.innerHTML = `<input type="checkbox" id="${id}" checked> ${h.label}`;
+    lab.querySelector("input").addEventListener("change", ev => {
+      if (ev.target.checked) state.enabled.add(k); else state.enabled.delete(k);
+      render();
+    });
+    $("hintOpts").appendChild(lab);
+  });
+}
+
+/* ---------- Meny ---------- */
+function setMenu(open) {
+  $("drawer").classList.toggle("open", open);
+  $("scrim").classList.toggle("open", open);
+  $("menuBtn").setAttribute("aria-expanded", String(open));
+  if (open) $("closeBtn").focus(); else { $("confirm").classList.remove("open"); $("menuBtn").focus(); }
+}
+const menuOpen = () => $("drawer").classList.contains("open");
+
+$("drawBtn").addEventListener("click", draw);
+$("revealBtn").addEventListener("click", reveal);
+$("menuBtn").addEventListener("click", () => setMenu(true));
+$("closeBtn").addEventListener("click", () => setMenu(false));
+$("scrim").addEventListener("click", () => setMenu(false));
+$("resetBtn").addEventListener("click", () => { $("confirm").classList.add("open"); $("noBtn").focus(); });
+$("noBtn").addEventListener("click", () => $("confirm").classList.remove("open"));
+$("yesBtn").addEventListener("click", () => { newGame(); setMenu(false); });
+$("fsBtn").addEventListener("click", async () => {
+  try {
+    if (document.fullscreenElement) await document.exitFullscreen();
+    else await document.documentElement.requestFullscreen();
+  } catch (err) {
+    $("fsBtn").textContent = "Fullskjerm er ikke tilgjengelig her";
+    $("fsBtn").disabled = true;
+  }
+});
+$("ptShow").addEventListener("change", ev => { $("pt").hidden = !ev.target.checked; });
+$("boardToggle").addEventListener("click", ev => {
+  const hidden = $("board").classList.toggle("hide");
+  ev.target.textContent = hidden ? "Vis symboler" : "Skjul symboler";
+  ev.target.setAttribute("aria-pressed", String(!hidden));
+});
+document.addEventListener("keydown", ev => {
+  if (ev.key === "Escape" && menuOpen()) { setMenu(false); return; }
+  if (menuOpen() || ev.target.tagName === "INPUT") return;
+  if (ev.code === "Space") { ev.preventDefault(); draw(); }
+  else if (ev.key === "s" || ev.key === "S") reveal();
+  else if (ev.key === "m" || ev.key === "M") setMenu(true);
+});
+// Mellomrom skal alltid trekke, også når en annen knapp har fokus
+document.addEventListener("keyup", ev => {
+  if (ev.code === "Space" && !menuOpen() && ev.target.tagName === "BUTTON") ev.preventDefault();
+});
+
+buildAtom();
+buildOpts();
+newGame();
+</script>
+</body>
+</html>
