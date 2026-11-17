@@ -1,0 +1,1332 @@
+[
+ {
+  "id": "naeringskjeder",
+  "type": "Forsøk",
+  "min": 30,
+  "grade": 8,
+  "chnum": 1,
+  "chtitle": "Den levende naturen",
+  "topic": "Næringskjeder og kretsløp i naturen",
+  "lab": {
+   "title": "Nedbryterne i arbeid",
+   "q": "Hva påvirker hvor fort en brødskive blir brutt ned?",
+   "vars": {
+    "uavh": "Fuktighet (tørt eller fuktet brød) eller temperatur (kjøleskap eller romtemperatur)",
+    "avh": "Hvor stor del av brødet som er dekket av mugg etter 3, 5 og 7 dager",
+    "konst": "Samme type brød, like store biter, like poser, samme lys"
+   },
+   "utstyr": [
+    "4 brødbiter uten konserveringsmiddel",
+    "4 gjennomsiktige plastposer med lås",
+    "Vann i sprayflaske",
+    "Tusj og rutepapir eller mobilkamera"
+   ],
+   "steg": [
+    "Skriv en hypotese: Hva tror du gir raskest nedbrytning, og hvorfor?",
+    "Fukt to av brødbitene lett med sprayflasken. La to være tørre.",
+    "Legg hver bit i en pose og lukk godt. Merk posene.",
+    "Legg én tørr og én fuktig pose i kjøleskap, og to i romtemperatur.",
+    "Ta bilde eller tegn hver pose dag 3, 5 og 7. Anslå hvor mange prosent som er dekket av mugg.",
+    "Lag en tabell og et søylediagram over resultatene."
+   ],
+   "risiko": [
+    "Ikke åpne posene. Muggsporer kan gi allergiske reaksjoner og irritere luftveiene.",
+    "Elever med muggallergi eller astma skal ikke håndtere posene.",
+    "Posene kastes uåpnet i restavfall etter forsøket."
+   ],
+   "analyse": [
+    "Stemte hypotesen din? Bruk resultatene som bevis.",
+    "Hvorfor er nedbrytere viktige for kretsløpet i naturen?",
+    "Nevn mulige feilkilder."
+   ]
+  }
+ },
+ {
+  "id": "okosystemer-fare",
+  "type": "Forsøk",
+  "min": 45,
+  "grade": 8,
+  "chnum": 2,
+  "chtitle": "Mennesket i naturen",
+  "topic": "Økosystemer i fare",
+  "lab": {
+   "title": "Oljesøl i havet",
+   "q": "Hvilken metode fjerner mest olje fra vann?",
+   "vars": {
+    "uavh": "Rensemetode (skje, papir, svamp, oppvaskmiddel)",
+    "avh": "Hvor mye olje som er igjen etter 2 minutter",
+    "konst": "Samme mengde vann og olje, samme tid, samme skål"
+   },
+   "utstyr": [
+    "4 skåler med vann",
+    "Matolje farget med kakao eller paprikapulver",
+    "Teskje",
+    "Kjøkkenpapir",
+    "Svamp",
+    "Oppvaskmiddel",
+    "En fjær (valgfritt)"
+   ],
+   "steg": [
+    "Skriv en hypotese om hvilken metode som virker best.",
+    "Hell 2 ss olje i hver skål og se hvordan oljen legger seg.",
+    "Prøv én metode per skål i 2 minutter.",
+    "Vurder hvor mye olje som er igjen på en skala fra 0 til 5.",
+    "Dypp en fjær i oljeskålen og se hvordan den blir. Prøv å vaske den."
+   ],
+   "risiko": [
+    "Matolje gjør gulvet glatt – tørk opp søl med en gang.",
+    "Ikke hell olje i vasken. Samle den i en flaske til restavfall."
+   ],
+   "analyse": [
+    "Hvilken metode virket best? Var den lettvint å bruke på havet?",
+    "Hvordan kan oljesøl skade sjøfugl?",
+    "Hvorfor er oppvaskmiddel ikke en god løsning i naturen?"
+   ]
+  }
+ },
+ {
+  "id": "metode",
+  "type": "Forsøk",
+  "min": 60,
+  "grade": 8,
+  "chnum": 3,
+  "chtitle": "Vitenskap – hvordan kan vi vite?",
+  "topic": "Naturvitenskapelig metode",
+  "lab": {
+   "title": "Papirhelikopteret",
+   "q": "Hva påvirker hvor lang tid et papirhelikopter bruker på å falle?",
+   "vars": {
+    "uavh": "Lengden på vingene (velg én!)",
+    "avh": "Falltid i sekunder",
+    "konst": "Fallhøyde, papirtype, antall binders, samme person som slipper"
+   },
+   "utstyr": [
+    "Papir og saks",
+    "Binders",
+    "Stoppeklokke",
+    "Målebånd"
+   ],
+   "steg": [
+    "Klipp ut et papirhelikopter etter malen og fest én binders nederst.",
+    "Skriv en hypotese med «Hvis … så … fordi …».",
+    "Slipp helikopteret fra 2 m høyde. Mål falltiden 3 ganger og regn ut gjennomsnittet.",
+    "Lag nye helikoptre med kortere vinger og gjenta.",
+    "Lag en tabell og en graf med vingelengde langs x-aksen og falltid langs y-aksen."
+   ],
+   "risiko": [
+    "Stå trygt hvis du står på en stol – ha en medelev som holder.",
+    "Pass på saksen."
+   ],
+   "analyse": [
+    "Stemte hypotesen?",
+    "Hvorfor målte dere tre ganger?",
+    "Hvilke feilkilder fantes?",
+    "Foreslå et nytt forsøk med en annen uavhengig variabel."
+   ]
+  }
+ },
+ {
+  "id": "hjernen",
+  "type": "Forsøk",
+  "min": 30,
+  "grade": 8,
+  "chnum": 3,
+  "chtitle": "Vitenskap – hvordan kan vi vite?",
+  "topic": "Hjernen din lar seg lure",
+  "lab": {
+   "title": "Reaksjonstid med linjal",
+   "q": "Blir reaksjonstiden bedre med trening?",
+   "vars": {
+    "uavh": "Antall forsøk (trening)",
+    "avh": "Hvor mange centimeter linjalen faller før du griper den",
+    "konst": "Samme linjal, samme hånd, samme person som slipper, samme starthøyde"
+   },
+   "utstyr": [
+    "Linjal på 30 cm",
+    "Skjema"
+   ],
+   "steg": [
+    "Skriv en hypotese.",
+    "Én holder linjalen loddrett med 0 cm mellom tommel og pekefinger til den som tester.",
+    "Slipp linjalen uten forvarsel. Les av hvor den ble grepet.",
+    "Gjør 10 forsøk og skriv ned alle.",
+    "Lag en graf: forsøksnummer på x-aksen og centimeter på y-aksen."
+   ],
+   "risiko": [
+    "Ingen spesielle farer."
+   ],
+   "analyse": [
+    "Ble resultatene bedre? Var forbedringen stor eller liten?",
+    "Hva kan ha påvirket resultatene utenom trening (for eksempel at du gjettet når den slippes)?",
+    "Hvorfor er det lurt å samle resultater fra hele klassen?"
+   ]
+  }
+ },
+ {
+  "id": "hvordan-vite",
+  "type": "Forsøk",
+  "min": 45,
+  "grade": 8,
+  "chnum": 3,
+  "chtitle": "Vitenskap – hvordan kan vi vite?",
+  "topic": "Hvordan kan vi vite?",
+  "lab": {
+   "title": "Hvor langt er klasserommet?",
+   "q": "Hvor stor er usikkerheten når hele klassen måler det samme?",
+   "vars": {
+    "uavh": "Måleredskap (linjal, målebånd, skritt)",
+    "avh": "Målt lengde og spredningen i målingene",
+    "konst": "Samme strekning for alle"
+   },
+   "utstyr": [
+    "Linjal på 30 cm",
+    "Målebånd",
+    "Skjema og regneark"
+   ],
+   "steg": [
+    "Alle måler lengden av klasserommet med linjal og skriver ned svaret uten å se på andres.",
+    "Gjenta med målebånd, og til slutt med egne skritt (gjør om til meter).",
+    "Samle alle målingene i et regneark.",
+    "Regn ut gjennomsnitt, største og minste verdi for hver metode.",
+    "Sammenlign spredningen for de tre metodene."
+   ],
+   "risiko": [
+    "Pass på at ingen snubler i målebåndet."
+   ],
+   "analyse": [
+    "Hvilken metode ga minst usikkerhet? Hvorfor?",
+    "Hva er den beste verdien for lengden av rommet?",
+    "Hvordan kan dere gjøre målingene enda mer nøyaktige?"
+   ]
+  }
+ },
+ {
+  "id": "kjemiske-stoffer",
+  "type": "Forsøk",
+  "min": 45,
+  "grade": 8,
+  "chnum": 4,
+  "chtitle": "Alt er kjemi",
+  "topic": "Kjemiske stoffer",
+  "lab": {
+   "title": "Massebevaring med eddik og natron",
+   "q": "Er massen den samme før og etter en kjemisk reaksjon?",
+   "vars": {
+    "uavh": "Åpent eller lukket system",
+    "avh": "Massen før og etter reaksjonen",
+    "konst": "Samme mengde eddik og natron, samme vekt"
+   },
+   "utstyr": [
+    "Plastflaske på 0,5 L",
+    "Ballong",
+    "50 mL eddik (husholdningseddik)",
+    "1 ts natron",
+    "Trakt",
+    "Digital kjøkkenvekt (0,1 g)",
+    "Vernebriller"
+   ],
+   "steg": [
+    "Skriv en hypotese om hva vekta viser etter reaksjonen.",
+    "Hell eddik i flasken. Ha natron i ballongen med trakt.",
+    "Tre ballongen over flasketuten uten å la natronen falle ned. Vei alt.",
+    "Løft ballongen så natronen faller ned. Se hva som skjer.",
+    "Vei alt på nytt når reaksjonen er over.",
+    "Gjenta i en åpen skål uten ballong og sammenlign."
+   ],
+   "risiko": [
+    "Bruk vernebriller. Eddik kan svi i øynene – skyll med mye vann hvis du får sprut.",
+    "Ikke bruk mer enn 1 ts natron, så ballongen ikke sprekker.",
+    "Restene kan helles i vasken med mye vann."
+   ],
+   "analyse": [
+    "Hva viste vekta i det lukkede og i det åpne forsøket?",
+    "Forklar resultatene med massebevaring.",
+    "Hvilke tegn på kjemisk reaksjon så dere?",
+    "Hvorfor kan ballongen gi en liten feil i vekta? (Tips: oppdrift.)"
+   ]
+  }
+ },
+ {
+  "id": "energi-hva",
+  "type": "Forsøk",
+  "min": 45,
+  "grade": 8,
+  "chnum": 5,
+  "chtitle": "Energi",
+  "topic": "Hva er energi?",
+  "lab": {
+   "title": "Sprettballen",
+   "q": "Hvor stor del av energien beholder en ball etter et sprett?",
+   "vars": {
+    "uavh": "Slipphøyde (50, 100, 150 og 200 cm)",
+    "avh": "Spretthøyde i cm",
+    "konst": "Samme ball, samme underlag, slipp uten fart"
+   },
+   "utstyr": [
+    "Sprettball eller tennisball",
+    "Målebånd teipet loddrett på veggen",
+    "Mobilkamera med sakte film (valgfritt)"
+   ],
+   "steg": [
+    "Lag en hypotese om sammenhengen mellom slipphøyde og spretthøyde.",
+    "Slipp ballen fra 50 cm og mål spretthøyden. Gjør tre forsøk.",
+    "Gjenta for 100, 150 og 200 cm.",
+    "Regn ut spretthøyde : slipphøyde for hver høyde, og gjør om til prosent.",
+    "Lag en graf med slipphøyde på x-aksen og spretthøyde på y-aksen."
+   ],
+   "risiko": [
+    "Ikke stå på stol uten at noen holder. Slipp ballen bort fra andre elever."
+   ],
+   "analyse": [
+    "Er prosenten omtrent lik for alle høyder?",
+    "Hvor ble det av energien som ikke ble til ny høyde?",
+    "Prøv et annet underlag. Hva skjer?"
+   ]
+  }
+ },
+ {
+  "id": "energikilder",
+  "type": "Forsøk",
+  "min": 45,
+  "grade": 8,
+  "chnum": 5,
+  "chtitle": "Energi",
+  "topic": "Energikilder",
+  "lab": {
+   "title": "Solcellen og vinkelen",
+   "q": "Hvordan påvirker vinkelen mot lyset hvor mye strøm en solcelle gir?",
+   "vars": {
+    "uavh": "Vinkelen mellom solcella og lyset (0°, 30°, 60°, 90°)",
+    "avh": "Spenning (V) målt med multimeter",
+    "konst": "Samme lampe, samme avstand, samme solcelle"
+   },
+   "utstyr": [
+    "Liten solcelle",
+    "Multimeter",
+    "Kraftig lampe eller sol",
+    "Gradskive",
+    "Linjal"
+   ],
+   "steg": [
+    "Skriv en hypotese.",
+    "Koble solcella til multimeteret (likespenning, V).",
+    "Hold solcella i fast avstand fra lampa, vinkelrett på lyset. Les av spenningen.",
+    "Vri solcella til 30°, 60° og 90° og les av.",
+    "Lag en tabell og en graf."
+   ],
+   "risiko": [
+    "Lamper kan bli varme – ikke ta på pæra.",
+    "Ikke se rett mot kraftig lys eller sola."
+   ],
+   "analyse": [
+    "Ved hvilken vinkel ga solcella mest strøm?",
+    "Hvorfor bør solceller på tak i Norge være vinklet bratt?",
+    "Hva skjer om vinteren når sola står lavt?"
+   ]
+  }
+ },
+ {
+  "id": "energibaerere",
+  "type": "Forsøk",
+  "min": 45,
+  "grade": 8,
+  "chnum": 5,
+  "chtitle": "Energi",
+  "topic": "Energibærere og energikvalitet",
+  "lab": {
+   "title": "Sitronbatteriet",
+   "q": "Kan vi lagre og hente ut energi fra en sitron?",
+   "vars": {
+    "uavh": "Antall sitroner koblet i serie (1, 2, 3)",
+    "avh": "Spenning (V) og om en LED lyser",
+    "konst": "Samme metaller, samme avstand mellom metallene"
+   },
+   "utstyr": [
+    "3 sitroner",
+    "3 kobberbiter (eller kobbermynter)",
+    "3 galvaniserte spiker (sink)",
+    "Ledninger med krokodilleklemmer",
+    "Multimeter",
+    "En liten LED"
+   ],
+   "steg": [
+    "Rull sitronene mot bordet så de blir saftige.",
+    "Stikk en kobberbit og en sinkspiker inn i sitronen, 2 cm fra hverandre.",
+    "Mål spenningen med multimeteret.",
+    "Koble sammen 2 og 3 sitroner i serie (kobber til sink) og mål igjen.",
+    "Prøv å få en LED til å lyse."
+   ],
+   "risiko": [
+    "Spikerspisser kan stikke – vær forsiktig.",
+    "Sitronene skal ikke spises etterpå, de inneholder metall.",
+    "Vask hendene etterpå."
+   ],
+   "analyse": [
+    "Hvordan endret spenningen seg med flere sitroner?",
+    "Hvilken energiomforming skjer i batteriet?",
+    "Hvorfor er ikke sitroner et godt batteri i praksis?"
+   ]
+  }
+ },
+ {
+  "id": "vannpest",
+  "type": "Forsøk",
+  "min": 60,
+  "grade": 8,
+  "chnum": 1,
+  "chtitle": "Den levende naturen",
+  "topic": "Næringskjeder og kretsløp i naturen",
+  "lab": {
+   "title": "Fotosyntese i vannpest",
+   "q": "Hvordan påvirker lysmengden hvor mye oksygen en vannplante lager?",
+   "vars": {
+    "uavh": "Avstand fra lampa til planten (10, 20, 30, 40 cm)",
+    "avh": "Antall oksygenbobler per minutt",
+    "konst": "Samme plante, samme vann, samme vanntemperatur, samme lampe"
+   },
+   "utstyr": [
+    "Vannpest eller annen vannplante (fra akvariebutikk)",
+    "Begerglass eller høyt glass med vann",
+    "En klype natron (gir CO₂ i vannet)",
+    "Skrivebordslampe, helst LED",
+    "Linjal og stoppeklokke"
+   ],
+   "steg": [
+    "Skriv en hypotese.",
+    "Løs en klype natron i vannet og legg i en kvist vannpest med det avkuttede stykket opp.",
+    "Sett lampa 10 cm unna. Vent 2 minutter, og tell boblene i ett minutt. Gjenta to ganger.",
+    "Flytt lampa til 20, 30 og 40 cm og gjenta.",
+    "Lag en tabell og en graf med avstand på x-aksen og bobler per minutt på y-aksen."
+   ],
+   "risiko": [
+    "Lamper kan bli varme. Bruk LED om mulig, og ikke ta på pæra.",
+    "Hold vann unna stikkontakter og ledninger."
+   ],
+   "analyse": [
+    "Hvordan endret antall bobler seg med avstanden?",
+    "Hvilken gass er i boblene, og hvordan vet du det?",
+    "Varme fra lampa kan også påvirke resultatet. Hvordan kan du teste det?"
+   ]
+  }
+ },
+ {
+  "id": "ledning",
+  "type": "Forsøk",
+  "min": 45,
+  "grade": 8,
+  "chnum": 4,
+  "chtitle": "Alt er kjemi",
+  "topic": "Kjemiske stoffer",
+  "lab": {
+   "title": "Hvilke løsninger leder strøm?",
+   "q": "Hvilke stoffer leder strøm når de er løst i vann – og hvorfor?",
+   "vars": {
+    "uavh": "Stoffet som løses (salt, sukker, natron, eddik, rent vann)",
+    "avh": "Om lysdioden lyser, og hvor sterkt",
+    "konst": "Samme mengde vann og stoff, samme avstand mellom elektrodene"
+   },
+   "utstyr": [
+    "Batteri på 9 V eller 4,5 V",
+    "Lysdiode (LED) med motstand, eller lyspære",
+    "Ledninger med krokodilleklemmer",
+    "To spiker eller kobberstrimler som elektroder",
+    "Små begre, teskje",
+    "Destillert vann, salt, sukker, natron, eddik"
+   ],
+   "steg": [
+    "Lag en hypotese om hvilke løsninger som leder strøm.",
+    "Koble batteri, LED og to elektroder i en krets der elektrodene ikke rører hverandre.",
+    "Sett elektrodene i destillert vann. Lyser lampa?",
+    "Gjenta med hver løsning. Skyll elektrodene i destillert vann mellom hver gang.",
+    "Lag en tabell over hvor sterkt lampa lyste."
+   ],
+   "risiko": [
+    "Bruk bare batteri, aldri strøm fra stikkontakten.",
+    "Ikke smak på løsningene.",
+    "Bruk vernebriller når du arbeider med eddik."
+   ],
+   "analyse": [
+    "Hvilke løsninger ledet strøm?",
+    "Forklar med ioner hvorfor saltvann leder strøm, men ikke sukkervann.",
+    "Hvorfor kan det være farlig å bruke elektriske apparater i badekaret?"
+   ]
+  }
+ },
+ {
+  "id": "rodkal",
+  "type": "Forsøk",
+  "min": 60,
+  "grade": 8,
+  "chnum": 4,
+  "chtitle": "Alt er kjemi",
+  "topic": "Kjemiske stoffer",
+  "lab": {
+   "title": "Rødkål som indikator",
+   "q": "Hvilke stoffer fra kjøkkenet er sure, og hvilke er basiske?",
+   "vars": {
+    "uavh": "Stoffet som testes",
+    "avh": "Fargen på rødkålsaften",
+    "konst": "Samme mengde rødkålsaft og stoff i hvert glass"
+   },
+   "utstyr": [
+    "Rødkål, kniv og vannkoker",
+    "Sil og kanne",
+    "Små gjennomsiktige begre",
+    "Eddik, sitronsaft, natron, såpevann, Farris eller annet kullsyreholdig vann, vann",
+    "Vernebriller"
+   ],
+   "steg": [
+    "Kutt rødkål i biter og hell over varmt vann. La stå i 10 minutter og sil av den lilla saften.",
+    "Hell litt rødkålsaft i hvert beger.",
+    "Tilsett en teskje av hvert stoff. Noter fargen.",
+    "Sorter stoffene fra mest surt (rødt) til mest basisk (grønt/gult).",
+    "Bland eddik og natron i et beger med rødkålsaft. Hva skjer med fargen?"
+   ],
+   "risiko": [
+    "Pass på kokende vann fra vannkokeren.",
+    "Bruk vernebriller. Skyll med vann hvis du får sprut i øynene.",
+    "Ikke bruk sterke rengjøringsmidler som avløpsåpner eller oppvaskmaskinmiddel."
+   ],
+   "analyse": [
+    "Hvilke stoffer var sure, og hvilke var basiske?",
+    "Hva skjedde da du blandet syre og base? Er det en kjemisk reaksjon?",
+    "Hvorfor kalles rødkålsaft en indikator?"
+   ]
+  }
+ },
+ {
+  "id": "drivhusflaske",
+  "type": "Forsøk",
+  "min": 60,
+  "grade": 9,
+  "chnum": 2,
+  "chtitle": "Klimaet endrer seg",
+  "topic": "Hvorfor endrer klimaet seg?",
+  "lab": {
+   "title": "Drivhuseffekt i flaske",
+   "q": "Blir lufta varmere når den inneholder mer CO₂?",
+   "vars": {
+    "uavh": "Innhold i flaska (vanlig luft eller luft med ekstra CO₂)",
+    "avh": "Temperaturen etter 5, 10 og 15 minutter",
+    "konst": "Like flasker, samme lampe, samme avstand, samme starttemperatur"
+   },
+   "utstyr": [
+    "To like plastflasker med kork",
+    "To termometre eller temperaturfølere",
+    "Natron og eddik",
+    "Kraftig lampe",
+    "Teip eller plastelina til å tette rundt termometeret"
+   ],
+   "steg": [
+    "Lag en hypotese.",
+    "Bland 1 ts natron og litt eddik i bunnen av den ene flaska og la CO₂ fylle flaska. Hell ut væsken.",
+    "Sett termometre i begge flaskene og tett godt.",
+    "Sett begge flaskene like langt fra lampa. Les av temperaturen hvert 5. minutt i 15 minutter.",
+    "Lag en graf med begge kurvene."
+   ],
+   "risiko": [
+    "Lampa blir varm – ikke ta på pæra.",
+    "Bruk vernebriller når du blander eddik og natron."
+   ],
+   "analyse": [
+    "Ble det forskjell på flaskene? Var forskjellen stor nok til at du stoler på den?",
+    "Hvordan ligner flaska på atmosfæren, og hvordan er den forskjellig?",
+    "Hvilke feilkilder kan ha påvirket resultatet?"
+   ]
+  }
+ },
+ {
+  "id": "havforsuring",
+  "type": "Forsøk",
+  "min": 45,
+  "grade": 9,
+  "chnum": 2,
+  "chtitle": "Klimaet endrer seg",
+  "topic": "Hvorfor endrer klimaet seg?",
+  "lab": {
+   "title": "Havforsuring i et glass",
+   "q": "Hva skjer med vannet når det tar opp CO₂?",
+   "vars": {
+    "uavh": "Om du blåser CO₂ inn i vannet eller ikke",
+    "avh": "Fargen på rødkålindikatoren (pH)",
+    "konst": "Samme mengde vann og indikator"
+   },
+   "utstyr": [
+    "Rødkålsaft (se forsøket «Rødkål som indikator») eller BTB-indikator",
+    "To glass med vann",
+    "Sugerør",
+    "Stoppeklokke"
+   ],
+   "steg": [
+    "Lag en hypotese.",
+    "Bland like mye indikator i begge glassene.",
+    "Blås forsiktig gjennom sugerøret i det ene glasset i 1 minutt. Det andre er kontroll.",
+    "Sammenlign fargene. Blås ett minutt til og se igjen.",
+    "Prøv Farris i stedet for utpust."
+   ],
+   "risiko": [
+    "Blås bare ut – ikke sug inn væsken.",
+    "Bruk eget sugerør. Ikke del med andre."
+   ],
+   "analyse": [
+    "Hva skjedde med fargen? Hva betyr det for pH?",
+    "Havet tar opp en stor del av CO₂-en vi slipper ut. Hvordan kan det påvirke dyr med kalkskall?",
+    "Hvorfor brukte vi et kontrollglass?"
+   ]
+  }
+ },
+ {
+  "id": "havniva",
+  "type": "Forsøk",
+  "min": 45,
+  "grade": 9,
+  "chnum": 2,
+  "chtitle": "Klimaet endrer seg",
+  "topic": "Hva nå?",
+  "lab": {
+   "title": "Sjøis eller landis?",
+   "q": "Hva gir mest havnivåstigning – is som smelter i havet eller på land?",
+   "vars": {
+    "uavh": "Hvor isen ligger (i vannet eller på «land»)",
+    "avh": "Vannstanden i karet etter at isen har smeltet",
+    "konst": "Like mye is, like store kar, samme starthøyde"
+   },
+   "utstyr": [
+    "To like gjennomsiktige bokser",
+    "Isbiter",
+    "Steiner eller plastelina som «land»",
+    "Vann og tusj",
+    "Linjal"
+   ],
+   "steg": [
+    "Lag en hypotese.",
+    "Lag en øy av stein i begge boksene. Fyll vann til samme høyde og merk vannstanden.",
+    "Legg isbiter i vannet i boks A (sjøis) og oppå steinen i boks B (landis).",
+    "Vent til isen har smeltet. Merk vannstanden på nytt.",
+    "Mål forskjellen i millimeter."
+   ],
+   "risiko": [
+    "Tørk opp vannsøl så ingen sklir."
+   ],
+   "analyse": [
+    "I hvilken boks steg vannet mest? Hvorfor?",
+    "Gi eksempler på landis og sjøis på jorda.",
+    "Hvilke andre årsaker til havnivåstigning finnes (tips: vann utvider seg når det blir varmere)?"
+   ]
+  }
+ },
+ {
+  "id": "albedo",
+  "type": "Forsøk",
+  "min": 45,
+  "grade": 9,
+  "chnum": 2,
+  "chtitle": "Klimaet endrer seg",
+  "topic": "Atmosfæren – lufthavet rundt oss",
+  "lab": {
+   "title": "Svart og hvitt i sola",
+   "q": "Hvordan påvirker fargen på en overflate hvor mye den varmes opp?",
+   "vars": {
+    "uavh": "Fargen på papiret (hvitt, grått, svart, sølvfarget)",
+    "avh": "Temperaturen etter 10 minutter",
+    "konst": "Samme lampe og avstand, samme termometer, samme starttemperatur"
+   },
+   "utstyr": [
+    "Ark i ulike farger, eventuelt aluminiumsfolie",
+    "Termometre",
+    "Kraftig lampe eller sol",
+    "Stoppeklokke"
+   ],
+   "steg": [
+    "Lag en hypotese.",
+    "Brett arkene rundt hvert sitt termometer.",
+    "Sett alle like langt fra lampa.",
+    "Les av temperaturen etter 0, 5 og 10 minutter.",
+    "Lag et stolpediagram."
+   ],
+   "risiko": [
+    "Ikke ta på varme lamper. Ikke se rett mot sola."
+   ],
+   "analyse": [
+    "Hvilken farge ble varmest? Hvorfor?",
+    "Hva skjer med oppvarmingen når snø og is smelter og blir til mørk bakke og hav?",
+    "Hvordan kan dette gi en selvforsterkende effekt (tilbakekobling)?"
+   ]
+  }
+ },
+ {
+  "id": "lokceller",
+  "type": "Forsøk",
+  "min": 60,
+  "grade": 9,
+  "chnum": 3,
+  "chtitle": "Cellene – levende fabrikker",
+  "topic": "Se inn i cellen",
+  "lab": {
+   "title": "Løkceller i mikroskop",
+   "q": "Hvordan ser planteceller ut, og hvilke deler kan vi se?",
+   "vars": {
+    "uavh": "Forstørrelse (40×, 100×, 400×)",
+    "avh": "Hvilke celledeler du kan se",
+    "konst": "Samme preparat og samme farging"
+   },
+   "utstyr": [
+    "Mikroskop",
+    "Objektglass og dekkglass",
+    "Løk",
+    "Pinsett og skalpell",
+    "Jodløsning eller metylenblått",
+    "Pipette, tørkepapir"
+   ],
+   "steg": [
+    "Skjær løken i båter og trekk av den tynne hinnen på innsiden av et lag.",
+    "Legg hinnen flatt på objektglasset med en dråpe vann.",
+    "Tilsett en dråpe jod og legg på dekkglass.",
+    "Se i mikroskopet på laveste forstørrelse først, så høyere.",
+    "Tegn noen celler og merk cellevegg, cellemembran og cellekjerne."
+   ],
+   "risiko": [
+    "Skalpell er svært skarp – skjær bort fra deg.",
+    "Jod farger hud og klær og kan irritere. Bruk hansker og vernebriller.",
+    "Knust glass i eget glassavfall."
+   ],
+   "analyse": [
+    "Hvilke celledeler kunne du se?",
+    "Hvorfor ser du ikke grønnkorn i løkceller?",
+    "Hvorfor bruker vi farge på preparatet?"
+   ]
+  }
+ },
+ {
+  "id": "spalteapning",
+  "type": "Forsøk",
+  "min": 45,
+  "grade": 9,
+  "chnum": 3,
+  "chtitle": "Cellene – levende fabrikker",
+  "topic": "Mange typer celler",
+  "lab": {
+   "title": "Spalteåpninger med neglelakk",
+   "q": "Hvor mange spalteåpninger har et blad på oversiden og undersiden?",
+   "vars": {
+    "uavh": "Side av bladet (overside eller underside)",
+    "avh": "Antall spalteåpninger i synsfeltet",
+    "konst": "Samme plante, samme forstørrelse"
+   },
+   "utstyr": [
+    "Blader fra en potteplante eller et tre",
+    "Klar neglelakk",
+    "Gjennomsiktig teip",
+    "Objektglass",
+    "Mikroskop"
+   ],
+   "steg": [
+    "Mal et lite felt med klar neglelakk på oversiden og et på undersiden av bladet. La tørke.",
+    "Fest teip over lakken og trekk av avtrykket.",
+    "Fest teipen på et objektglass.",
+    "Tell spalteåpningene i synsfeltet ved 400× forstørrelse. Tell tre steder og finn gjennomsnittet.",
+    "Sammenlign oversiden og undersiden."
+   ],
+   "risiko": [
+    "Neglelakk er brannfarlig og har damp. Luft godt ut og hold den unna flammer."
+   ],
+   "analyse": [
+    "Hvor var det flest spalteåpninger? Hvorfor kan det være en fordel?",
+    "Hva er sammenhengen mellom form og funksjon i lukkecellene?",
+    "Hvilken rolle spiller spalteåpningene i fotosyntesen?"
+   ]
+  }
+ },
+ {
+  "id": "gjaer",
+  "type": "Forsøk",
+  "min": 60,
+  "grade": 9,
+  "chnum": 3,
+  "chtitle": "Cellene – levende fabrikker",
+  "topic": "Cellefabrikken",
+  "lab": {
+   "title": "Gjær som puster",
+   "q": "Hvordan påvirker temperatur og sukker celleåndingen i gjærceller?",
+   "vars": {
+    "uavh": "Vanntemperatur (kaldt, lunkent, varmt) eller sukker/ikke sukker",
+    "avh": "Størrelsen på ballongen etter 20 minutter",
+    "konst": "Samme mengde gjær, vann og sukker, samme flasker"
+   },
+   "utstyr": [
+    "Tørrgjær",
+    "Sukker",
+    "3–4 små plastflasker",
+    "Ballonger",
+    "Vann i ulike temperaturer (maks 40 °C fra springen)",
+    "Målebånd"
+   ],
+   "steg": [
+    "Lag en hypotese.",
+    "Ha 1 ts gjær og 1 ts sukker i hver flaske (en flaske uten sukker som kontroll).",
+    "Tilsett 1 dL vann med ulik temperatur i flaskene.",
+    "Tre en ballong over hver flasketut.",
+    "Mål omkretsen av ballongene hvert 5. minutt i 20 minutter."
+   ],
+   "risiko": [
+    "Bruk bare varmt vann fra springen, ikke kokende vann.",
+    "Ikke drikk løsningene."
+   ],
+   "analyse": [
+    "Hvilken gass fylte ballongene?",
+    "Hvilken temperatur var best for gjæren? Hva tror du skjer med gjærcellene hvis vannet blir for varmt?",
+    "Hvordan henger dette sammen med celleånding?"
+   ]
+  }
+ },
+ {
+  "id": "osmose",
+  "type": "Forsøk",
+  "min": 60,
+  "grade": 9,
+  "chnum": 3,
+  "chtitle": "Cellene – levende fabrikker",
+  "topic": "Alt levende er bygd opp av celler",
+  "lab": {
+   "title": "Potetbiter i saltvann",
+   "q": "Hva skjer med plantecellene når de ligger i vann med ulik saltmengde?",
+   "vars": {
+    "uavh": "Saltinnhold i vannet (0, 1, 3 og 10 %)",
+    "avh": "Endring i masse etter 30 minutter",
+    "konst": "Like store potetbiter, samme tid, samme temperatur"
+   },
+   "utstyr": [
+    "Potet og kniv",
+    "Skjærefjøl",
+    "Fire glass",
+    "Salt og vann",
+    "Kjøkkenvekt (0,1 g)",
+    "Tørkepapir"
+   ],
+   "steg": [
+    "Lag en hypotese.",
+    "Skjær fire like store potetbiter og vei dem.",
+    "Lag saltløsninger og legg én bit i hvert glass.",
+    "Ta opp bitene etter 30 minutter, tørk dem og vei dem igjen.",
+    "Regn ut endring i prosent og lag et diagram."
+   ],
+   "risiko": [
+    "Kniven er skarp. Skjær mot skjærefjøla."
+   ],
+   "analyse": [
+    "Hvilke biter ble tyngre, og hvilke ble lettere? Hvorfor?",
+    "Hva skjer med vannet inn og ut av cellene?",
+    "Hvorfor visner planter hvis vi vanner dem med saltvann?"
+   ]
+  }
+ },
+ {
+  "id": "dna",
+  "type": "Forsøk",
+  "min": 45,
+  "grade": 9,
+  "chnum": 3,
+  "chtitle": "Cellene – levende fabrikker",
+  "topic": "Cellefabrikken",
+  "lab": {
+   "title": "DNA fra jordbær",
+   "q": "Kan vi se DNA med det blotte øye?",
+   "vars": {
+    "uavh": "Med eller uten oppvaskmiddel i ekstraksjonsløsningen",
+    "avh": "Mengden DNA som felles ut",
+    "konst": "Like mange jordbær, samme mengde løsning"
+   },
+   "utstyr": [
+    "2–3 jordbær (gjerne frosne og tint)",
+    "Plastpose med lås",
+    "Oppvaskmiddel, salt og vann",
+    "Kaffefilter og glass",
+    "Iskald rødsprit eller isopropanol",
+    "Tannpirker"
+   ],
+   "steg": [
+    "Lag ekstraksjonsløsning: 1 dL vann, 1 ts salt og 1 ts oppvaskmiddel.",
+    "Mos jordbærene i posen sammen med løsningen i 2 minutter.",
+    "Filtrer gjennom kaffefilteret ned i glasset.",
+    "Hell forsiktig iskald sprit nedover glassveggen så den legger seg som et lag på toppen.",
+    "Vent 2 minutter og løft opp de hvite trådene med en tannpirker."
+   ],
+   "risiko": [
+    "Sprit er brannfarlig. Ingen åpen flamme i rommet.",
+    "Ikke drikk løsningene. Bruk vernebriller.",
+    "Spritrester samles i en egen beholder."
+   ],
+   "analyse": [
+    "Hvordan så DNA-et ut?",
+    "Hvorfor brukte vi oppvaskmiddel? (Tips: cellemembranen inneholder fett.)",
+    "Hvor i cellen finnes DNA-et?"
+   ]
+  }
+ },
+ {
+  "id": "krater",
+  "type": "Forsøk",
+  "min": 45,
+  "grade": 10,
+  "chnum": 1,
+  "chtitle": "Jordas utvikling",
+  "topic": "En spesiell planet",
+  "lab": {
+   "title": "Kratre i mel",
+   "q": "Hvordan påvirker fallhøyden størrelsen på et nedslagskrater?",
+   "vars": {
+    "uavh": "Fallhøyde (25, 50, 100, 150 cm)",
+    "avh": "Diameter på krateret",
+    "konst": "Samme kule, samme lag med mel"
+   },
+   "utstyr": [
+    "Stort brett med 3 cm mel, drysset med kakao på toppen",
+    "Klinkekuler eller små steiner",
+    "Målebånd og linjal"
+   ],
+   "steg": [
+    "Lag en hypotese.",
+    "Slipp kula fra 25 cm og mål diameteren på krateret.",
+    "Glatt ut melet og gjenta tre ganger for hver høyde.",
+    "Lag en graf med fallhøyde på x-aksen og diameter på y-aksen.",
+    "Se på mønsteret kakaoen lager rundt krateret."
+   ],
+   "risiko": [
+    "Mel kan støve – unngå å puste det inn. Elever med astma kan være observatører.",
+    "Tørk opp mel på gulvet, det blir glatt."
+   ],
+   "analyse": [
+    "Hvordan påvirket fallhøyden krateret?",
+    "Hvorfor har månen mange flere synlige kratre enn jorda?",
+    "Hvordan beskytter atmosfæren jorda?"
+   ]
+  }
+ },
+ {
+  "id": "konveksjon",
+  "type": "Demonstrasjon",
+  "min": 30,
+  "grade": 10,
+  "chnum": 1,
+  "chtitle": "Jordas utvikling",
+  "topic": "Tynt skall i bevegelse",
+  "lab": {
+   "title": "Strømmer i jordas indre",
+   "q": "Hvordan kan varme få stoff til å bevege seg i sirkler?",
+   "vars": {
+    "uavh": "Varmt eller kaldt vann under konteineren",
+    "avh": "Bevegelsen til fargen",
+    "konst": "Samme mengde vann og konditorfarge"
+   },
+   "utstyr": [
+    "Gjennomsiktig boks",
+    "To små glass",
+    "Varmt vann fra springen og isvann",
+    "Konditorfarge",
+    "Små biter papir (som «kontinenter»)"
+   ],
+   "steg": [
+    "Sett boksen på de to glassene: ett med varmt vann og ett med isvann.",
+    "Fyll boksen med romtemperert vann og vent til det er stille.",
+    "Drypp konditorfarge forsiktig ned på bunnen over det varme glasset.",
+    "Følg hvordan fargen beveger seg.",
+    "Legg papirbitene på overflaten. Hva skjer?"
+   ],
+   "risiko": [
+    "Bruk bare varmt vann fra springen, ikke kokende.",
+    "Tørk opp vannsøl."
+   ],
+   "analyse": [
+    "Beskriv bevegelsen. Hvorfor stiger varmt vann?",
+    "Hvordan ligner dette på strømmene i mantelen?",
+    "Hva viser modellen ikke? (Tips: mantelen er fast stoff som beveger seg svært sakte.)"
+   ]
+  }
+ },
+ {
+  "id": "pasteur",
+  "type": "Forsøk",
+  "min": 30,
+  "grade": 10,
+  "chnum": 2,
+  "chtitle": "Utviklingen av liv på jorda",
+  "topic": "Kan liv oppstå av seg selv?",
+  "lab": {
+   "title": "Pasteurs forsøk i glass",
+   "q": "Kan liv oppstå av seg selv i en næringsrik væske?",
+   "vars": {
+    "uavh": "Om glasset er åpent eller tett lukket",
+    "avh": "Om væsken blir grumsete (bakterievekst) etter 3–5 dager",
+    "konst": "Samme buljong, kokt like lenge, samme temperatur"
+   },
+   "utstyr": [
+    "Buljongterning og vann",
+    "Tre rene syltetøyglass med lokk",
+    "Kjele og plate (læreren koker)",
+    "Aluminiumsfolie"
+   ],
+   "steg": [
+    "Læreren koker buljongen i 10 minutter for å drepe bakterier.",
+    "Hell buljong i tre glass: ett med lokk, ett åpent og ett dekket med folie med et lite hull.",
+    "Sett glassene i rommet i 3–5 dager.",
+    "Se på glassene hver dag uten å åpne dem.",
+    "Noter om væsken blir grumsete og om det lukter."
+   ],
+   "risiko": [
+    "Kokende væske håndteres bare av læreren.",
+    "Ikke åpne glassene etter forsøket – læreren kaster dem lukket."
+   ],
+   "analyse": [
+    "I hvilke glass vokste det bakterier? Hvorfor?",
+    "Hvordan motbeviste Pasteur at liv oppstår av seg selv i dag?",
+    "Betyr det at liv aldri kan ha oppstått av ikke-levende stoffer?"
+   ]
+  }
+ },
+ {
+  "id": "fossil",
+  "type": "Forsøk",
+  "min": 60,
+  "grade": 10,
+  "chnum": 2,
+  "chtitle": "Utviklingen av liv på jorda",
+  "topic": "Teorier om livets utvikling",
+  "lab": {
+   "title": "Lag et fossil",
+   "q": "Hvordan blir avtrykk av organismer bevart i stein?",
+   "vars": {
+    "uavh": "Hvilken gjenstand som lager avtrykket (skjell, blad, ben)",
+    "avh": "Hvor tydelig avtrykket blir",
+    "konst": "Samme gips og samme leire"
+   },
+   "utstyr": [
+    "Plastelina eller leire",
+    "Gips og vann",
+    "Skjell, blader, kongler",
+    "Plastbeger",
+    "Vaselin"
+   ],
+   "steg": [
+    "Kjevle ut leire og trykk en gjenstand ned i den. Ta den forsiktig ut.",
+    "Smør litt vaselin på avtrykket.",
+    "Bland gips og hell over avtrykket. La stivne til neste time.",
+    "Ta av leira og se på «fossilet».",
+    "Bytt fossiler med en annen gruppe og gjett hva som laget avtrykket."
+   ],
+   "risiko": [
+    "Gips kan irritere øyne og hud. Bruk vernebriller og vask hendene.",
+    "Ikke hell gipsrester i vasken – de tetter avløpet."
+   ],
+   "analyse": [
+    "Hvordan ligner dette på hvordan ekte fossiler dannes?",
+    "Hvorfor blir bare en liten del av alle organismer til fossiler?",
+    "Hva kan fossiler fortelle om evolusjon?"
+   ]
+  }
+ },
+ {
+  "id": "distraksjon",
+  "type": "Forsøk",
+  "min": 45,
+  "grade": 10,
+  "chnum": 3,
+  "chtitle": "Nervesystemet hos mennesket",
+  "topic": "Nervesystemet – kroppens ledningsnett",
+  "lab": {
+   "title": "Reaksjonstid og mobilen",
+   "q": "Blir reaksjonstiden lengre når vi blir distrahert?",
+   "vars": {
+    "uavh": "Distraksjon (ingen, prate, svare på melding)",
+    "avh": "Hvor langt linjalen faller før du griper den (cm)",
+    "konst": "Samme linjal, hånd og person som slipper"
+   },
+   "utstyr": [
+    "Linjal på 30 cm",
+    "Mobil (eller ark med regnestykker som distraksjon)",
+    "Skjema"
+   ],
+   "steg": [
+    "Skriv en hypotese.",
+    "Gjør 5 grep med linjalen uten distraksjon.",
+    "Gjør 5 grep mens du prater med en medelev.",
+    "Gjør 5 grep mens du skriver en melding eller løser regnestykker.",
+    "Regn ut gjennomsnitt og gjør om til reaksjonstid med tabell fra læreren."
+   ],
+   "risiko": [
+    "Ingen spesielle farer."
+   ],
+   "analyse": [
+    "Hva skjedde med reaksjonstiden ved distraksjon?",
+    "Hvorfor er det farlig å bruke mobil i trafikken?",
+    "Beskriv veien signalet går: øye – hjerne – muskel."
+   ]
+  }
+ },
+ {
+  "id": "refleks",
+  "type": "Forsøk",
+  "min": 30,
+  "grade": 10,
+  "chnum": 3,
+  "chtitle": "Nervesystemet hos mennesket",
+  "topic": "Nervesystemet – kroppens ledningsnett",
+  "lab": {
+   "title": "Kneskålrefleksen",
+   "q": "Kan vi styre en refleks med viljen?",
+   "vars": {
+    "uavh": "Om personen prøver å hindre refleksen eller ikke",
+    "avh": "Om beinet sparker, og hvor mye",
+    "konst": "Samme person, samme slagkraft og samme sted"
+   },
+   "utstyr": [
+    "Stol eller bord å sitte på",
+    "Kanten av hånden eller en myk refleksklubbe"
+   ],
+   "steg": [
+    "Forsøkspersonen sitter med beina hengende fritt.",
+    "Slå lett rett under kneskåla.",
+    "Prøv igjen mens personen holder fingrene hektet og drar dem fra hverandre (avleder).",
+    "Prøv mens personen bevisst prøver å holde beinet stille.",
+    "Noter resultatene."
+   ],
+   "risiko": [
+    "Slå lett. Ikke slå på kneskåla selv. Den som har vondt i kneet, er observatør."
+   ],
+   "analyse": [
+    "Hvorfor kaller vi dette en refleks?",
+    "Hvorfor går refleksen raskere enn en bevisst reaksjon? (Tips: refleksbue via ryggmargen.)",
+    "Gi eksempler på reflekser som beskytter kroppen."
+   ]
+  }
+ },
+ {
+  "id": "topunkt",
+  "type": "Forsøk",
+  "min": 30,
+  "grade": 10,
+  "chnum": 3,
+  "chtitle": "Nervesystemet hos mennesket",
+  "topic": "Nervecellene",
+  "lab": {
+   "title": "Hvor følsom er huden?",
+   "q": "Hvor tett ligger sanseceller for berøring på ulike steder på kroppen?",
+   "vars": {
+    "uavh": "Sted på huden (fingertupp, håndflate, underarm, nakke)",
+    "avh": "Minste avstand der to punkter kjennes som to",
+    "konst": "Samme person, samme trykk, øynene lukket"
+   },
+   "utstyr": [
+    "Binders bøyd til en U, eller to tannpirkere",
+    "Linjal"
+   ],
+   "steg": [
+    "Forsøkspersonen lukker øynene.",
+    "Trykk lett med én eller to spisser og spør: én eller to?",
+    "Start med stor avstand og minsk den til personen kjenner bare én.",
+    "Mål avstanden for hvert sted.",
+    "Lag et stolpediagram."
+   ],
+   "risiko": [
+    "Trykk lett, ikke stikk."
+   ],
+   "analyse": [
+    "Hvor var huden mest følsom? Hvorfor er det nyttig?",
+    "Hva sier resultatet om hvor tett sansecellene ligger?",
+    "Hvorfor bruker blinde fingertuppene til å lese punktskrift?"
+   ]
+  }
+ },
+ {
+  "id": "blindflekk",
+  "type": "Forsøk",
+  "min": 20,
+  "grade": 10,
+  "chnum": 3,
+  "chtitle": "Nervesystemet hos mennesket",
+  "topic": "Nervesystemet – kroppens ledningsnett",
+  "lab": {
+   "title": "Finn den blinde flekken",
+   "q": "Har øyet et område der vi ikke ser noe?",
+   "vars": {
+    "uavh": "Avstand fra arket til øyet",
+    "avh": "Når prikken forsvinner",
+    "konst": "Samme ark, samme øye, det andre øyet lukket"
+   },
+   "utstyr": [
+    "Kort med et kryss og en prikk 8 cm fra hverandre",
+    "Linjal"
+   ],
+   "steg": [
+    "Hold kortet en armlengde unna. Lukk venstre øye og se på krysset med høyre øye.",
+    "Før kortet langsomt mot deg.",
+    "Mål avstanden når prikken forsvinner.",
+    "Fortsett å flytte. Kommer prikken tilbake?",
+    "Prøv med det andre øyet (snu kortet)."
+   ],
+   "risiko": [
+    "Ingen spesielle farer."
+   ],
+   "analyse": [
+    "Hvorfor forsvinner prikken? (Tips: synsnerven går ut av øyet der.)",
+    "Hvorfor merker vi ikke den blinde flekken i hverdagen?",
+    "Hva sier dette om hvordan hjernen tolker det vi ser?"
+   ]
+  }
+ },
+ {
+  "id": "stroop",
+  "type": "Forsøk",
+  "min": 30,
+  "grade": 10,
+  "chnum": 3,
+  "chtitle": "Nervesystemet hos mennesket",
+  "topic": "Stoffer som påvirker nervesystemet",
+  "lab": {
+   "title": "Stroop-testen",
+   "q": "Bruker hjernen lengre tid når informasjonen krangler?",
+   "vars": {
+    "uavh": "Type liste (fargeord i riktig farge eller i feil farge)",
+    "avh": "Tid på å si fargene høyt",
+    "konst": "Like lange lister, samme person"
+   },
+   "utstyr": [
+    "To lister: én der fargeordene er skrevet med samme farge, og én der de er skrevet med feil farge",
+    "Stoppeklokke"
+   ],
+   "steg": [
+    "Skriv en hypotese.",
+    "Si fargen på blekket i liste 1 så raskt du kan. Ta tiden.",
+    "Gjør det samme med liste 2.",
+    "Gjenta for flere elever.",
+    "Regn ut gjennomsnittlig tid for hver liste."
+   ],
+   "risiko": [
+    "Ingen spesielle farer."
+   ],
+   "analyse": [
+    "Hvilken liste tok lengst tid? Hvorfor?",
+    "Hva forteller dette om hvordan hjernen behandler lesing og farger?",
+    "Hvordan kan søvnmangel eller rusmidler påvirke resultatet?"
+   ]
+  }
+ },
+ {
+  "id": "puls",
+  "type": "Forsøk",
+  "min": 30,
+  "grade": 10,
+  "chnum": 4,
+  "chtitle": "Hormonsystemet hos mennesket",
+  "topic": "Hormonene påvirker det meste",
+  "lab": {
+   "title": "Pulsen opp og ned",
+   "q": "Hvordan endrer pulsen seg ved aktivitet og hvile?",
+   "vars": {
+    "uavh": "Aktivitet (hvile, 1 min hopping, etter 2 min hvile)",
+    "avh": "Puls (slag per minutt)",
+    "konst": "Samme person, samme måte å måle på"
+   },
+   "utstyr": [
+    "Stoppeklokke eller pulsklokke",
+    "Skjema"
+   ],
+   "steg": [
+    "Mål hvilepulsen: tell slag i 15 sekunder og gang med 4.",
+    "Hopp på stedet i 1 minutt. Mål pulsen med en gang.",
+    "Mål pulsen hvert minutt til den er tilbake til hvilepuls.",
+    "Lag en graf over pulsen.",
+    "Sammenlign i gruppa."
+   ],
+   "risiko": [
+    "Elever med hjerte- eller astmaplager deltar bare med det de kan, eller er observatører.",
+    "Stopp hvis du blir svimmel."
+   ],
+   "analyse": [
+    "Hvorfor øker pulsen? Hvilken rolle spiller adrenalin og nervesystemet?",
+    "Hvor raskt kom pulsen tilbake? Hva kan påvirke det?",
+    "Hvorfor er det ikke greit å sammenligne hverandres puls som en konkurranse?"
+   ]
+  }
+ },
+ {
+  "id": "handvask",
+  "type": "Forsøk",
+  "min": 30,
+  "grade": 10,
+  "chnum": 5,
+  "chtitle": "Kroppens forsvar mot inntrengere",
+  "topic": "Hvorfor blir vi syke?",
+  "lab": {
+   "title": "Håndvask under lupen",
+   "q": "Hvilken måte å vaske hendene på fjerner mest «smitte»?",
+   "vars": {
+    "uavh": "Vaskemetode (bare vann 5 s, såpe 5 s, såpe 20 s, antibac)",
+    "avh": "Hvor mye «smitte» som er igjen (vurdert 0–5)",
+    "konst": "Samme mengde krem med glitter eller kanel, samme person"
+   },
+   "utstyr": [
+    "Fet håndkrem blandet med fint glitter eller kanel («bakterier»)",
+    "Såpe og vann",
+    "Papirhåndklær",
+    "Lupe eller mobilkamera"
+   ],
+   "steg": [
+    "Smør inn hendene med kremen.",
+    "Vask med første metode. Se etter rester – særlig rundt neglene og mellom fingrene.",
+    "Ta bilde og gi poeng 0–5.",
+    "Gjenta med de andre metodene.",
+    "Sammenlign metodene i en tabell."
+   ],
+   "risiko": [
+    "Bruk kanel bare hvis ingen er allergiske.",
+    "Tørk opp vann på gulvet."
+   ],
+   "analyse": [
+    "Hvilken metode var best?",
+    "Hvor var det vanskeligst å bli ren?",
+    "Hvorfor er håndvask et av de viktigste smitteverntiltakene?"
+   ]
+  }
+ },
+ {
+  "id": "agar",
+  "type": "Forsøk",
+  "min": 30,
+  "grade": 10,
+  "chnum": 5,
+  "chtitle": "Kroppens forsvar mot inntrengere",
+  "topic": "Hvorfor blir vi syke?",
+  "lab": {
+   "title": "Bakterier fra hverdagen",
+   "q": "Hvor finner vi flest bakterier i klasserommet?",
+   "vars": {
+    "uavh": "Hvor prøven er tatt (dørhåndtak, mobil, pult, ren hånd)",
+    "avh": "Antall kolonier etter 3–5 dager",
+    "konst": "Samme type agarskåle, samme vattpinne-metode, samme temperatur"
+   },
+   "utstyr": [
+    "Agarskåler med næringsagar (lukkes med teip)",
+    "Sterile vattpinner",
+    "Teip og tusj"
+   ],
+   "steg": [
+    "Lag en hypotese.",
+    "Stryk en vattpinne over stedet og deretter i siksak over agaren. Lukk skåla med en gang.",
+    "Teip skåla igjen og merk den. Én skål er kontroll uten prøve.",
+    "Sett skålene opp-ned i romtemperatur i 3–5 dager.",
+    "Tell kolonier gjennom lokket. Ikke åpne skålene."
+   ],
+   "risiko": [
+    "Skålene skal aldri åpnes etter prøvetaking – bakteriene kan være sykdomsfremkallende.",
+    "Bruk romtemperatur, ikke varmeskap på 37 °C.",
+    "Læreren destruerer skålene, for eksempel med klorin, og kaster dem forseglet.",
+    "Vask hendene etter forsøket."
+   ],
+   "analyse": [
+    "Hvor vokste det flest kolonier?",
+    "Hvorfor hadde vi en kontrollskål?",
+    "Betyr mange kolonier at stedet er farlig? Hvorfor eller hvorfor ikke?"
+   ]
+  }
+ }
+]
