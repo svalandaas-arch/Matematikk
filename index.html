@@ -1062,6 +1062,42 @@ body.fag-start .app{grid-template-columns:minmax(0,1fr)}
 .eks-doc{border:1.5px solid var(--ink);border-radius:12px;background:var(--surface);padding:14px 16px}.eks-doc h3{margin:0}.eks-doc .meta{margin:2px 0 8px;color:var(--muted);font-family:var(--f-mono);font-size:.8rem}
 .eks-flt button{all:unset;cursor:pointer;font-size:.85rem;padding:4px 10px;border:1px solid var(--line);border-radius:99px}
 .eks-flt button[aria-pressed="true"]{background:var(--ink);color:var(--surface);border-color:var(--ink)}
+.lag-form fieldset{border:1.5px solid var(--line);border-radius:12px;background:var(--surface);padding:14px 18px 12px;margin:0 0 12px}
+.lag-form legend{font-weight:700;padding:0 6px}
+.lag-pills{display:flex;flex-wrap:wrap;gap:8px}
+.lag-pills label{position:relative;cursor:pointer}
+.lag-pills input{position:absolute;opacity:0;pointer-events:none}
+.lag-pills span{display:inline-block;padding:7px 14px;border:1.5px solid var(--line);border-radius:99px;font-size:.92rem}
+.lag-pills input:checked+span{background:var(--ink);color:var(--surface);border-color:var(--ink)}
+.lag-pills input:focus-visible+span{outline:3px solid var(--pen);outline-offset:2px}
+.lag-q{margin:10px 0 0;font-size:.88rem}.linklike{all:unset;cursor:pointer;color:var(--pen);text-decoration:underline}
+.lag-opts{display:flex;flex-direction:column;gap:6px}.lag-opts label{display:flex;gap:8px;align-items:center}
+.lag-btns{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin:16px 0}
+.lag-msg{color:#B03024;font-weight:600}
+.lag-prev{border:1.5px solid var(--line);border-radius:12px;background:#fff;color:#141E36;padding:28px 32px;box-shadow:0 4px 18px rgba(0,0,0,.08)}
+.lag-doc{color:#141E36;background:#fff;font-size:15px;line-height:1.5;--pen-soft:#EEF1F8;--line:#C9D1DE}
+.lag-doc .eks-fig{color:#141E36}
+.lag-head{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-end;gap:8px;border-bottom:2px solid #141E36;padding-bottom:10px;margin-bottom:8px}
+.lag-head h1{font-size:1.6rem;margin:2px 0 0;line-height:1.15}.lag-ey{margin:0;font-family:var(--f-mono);font-size:.72rem;letter-spacing:.06em;text-transform:uppercase;color:#56617A}
+.lag-name{margin:0;font-size:.9rem}
+.lag-del{font-size:1.2rem;margin:20px 0 8px;padding-top:6px;border-top:1px solid #C9D1DE}.lag-del small{font-weight:500;color:#56617A;font-size:.85rem}
+.lag-o .eks-t ol{margin:4px 0}.lag-o .eks-figw{max-width:40%}
+.lag-ekte ul{padding-left:1.2em;font-size:.92rem}.lag-ekte li{margin:3px 0;break-inside:avoid}
+.lag-fasit{break-before:page;page-break-before:always}.lag-fasit p{margin:0 0 6px;font-size:.93rem}
+.lag-pdfbox{position:fixed;left:-10000px;top:0;width:184mm;background:#fff}
+@media print{
+ body.lag-printing .side,body.lag-printing .topbar,body.lag-printing .crumb,body.lag-printing .topic-head,body.lag-printing .eks-sub,body.lag-printing .lag-form,body.lag-printing .lag-btns,body.lag-printing #eks-timer{display:none!important}
+ body.lag-printing .main{margin:0!important;padding:0!important}
+ body.lag-printing .lag-prev{border:0;box-shadow:none;padding:0}
+ body.lag-printing .eks-code,body.lag-printing .eks-code code{white-space:pre!important;display:block}
+}
+.eks-lagcta{display:flex;flex-direction:column;gap:2px;margin:0 0 6px;padding:14px 18px;border-radius:12px;background:var(--ink);color:var(--surface);text-decoration:none}.eks-lagcta b{font-size:1.1rem}.eks-lagcta span{opacity:.85}
+.lag-o{display:flex;gap:12px;align-items:flex-start;margin:0 0 10px;padding:10px 0;border-bottom:1px solid #E1E6EF;break-inside:avoid;page-break-inside:avoid}
+.lag-n{flex:none;width:28px;height:28px;border-radius:50%;background:#141E36;color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:.85rem}
+.lag-b{flex:1;min-width:0}.lag-b h3{margin:0 0 2px;font-size:1rem}.lag-b h3 small{font-weight:500;color:#56617A;font-size:.8rem}.lag-b p{margin:0 0 2px}
+.lag-tema{font-size:.8rem;color:#56617A}.lag-url{font-size:.75rem;word-break:break-all}.lag-url a{color:#2343B0}
+.lag-box{flex:none;width:46px;height:30px;border:1.5px solid #141E36;border-radius:6px;font-size:.62rem;color:#56617A;display:flex;align-items:flex-start;justify-content:center;padding-top:2px}
+.lag-intro{font-size:.92rem;color:#3A4560;margin:6px 0 4px}.lag-src{font-size:.75rem;color:#56617A;margin-top:16px}
 /*K9CSSEND*/
 .lvd{display:inline-block;width:.6em;height:.6em;border-radius:50%;background:var(--c);margin-right:.45em;vertical-align:.05em;flex:none}
 </style>
@@ -6323,7 +6359,7 @@ const EKS_ST={ get(){ try{ return JSON.parse(localStorage.getItem('eks-status')|
 let EKS_SKJUL=false; try{ EKS_SKJUL=localStorage.getItem('eks-skjul')==='1'; }catch(e){}
 let EKS_TIMER=null;
 const eksCrumb=t=>`<nav class="crumb" aria-label="Brødsmuler"><a href="#matte">Forside</a><span>›</span>${t?`<a href="#eksamen">Eksamen</a><span>›</span><span>${t}</span>`:'<span>Eksamen</span>'}</nav>`;
-const eksSub=cur=>`<nav class="eks-sub" aria-label="Eksamen">${[['eksamen','Oversikt'],['eksamen-1','Øving 1'],['eksamen-2','Øving 2'],['eksamen-3','Øving 3'],['eksamen-ekte','Ekte eksamener'],['eksamen-alle','Øvingsoppgaver'],['eksamen-mine','Mine oppgaver'],['eksamen-formelark','Formelark'],['eksamen-guide','Eksamensguide']].map(([h,t])=>`<a href="#${h}" ${cur===h?'aria-current="page"':''}>${t}</a>`).join('')}</nav>`;
+const eksSub=cur=>`<nav class="eks-sub" aria-label="Eksamen">${[['eksamen','Oversikt'],['eksamen-1','Øving 1'],['eksamen-2','Øving 2'],['eksamen-3','Øving 3'],['eksamen-ekte','Ekte eksamener'],['eksamen-lag','Lag oppgavesett'],['eksamen-alle','Øvingsoppgaver'],['eksamen-mine','Mine oppgaver'],['eksamen-formelark','Formelark'],['eksamen-guide','Eksamensguide']].map(([h,t])=>`<a href="#${h}" ${cur===h?'aria-current="page"':''}>${t}</a>`).join('')}</nav>`;
 function eksCard(o,showSett){
   const st=EKS_ST.get()[o.id]||0;
   return `<article class="eks-o" id="o-${o.id}" data-id="${o.id}" data-st="${st}">
@@ -6368,6 +6404,7 @@ function eksStartTimer(min,label){
 }
 function renderEksamen(r){
   const sub=r.replace(/^eksamen-?/,''), O=EKS.oppgaver;
+  if(sub==='lag'){ renderLag(); return; }
   let h='';
   if(!sub){
     const st=EKS_ST.get();
@@ -6376,11 +6413,12 @@ function renderEksamen(r){
       <h2 class="eks-h2">Øvingseksamener</h2><p class="eks-rule">Laget for denne nettsiden i samme form som eksamen. De er ikke ekte eksamensoppgaver.</p>
       <div class="eks-sets">${[1,2,3].map(n=>{ const L=O.filter(o=>o.sett===n), k=L.filter(o=>st[o.id]===2).length;
         return `<a class="chap-card eks-setc" href="#eksamen-${n}"><span class="num">${n}</span><h3>${EKS_SETT[n]}</h3><p class="meta">Del 1: ${L.filter(o=>o.del_===1).length} oppgaver uten hjelpemidler · Del 2: ${L.filter(o=>o.del_===2).length} oppgaver med hjelpemidler</p><span class="eks-prog"><i style="width:${k/L.length*100}%"></i></span><span class="eks-progt">${k} av ${L.length} kan du</span></a>`; }).join('')}</div>
+      <a class="eks-lagcta" href="#eksamen-lag"><b>Lag ditt eget oppgavesett</b><span>Velg temaer og få en PDF med alle oppgavene fra ekte eksamener om dem.</span></a>
       <h2 class="eks-h2">Ekte eksamener</h2><p class="eks-rule">${EKTE.oppg.length} oppgaver fra tidligere eksamener i matematikk på 10. trinn (MAT0015), sortert etter tema. Oppgavene åpnes i PDF-en fra eksamen.</p>
       <div class="eks-temas">${EKTE.dok.map(d=>`<a href="#eksamen-ekte"><span>Eksamen ${d.navn.toLowerCase()}</span><b>${EKTE.oppg.filter(o=>o.eks===d.id).length}</b></a>`).join('')}</div>
       <h2 class="eks-h2">Oppgaver etter tema</h2><p class="eks-rule">Både øvingsoppgaver og oppgaver fra ekte eksamener.</p><div class="eks-temas">${Object.entries(EKS.tema).map(([t,n])=>`<a href="#eksamen-tema-${t}"><span>${n}</span><b>${O.filter(o=>o.tema===t).length+EKTE.oppg.filter(o=>o.tema.includes(t)).length}</b></a>`).join('')}</div>
       <h2 class="eks-h2">Etter vanskelighetsgrad</h2><div class="eks-temas">${[1,2,3].map(v=>`<a href="#eksamen-niv-${v}"><span><span class="eks-niv n${v}">${EKS_NIV[v]}</span></span><b>${O.filter(o=>o.niv===v).length}</b></a>`).join('')}</div>
-      <div class="eks-more"><a class="btn" href="#eksamen-tilfeldig">Gi meg en tilfeldig oppgave</a><a class="btn ghost" href="#eksamen-formelark">Formelark</a><a class="btn ghost" href="#eksamen-guide">Eksamensguide</a></div>
+      <div class="eks-more"><a class="btn" href="#eksamen-lag">Lag et oppgavesett med ekte eksamensoppgaver</a><a class="btn ghost" href="#eksamen-tilfeldig">Gi meg en tilfeldig oppgave</a><a class="btn ghost" href="#eksamen-formelark">Formelark</a><a class="btn ghost" href="#eksamen-guide">Eksamensguide</a></div>
       <footer class="foot">Ekte eksamensoppgaver: Utdanningsdirektoratet, lenket til PDF-er hos matematikk.net. Øvingseksamenene er laget for denne nettsiden.</footer>`;
   } else if(/^[123]$/.test(sub)){
     const n=+sub, L=O.filter(o=>o.sett===n);
@@ -6442,6 +6480,61 @@ function renderEksamen(r){
   main.querySelectorAll('[data-et]').forEach(b=>b.addEventListener('click',()=>{ const k=b.dataset.et; main.querySelectorAll('[data-et]').forEach(x=>x.setAttribute('aria-pressed',x===b));
     main.querySelectorAll('[data-sec]').forEach(x=>x.hidden=!!k); const f=main.querySelector('[data-flt]'); f.hidden=!k;
     if(k){ f.querySelector('.eks-rl').innerHTML=EKTE.oppg.filter(o=>o.tema.includes(k)).map(ekteRow).join(''); eksWire(); } }));
+}
+
+/* ===================== Lag oppgavesett (bare ekte eksamensoppgaver) ===================== */
+let LAG_OPT=null;
+function lagUtvalg(o){
+  const L=EKTE.oppg.filter(x=>x.tema.some(t=>o.tema.includes(t))&&o.eks.includes(x.eks)&&(!o.del_||x.del_===o.del_));
+  const ord=EKTE.dok.map(d=>d.id), hov=x=>o.tema.indexOf(x.tema.find(t=>o.tema.includes(t)));
+  L.sort((a,b)=>(o.sort==='tema'?hov(a)-hov(b):0)||ord.indexOf(a.eks)-ord.indexOf(b.eks)||a.del_-b.del_||a.nr-b.nr);
+  return L;
+}
+function lagHTML(L,o){
+  const tit=o.tema.map(t=>EKS.tema[t]).join(', ');
+  const row=(x,i)=>`<section class="lag-o"><div class="lag-n">${i+1}</div><div class="lag-b"><h3>${EKTE_NAVN(x.eks)} · Del ${x.del_} · Oppgave ${x.nr} <small>side ${x.side} · ${x.del_===1?'uten hjelpemidler':'med hjelpemidler'}</small></h3>
+    <p>${x.besk}</p><p class="lag-tema">${x.tema.map(t=>EKS.tema[t]).join(' · ')}</p><p class="lag-url"><a href="${x.url}">${x.url.replace('https://','')}</a></p></div><div class="lag-box" aria-hidden="true">Gjort</div></section>`;
+  let body='', i=0;
+  if(o.sort==='tema') o.tema.forEach(t=>{ const G=L.filter(x=>x.tema.find(z=>o.tema.includes(z))===t); if(G.length) body+=`<h2 class="lag-del">${EKS.tema[t]} <small>${G.length} oppgaver</small></h2>`+G.map(x=>row(x,i++)).join(''); });
+  else EKTE.dok.forEach(d=>{ const G=L.filter(x=>x.eks===d.id); if(G.length) body+=`<h2 class="lag-del">Eksamen ${d.navn.toLowerCase()} <small>${d.dato}</small></h2>`+G.map(x=>row(x,i++)).join(''); });
+  return `<div class="lag-doc"><header class="lag-head"><div><p class="lag-ey">Matematikk 10. trinn · Ekte eksamensoppgaver</p><h1>${tit}</h1></div><p class="lag-name">Navn: ______________________ &nbsp; Dato: __________</p></header>
+    <p class="lag-intro">${L.length} oppgaver fra tidligere eksamener (MAT0015). Åpne lenken til hver oppgave, eller finn eksamenen på nettsiden under Eksamen › Ekte eksamener. Del 1 skal løses uten hjelpemidler. Kryss av når du er ferdig.</p>
+    ${body}<p class="lag-src">Oppgavene er laget av Utdanningsdirektoratet. Eksamens-PDF-ene ligger hos matematikk.net.</p></div>`;
+}
+function renderLag(){
+  let st={tema:[],eks:EKTE.dok.map(d=>d.id),del_:0,sort:'tema'}; try{ Object.assign(st,JSON.parse(localStorage.getItem('eks-lag2')||'{}')); }catch(e){}
+  const cnt=t=>EKTE.oppg.filter(o=>o.tema.includes(t)).length;
+  main.innerHTML=`<div class="col">${eksCrumb('Lag oppgavesett')}<header class="topic-head"><p class="eyebrow">10. trinn · Eksamen</p><h1>Lag <span class="hl">oppgavesett</span></h1>
+    <p class="lede">Velg temaene du vil øve på. Du får en PDF med alle oppgavene fra ekte eksamener som handler om dem, med lenke til hver oppgave.</p></header>${eksSub('eksamen-lag')}
+    <form class="lag-form" onsubmit="return false">
+      <fieldset><legend>1. Velg temaer</legend><div class="lag-pills">${Object.entries(EKS.tema).map(([k,n])=>`<label><input type="checkbox" name="tema" value="${k}" ${st.tema.includes(k)?'checked':''}><span>${n} (${cnt(k)})</span></label>`).join('')}</div>
+        <p class="lag-q"><button type="button" class="linklike" data-alle>Velg alle</button> · <button type="button" class="linklike" data-ingen>Fjern alle</button></p></fieldset>
+      <fieldset><legend>2. Hvilke eksamener?</legend><div class="lag-pills">${EKTE.dok.map(d=>`<label><input type="checkbox" name="eks" value="${d.id}" ${st.eks.includes(d.id)?'checked':''}><span>${d.navn}</span></label>`).join('')}</div></fieldset>
+      <fieldset><legend>3. Del</legend><div class="lag-pills">${[[0,'Begge'],[1,'Del 1 (uten hjelpemidler)'],[2,'Del 2 (med hjelpemidler)']].map(([v,n])=>`<label><input type="radio" name="del" value="${v}" ${st.del_===v?'checked':''}><span>${n}</span></label>`).join('')}</div></fieldset>
+      <fieldset><legend>4. Rekkefølge</legend><div class="lag-pills">${[['tema','Etter tema'],['eks','Etter eksamen']].map(([v,n])=>`<label><input type="radio" name="sort" value="${v}" ${st.sort===v?'checked':''}><span>${n}</span></label>`).join('')}</div></fieldset>
+      <div class="lag-btns"><button type="button" class="btn" data-lag>Lag oppgavesett</button><span class="lag-msg" role="status"></span></div>
+    </form>
+    <div class="lag-out" hidden><div class="lag-btns"><button type="button" class="btn" data-pdf>Last ned PDF</button><button type="button" class="btn ghost" data-print>Skriv ut</button></div><div class="lag-prev"></div></div></div>`;
+  const F=main.querySelector('.lag-form'), out=main.querySelector('.lag-out'), msg=main.querySelector('.lag-msg');
+  const read=()=>({tema:[...F.querySelectorAll('[name=tema]:checked')].map(x=>x.value),eks:[...F.querySelectorAll('[name=eks]:checked')].map(x=>x.value),del_:+F.querySelector('[name=del]:checked').value,sort:F.querySelector('[name=sort]:checked').value});
+  const lag=()=>{ const o=read(); if(!o.tema.length||!o.eks.length){ msg.textContent=!o.tema.length?'Velg minst ett tema.':'Velg minst én eksamen.'; out.hidden=true; return; }
+    try{ localStorage.setItem('eks-lag2',JSON.stringify(o)); }catch(e){}
+    const L=lagUtvalg(o); if(!L.length){ msg.textContent='Ingen oppgaver passer med valgene. Prøv flere temaer eller begge delene.'; out.hidden=true; return; }
+    msg.textContent=''; LAG_OPT=o; out.querySelector('.lag-prev').innerHTML=lagHTML(L,o); out.hidden=false; out.scrollIntoView({behavior:'smooth',block:'start'}); };
+  main.querySelector('[data-alle]').onclick=()=>F.querySelectorAll('[name=tema]').forEach(x=>x.checked=true);
+  main.querySelector('[data-ingen]').onclick=()=>F.querySelectorAll('[name=tema]').forEach(x=>x.checked=false);
+  main.querySelector('[data-lag]').onclick=lag;
+  main.querySelector('[data-print]').onclick=()=>{ document.body.classList.add('lag-printing'); const done=()=>{ document.body.classList.remove('lag-printing'); removeEventListener('afterprint',done); }; addEventListener('afterprint',done); window.print(); };
+  main.querySelector('[data-pdf]').onclick=async e=>{ const b=e.currentTarget; b.disabled=true; const old=b.textContent; b.textContent='Lager PDF …';
+    try{ await lagPDF(main.querySelector('.lag-doc'),'eksamensoppgaver-'+LAG_OPT.tema.join('-')+'.pdf'); }catch(err){ msg.textContent='Klarte ikke å lage PDF. Bruk «Skriv ut» og velg «Lagre som PDF».'; }
+    b.disabled=false; b.textContent=old; };
+}
+function lagLastLib(){ return window.html2pdf?Promise.resolve():new Promise((ok,no)=>{ const s=document.createElement('script'); s.src='vendor/html2pdf.bundle.min.js'; s.onload=ok; s.onerror=no; document.head.appendChild(s); }); }
+async function lagPDF(el,name){
+  await lagLastLib();
+  const box=document.createElement('div'); box.className='lag-pdfbox'; box.innerHTML=el.outerHTML; document.body.appendChild(box);
+  try{ await html2pdf().set({margin:[12,13,14,13],filename:name,enableLinks:true,image:{type:'jpeg',quality:.95},html2canvas:{scale:2,backgroundColor:'#ffffff'},jsPDF:{unit:'mm',format:'a4',orientation:'portrait'},pagebreak:{mode:['css','legacy'],avoid:['.lag-o','.lag-del']}}).from(box.firstElementChild).save(); }
+  finally{ box.remove(); }
 }
 
 function renderBoardGames(){

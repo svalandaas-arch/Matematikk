@@ -1,0 +1,30 @@
+.lag-form fieldset{border:1.5px solid var(--line);border-radius:12px;background:var(--surface);padding:14px 18px 12px;margin:0 0 12px}
+.lag-form legend{font-weight:700;padding:0 6px}
+.lag-pills{display:flex;flex-wrap:wrap;gap:8px}
+.lag-pills label{position:relative;cursor:pointer}
+.lag-pills input{position:absolute;opacity:0;pointer-events:none}
+.lag-pills span{display:inline-block;padding:7px 14px;border:1.5px solid var(--line);border-radius:99px;font-size:.92rem}
+.lag-pills input:checked+span{background:var(--ink);color:var(--surface);border-color:var(--ink)}
+.lag-pills input:focus-visible+span{outline:3px solid var(--pen);outline-offset:2px}
+.lag-q{margin:10px 0 0;font-size:.88rem}.linklike{all:unset;cursor:pointer;color:var(--pen);text-decoration:underline}
+.lag-opts{display:flex;flex-direction:column;gap:6px}.lag-opts label{display:flex;gap:8px;align-items:center}
+.lag-btns{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin:16px 0}
+.lag-msg{color:#B03024;font-weight:600}
+.lag-prev{border:1.5px solid var(--line);border-radius:12px;background:#fff;color:#141E36;padding:28px 32px;box-shadow:0 4px 18px rgba(0,0,0,.08)}
+.lag-doc{color:#141E36;background:#fff;font-size:15px;line-height:1.5;--pen-soft:#EEF1F8;--line:#C9D1DE}
+.lag-doc .eks-fig{color:#141E36}
+.lag-head{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-end;gap:8px;border-bottom:2px solid #141E36;padding-bottom:10px;margin-bottom:8px}
+.lag-head h1{font-size:1.6rem;margin:2px 0 0;line-height:1.15}.lag-ey{margin:0;font-family:var(--f-mono);font-size:.72rem;letter-spacing:.06em;text-transform:uppercase;color:#56617A}
+.lag-name{margin:0;font-size:.9rem}
+.lag-del{font-size:1.2rem;margin:20px 0 8px;padding-top:6px;border-top:1px solid #C9D1DE}.lag-del small{font-weight:500;color:#56617A;font-size:.85rem}
+.lag-o{margin:0 0 14px;break-inside:avoid;page-break-inside:avoid}.lag-o h3{font-size:1rem;margin:0 0 4px}.lag-o h3 small{font-weight:500;color:#56617A;font-size:.8rem}
+.lag-o .eks-t ol{margin:4px 0}.lag-o .eks-figw{max-width:40%}
+.lag-ekte ul{padding-left:1.2em;font-size:.92rem}.lag-ekte li{margin:3px 0;break-inside:avoid}
+.lag-fasit{break-before:page;page-break-before:always}.lag-fasit p{margin:0 0 6px;font-size:.93rem}
+.lag-pdfbox{position:fixed;left:-10000px;top:0;width:184mm;background:#fff}
+@media print{
+ body.lag-printing .side,body.lag-printing .topbar,body.lag-printing .crumb,body.lag-printing .topic-head,body.lag-printing .eks-sub,body.lag-printing .lag-form,body.lag-printing .lag-btns,body.lag-printing #eks-timer{display:none!important}
+ body.lag-printing .main{margin:0!important;padding:0!important}
+ body.lag-printing .lag-prev{border:0;box-shadow:none;padding:0}
+ body.lag-printing .eks-code,body.lag-printing .eks-code code{white-space:pre!important;display:block}
+}
