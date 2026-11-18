@@ -23,7 +23,7 @@ function renderLag(){
   let st={tema:[],eks:EKTE.dok.map(d=>d.id),del_:0,sort:'tema'}; try{ Object.assign(st,JSON.parse(localStorage.getItem('eks-lag2')||'{}')); }catch(e){}
   const cnt=t=>EKTE.oppg.filter(o=>o.tema.includes(t)).length;
   main.innerHTML=`<div class="col">${eksCrumb('Lag oppgavesett')}<header class="topic-head"><p class="eyebrow">10. trinn · Eksamen</p><h1>Lag <span class="hl">oppgavesett</span></h1>
-    <p class="lede">Velg temaene du vil øve på. Du får en PDF med alle oppgavene fra ekte eksamener som handler om dem, med lenke til hver oppgave.</p></header>${eksSub('eksamen-lag')}
+    <p class="lede">Velg temaene du vil øve på. Du får en PDF med alle oppgavene fra ekte eksamener som handler om dem, slik de står i eksamen.</p></header>${eksSub('eksamen-lag')}
     <form class="lag-form" onsubmit="return false">
       <fieldset><legend>1. Velg temaer</legend><div class="lag-pills">${Object.entries(EKS.tema).map(([k,n])=>`<label><input type="checkbox" name="tema" value="${k}" ${st.tema.includes(k)?'checked':''}><span>${n} (${cnt(k)})</span></label>`).join('')}</div>
         <p class="lag-q"><button type="button" class="linklike" data-alle>Velg alle</button> · <button type="button" class="linklike" data-ingen>Fjern alle</button></p></fieldset>
@@ -32,7 +32,7 @@ function renderLag(){
       <fieldset><legend>4. Rekkefølge</legend><div class="lag-pills">${[['tema','Etter tema'],['eks','Etter eksamen']].map(([v,n])=>`<label><input type="radio" name="sort" value="${v}" ${st.sort===v?'checked':''}><span>${n}</span></label>`).join('')}</div></fieldset>
       <div class="lag-btns"><button type="button" class="btn" data-lag>Lag oppgavesett</button><span class="lag-msg" role="status"></span></div>
     </form>
-    <div class="lag-out" hidden><div class="lag-btns"><button type="button" class="btn" data-full>Last ned PDF med oppgavene</button><button type="button" class="btn ghost" data-pdf>Bare oversikten (PDF)</button><button type="button" class="btn ghost" data-print>Skriv ut oversikten</button></div>
+    <div class="lag-out" hidden><div class="lag-btns"><button type="button" class="btn" data-full>Last ned PDF med oppgavene</button><span class="lag-hint">PDF-en får en oversikt først, og deretter eksamenssidene med oppgavene.</span></div>
       <div class="lag-files" hidden></div><div class="lag-prev"></div></div></div>`;
   const F=main.querySelector('.lag-form'), out=main.querySelector('.lag-out'), msg=main.querySelector('.lag-msg');
   const read=()=>({tema:[...F.querySelectorAll('[name=tema]:checked')].map(x=>x.value),eks:[...F.querySelectorAll('[name=eks]:checked')].map(x=>x.value),del_:+F.querySelector('[name=del]:checked').value,sort:F.querySelector('[name=sort]:checked').value});
@@ -53,8 +53,8 @@ function renderLag(){
   main.querySelector('[data-alle]').onclick=()=>F.querySelectorAll('[name=tema]').forEach(x=>x.checked=true);
   main.querySelector('[data-ingen]').onclick=()=>F.querySelectorAll('[name=tema]').forEach(x=>x.checked=false);
   main.querySelector('[data-lag]').onclick=lag;
-  main.querySelector('[data-print]').onclick=()=>{ document.body.classList.add('lag-printing'); const done=()=>{ document.body.classList.remove('lag-printing'); removeEventListener('afterprint',done); }; addEventListener('afterprint',done); window.print(); };
-  main.querySelector('[data-pdf]').onclick=async e=>{ const b=e.currentTarget; b.disabled=true; const old=b.textContent; b.textContent='Lager PDF …';
+  if(false) main.querySelector('[data-print]').onclick=()=>{ document.body.classList.add('lag-printing'); const done=()=>{ document.body.classList.remove('lag-printing'); removeEventListener('afterprint',done); }; addEventListener('afterprint',done); window.print(); };
+  if(false) main.querySelector('[data-pdf]').onclick=async e=>{ const b=e.currentTarget; b.disabled=true; const old=b.textContent; b.textContent='Lager PDF …';
     try{ await lagPDF(main.querySelector('.lag-doc'),'eksamensoppgaver-'+LAG_OPT.tema.join('-')+'.pdf'); }catch(err){ msg.textContent='Klarte ikke å lage PDF. Bruk «Skriv ut» og velg «Lagre som PDF».'; }
     b.disabled=false; b.textContent=old; };
 }
