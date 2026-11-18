@@ -555,6 +555,87 @@ pre.out{font-family:var(--f-mono);background:var(--paper);border-radius:6px;padd
 .svgfig .mv2{stroke:#C2362B;stroke-width:3}
 .tool-btn{align-self:flex-start}
 .tool-row{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+/* ---------- fagbytte ---------- */
+.fag-sw{display:grid;grid-template-columns:1fr 1fr;gap:4px;background:var(--line);padding:3px;border-radius:10px;margin-bottom:18px}
+.fag-sw a{font-size:.88rem;font-weight:700;text-align:center;text-decoration:none;color:var(--muted);padding:7px 6px;border-radius:8px}
+.fag-sw a[aria-current="true"]{background:var(--surface);color:var(--ink);box-shadow:0 1px 3px rgba(0,0,0,.15)}
+.lvd{display:inline-block;width:.6em;height:.6em;border-radius:50%;background:var(--c);margin-right:.45em;vertical-align:.05em;flex:none}
+/* ---------- nye modeller ---------- */
+ol.flow{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:8px}
+ol.flow li{display:flex;align-items:center;gap:8px;border:1.5px solid var(--line);border-radius:99px;padding:5px 14px 5px 6px;background:var(--surface);font-size:.92rem;color:var(--muted)}
+ol.flow .fn{flex:none;width:1.7rem;height:1.7rem;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;font-family:var(--f-mono);font-weight:700;font-size:.82rem;background:var(--line);color:var(--ink)}
+ol.flow li.past{color:var(--ink);border-color:var(--ok)}ol.flow li.past .fn{background:var(--ok-soft);color:var(--ok)}
+ol.flow li.cur{color:var(--ink);font-weight:700;border-color:var(--ink);background:var(--hl)}ol.flow li.cur .fn{background:var(--ink);color:var(--surface)}
+.m-exp ul{margin:0;padding-left:1.2em;display:grid;gap:3px}
+.pop{display:grid;grid-template-columns:repeat(8,1fr);gap:8px;padding:14px;border-radius:10px;border:1.5px solid var(--ink)}
+.pop.lt{background:#E9E4D6}.pop.dk{background:#3B3A37}
+.moth{aspect-ratio:1.5;border-radius:50% 50% 45% 45%;max-width:44px;width:100%;justify-self:center}
+.moth.l{background:#F4F0E4;box-shadow:inset 0 0 0 1.5px #B9B29C}.moth.d{background:#2B2A28;box-shadow:inset 0 0 0 1.5px #6A6862}
+.g100{display:grid;grid-template-columns:repeat(10,1fr);gap:3px;max-width:340px}
+.g100 span{aspect-ratio:1;border-radius:3px}
+.g100 .vx,.lgd.vx::before{background:var(--ok)}.g100 .sy,.lgd.sy::before{background:var(--red)}.g100 .fr,.lgd.fr::before{background:var(--line)}
+.lgd::before{content:"";display:inline-block;width:12px;height:12px;border-radius:3px;margin-right:6px;vertical-align:-1px}
+pre.code{margin:0;font-family:var(--f-mono);font-size:.9rem;line-height:1.7;background:var(--ink);color:var(--surface);border-radius:8px;padding:12px 14px;overflow-x:auto;white-space:pre}
+pre.code .cl{display:block;padding:0 6px;border-radius:4px}pre.code .cl.on{background:var(--hl);color:#14241C;font-weight:700}
+.trace{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(0,1fr);gap:16px;align-items:start}
+@media (max-width:640px){.trace{grid-template-columns:1fr}}
+.blks{display:flex;flex-direction:column;gap:4px;align-items:flex-start;margin-bottom:8px}
+.blk{font-family:var(--f-body);font-weight:700;font-size:.92rem;color:#fff;border-radius:6px;padding:6px 12px}
+.blk b{background:rgba(255,255,255,.28);border-radius:99px;padding:1px 8px}
+.blk.c1{background:#2C6A8A}.blk.c2{background:#5B3E99}.blk.c3{background:#9C3B2E}.blk.in1{margin-left:22px}.blk.in2{margin-left:44px}
+/* ---------- spill ---------- */
+.game{background:var(--surface);border:1.5px solid var(--ink);border-radius:12px;padding:18px 20px;display:flex;flex-direction:column;gap:14px}
+.g-stat{font-family:var(--f-mono);font-size:.85rem;color:var(--muted)}
+.g-top{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
+.g-time{font-family:var(--f-display);font-weight:800;font-size:2rem;line-height:1}.g-time.low{color:var(--red)}
+.g-bar{height:8px;border-radius:99px;background:var(--line);overflow:hidden}.g-bar i{display:block;height:100%;background:var(--pen);transition:width 1s linear}
+.mem{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px}
+.mc{font:inherit;min-height:116px;border:1.5px solid var(--ink);border-radius:10px;background:var(--pen);color:var(--surface);cursor:pointer;padding:10px;display:flex;align-items:center;justify-content:center;text-align:center;line-height:1.3}
+.mc .q{font-family:var(--f-display);font-weight:800;font-size:2rem}
+.mc.up{background:var(--surface);color:var(--ink);cursor:default}.mc.up.w{font-family:var(--f-display);font-weight:800;font-size:1.1rem}.mc.up.d{font-size:.84rem}
+.mc.ok{border-color:var(--ok);background:var(--ok-soft);color:var(--ink);opacity:1}
+.g-word{display:flex;flex-wrap:wrap;gap:6px;justify-content:center;margin:6px 0}
+.g-word .lt{width:2rem;height:2.6rem;border-bottom:3px solid var(--ink);display:inline-flex;align-items:flex-end;justify-content:center;font-family:var(--f-mono);font-weight:700;font-size:1.5rem;text-transform:uppercase}
+.g-word .sp{width:1rem}.g-word .hy{font-family:var(--f-mono);font-weight:700;font-size:1.5rem;align-self:flex-end}
+.g-keys{display:flex;flex-wrap:wrap;gap:6px;justify-content:center}
+.g-keys button{font:inherit;font-family:var(--f-mono);font-weight:700;text-transform:uppercase;width:2.4rem;height:2.6rem;border:1.5px solid var(--line);border-radius:6px;background:var(--paper);color:var(--ink);cursor:pointer}
+.g-keys button:hover:not(:disabled){border-color:var(--pen)}.g-keys button.hit{background:var(--ok-soft);border-color:var(--ok);color:var(--ok)}.g-keys button.miss{opacity:.3}
+.lives{letter-spacing:2px;color:var(--red)}
+/* ---------- ark til utskrift ---------- */
+.sheet-bar{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.sheetcol{max-width:820px}
+.sheet{background:#fff;color:#14241C;border:1px solid var(--line);border-radius:6px;padding:34px 40px;display:flex;flex-direction:column;gap:16px;font-size:15.5px;line-height:1.5;
+  --ink:#14241C;--muted:#56685E;--line:#C9D4CB;--surface:#fff;--paper:#fff;--pen:#1E6B4A;--pen-soft:rgba(30,107,74,.08)}
+.sheet .muted{color:#56685E;font-size:.92em}
+.sh-head{display:flex;justify-content:space-between;gap:20px;align-items:flex-end;border-bottom:2.5px solid #14241C;padding-bottom:10px}
+.sh-head h1{font-size:1.9rem;letter-spacing:-.01em;color:#14241C}
+.sh-kick{font-family:var(--f-mono);font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;color:#56685E}
+.sh-name{display:grid;gap:14px;min-width:210px;font-size:.9rem}.sh-name span{border-bottom:1px solid #14241C;padding-bottom:2px}
+.sh-inst{font-weight:700}
+.sh-qs{margin:0;padding-left:1.6em;display:grid;gap:14px}.sh-qs>li{break-inside:avoid}.sh-qs p{font-weight:700;margin-bottom:5px}
+.sh-qs ul{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:1fr 1fr;gap:4px 20px}
+.sh-qs ul li{display:flex;gap:8px;align-items:baseline}
+.sh-box{flex:none;width:13px;height:13px;border:1.5px solid #14241C;border-radius:2px;transform:translateY(2px)}
+.sh-terms{display:flex;flex-wrap:wrap;gap:6px 10px;border:1.5px solid #14241C;border-radius:8px;padding:12px 14px}
+.sh-terms span{white-space:nowrap}.sh-terms b{font-family:var(--f-mono);margin-right:2px}
+.sh-match{margin:0;padding-left:1.6em;display:grid;gap:11px}.sh-match li{break-inside:avoid}
+.sh-match li>span:last-child{display:inline}.sh-line{display:inline-block;width:34px;border-bottom:1.5px solid #14241C;margin-right:10px;height:1em}
+.sh-key{margin:0;padding-left:1.8em;display:grid;gap:5px;font-size:.95em}
+.sh-foot{font-family:var(--f-mono);font-size:.75rem;color:#56685E;text-align:right}
+.sh-plan{border-collapse:collapse;width:100%;font-size:.92em}
+.sh-plan th{text-align:left;font-family:var(--f-mono);font-size:.7rem;letter-spacing:.08em;text-transform:uppercase;border-bottom:2px solid #14241C;padding:6px 8px}
+.sh-plan td{border-bottom:1px solid #C9D4CB;padding:8px;vertical-align:top}.sh-plan td.n{font-family:var(--f-display);font-weight:800;font-size:1.5rem}
+.sh-plan ol{margin:4px 0 0;padding-left:1.3em;color:#56685E}
+.sh-h2{font-size:1.15rem;margin-top:6px}.sh-kmlist{list-style:none;margin:0;padding:0;display:grid;gap:5px;font-size:.92em}
+@media (max-width:640px){.sheet{padding:20px 16px}.sh-qs ul{grid-template-columns:1fr}.sh-head{flex-direction:column;align-items:stretch}}
+@media print{
+  @page{size:A4;margin:14mm}
+  body{background:#fff!important;background-image:none!important;font-size:11pt}
+  body::before,.side,.topbar,.scrim,.noprint{display:none!important}
+  .app{display:block}.main{padding:0}.col{max-width:none;gap:0}
+  .sheet{border:0;border-radius:0;padding:0;break-after:page;font-size:11pt}
+  .sheet:last-child{break-after:auto}
+}
 </style></head><body>
 <div class="app">
   <div class="topbar">
@@ -622,7 +703,7 @@ const TOPICS = {
  'energikilder-9':{title:'Energikilder', short:'Fornybare og ikke-fornybare kilder.', km:[11,12], terms:['fornybar energi','fossil energi','vannkraft','solenergi','vindkraft']},
  'energibaerere-9':{title:'Energibærere og energikvalitet', short:'Transport og lagring av energi, og energikvalitet.', km:[11], terms:['energibærer','energikvalitet','virkningsgrad','batteri']},
  'energi-utfordringer-9':{title:'Utfordringer ved energiproduksjon', short:'Hvordan energiproduksjon påvirker miljøet lokalt og globalt.', km:[12], terms:['klimagass','naturinngrep','dilemma']},
- 'energi-mat-9':{title:'Energi i mat', short:'Næringsstoffer, kilojoule og celleånding.', km:[18,11], terms:['kilojoule','næringsstoff','celleånding']},
+ 'energi-mat-9':{title:'Energi i mat', short:'Næringsstoffer, kilojoule og celleånding.', km:[18,11], terms:['kilojoule','karbohydrat','fett','protein','celleånding']},
  atmosfaeren:{title:'Atmosfæren – lufthavet rundt oss', short:'Lagene i atmosfæren og hva lufta består av.', km:[10], terms:['atmosfære','troposfære','stratosfære','ozonlag','klimagass']},
  'klima-hvorfor':{title:'Hvorfor endrer klimaet seg?', short:'Drivhuseffekten, naturlige og menneskeskapte årsaker.', km:[10,3], terms:['drivhuseffekt','CO₂','metan','vær og klima','klimamodell','tilbakekobling']},
  'klima-bremse':{title:'Hva kan vi gjøre for å bremse klimaendringene?', short:'Tiltak fra enkeltpersoner til internasjonale avtaler.', km:[10,12], terms:['utslipp','fangst og lagring','Parisavtalen','klimatiltak']},
@@ -3578,6 +3659,7 @@ const reduceMotion = () => matchMedia('(prefers-reduced-motion: reduce)').matche
 const kmCode = n => `KM${n}`;
 const kmChip = n => `<a class="km" href="#maal" title="${KM[n-1].t}">KM${n}</a>`;
 const BOOKNAME = {8:'Naturfag 8',9:'Naturfag 9',10:'Naturfag 10'};
+const MATTE_URL='../#matte', START_URL='../', GRUPPER_URL='../grupper/';
 const SITE='https://svalandaas-arch.github.io/Matematikk/';
 
 /* ---------- fremgang: «lest» per delkapittel ---------- */
@@ -3592,8 +3674,8 @@ const bar = s => `<div class="bar" role="progressbar" aria-valuemin="0" aria-val
 const tallyT = tid => { const s=topicStat(tid); if(!s.t) return `<span class="tally">kommer</span>`; return s.n>=s.t?`<span class="tally done">✓ mestret</span>`:`<span class="tally">${pct(s)} %</span>`; };
 
 /* ---------- trinn ---------- */
-let GRADE=(()=>{ try{ const g=+localStorage.getItem('nat-grade'); return g===9||g===10?g:8; }catch(e){ return 8; } })();
-const setGrade=g=>{ GRADE=g; try{ localStorage.setItem('nat-grade',String(g)); }catch(e){} document.title=`Naturfag ${g}. trinn`; };
+let GRADE=(()=>{ try{ const g=+localStorage.getItem('mat8-grade'); return g===9||g===10?g:8; }catch(e){ return 8; } })();
+const setGrade=g=>{ GRADE=g; try{ localStorage.setItem('mat8-grade',String(g)); }catch(e){} document.title=`Naturfag ${g}. trinn`; };
 const CHS = () => BOOK.chapters.filter(c=>c.grade===GRADE);
 const gradeSw = () => `<div class="grade-sw" role="group" aria-label="Velg trinn">${[8,9,10].map(g=>`<button type="button" data-grade="${g}" aria-pressed="${GRADE===g}">${g}. trinn</button>`).join('')}</div>`;
 const chapterOf = tid => BOOK.chapters.find(c=>c.topics.includes(tid));
@@ -3673,8 +3755,8 @@ function renderNav(route){
     <li><a href="#" ${cur('')}><span>Forside</span></a></li>
     <li><a href="#maal" ${cur('maal')}><span>Kompetansemål</span><span class="tally">${KM.length} mål</span></a></li>
     <li><a href="#forsok" ${cur('forsok')}><span>Forsøksbank</span><span class="tally">${bankGrade(GRADE).length} forsøk</span></a></li>
-    <li><a href="#spill" ${cur('spill')}><span>Spill</span><span class="tally">kommer</span></a></li>
-    <li><a href="#laerer" ${cur('laerer')}><span>For lærere</span><span class="tally">kommer</span></a></li>`;
+    <li><a href="#spill" ${cur('spill')}><span>Spill</span><span class="tally">${GAMES.length} spill</span></a></li>
+    <li><a href="#laerer" ${cur('laerer')}><span>For lærere</span><span class="tally">Ark</span></a></li><li class="grp">Lærerverktøy</li><li><a class="tool" href="${GRUPPER_URL}"><span>👥 Grupper og klassekart</span><span class="tally">Logg inn</span></a></li>`;
   CHS().forEach(ch=>{
     const s=chapterStat(ch);
     h+=`<li><a class="chap" href="#${ch.id}" ${cur(ch.id)}><span>Kap ${ch.num} · ${ch.title}</span>${s.t?`<span class="tally${s.n===s.t?' done':''}">${pct(s)} %</span>`:''}</a></li>`;
@@ -3689,14 +3771,14 @@ function renderHome(){
   const kms=[...new Set(CH.flatMap(c=>c.km))].sort((a,b)=>a-b);
   main.innerHTML=`<div class="col">
     <header class="home-hero"><p class="eyebrow">Digital lærebok · ${GRADE}. trinn</p><h1>Naturfag <span class="hl">${GRADE}. trinn</span></h1>
-      <p class="lede">Bygget på kapitlene i ${BOOKNAME[GRADE]} og kompetansemålene i læreplanen i naturfag (NAT01-05). Hvert delkapittel får fagstoff, modeller, oppgaver og forsøk.</p>
+      <p class="lede">Bygget på kapitlene i ${BOOKNAME[GRADE]} og kompetansemålene i læreplanen i naturfag (NAT01-05). Hvert delkapittel har fagstoff, modeller, oppgaver og forsøk.</p>
       <div class="hero-row"><a class="btn" href="#${ch.id}">${started?`Fortsett med kapittel ${ch.num}`:'Start på kapittel 1'} →</a>${gradeSw()}</div></header>
     <section class="group" aria-labelledby="kh"><h2 id="kh">Kapitler</h2><div class="chapters">${CH.map(c=>{ const cs=chapterStat(c); return `<a class="chap-card" href="#${c.id}"><span class="num">${c.num}</span><h3>${c.title}</h3><p class="meta">${c.topics.length} delkapitler · side ${c.page} i boka${c.topics.every(has)?'':' · under arbeid'}</p><div><div class="kms">${c.km.map(n=>`<span class="km">KM${n}</span>`).join('')}</div>${bar(cs)}</div></a>`; }).join('')}</div></section>
     <section class="group" aria-labelledby="mh"><h2 id="mh">Kompetansemål</h2><a class="chap-card" href="#maal"><span class="num" style="font-size:2.6rem">KM</span><h3>Kompetansemål etter 10. trinn</h3><p class="meta">Kapitlene på ${GRADE}. trinn dekker ${kms.length} av ${KM.length} mål. Se hele oversikten over hvor hvert mål dekkes på 8., 9. og 10. trinn.</p></a></section>
     <section class="group" aria-labelledby="ah"><h2 id="ah">Mer</h2><div class="chapters">
       <a class="chap-card" href="#forsok"><span class="num" style="font-size:2.6rem">Lab</span><h3>Forsøksbank</h3><p class="meta">${bankGrade(GRADE).length} forsøk og aktiviteter for ${GRADE}. trinn – minst fem til hvert kapittel, med variabler, risikovurdering og analyse.</p></a>
-      <a class="chap-card soon" href="#spill"><span class="num" style="font-size:2.6rem">Spill</span><h3>Naturfagspill</h3><p class="meta">Begrepsspill og quiz med stopp-spørsmål.</p></a>
-      <a class="chap-card soon" href="#laerer"><span class="num" style="font-size:2.6rem">PDF</span><h3>For lærere</h3><p class="meta">Oppgaveark på tre nivåer, begrepsprøver og årsplan.</p></a></div></section>
+      <a class="chap-card" href="#spill"><span class="num" style="font-size:2.6rem">Spill</span><h3>Naturfagspill</h3><p class="meta">Begrepsmemory, Lynquiz og Gjett begrepet – med spørsmål og begreper fra kapitlene.</p></a>
+      <a class="chap-card" href="#laerer"><span class="num" style="font-size:2.6rem">Ark</span><h3>For lærere</h3><p class="meta">Oppgaveark på tre nivåer, begrepsprøver med fasit og kapitteloversikt – klare til utskrift.</p></a></div></section>
     <section class="group" aria-labelledby="sh"><h2 id="sh">Slik jobber du</h2><ol class="steps-how">
       <li><b>Lær</b><span>Les fagstoffet og bruk modellene for å se hvordan ting henger sammen.</span></li>
       <li><b>Utforsk</b><span>Gjør forsøk: still spørsmål, lag hypoteser og samle data.</span></li>
@@ -3813,26 +3895,174 @@ function renderLab(id){
     </nav>
     <footer class="foot">Naturfag ${ch.grade}. trinn · Kapittel ${ch.num} · ${ch.title}</footer></div>`;
 }
-function renderSoon(key){
-  const P={forsok:['Forsøk og aktiviteter','Forsøk og klasseaktiviteter for hvert kapittel, med risikovurdering, hypotese og rapportmal.',['Forsøk per kapittel','Rapportmal','Risikovurderingsskjema','Klasseaktiviteter og tavleversjoner']],
-    spill:['Spill','Naturfagspill der du må svare riktig for å spille videre.',['Begrepsspill','Quiz per kapittel','Sorteringsspill']],
-    laerer:['For lærere','Ressurser til planlegging og vurdering.',['Oppgaveark på tre nivåer (PDF)','Begrepsprøver med fasit','Årsplan med kompetansemål','Vurderingskriterier']]}[key];
-  main.innerHTML=`<div class="col"><nav class="crumb" aria-label="Brødsmuler"><a href="#">Forside</a><span>›</span><span>${P[0]}</span></nav>
-    <header class="topic-head"><h1>${P[0]}</h1><p class="lede">${P[1]}</p></header>
-    <div class="slots">${P[2].map(x=>slot(P[0],x,'Under arbeid.')).join('')}</div>
-    <footer class="foot">Naturfag ${GRADE}. trinn</footer></div>`;
+/* ---------- hjelpere: frø-basert stokking (samme ark og fasit hver gang) ---------- */
+const seedRand = str => { let h=2166136261; for(const c of String(str)){ h^=c.charCodeAt(0); h=Math.imul(h,16777619); } let a=h>>>0; return ()=>{ a|=0; a=a+0x6D2B79F5|0; let t=Math.imul(a^a>>>15,1|a); t=t+Math.imul(t^t>>>7,61|t)^t; return ((t^t>>>14)>>>0)/4294967296; }; };
+const seedShuffle = (arr,seed) => { const r=seedRand(seed), a=arr.slice(); for(let i=a.length-1;i>0;i--){ const j=Math.floor(r()*(i+1)); [a[i],a[j]]=[a[j],a[i]]; } return a; };
+const fagSw = () => `<div class="fag-sw" role="group" aria-label="Velg fag"><a href="${MATTE_URL}">Matematikk</a><a href="#" aria-current="true">Naturfag</a></div>`;
+
+/* ===================== spill ===================== */
+let SPILL={ch:''}, GAME_STOP=null;
+const stopGame=()=>{ if(GAME_STOP){ try{ GAME_STOP(); }catch(e){} GAME_STOP=null; } };
+const spillTopics=()=>{ const chs=CHS().filter(c=>!SPILL.ch||c.id===SPILL.ch); return chs.flatMap(c=>c.topics).filter(has); };
+const spillScope=()=>{ const c=CHS().find(x=>x.id===SPILL.ch); return c?`Kapittel ${c.num} · ${c.title}`:`Alle kapitler på ${GRADE}. trinn`; };
+const GAMES=[
+ {id:'memory', name:'Begrepsmemory', tag:'2–4 min', text:'Finn parene: begrep og forklaring hører sammen. Færrest mulig forsøk vinner.'},
+ {id:'lyn', name:'Lynquiz', tag:'60 sekunder', text:'Svar riktig på så mange spørsmål du klarer før tiden går ut. Slå din egen rekord.'},
+ {id:'gjett', name:'Gjett begrepet', tag:'5 begreper', text:'Les forklaringen og gjett begrepet bokstav for bokstav før du går tom for forsøk.'}];
+function renderGames(){
+  stopGame(); if(SPILL.ch&&!CHS().some(c=>c.id===SPILL.ch)) SPILL.ch='';
+  main.innerHTML=`<div class="col"><nav class="crumb" aria-label="Brødsmuler"><a href="#">Forside</a><span>›</span><span>Spill</span></nav>
+    <header class="topic-head"><p class="eyebrow">${GRADE}. trinn · ${GAMES.length} spill</p><h1>Naturfag<span class="hl">spill</span></h1><p class="lede">Øv på begreper og fagstoff fra kapitlene. Velg hvilket kapittel spillene skal hente spørsmål fra.</p>${gradeSw()}</header>
+    <div class="filters"><div class="seg" role="group" aria-label="Kapittel"><button type="button" data-sch="" aria-pressed="${!SPILL.ch}">Alle kapitler</button>${CHS().map(c=>`<button type="button" data-sch="${c.id}" aria-pressed="${SPILL.ch===c.id}">Kap ${c.num} · ${c.title}</button>`).join('')}</div></div>
+    <div class="chapters">${GAMES.map(g=>`<a class="chap-card" href="#spill-${g.id}"><span class="num" style="font-size:2.2rem">${g.tag}</span><h3>${g.name}</h3><p class="meta">${g.text}</p></a>`).join('')}</div>
+    <footer class="foot">Naturfag ${GRADE}. trinn · Spill</footer></div>`;
+}
+main.addEventListener('click',e=>{ const a=e.target.closest('[data-sch]'); if(!a) return; SPILL.ch=a.dataset.sch; const y=window.scrollY; renderGames(); window.scrollTo(0,y); });
+function gameFrame(g, body){
+  main.innerHTML=`<div class="col"><nav class="crumb" aria-label="Brødsmuler"><a href="#">Forside</a><span>›</span><a href="#spill">Spill</a><span>›</span><span>${g.name}</span></nav>
+    <header class="topic-head"><p class="eyebrow">${spillScope()}</p><h1>${g.name}</h1><p class="lede">${g.text}</p></header>
+    <div class="game" id="game">${body}</div>
+    <p><a class="btn ghost small" href="#spill">← Alle spill</a></p></div>`;
+  return $('#game');
+}
+/* ---- begrepsmemory ---- */
+function playMemory(){
+  const g=GAMES[0], D=shuffle(dedupe(defsOf(spillTopics()))).slice(0,6);
+  if(D.length<3){ gameFrame(g,'<p>Det er for få begreper i dette utvalget.</p>'); return; }
+  let cards=shuffle(D.flatMap((d,i)=>[{i,k:'w',t:d.w},{i,k:'d',t:d.d}])), open=[], done=new Set(), tries=0, lock=false;
+  const el=gameFrame(g,'');
+  const draw=()=>{ el.innerHTML=`<p class="g-stat" aria-live="polite">Forsøk: <b>${tries}</b> · Par funnet: <b>${done.size} av ${D.length}</b></p>
+    <div class="mem">${cards.map((c,n)=>{ const up=open.includes(n)||done.has(c.i); return `<button type="button" class="mc ${c.k}${up?' up':''}${done.has(c.i)?' ok':''}" data-n="${n}" ${done.has(c.i)?'disabled':''} aria-label="${up?c.t.replace(/"/g,'&quot;'):'Skjult kort'}">${up?`<span>${c.t}</span>`:'<span class="q">?</span>'}</button>`; }).join('')}</div>
+    ${done.size===D.length?`<div class="fb ok"><b>Ferdig på ${tries} forsøk!</b> ${tries<=D.length+2?'Imponerende hukommelse.':tries<=D.length*2?'Bra jobbet.':'Prøv igjen og se om du klarer det på færre forsøk.'}</div><p><button type="button" class="btn" data-again>Spill igjen</button></p>`:''}`; };
+  el.addEventListener('click',e=>{ if(e.target.closest('[data-again]')){ playMemory(); return; }
+    const b=e.target.closest('.mc'); if(!b||lock) return; const n=+b.dataset.n; if(open.includes(n)||done.has(cards[n].i)) return;
+    open.push(n); draw(); const f=el.querySelector(`[data-n="${n}"]`); if(f) f.focus({preventScroll:true});
+    if(open.length===2){ tries++; const [x,y]=open.map(k=>cards[k]);
+      if(x.i===y.i&&x.k!==y.k){ done.add(x.i); open=[]; draw(); }
+      else { lock=true; const t=setTimeout(()=>{ open=[]; lock=false; draw(); },1300); GAME_STOP=()=>clearTimeout(t); draw(); } } });
+  draw();
+}
+/* ---- lynquiz ---- */
+function playLyn(auto){
+  const g=GAMES[1], pool=quizPool(spillTopics());
+  if(pool.length<5){ gameFrame(g,'<p>Det er for få spørsmål i dette utvalget.</p>'); return; }
+  const key='nat-lyn-'+(SPILL.ch||'g'+GRADE); let best=0; try{ best=+localStorage.getItem(key)||0; }catch(e){}
+  const el=gameFrame(g,`<p class="g-stat">Rekord i dette utvalget: <b>${best}</b></p><p><button type="button" class="btn" data-start>Start – 60 sekunder</button></p>`);
+  let q=[], cur=null, right=0, wrong=0, left=60, timer=null, wait=null, state='idle';
+  const draw=(picked)=>{ el.innerHTML=`<div class="g-top"><span class="g-time${left<=10?' low':''}" role="timer">${left} s</span><span class="g-stat">Riktige: <b>${right}</b> · Feil: <b>${wrong}</b></span></div>
+    <div class="g-bar"><i style="width:${100*left/60}%"></i></div>
+    <div class="tr-q"><p>${cur.q}</p></div><div class="tr-o">${cur.show.map(o=>`<button type="button" class="opt${picked!==undefined?(o===cur.o[0]?' right':o===picked?' wrong':''):''}" data-o="${encodeURIComponent(o)}" ${picked!==undefined?'disabled':''}>${o}</button>`).join('')}</div>`; };
+  const next=()=>{ if(!q.length) q=shuffle(pool); cur=q.shift(); const tf=cur.o.length===2&&cur.o.every(o=>o==='Sant'||o==='Usant'); cur.show=tf?['Sant','Usant']:shuffle(cur.o); draw(); };
+  const end=()=>{ state='over'; clearInterval(timer); clearTimeout(wait); const rec=right>best; if(rec){ try{ localStorage.setItem(key,String(right)); }catch(e){} }
+    el.innerHTML=`<div class="fb ok"><b>Tiden er ute!</b> Du fikk <b>${right}</b> riktige og ${wrong} feil.${rec?' <b>Ny rekord!</b>':best?` Rekorden din er ${best}.`:''}</div><p><button type="button" class="btn" data-start>Prøv igjen</button></p>`;
+    const b=el.querySelector('[data-start]'); if(b) b.focus({preventScroll:true}); };
+  const start=()=>{ state='play'; right=wrong=0; left=60; next();
+    timer=setInterval(()=>{ left--; if(left<=0){ end(); return; } const t=el.querySelector('.g-time'), bar=el.querySelector('.g-bar i'); if(t){ t.textContent=left+' s'; t.classList.toggle('low',left<=10); } if(bar) bar.style.width=(100*left/60)+'%'; },1000); };
+  GAME_STOP=()=>{ clearInterval(timer); clearTimeout(wait); };
+  el.addEventListener('click',e=>{ if(e.target.closest('[data-start]')){ if(state==='over'){ stopGame(); playLyn(true); } else if(state==='idle') start(); return; }
+    const b=e.target.closest('.opt'); if(!b||b.disabled||state!=='play') return; const v=decodeURIComponent(b.dataset.o), ok=v===cur.o[0]; if(ok) right++; else wrong++; draw(v);
+    wait=setTimeout(()=>{ if(state==='play') next(); }, ok?450:1500); });
+  if(auto) start();
+}
+/* ---- gjett begrepet ---- */
+function playGjett(){
+  const g=GAMES[2], ok=/^[a-zæøå \-]+$/i;
+  const D=shuffle(dedupe(defsOf(spillTopics())).filter(d=>ok.test(d.w)&&d.w.length>=4)).slice(0,5);
+  if(D.length<3){ gameFrame(g,'<p>Det er for få begreper i dette utvalget.</p>'); return; }
+  const ABC='abcdefghijklmnopqrstuvwxyzæøå'.split(''); let n=0, used=new Set(), lives=6, score=0, state='play';
+  const el=gameFrame(g,'');
+  const word=()=>D[n].w.toLowerCase(), solved=()=>word().split('').every(c=>c===' '||c==='-'||used.has(c));
+  const draw=()=>{ const w=word(), fin=n>=D.length;
+    if(fin){ el.innerHTML=`<div class="fb ok"><b>Ferdig!</b> Du klarte <b>${score} av ${D.length}</b> begreper.</div><p><button type="button" class="btn" data-again>Spill igjen</button></p>`; return; }
+    el.innerHTML=`<p class="g-stat" aria-live="polite">Begrep ${n+1} av ${D.length} · Riktige: <b>${score}</b> · Forsøk igjen: <span class="lives" aria-label="${lives} forsøk igjen">${'●'.repeat(lives)}${'○'.repeat(6-lives)}</span></p>
+      <div class="box"><span class="lab">Forklaring</span><p>${D[n].d}</p></div>
+      <p class="g-word" aria-label="Begrepet har ${w.replace(/[ \-]/g,'').length} bokstaver">${w.split('').map(c=>c===' '?'<span class="sp"></span>':c==='-'?'<span class="hy">-</span>':`<span class="lt">${used.has(c)||state!=='play'?c:''}</span>`).join('')}</p>
+      ${state==='play'?`<div class="g-keys">${ABC.map(c=>`<button type="button" data-c="${c}" ${used.has(c)?'disabled':''} class="${used.has(c)?(w.includes(c)?'hit':'miss'):''}">${c}</button>`).join('')}</div>`
+        :`<div class="fb ${state==='won'?'ok':'bad'}"><b>${state==='won'?'Riktig!':'Det var'}</b> ${state==='won'?'':`<b>${D[n].w}</b>.`}</div><p><button type="button" class="btn" data-next>${n===D.length-1?'Se resultatet':'Neste begrep →'}</button></p>`}`;
+    if(state!=='play'){ const b=el.querySelector('[data-next]'); if(b) b.focus({preventScroll:true}); } };
+  const guess=c=>{ if(state!=='play'||used.has(c)||!ABC.includes(c)) return; used.add(c); if(!word().includes(c)) lives--; if(solved()){ state='won'; score++; } else if(lives<=0) state='lost'; draw(); };
+  el.addEventListener('click',e=>{ if(e.target.closest('[data-again]')){ playGjett(); return; }
+    if(e.target.closest('[data-next]')){ n++; used=new Set(); lives=6; state='play'; draw(); return; }
+    const b=e.target.closest('[data-c]'); if(b) guess(b.dataset.c); });
+  const onKey=e=>{ if(e.ctrlKey||e.metaKey||e.altKey) return; const k=e.key.toLowerCase(); if(k.length===1&&ABC.includes(k)){ guess(k); } };
+  document.addEventListener('keydown',onKey); GAME_STOP=()=>document.removeEventListener('keydown',onKey);
+  draw();
+}
+const PLAY={memory:playMemory, lyn:playLyn, gjett:playGjett};
+
+/* ===================== for lærere ===================== */
+const sheetQs=(ch,lvl)=>quizPool(ch.topics).filter(q=>q.l===lvl);
+function renderTeacher(){
+  const rows=CHS().map(ch=>{ const ok=ch.topics.some(has), nd=dedupe(defsOf(ch.topics)).length;
+    return `<section class="group"><div class="group-head"><span class="eyebrow">Kapittel ${ch.num}</span><h2>${ch.title}</h2><span class="tally">${bankFor(ch.id).length} forsøk</span></div>
+      ${ok?`<div class="lgrid">${[1,2,3].map(l=>`<a class="lcard" href="#ark-${ch.id}-${l}"><span class="ltags"><span class="lvd" style="--c:var(--lv${l})"></span><span class="lmin">Nivå ${l}</span></span><b>Oppgaveark nivå ${l}</b><span class="lq">${sheetQs(ch,l).length} flervalgsoppgaver med fasit og forklaringer.</span></a>`).join('')}
+        <a class="lcard" href="#ark-${ch.id}-b"><span class="ltags"><span class="lmin">Begreper</span></span><b>Begrepsprøve</b><span class="lq">Koble ${Math.min(14,nd)} begreper til riktig forklaring. Fasit på egen side.</span></a>
+        <a class="lcard" href="#${ch.id}"><span class="ltags"><span class="lmin">Forsøk</span></span><b>Forsøk til kapitlet</b><span class="lq">${bankFor(ch.id).length} forsøk og aktiviteter med risikovurdering.</span></a></div>`:'<p class="muted">Kapitlet har ikke fagstoff ennå.</p>'}</section>`; }).join('');
+  main.innerHTML=`<div class="col"><nav class="crumb" aria-label="Brødsmuler"><a href="#">Forside</a><span>›</span><span>For lærere</span></nav>
+    <header class="topic-head"><p class="eyebrow">For lærere · ${GRADE}. trinn</p><h1>Ark og <span class="hl">oversikter</span></h1>
+      <p class="lede">Oppgaveark på tre nivåer og begrepsprøver til hvert kapittel, klare til utskrift. Hvert ark har fasit på egen side. Arkene er like hver gang, slik at fasiten stemmer.</p>${gradeSw()}</header>
+    <section class="group"><div class="group-head"><span class="eyebrow">Planlegging</span><h2>Oversikter</h2></div><div class="lgrid">
+      <a class="lcard" href="#ark-plan-${GRADE}"><span class="ltags"><span class="lmin">Utskrift</span></span><b>Kapitteloversikt ${GRADE}. trinn</b><span class="lq">Kapitler, delkapitler, kompetansemål og antall forsøk på én side.</span></a>
+      <a class="lcard" href="#maal"><span class="ltags"><span class="lmin">Læreplan</span></span><b>Kompetansemål etter 10. trinn</b><span class="lq">Hvor hvert mål dekkes på 8., 9. og 10. trinn.</span></a>
+      <a class="lcard" href="#forsok"><span class="ltags"><span class="lmin">Forsøk</span></span><b>Forsøksbank</b><span class="lq">${bankGrade(GRADE).length} forsøk og aktiviteter for ${GRADE}. trinn.</span></a></div></section>
+    ${rows}
+    <div class="box"><span class="lab">Slik skriver du ut</span><p>Åpne arket og trykk «Skriv ut». Velg A4 og slå gjerne av topp- og bunntekst i utskriftsdialogen. Fasiten kommer på egen side til slutt, så du kan velge å la være å skrive den ut.</p></div>
+    <footer class="foot">Naturfag ${GRADE}. trinn · For lærere</footer></div>`;
+}
+const sheetShell=(back, title, pages)=>{ main.innerHTML=`<div class="col sheetcol"><div class="noprint sheet-bar"><a class="btn ghost small" href="${back}">← Tilbake</a><button type="button" class="btn" id="printBtn">Skriv ut</button><span class="muted">${title}</span></div>${pages}</div>`;
+  $('#printBtn').addEventListener('click',()=>{ try{ window.print(); }catch(e){} }); };
+const sheetHead=(ch,kick,title)=>`<header class="sh-head"><div><p class="sh-kick">Naturfag ${ch.grade}. trinn · Kapittel ${ch.num} · ${ch.title}</p><h1>${title}</h1><p class="sh-kick">${kick}</p></div><div class="sh-name"><span>Navn:</span><span>Klasse:</span></div></header>`;
+function renderSheet(ch, kind){
+  const ABC='ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+  if(kind==='b'){
+    const D=seedShuffle(dedupe(defsOf(ch.topics)),ch.id+'-b').slice(0,14), W=seedShuffle(D.map((d,i)=>i),ch.id+'-bw');
+    const letter=i=>ABC[W.indexOf(i)];
+    sheetShell('#laerer',`Begrepsprøve · kapittel ${ch.num}`,
+      `<article class="sheet">${sheetHead(ch,'Begrepsprøve','Begreper i kapittel '+ch.num)}
+        <p class="sh-inst">Skriv bokstaven til riktig begrep på streken foran hver forklaring.</p>
+        <div class="sh-terms">${W.map((i,k)=>`<span><b>${ABC[k]}</b> ${D[i].w}</span>`).join('')}</div>
+        <ol class="sh-match">${D.map(d=>`<li><span class="sh-line"></span><span>${d.d}</span></li>`).join('')}</ol>
+        <p class="sh-foot">${D.length} poeng</p></article>
+       <article class="sheet key">${sheetHead(ch,'Fasit','Fasit · begreper i kapittel '+ch.num)}
+        <ol class="sh-key">${D.map((d,i)=>`<li><b>${letter(i)}</b> – ${d.w}</li>`).join('')}</ol></article>`);
+    return;
+  }
+  const lvl=+kind, Q=sheetQs(ch,lvl).map((q,i)=>{ const tf=q.o.length===2&&q.o.every(o=>o==='Sant'||o==='Usant'); const opts=tf?['Sant','Usant']:seedShuffle(q.o,ch.id+'-'+lvl+'-'+i); return {...q,opts,ans:ABC[opts.indexOf(q.o[0])]}; });
+  const NAME=['','Nivå 1 · grunnleggende','Nivå 2 · middels','Nivå 3 · utfordring'][lvl];
+  sheetShell('#laerer',`Oppgaveark nivå ${lvl} · kapittel ${ch.num}`,
+    `<article class="sheet">${sheetHead(ch,NAME,'Oppgaver til kapittel '+ch.num)}
+      <p class="sh-inst">Sett kryss ved det riktige svaret. Bare ett svar er riktig på hver oppgave.</p>
+      <ol class="sh-qs">${Q.map(q=>`<li><p>${q.q}</p><ul>${q.opts.map((o,k)=>`<li><span class="sh-box"></span><b>${ABC[k]}</b> ${o}</li>`).join('')}</ul></li>`).join('')}</ol>
+      <p class="sh-foot">${Q.length} poeng</p></article>
+     <article class="sheet key">${sheetHead(ch,'Fasit · '+NAME,'Fasit til kapittel '+ch.num)}
+      <ol class="sh-key">${Q.map(q=>`<li><b>${q.ans}</b> – ${q.o[0]}. <span class="muted">${q.e||''}</span></li>`).join('')}</ol></article>`);
+}
+function renderPlan(g){
+  const CH=BOOK.chapters.filter(c=>c.grade===g);
+  sheetShell('#laerer',`Kapitteloversikt ${g}. trinn`,
+    `<article class="sheet"><header class="sh-head"><div><p class="sh-kick">Naturfag ${g}. trinn · ${BOOKNAME[g]}</p><h1>Kapitteloversikt</h1><p class="sh-kick">Kapitler, delkapitler og kompetansemål (NAT01-05)</p></div></header>
+      <table class="sh-plan"><thead><tr><th>Kap.</th><th>Tittel og delkapitler</th><th>Side</th><th>Kompetansemål</th><th>Forsøk</th></tr></thead><tbody>
+      ${CH.map(c=>`<tr><td class="n">${c.num}</td><td><b>${c.title}</b><ol>${c.topics.map(t=>`<li>${TOPICS[t].title}</li>`).join('')}</ol></td><td>${c.page}</td><td>${c.km.map(n=>`KM${n}`).join(', ')}</td><td>${bankFor(c.id).length}</td></tr>`).join('')}
+      </tbody></table>
+      <h2 class="sh-h2">Kompetansemålene kapitlene bygger på</h2>
+      <ol class="sh-kmlist">${[...new Set(CH.flatMap(c=>c.km))].sort((a,b)=>a-b).map(n=>`<li><b>KM${n}</b> ${KM[n-1].t}</li>`).join('')}</ol></article>`);
 }
 
 /* ---------- ruting ---------- */
 function route(){
   const r=decodeURIComponent(location.hash.slice(1));
   const ch=BOOK.chapters.find(c=>r===c.id||r.startsWith(c.id+'-'));
-  let cur='';
+  let cur='', m, ach;
+  stopGame();
   if(ch&&ch.grade!==GRADE) setGrade(ch.grade);
   if(r==='maal'){ renderGoals(); cur=r; }
   else if(r==='forsok'){ renderLabs(); cur=r; }
   else if(r.startsWith('forsok-')&&bankById(r.slice(7))){ renderLab(r.slice(7)); cur='forsok'; }
-  else if(r==='spill'||r==='laerer'){ renderSoon(r); cur=r; }
+  else if(r==='spill'){ renderGames(); cur=r; }
+  else if(r.startsWith('spill-')&&PLAY[r.slice(6)]){ PLAY[r.slice(6)](); cur='spill'; }
+  else if(r==='laerer'){ renderTeacher(); cur=r; }
+  else if(r.startsWith('ark-plan-')&&[8,9,10].includes(+r.slice(9))){ if(+r.slice(9)!==GRADE) setGrade(+r.slice(9)); renderPlan(+r.slice(9)); cur='laerer'; }
+  else if((m=r.match(/^ark-(n\d+k\d+)-([123b])$/))&&(ach=BOOK.chapters.find(c=>c.id===m[1]))&&ach.topics.some(has)){ if(ach.grade!==GRADE) setGrade(ach.grade); renderSheet(ach,m[2]); cur='laerer'; }
   else if(ch&&r===ch.id){ renderChapter(ch); cur=r; }
   else if(ch&&TOPICS[r.slice(ch.id.length+1)]&&ch.topics.includes(r.slice(ch.id.length+1))){ renderTopic(ch,r.slice(ch.id.length+1)); cur=r; }
   else renderHome();
@@ -3851,7 +4081,7 @@ menuBtn.addEventListener('click',()=>side.classList.contains('open')?closeMenu()
 scrim.addEventListener('click',closeMenu);
 document.addEventListener('keydown',e=>{ if(e.key==='Escape'&&side.classList.contains('open')){ closeMenu(); menuBtn.focus(); } });
 document.addEventListener('click',e=>{ const b=e.target.closest('[data-grade]'); if(!b) return; const g=+b.dataset.grade; if(g===GRADE) return; setGrade(g);
-  const r=decodeURIComponent(location.hash.slice(1)); if(['','maal','forsok','spill','laerer'].includes(r)) route(); else location.hash=''; });
+  const r=decodeURIComponent(location.hash.slice(1)); if(['','maal','forsok','spill','laerer'].includes(r)) route(); else location.hash=r.startsWith('spill-')?'spill':r.startsWith('ark-')?'laerer':''; });
 main.addEventListener('click',e=>{ const a=e.target.closest('a.km'); if(a){ e.preventDefault(); const n=a.textContent.slice(2); location.hash='maal'; setTimeout(()=>{ const r=document.getElementById('km'+n); if(r){ r.scrollIntoView({block:'center'}); r.classList.add('flash'); } },60); } });
 setGrade(GRADE);
 window.addEventListener('hashchange',route);

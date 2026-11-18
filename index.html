@@ -2705,10 +2705,10 @@ function chapterOf(tid){ for(const ch of BOOK.chapters) for(const g of ch.groups
 const order = ch => ch.groups.flatMap(g=>g.topics);
 const gradeOf = ch => (ch&&ch.grade)||8;
 let GRADE=(()=>{ try{ const g=+localStorage.getItem('mat8-grade'); return g===9||g===10?g:8; }catch(e){ return 8; } })();
-let FAG=null; // null = startsiden (velg fag), 'mat' = matematikk, 'nat' = naturfag
-const setTitle=()=>{ document.title=FAG==='nat'?`Naturfag ${GRADE}. trinn`:FAG==='mat'?`Matematikk ${GRADE}. trinn`:'Matte og naturfag 8.–10. trinn'; };
+let FAG=null; // null = startsiden (velg fag), 'mat' = matematikk. Naturfag ligger i naturfag/index.html
+const setTitle=()=>{ document.title=FAG==='mat'?`Matematikk ${GRADE}. trinn`:'Matte og naturfag 8.–10. trinn'; };
 const setGrade=g=>{ GRADE=g; try{ localStorage.setItem('mat8-grade',String(g)); }catch(e){} setTitle(); };
-const fagSw=()=>`<div class="fag-sw" role="group" aria-label="Velg fag"><a href="#matte" ${FAG==='mat'?'aria-current="true"':''}>Matematikk</a><a href="naturfag/" ${FAG==='nat'?'aria-current="true"':''}>Naturfag</a></div>`;
+const fagSw=()=>`<div class="fag-sw" role="group" aria-label="Velg fag"><a href="#matte" ${FAG==='mat'?'aria-current="true"':''}>Matematikk</a><a href="naturfag/">Naturfag</a></div>`;
 const CHS = () => BOOK.chapters.filter(c=>gradeOf(c)===GRADE);
 const gradeTids = (g) => BOOK.chapters.filter(c=>gradeOf(c)===(g||GRADE)).flatMap(order);
 const gradeSw = () => `<div class="grade-sw" role="group" aria-label="Velg trinn">${[8,9,10].map(g=>`<button type="button" data-grade="${g}" aria-pressed="${GRADE===g}">${g}. trinn</button>`).join('')}</div>`;
@@ -2716,8 +2716,7 @@ const bar = s => `<div class="bar" role="progressbar" aria-valuemin="0" aria-val
 const tally = s => s.t && s.n>=s.t ? `<span class="tally done">✓ mestret</span>` : `<span class="tally">${pct(s)} %</span>`;
 let curRoute='';
 function renderNav(route){
-  if(FAG==='nat'){ renderNatNav(route); return; }
-  let h=`${fagSw()}<a class="brand-big" href="#matte">Matematikk<small>${GRADE}. trinn</small></a>${gradeSw()}<ul class="nav"><li><a href="#matte" ${route==='matte'?'aria-current="page"':''}><span>Forside</span></a></li><li><a href="#spill" ${route==='spill'?'aria-current="page"':''}><span>Spill</span><span class="tally">5 spill</span></a></li><li><a href="#aktiviteter" ${route==='aktiviteter'?'aria-current="page"':''}><span>Klasseaktiviteter</span><span class="tally">${ACTS.length} opplegg</span></a></li><li><a href="#laerer" ${route==='laerer'?'aria-current="page"':''}><span>For lærere</span><span class="tally">PDF</span></a></li><li class="grp">Lærerverktøy</li><li><a class="tool" href="grupper/"><span>👥 Grupper og klassekart</span><span class="tally">Logg inn</span></a></li>`;
+  let h=`${fagSw()}<a class="brand-big" href="#matte">Matematikk<small>${GRADE}. trinn</small></a>${gradeSw()}<ul class="nav"><li><a href="#matte" ${route==='matte'?'aria-current="page"':''}><span>Forside</span></a></li><li><a href="#spill" ${route==='spill'?'aria-current="page"':''}><span>Spill</span><span class="tally">6 spill</span></a></li><li><a href="#aktiviteter" ${route==='aktiviteter'?'aria-current="page"':''}><span>Klasseaktiviteter</span><span class="tally">${ACTS.length} opplegg</span></a></li><li><a href="#laerer" ${route==='laerer'?'aria-current="page"':''}><span>For lærere</span><span class="tally">PDF</span></a></li><li class="grp">Lærerverktøy</li><li><a class="tool" href="grupper/"><span>👥 Grupper og klassekart</span><span class="tally">Logg inn</span></a></li>`;
   CHS().forEach(ch=>{
     h+=`<li><a class="chap" href="#${ch.id}" ${route===ch.id?'aria-current="page"':''}><span>Kap ${ch.num} · ${ch.title}</span></a></li>`;
     ch.groups.forEach(g=>{ h+=`<li class="grp">${g.title}</li>`; g.topics.forEach(tid=>{ const r=`${ch.id}-${tid}`; h+=`<li class="sub"><a href="#${r}" ${route===r?'aria-current="page"':''}><span>${TOPICS[tid].title}</span>${tally(topicStat(tid))}</a></li>`; }); });
@@ -2732,7 +2731,7 @@ function renderHome(){
       <p class="lede">Trykk deg gjennom modeller som viser steg for steg hvorfor matematikken virker. Øv deretter på oppgaver som lages på nytt hver gang, med føring når du trenger det.</p>
       <div class="hero-row"><a class="btn" href="#${ch.id}">${started?`Fortsett med kapittel ${ch.num}`:'Start på kapittel 1'} →</a>${gradeSw()}</div></header>
     <section class="group" aria-labelledby="kh"><h2 id="kh">Kapitler</h2><div class="chapters">${CH.map(c=>{ const cs=chapterStat(c); return `<a class="chap-card" href="#${c.id}"><span class="num">${c.num}</span><h3>${c.title}</h3><p class="meta">${c.groups.length} temaer · ${order(c).length} delkapitler med trinnvise modeller</p><div>${bar(cs)}<p class="tally" style="margin-top:6px">${pct(cs)} % fullført</p></div></a>`; }).join('')}</div></section>
-    <section class="group" aria-labelledby="sp2"><h2 id="sp2">Spill</h2><a class="chap-card" href="#spill"><span class="num" style="font-size:2.6rem">Spill</span><h3>Mattespill med stopp-spørsmål</h3><p class="meta">Papirflyet, Hopperen, Slangen, Meteorregn og Tallmonstre. Svar riktig for å spille videre.</p></a></section>
+    <section class="group" aria-labelledby="sp2"><h2 id="sp2">Spill</h2><a class="chap-card" href="#spill"><span class="num" style="font-size:2.6rem">Spill</span><h3>Mattespill med stopp-spørsmål</h3><p class="meta">Papirflyet, Hopperen, Slangen, Meteorregn, Akebakken og Tallmonstre. Svar riktig for å spille videre.</p></a></section>
     <section class="group" aria-labelledby="ka2"><h2 id="ka2">Klasseaktiviteter</h2><a class="chap-card" href="#aktiviteter"><span class="num" style="font-size:2.6rem">Klasse</span><h3>Opplegg for hele klassen</h3><p class="meta">${ACTS.length} opplegg for 8.–10. trinn: konkurranser, spill, utforskende ark og tavleversjoner til smartboard.</p></a></section>
     <section class="group" aria-labelledby="lh2"><h2 id="lh2">For lærere</h2><div class="chapters"><a class="chap-card" href="#laerer"><span class="num" style="font-size:2.6rem">PDF</span><h3>Oppgaveark på tre nivåer</h3><p class="meta">${gradeTids().filter(t=>ARK[t]).length*3} ark til ${gradeTids().filter(t=>ARK[t]).length} delkapitler, med fasit, klare til utskrift.</p></a><a class="chap-card" href="grupper/"><span class="num" style="font-size:2.6rem">Grupper</span><h3>Grupper og klassekart</h3><p class="meta">Lag grupper og klassekart med skjulte betingelser for hvem som skal eller ikke skal være sammen. Logg inn med Google.</p></a></div></section>
     <section class="group" aria-labelledby="sh"><h2 id="sh">Slik jobber du</h2><ol class="steps-how">
@@ -5821,6 +5820,8 @@ const GAMES=[
   icon:'<svg viewBox="0 0 48 48" aria-hidden="true"><path d="M8 34h16V18h14" fill="none" stroke="currentColor" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/><circle cx="40" cy="34" r="4.5" fill="var(--red)"/></svg>'},
  {id:'meteor',name:'Meteorregn',desc:'Styr romskipet unna meteorene så lenge du klarer.',keys:'Piltaster, eller dra med fingeren eller musa.',every:5,unit:'sekund',units:'sekunder',
   icon:'<svg viewBox="0 0 48 48" aria-hidden="true"><path d="M24 30 32 42H16Z" fill="var(--pen-soft)" stroke="currentColor" stroke-width="2.5" stroke-linejoin="round"/><circle cx="14" cy="12" r="6" fill="none" stroke="currentColor" stroke-width="2.5"/><circle cx="36" cy="18" r="4" fill="none" stroke="currentColor" stroke-width="2.5"/></svg>'},
+ {id:'ake',name:'Akebakken',desc:'Ake ned bakken, unngå trær og steiner og bruk hoppene.',keys:'Piltaster eller A og D, eller dra med fingeren eller musa.',every:8,unit:'hinder',units:'hindre',
+  icon:'<svg viewBox="0 0 48 48" aria-hidden="true"><path d="M4 12 44 40" stroke="currentColor" stroke-width="2.5" stroke-dasharray="3 4"/><path d="M12 30h22a5 5 0 0 0 5-5" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/><rect x="15" y="22" width="16" height="6" rx="2" fill="var(--pen-soft)" stroke="currentColor" stroke-width="2.5"/><circle cx="23" cy="15" r="5" fill="var(--red-soft)" stroke="currentColor" stroke-width="2.5"/></svg>'},
  {id:'monster',name:'Tallmonstre',desc:'Fang ville tallmonstre ved å svare riktig, og fyll Monsterboka.',keys:'',every:1,unit:'',units:'',
   icon:'<svg viewBox="0 0 48 48" aria-hidden="true"><path d="M10 28C10 16 18 10 24 10S38 16 38 28 32 42 24 42 10 38 10 28Z" fill="var(--pen-soft)" stroke="currentColor" stroke-width="2.5"/><path d="M15 15 13 6 21 12M33 15 35 6 27 12" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linejoin="round"/><circle cx="20" cy="24" r="2.5" fill="currentColor"/><circle cx="28" cy="24" r="2.5" fill="currentColor"/><path d="M20 32h8M24 28v8" stroke="currentColor" stroke-width="2.5"/></svg>'}
 ];
@@ -5910,6 +5911,59 @@ const GAME_IMPL={
     S.body.forEach((b,i)=>{ c.fillStyle=C.ok; c.globalAlpha=i?Math.max(.55,1-i*0.02):1; roundRect(c,b[0]*30+2,b[1]*30+2,26,26,i?7:9); c.fill(); c.globalAlpha=1; });
     const h=S.body[0], cx=h[0]*30+15, cy=h[1]*30+15, [dx,dy]=S.dir; c.fillStyle='#fff'; [[-1],[1]].forEach(([s])=>{ c.beginPath(); c.arc(cx+dx*5-dy*6*s,cy+dy*5+dx*6*s,4,0,7); c.fill(); }); c.fillStyle='#141E36'; [[-1],[1]].forEach(([s])=>{ c.beginPath(); c.arc(cx+dx*7-dy*6*s,cy+dy*7+dx*6*s,2,0,7); c.fill(); }); }
  },
+ ake:{
+  init:()=>{ const S={x:0,vx:0,tx:null,keys:{},o:[],dist:0,speed:15,spawn:1,curve:0,cT:0,cTarget:0,jump:0,jv:0,t:0,flakes:Array.from({length:70},()=>[Math.random()*GW,Math.random()*GH,Math.random()*1.8+.6]),hit:null};
+    for(let z=14;z<60;z+=7) S.o.push(akeObj(z)); return S; },
+  input:(S,k,v)=>{ if(k==='down') S.keys[v]=true; else if(k==='up') S.keys[v]=false; else if(k==='drag') S.tx=v; else if(k==='release') S.tx=null; },
+  resume:S=>{ S.o=S.o.filter(o=>o.z>18); S.keys={}; S.tx=null; S.jump=0; S.jv=0; },
+  update:(S,dt,api)=>{ S.t+=dt; S.speed=Math.min(36,S.speed+0.35*dt); const dz=S.speed*dt; S.dist+=dz;
+    S.cT-=dt; if(S.cT<=0){ S.cT=3+Math.random()*4; S.cTarget=Math.random()<.3?0:(Math.random()-.5)*0.0032; } S.curve+=(S.cTarget-S.curve)*Math.min(1,dt*0.8);
+    let ax=0; if(S.keys.ArrowLeft||S.keys.a) ax-=1; if(S.keys.ArrowRight||S.keys.d) ax+=1;
+    if(S.tx!=null){ const want=(S.tx-GW/2)/(GW*0.42); ax=Math.max(-1,Math.min(1,(want-S.x)*4)); }
+    const grip=S.jump>0?0.6:4; S.vx+=(ax*2.6-S.vx)*Math.min(1,dt*grip); S.x+=S.vx*dt - S.curve*S.speed*S.speed*dt*0.55;
+    if(S.jump>0||S.jv>0){ S.jump+=S.jv*dt; S.jv-=26*dt; if(S.jump<=0){ S.jump=0; S.jv=0; } }
+    if(Math.abs(S.x)>1.08){ S.hit='kant'; return api.die(); }
+    S.spawn-=dz; if(S.spawn<=0){ S.spawn=Math.max(3.2,8-S.speed*0.13)+Math.random()*3; S.o.push(akeObj(70)); if(Math.random()<.35) S.o.push(akeObj(70+Math.random()*2)); }
+    for(const o of S.o){ o.z-=dz; if(!o.done&&o.z<0){ o.done=true; if(o.k==='hopp'){ if(Math.abs(o.x-S.x)<o.w+0.06&&S.jump===0){ S.jv=9; S.jump=0.01; } } else api.point(); if(api.paused()) return; }
+      if(!o.done&&o.k!=='hopp'&&o.z<0.9&&o.z>-0.2&&S.jump<0.35&&Math.abs(o.x-S.x)<o.w+0.07){ S.hit=o.k; return api.die(); } }
+    S.o=S.o.filter(o=>o.z>-3); },
+  draw:(c,S,C)=>{ const hor=118, base=GH-36;
+    const sky=c.createLinearGradient(0,0,0,hor); sky.addColorStop(0,'#5E8FD6'); sky.addColorStop(1,'#CFE2F7'); c.fillStyle=sky; c.fillRect(0,0,GW,hor);
+    c.fillStyle='#E9F1FB'; c.beginPath(); c.moveTo(0,hor); [[0,92],[90,60],[170,88],[260,48],[350,84],[430,58],[520,90],[610,52],[720,86],[720,hor]].forEach(([x,y])=>c.lineTo(x,y)); c.closePath(); c.fill();
+    c.fillStyle='#B9CDE6'; c.beginPath(); c.moveTo(0,hor); [[0,104],[120,86],[230,104],[330,80],[460,102],[560,84],[720,100],[720,hor]].forEach(([x,y])=>c.lineTo(x,y)); c.closePath(); c.fill();
+    const P=z=>{ const p=1/(1+Math.max(z,-0.9)/6); return p; };
+    const X=(wx,z)=>{ const p=P(z); return GW/2+((wx-S.x*0.85)*GW*0.62 + S.curve*z*z*GW*0.9)*p; };
+    const Y=z=>hor+(base-hor)*P(z);
+    c.fillStyle='#F4F8FD'; c.fillRect(0,hor,GW,GH-hor);
+    for(let z=72;z>-1;z-=1){ const z2=z-1, band=Math.floor((z+S.dist)/3)%2;
+      const yA=Y(z), yB=Y(z2);
+      c.fillStyle=band?'#CFDDEF':'#D9E5F3'; c.fillRect(0,yA,GW,yB-yA+1);
+      c.fillStyle=band?'#FFFFFF':'#F6FAFF'; c.beginPath(); c.moveTo(X(-1.15,z),yA); c.lineTo(X(1.15,z),yA); c.lineTo(X(1.15,z2),yB); c.lineTo(X(-1.15,z2),yB); c.closePath(); c.fill();
+      if(Math.floor(z+S.dist)%4===0){ c.fillStyle=band?'#D9475A':'#2F6FD0'; const w=Math.max(1.5,10*P(z)); c.fillRect(X(-1.17,z)-w/2,yA-w*2.2,w,w*2.2); c.fillRect(X(1.17,z)-w/2,yA-w*2.2,w,w*2.2); } }
+    const off=(S.dist%6), deco=[]; for(let z=66-off;z>-0.8;z-=6){ const n=Math.floor((z+S.dist)/6); deco.push({k:'tre',w:.15,z,x:-1.42-((n*37)%5)*0.06,deco:1},{k:'tre',w:.15,z,x:1.42+((n*53)%5)*0.06,deco:1}); }
+    const list=S.o.filter(o=>o.z>-0.9&&o.z<72).concat(deco).sort((a,b)=>b.z-a.z);
+    for(const o of list){ const p=P(o.z), x=X(o.x,o.z), y=Y(o.z), u=GW*0.62*p; c.globalAlpha=Math.min(1,(72-o.z)/10);
+      c.fillStyle='rgba(60,90,140,.16)'; c.beginPath(); c.ellipse(x,y,o.w*u*1.05,o.w*u*0.28,0,0,7); c.fill();
+      if(o.k==='tre'){ c.fillStyle='#6B4A2E'; c.fillRect(x-o.w*u*0.12,y-o.w*u*0.6,o.w*u*0.24,o.w*u*0.6);
+        for(let i=0;i<3;i++){ const yy=y-o.w*u*(0.45+i*0.62), ww=o.w*u*(1-i*0.24); c.fillStyle=i%2?'#2F7A4D':'#256A42'; c.beginPath(); c.moveTo(x-ww,yy); c.lineTo(x+ww,yy); c.lineTo(x,yy-o.w*u*1.05); c.closePath(); c.fill(); c.fillStyle='rgba(255,255,255,.85)'; c.beginPath(); c.moveTo(x-ww*0.35,yy-o.w*u*0.68); c.lineTo(x+ww*0.35,yy-o.w*u*0.68); c.lineTo(x,yy-o.w*u*1.05); c.closePath(); c.fill(); } }
+      else if(o.k==='stein'){ c.fillStyle='#7D8796'; c.strokeStyle='#4E5868'; c.lineWidth=Math.max(1,2*p); c.beginPath(); c.moveTo(x-o.w*u,y); c.quadraticCurveTo(x-o.w*u*0.9,y-o.w*u*1.1,x-o.w*u*0.1,y-o.w*u*1.05); c.quadraticCurveTo(x+o.w*u*0.9,y-o.w*u*0.95,x+o.w*u,y); c.closePath(); c.fill(); c.stroke(); c.fillStyle='#fff'; c.beginPath(); c.ellipse(x-o.w*u*0.15,y-o.w*u*0.98,o.w*u*0.55,o.w*u*0.16,0,0,7); c.fill(); }
+      else if(o.k==='kjegle'){ c.fillStyle='#F07A1E'; c.beginPath(); c.moveTo(x-o.w*u,y); c.lineTo(x+o.w*u,y); c.lineTo(x,y-o.w*u*2.4); c.closePath(); c.fill(); c.fillStyle='#fff'; c.fillRect(x-o.w*u*0.55,y-o.w*u*1.1,o.w*u*1.1,o.w*u*0.32); }
+      else if(o.k==='hopp'){ c.fillStyle='#CFE0F5'; c.strokeStyle='#7FA3D6'; c.lineWidth=Math.max(1,2*p); c.beginPath(); c.moveTo(x-o.w*u,y); c.lineTo(x+o.w*u,y); c.lineTo(x+o.w*u*0.8,y-o.w*u*0.55); c.lineTo(x-o.w*u*0.8,y-o.w*u*0.55); c.closePath(); c.fill(); c.stroke();
+        c.fillStyle='#2F6FD0'; c.font=`800 ${Math.max(8,o.w*u*0.42)}px "Bricolage Grotesque",sans-serif`; c.textAlign='center'; c.fillText('HOPP',x,y-o.w*u*0.13); c.textAlign='left'; }
+      c.globalAlpha=1; }
+    const px=GW/2+(S.x-S.x*0.85)*GW*0.62, py=base-6-S.jump*60, tilt=Math.max(-0.35,Math.min(0.35,S.vx*0.12));
+    c.fillStyle='rgba(60,90,140,.22)'; c.beginPath(); c.ellipse(px,base-2,34-S.jump*8,8,0,0,7); c.fill();
+    c.save(); c.translate(px,py); c.rotate(tilt); c.lineJoin='round'; c.lineCap='round';
+    c.strokeStyle='#30343F'; c.lineWidth=3.5; c.beginPath(); c.moveTo(-26,4); c.lineTo(26,4); c.quadraticCurveTo(34,4,32,-6); c.moveTo(-26,4); c.quadraticCurveTo(-34,4,-32,-6); c.stroke();
+    c.fillStyle='#C2362B'; roundRect(c,-24,-12,48,12,4); c.fill();
+    c.fillStyle='#2343B0'; roundRect(c,-15,-38,30,28,10); c.fill();
+    c.fillStyle='#F2C9A0'; c.beginPath(); c.arc(0,-48,10,0,7); c.fill();
+    c.fillStyle='#F2C230'; c.beginPath(); c.arc(0,-51,11,Math.PI,0); c.fill(); c.beginPath(); c.arc(0,-63,4.5,0,7); c.fill();
+    c.strokeStyle='#2343B0'; c.lineWidth=6; c.beginPath(); c.moveTo(-13,-28); c.lineTo(-20,-14); c.moveTo(13,-28); c.lineTo(20,-14); c.stroke();
+    c.restore();
+    c.fillStyle='rgba(255,255,255,.9)'; for(const f of S.flakes){ const y=(f[1]+S.t*40*f[2]+S.dist*2*f[2])%GH, x=(f[0]+Math.sin(S.t+f[1])*12-S.vx*S.t*8)%GW; c.beginPath(); c.arc((x+GW)%GW,y,f[2],0,7); c.fill(); }
+    c.fillStyle='rgba(20,30,54,.55)'; roundRect(c,GW-128,GH-30,118,22,8); c.fill(); c.fillStyle='#fff'; c.font='700 13px system-ui,sans-serif'; c.textAlign='right'; c.fillText(`${Math.round(S.speed*3.6/1.4)} km/t · ${Math.round(S.dist)} m`,GW-18,GH-14); c.textAlign='left'; }
+ },
  meteor:{
   init:()=>({x:GW/2,vx:0,tx:null,keys:{},m:[],spawn:0.5,t:0,sec:0,stars:Array.from({length:60},()=>[Math.random()*GW,Math.random()*GH,Math.random()*1.6+.4])}),
   input:(S,k,v)=>{ if(k==='down') S.keys[v]=true; else if(k==='up') S.keys[v]=false; else if(k==='drag') S.tx=v; else if(k==='release') S.tx=null; },
@@ -5926,6 +5980,8 @@ const GAME_IMPL={
     c.fillStyle='#93B5FF'; c.strokeStyle='#fff'; c.lineWidth=2.5; c.lineJoin='round'; c.beginPath(); c.moveTo(0,-20); c.lineTo(17,16); c.lineTo(0,9); c.lineTo(-17,16); c.closePath(); c.fill(); c.stroke(); c.restore(); }
  }
 };
+function akeObj(z){ const r=Math.random(), k=r<.45?'tre':r<.72?'stein':r<.88?'kjegle':'hopp';
+  const w={tre:.13,stein:.1,kjegle:.06,hopp:.16}[k]; return {k,w,z,x:(Math.random()*2-1)*(1.02-w),done:false}; }
 function placeApple(S){ let p; do{ p=[Math.floor(Math.random()*24),Math.floor(Math.random()*14)]; }while(S.body.some(b=>b[0]===p[0]&&b[1]===p[1])); S.apple=p; }
 function roundRect(c,x,y,w,h,r){ c.beginPath(); c.moveTo(x+r,y); c.arcTo(x+w,y,x+w,y+h,r); c.arcTo(x+w,y+h,x,y+h,r); c.arcTo(x,y+h,x,y,r); c.arcTo(x,y,x+w,y,r); c.closePath(); }
 function paperBg(c,C,off){ c.fillStyle=C.paper; c.fillRect(0,0,GW,GH); c.strokeStyle=C.grid; c.lineWidth=1; for(let x=-off;x<=GW;x+=32){ c.beginPath(); c.moveTo(x+.5,0); c.lineTo(x+.5,GH); c.stroke(); } for(let y=0;y<=GH;y+=32){ c.beginPath(); c.moveTo(0,y+.5); c.lineTo(GW,y+.5); c.stroke(); } }
@@ -5937,7 +5993,7 @@ function pencil(c,C,x,y,w,h,down){ if(h<=0) return; const tip=Math.min(34,h); c.
   c.fillStyle='#3A3A44'; c.beginPath(); const k=0.32; c.moveTo(x+w/2-w/2*k,ty+(ey-ty)*(1-k)); c.lineTo(x+w/2+w/2*k,ty+(ey-ty)*(1-k)); c.lineTo(x+w/2,ey); c.closePath(); c.fill(); }
 
 function mountGame(wrap, gid){
-  const G=GAMES.find(g=>g.id===gid), I=GAME_IMPL[gid];
+  const G=GAMES.find(g=>g.id===gid), I=GAME_IMPL[gid], STEER=gid==='meteor'||gid==='ake';
   wrap.innerHTML=`<div class="g-stage" tabindex="0" aria-label="Spillområde for ${G.name}. ${G.keys}"><canvas width="${GW}" height="${GH}"></canvas>
     <div class="g-hud" aria-hidden="true"><span>Poeng <b data-g="score">0</b></span><span>Riktige svar <b data-g="right">0</b></span><span data-g="next"></span></div>
     <div class="g-over" data-g="ov"></div></div>`;
@@ -5965,7 +6021,7 @@ function mountGame(wrap, gid){
     if(ok){ right++; score+=3; upHud(); modal.querySelector('.gq-help').innerHTML='<b class="gq-yes">Riktig! +3 poeng.</b> Spillet fortsetter …'; setTimeout(()=>{ if(!alive) return; closeQuiz(); I.resume&&I.resume(S); state='count'; count=1.2; stage.focus({preventScroll:true}); },900); }
     else setTimeout(()=>{ if(!alive) return; closeQuiz(); over(quiz,i<0); },i<0?50:1100); }
   function over(q,timeout){ state='over'; const b=GS.best[gid]||0, nb=score>b; if(nb){ GS.best[gid]=score; gSave(GS); }
-    const why=q?(timeout?'Tiden gikk ut.':'Feil svar.'):'Du krasjet.';
+    const why=q?(timeout?'Tiden gikk ut.':'Feil svar.'):gid==='ake'?({tre:'Du kjørte inn i et tre.',stein:'Du kjørte på en stein.',kjegle:'Du kjørte på en kjegle.',kant:'Du kjørte ut av løypa.'}[S.hit]||'Du krasjet.'):'Du krasjet.';
     const box=document.createElement('div'); box.className='gq-modal'; box.setAttribute('role','dialog'); box.setAttribute('aria-modal','true');
     box.innerHTML=`<div class="gq-box"><p class="eyebrow">${why} Spillet er over</p><h3 class="g-big">${score} poeng</h3><p class="g-sub">${right} riktige svar · ${nb?'<b>Ny rekord!</b>':`Rekord: ${b}`}</p>
       ${q?`<div class="gq-sol"><p class="eyebrow">Riktig svar</p><p class="gq-ans">${q.opts[q.a]}</p>${q.steps.length?`<ol>${q.steps.map(s=>`<li>${s}</li>`).join('')}</ol>`:''}</div>`:''}
@@ -5982,14 +6038,14 @@ function mountGame(wrap, gid){
   const key=e=>{ if(e.target.closest&&e.target.closest('.gq-modal')) return; const k=e.key, game=['ArrowUp','ArrowDown','ArrowLeft','ArrowRight',' ','w','a','s','d'].includes(k);
     if(state==='ready'&&(k===' '||k==='Enter')&&document.activeElement===stage){ e.preventDefault(); start(); return; }
     if(state!=='play'&&state!=='count') return; if(!game) return; e.preventDefault();
-    if(gid==='meteor') I.input(S,'down',k); else if(state==='play') I.input(S,k); };
-  const keyup=e=>{ if(gid==='meteor') I.input(S,'up',e.key); };
+    if(STEER) I.input(S,'down',k); else if(state==='play') I.input(S,k); };
+  const keyup=e=>{ if(STEER) I.input(S,'up',e.key); };
   stage.addEventListener('keydown',key); stage.addEventListener('keyup',keyup);
   let sw=null; const rel=e=>{ const r=cv.getBoundingClientRect(); return [(e.clientX-r.left)/r.width*GW,(e.clientY-r.top)/r.height*GH]; };
   cv.addEventListener('pointerdown',e=>{ stage.focus({preventScroll:true}); if(state!=='play'&&state!=='count') return; e.preventDefault(); const [x,y]=rel(e); sw=[x,y];
-    if(gid==='meteor'){ I.input(S,'drag',x); cv.setPointerCapture(e.pointerId); } else if(gid!=='slange'&&state==='play') I.input(S,'tap'); });
-  cv.addEventListener('pointermove',e=>{ if(gid==='meteor'&&sw){ I.input(S,'drag',rel(e)[0]); } });
-  const pup=e=>{ if(!sw) return; const [x,y]=rel(e); if(gid==='slange'&&state==='play'){ const dx=x-sw[0], dy=y-sw[1]; if(Math.max(Math.abs(dx),Math.abs(dy))>18) I.input(S,Math.abs(dx)>Math.abs(dy)?(dx>0?'right':'left'):(dy>0?'down':'up')); } if(gid==='meteor') I.input(S,'release'); sw=null; };
+    if(STEER){ I.input(S,'drag',x); cv.setPointerCapture(e.pointerId); } else if(gid!=='slange'&&state==='play') I.input(S,'tap'); });
+  cv.addEventListener('pointermove',e=>{ if(STEER&&sw){ I.input(S,'drag',rel(e)[0]); } });
+  const pup=e=>{ if(!sw) return; const [x,y]=rel(e); if(gid==='slange'&&state==='play'){ const dx=x-sw[0], dy=y-sw[1]; if(Math.max(Math.abs(dx),Math.abs(dy))>18) I.input(S,Math.abs(dx)>Math.abs(dy)?(dx>0?'right':'left'):(dy>0?'down':'up')); } if(STEER) I.input(S,'release'); sw=null; };
   cv.addEventListener('pointerup',pup); cv.addEventListener('pointercancel',pup);
   cv.style.touchAction='none';
   ov.addEventListener('click',e=>{ if(e.target.closest('[data-g=start]')) start(); });
@@ -6716,7 +6772,7 @@ document.addEventListener('keydown',e=>{ const root=document.getElementById('pb'
 const ICO={mat:`<svg viewBox="0 0 64 64" aria-hidden="true"><rect x="8" y="8" width="48" height="48" rx="8" fill="none" stroke="currentColor" stroke-width="4"/><path d="M20 22h10M25 17v10M36 22h10M21 38l8 8M29 38l-8 8M36 39h10M36 45h10" stroke="currentColor" stroke-width="4" stroke-linecap="round" fill="none"/></svg>`,
   nat:`<svg viewBox="0 0 64 64" aria-hidden="true"><path d="M25 8h14M28 8v16L13 50a5 5 0 0 0 4.4 7.5h29.2A5 5 0 0 0 51 50L36 24V8" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/><path d="M20 42h24" stroke="currentColor" stroke-width="4" stroke-linecap="round"/><circle cx="29" cy="49" r="2.2" fill="currentColor"/><circle cx="37" cy="47" r="1.6" fill="currentColor"/></svg>`};
 function renderStart(){
-  const nTop=BOOK.chapters.flatMap(order).length, nNat=NAT.chapters.length;
+  const nTop=BOOK.chapters.flatMap(order).length;
   main.innerHTML=`<div class="col start">
     <header class="home-hero"><p class="eyebrow">Digital lærebok · 8.–10. trinn</p><h1>Matte og <span class="hl">naturfag</span></h1>
       <p class="lede">Velg fag for å komme i gang. Du kan bytte fag når som helst øverst i menyen.</p></header>
@@ -6725,50 +6781,23 @@ function renderStart(){
         <p>Trinnvise modeller, øving på tre nivåer, forklaringsvideoer, spill og klasseaktiviteter.</p>
         <p class="fag-meta">${nTop} delkapitler · ${VIDS.length} videoer · ${ACTS.length} klasseopplegg</p><span class="btn">Gå til matematikk →</span></a>
       <a class="fag-card nat" href="naturfag/"><span class="fag-ico">${ICO.nat}</span><h2>Naturfag</h2>
-        <p>Fagtekst, interaktive modeller, oppgaver på tre nivåer, forsøksbank og kompetansemål.</p>
-        <p class="fag-meta">15 kapitler · 71 forsøk</p><span class="btn">Gå til naturfag →</span></a>
+        <p>Fagstoff med modeller, forsøksbank, spill og oppgaveark – bygd på kompetansemålene i læreplanen.</p>
+        <p class="fag-meta">61 delkapitler · 72 forsøk · 3 spill</p><span class="btn">Gå til naturfag →</span></a>
     </div>
     <section class="group" aria-labelledby="stv"><h2 id="stv">Lærerverktøy</h2><a class="chap-card" href="grupper/"><span class="num" style="font-size:2.6rem">Grupper</span><h3>Grupper og klassekart</h3><p class="meta">Lag grupper og klassekart med skjulte betingelser for hvem som skal eller ikke skal være sammen. Logg inn med Google.</p></a></section>
     <footer class="foot">Matte og naturfag 8.–10. trinn · Fremgangen lagres bare i denne nettleseren.</footer></div>`;
 }
-/* ===================== naturfag ===================== */
-// Legg kapitler her: {id:'nat8-celler', grade:8, num:1, title:'Celler', intro:'…', html:'…'}
-const NAT={chapters:[]};
-const natCHS=()=>NAT.chapters.filter(c=>c.grade===GRADE);
-function renderNatNav(route){
-  let h=`${fagSw()}<a class="brand-big" href="#naturfag">Naturfag<small>${GRADE}. trinn</small></a>${gradeSw()}<ul class="nav"><li><a href="#naturfag" ${route==='naturfag'?'aria-current="page"':''}><span>Forside</span></a></li><li class="grp">Lærerverktøy</li><li><a class="tool" href="grupper/"><span>👥 Grupper og klassekart</span><span class="tally">Logg inn</span></a></li>`;
-  natCHS().forEach(c=>{ h+=`<li><a class="chap" href="#${c.id}" ${route===c.id?'aria-current="page"':''}><span>Kap ${c.num} · ${c.title}</span></a></li>`; });
-  side.innerHTML=h+`</ul>`;
-}
-function renderNatHome(){ const CH=natCHS();
-  main.innerHTML=`<div class="col">
-    <header class="home-hero"><p class="eyebrow">Digital lærebok · ${GRADE}. trinn</p><h1>Naturfag <span class="hl">${GRADE}. trinn</span></h1>
-      <p class="lede">Her samles naturfaget for ungdomstrinnet: kapitler med forklaringer, modeller og oppgaver.</p>
-      <div class="hero-row">${gradeSw()}</div></header>
-    <section class="group" aria-labelledby="nkh"><h2 id="nkh">Kapitler</h2>${CH.length?`<div class="chapters">${CH.map(c=>`<a class="chap-card" href="#${c.id}"><span class="num">${c.num}</span><h3>${c.title}</h3><p class="meta">${c.intro||''}</p></a>`).join('')}</div>`
-      :`<div class="nat-empty"><span class="fag-ico">${ICO.nat}</span><div><h3>Ingen kapitler for ${GRADE}. trinn ennå</h3><p>Naturfagsiden er satt opp og klar. Kapitlene dukker opp her etter hvert som de blir lagt inn.</p></div></div>`}</section>
-    <section class="group" aria-labelledby="nlv"><h2 id="nlv">Lærerverktøy</h2><a class="chap-card" href="grupper/"><span class="num" style="font-size:2.6rem">Grupper</span><h3>Grupper og klassekart</h3><p class="meta">Lag grupper og klassekart med skjulte betingelser for hvem som skal eller ikke skal være sammen. Logg inn med Google.</p></a></section>
-    <footer class="foot">Naturfag ${GRADE}. trinn · <a href="#">Bytt fag</a></footer></div>`;
-}
-function renderNatChapter(c){
-  main.innerHTML=`<div class="col"><nav class="crumb" aria-label="Brødsmuler"><a href="#naturfag">Forside</a><span>›</span><span>Kapittel ${c.num}</span></nav>
-    <header class="chap-hero"><span class="num" aria-hidden="true">${c.num}</span><p class="eyebrow">Kapittel ${c.num}</p><h1>${c.title}</h1><p class="lede">${c.intro||''}</p></header>${c.html||''}</div>`;
-}
 function route(){
   const r=decodeURIComponent(location.hash.slice(1));
-  if(r==='naturfag'){ location.replace('naturfag/'); return; }
   const ch=BOOK.chapters.find(c=>r===c.id||r.startsWith(c.id+'-'));
   let cur='';
   if(GAME){ GAME.destroy(); GAME=null; }
-  const nch=NAT.chapters.find(c=>r===c.id);
-  FAG = r===''?null : (r==='naturfag'||nch)?'nat' : 'mat';
-  if(nch&&nch.grade!==GRADE) setGrade(nch.grade);
+  if(r==='naturfag'){ location.replace('naturfag/'); return; }
+  FAG = r===''?null : 'mat';
   if(ch&&gradeOf(ch)!==GRADE) setGrade(gradeOf(ch));
-  document.body.classList.toggle('fag-nat',FAG==='nat'); document.body.classList.toggle('fag-start',!FAG); setTitle();
-  const br=document.getElementById('brand'); if(br){ br.textContent=FAG==='nat'?`Naturfag ${GRADE}`:FAG==='mat'?`Matematikk ${GRADE}`:'Matte og naturfag'; br.setAttribute('href',FAG==='nat'?'#naturfag':FAG==='mat'?'#matte':'#'); }
+  document.body.classList.toggle('fag-start',!FAG); setTitle();
+  const br=document.getElementById('brand'); if(br){ br.textContent=FAG==='mat'?`Matematikk ${GRADE}`:'Matte og naturfag'; br.setAttribute('href',FAG==='mat'?'#matte':'#'); }
   if (r===''){ renderStart(); }
-  else if (r==='naturfag'){ renderNatHome(); cur=r; }
-  else if (nch){ renderNatChapter(nch); cur=r; }
   else if (r==='matte'){ renderHome(); cur=r; }
   else if (r==='laerer'){ renderTeacher(); cur=r; }
   else if (r==='spill'){ renderGames(); cur=r; }
@@ -6794,7 +6823,7 @@ scrim.addEventListener('click', closeMenu);
 document.addEventListener('keydown', e=>{ if(e.key==='Escape'&&side.classList.contains('open')){ closeMenu(); menuBtn.focus(); } });
 try{ window.__mat8={TRAINERS,poly,parsePoly,polyEq,TOPICS,BOOK,F,P,fmt,powStr,pfac,MODELS}; }catch(e){}
 document.addEventListener('click',e=>{ const b=e.target.closest('[data-grade]'); if(!b) return; const g=+b.dataset.grade; if(g===GRADE) return; setGrade(g);
-  const r=decodeURIComponent(location.hash.slice(1)); if(r==='laerer'||r==='spill'||r==='aktiviteter'||BOARDS[r]||r===''||r==='matte'||r==='naturfag') route(); else location.hash=FAG==='nat'?'naturfag':'matte'; });
+  const r=decodeURIComponent(location.hash.slice(1)); if(r==='laerer'||r==='spill'||r==='aktiviteter'||BOARDS[r]||r===''||r==='matte') route(); else location.hash='matte'; });
 setGrade(GRADE);
 window.addEventListener('hashchange', route);
 route();
