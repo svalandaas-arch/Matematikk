@@ -28,3 +28,5 @@
  body.lag-printing .lag-prev{border:0;box-shadow:none;padding:0}
  body.lag-printing .eks-code,body.lag-printing .eks-code code{white-space:pre!important;display:block}
 }
+.lag-files{border:1.5px solid var(--ink);border-radius:12px;background:var(--surface);padding:14px 18px;margin:0 0 16px}
+.lag-files p{margin:0 0 6px}.lag-files ul{margin:0 0 10px}
