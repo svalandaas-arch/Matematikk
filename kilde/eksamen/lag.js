@@ -11,7 +11,7 @@ function lagHTML(L,o){
   const tit=o.tema.map(t=>EKS.tema[t]).join(', ');
   const forst={}, samme={}; if(o.medSider) L.forEach((x,i)=>{ const k=x.url; if(k in forst) samme[i]=forst[k]; else forst[k]=i; });
   const row=(x,i)=>`<section class="lag-o"><div class="lag-n">${i+1}</div><div class="lag-b"><h3>${EKTE_NAVN(x.eks)} · Del ${x.del_} · Oppgave ${x.nr} <small>side ${x.side} · ${x.del_===1?'uten hjelpemidler':'med hjelpemidler'}</small></h3>
-    <p>${x.besk}${i in samme?` <i>(står på samme side som oppgave ${samme[i]+1})</i>`:''}</p><p class="lag-tema">${x.tema.map(t=>EKS.tema[t]).join(' · ')}</p><p class="lag-url"><a href="${x.url}">${x.url.replace('https://','')}</a></p></div><div class="lag-box" aria-hidden="true">Gjort</div></section>`;
+    <p>${x.besk}${i in samme?` <i>(står på samme side som oppgave ${samme[i]+1})</i>`:''}</p><p class="lag-tema">${x.tema.map(t=>EKS.tema[t]).join(' · ')}</p>${o.medSider?'':`<p class="lag-url"><a href="${x.url}">${x.url.replace('https://','')}</a></p>`}</div><div class="lag-box" aria-hidden="true">Gjort</div></section>`;
   let body='', i=0;
   if(o.sort==='tema') o.tema.forEach(t=>{ const G=L.filter(x=>x.tema.find(z=>o.tema.includes(z))===t); if(G.length) body+=`<h2 class="lag-del">${EKS.tema[t]} <small>${G.length} oppgaver</small></h2>`+G.map(x=>row(x,i++)).join(''); });
   else EKTE.dok.forEach(d=>{ const G=L.filter(x=>x.eks===d.id); if(G.length) body+=`<h2 class="lag-del">Eksamen ${d.navn.toLowerCase()} <small>${d.dato}</small></h2>`+G.map(x=>row(x,i++)).join(''); });
@@ -77,7 +77,7 @@ async function lagOppgavePDF(L,o){
   await Promise.all([lagLastLib(),lagLastPdfLib()]);
   const files=[...new Set(L.map(x=>x.url.split('#')[0]))], buf={};
   for(const f of files){ if(LAG_FILER[lagNavn(f)]){ buf[f]=LAG_FILER[lagNavn(f)]; continue; }
-    try{ const r=await fetch(f,{mode:'cors'}); if(r.ok){ const a=await r.arrayBuffer(); if(new Uint8Array(a.slice(0,4)).join()==='37,80,68,70'){ buf[f]=a; LAG_FILER[lagNavn(f)]=a; } } }catch(e){} }
+    for(const u of ['eksamen/pdf/'+f.split('/').pop(), f]){ try{ const r=await fetch(u); if(r.ok){ const a=await r.arrayBuffer(); if(new Uint8Array(a.slice(0,4)).join()==='37,80,68,70'){ buf[f]=a; LAG_FILER[lagNavn(f)]=a; break; } } }catch(e){} } }
   const miss=files.filter(f=>!buf[f]); if(miss.length) return {miss};
   const {PDFDocument,StandardFonts,rgb}=PDFLib, out=await PDFDocument.create();
   const o2={...o,medSider:true}, box=document.createElement('div'); box.className='lag-pdfbox'; box.innerHTML=lagHTML(L,o2); document.body.appendChild(box);
