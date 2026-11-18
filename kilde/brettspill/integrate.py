@@ -15,11 +15,14 @@ own = [
       lv=['Nivå 1: sirkler, strimler og prikker', 'Nivå 2: brøker, tallinjer og ord', 'Nivå 3: regnestykker med brøk'],
       src=UP + 'cb1df66d-Br_kjakten___brettspill.pdf'),
 ]
-order = ['terningduellen', 'potensstigen', 'brokjakten', 'faktorfangeren', 'likningsjakten', 'punktjakten', 'koordinatlopet',
-         'statistikkjakten', 'arealjakten', 'arealkrigen', 'volumjakten', 'sannsynlighetsjakten',
-         'parentesjakten', 'grafjakten', 'prosentjakten', 'lommeboka', 'tallsystemjakten']
+order = ['terningduellen', 'potensstigen', 'minusstigen', 'nullspillet',
+         'brokjakten', 'faktorfangeren', 'brokstigen', 'brokspillet', 'broklopet', 'brokkrigen',
+         'likningsjakten', 'algebrastigen', 'algebraspillet', 'punktjakten', 'koordinatlopet',
+         'statistikkjakten', 'arealjakten', 'arealkrigen', 'pytagorasstigen', 'oppussingen', 'volumjakten', 'sannsynlighetsjakten', 'sannsynlighetsstigen',
+         'parentesjakten', 'likningsstigen', 'grafjakten', 'prosentjakten', 'lommeboka', 'prosentkrigen', 'tallsystemjakten']
 for o in own: meta[o['id']] = o
-for m in json.load(open(os.path.join(OUT, 'spill2.json'))): meta[m['id']] = m
+for f in ('spill2.json', 'spill3.json'):
+    for m in json.load(open(os.path.join(OUT, f))): meta[m['id']] = m
 TMP = os.path.join(G, 'spr'); shutil.rmtree(TMP, ignore_errors=True); os.makedirs(TMP)
 files = []; entries = []
 CHN = {'kap1': 1, 'kap2': 2, 'kap3': 3, 'kap4': 4}
@@ -27,7 +30,7 @@ for i, gid in enumerate(order):
     m = meta[gid]
     src = m.get('src') or os.path.join(OUT, gid + '.pdf')
     shutil.copy(src, os.path.join(AKT, gid + '.pdf'))
-    subprocess.run(['pdftoppm', '-jpeg', '-jpegopt', 'quality=88', '-scale-to-x', '760', '-scale-to-y', '537', src, os.path.join(TMP, f'{i:02d}')], check=True)
+    subprocess.run(['pdftoppm', '-jpeg', '-jpegopt', 'quality=88', '-scale-to-x', '640', '-scale-to-y', '452', src, os.path.join(TMP, f'{i:02d}')], check=True)
     pages = sorted(glob.glob(os.path.join(TMP, f'{i:02d}-*.jpg'))); th = m.get('thumbs') or m['lv']; assert len(pages) == len(th), (gid, pages)
     o = len(files); files += pages
     num = CHN.get(m['ch'], int(m['ch'][-1]))
@@ -35,9 +38,9 @@ for i, gid in enumerate(order):
         topics=[m['topic']], pages=len(th), short=m['short'], desc=m['short'], inside=[f'{len(th)} sider: ' + '; '.join(th)],
         thumbs=th, own=True, kind='Brettspill', typ=m.get('typ', 'Fire på rad'), sp=dict(f='aktiviteter/forhbs.jpg', o=o, n=None, land=1), sub=m['sub'], col=m['a']))
 for e in entries: e['sp']['n'] = len(files)
-im = Image.new('RGB', (760, 537 * len(files)), 'white')
-for k, f in enumerate(files): im.paste(Image.open(f).convert('RGB').resize((760, 537)), (0, 537 * k))
-im.save(os.path.join(AKT, 'forhbs.jpg'), quality=66, optimize=True, progressive=True)
+im = Image.new('RGB', (640, 452 * len(files)), 'white')
+for k, f in enumerate(files): im.paste(Image.open(f).convert('RGB').resize((640, 452)), (0, 452 * k))
+im.save(os.path.join(AKT, 'forhbs.jpg'), quality=62, optimize=True, progressive=True)
 print('sprite', len(files), 'sider', os.path.getsize(os.path.join(AKT, 'forhbs.jpg')) // 1024, 'kB')
 
 p = os.path.join(REPO, 'index.html'); s = open(p).read()
