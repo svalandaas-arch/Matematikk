@@ -6517,7 +6517,7 @@ function renderLag(){
       <fieldset><legend>4. Rekkefølge</legend><div class="lag-pills">${[['tema','Etter tema'],['eks','Etter eksamen']].map(([v,n])=>`<label><input type="radio" name="sort" value="${v}" ${st.sort===v?'checked':''}><span>${n}</span></label>`).join('')}</div></fieldset>
       <div class="lag-btns"><button type="button" class="btn" data-lag>Lag oppgavesett</button><span class="lag-msg" role="status"></span></div>
     </form>
-    <div class="lag-out" hidden><div class="lag-btns"><button type="button" class="btn" data-full>Last ned PDF med oppgavene</button><span class="lag-hint">PDF-en får en oversikt først, og deretter eksamenssidene med oppgavene.</span></div>
+    <div class="lag-out" hidden><div class="lag-btns"><button type="button" class="btn" data-full>Last ned PDF med oppgavene</button><span class="lag-hint">PDF-en inneholder bare eksamenssidene med oppgavene.</span></div>
       <div class="lag-files" hidden></div><div class="lag-prev"></div></div></div>`;
   const F=main.querySelector('.lag-form'), out=main.querySelector('.lag-out'), msg=main.querySelector('.lag-msg');
   const read=()=>({tema:[...F.querySelectorAll('[name=tema]:checked')].map(x=>x.value),eks:[...F.querySelectorAll('[name=eks]:checked')].map(x=>x.value),del_:+F.querySelector('[name=del]:checked').value,sort:F.querySelector('[name=sort]:checked').value});
@@ -6557,15 +6557,12 @@ function lagSider(x){ // sidene oppgaven står på i eksamens-PDF-en (fysiske si
   const f=x.url.split('#')[0], p=x.side, end=Math.max(p,x.slutt||p), L=[]; for(let i=p;i<=end;i++) L.push(i); return {f,L};
 }
 async function lagOppgavePDF(L,o){
-  await Promise.all([lagLastLib(),lagLastPdfLib()]);
+  await lagLastPdfLib();
   const files=[...new Set(L.map(x=>x.url.split('#')[0]))], buf={};
   for(const f of files){ if(LAG_FILER[lagNavn(f)]){ buf[f]=LAG_FILER[lagNavn(f)]; continue; }
     for(const u of ['eksamen/pdf/'+f.split('/').pop(), f]){ try{ const r=await fetch(u); if(r.ok){ const a=await r.arrayBuffer(); if(new Uint8Array(a.slice(0,4)).join()==='37,80,68,70'){ buf[f]=a; LAG_FILER[lagNavn(f)]=a; break; } } }catch(e){} } }
   const miss=files.filter(f=>!buf[f]); if(miss.length) return {miss};
   const {PDFDocument,StandardFonts,rgb}=PDFLib, out=await PDFDocument.create();
-  const o2={...o,medSider:true}, box=document.createElement('div'); box.className='lag-pdfbox'; box.innerHTML=lagHTML(L,o2); document.body.appendChild(box);
-  let cov; try{ cov=await html2pdf().set({margin:[12,13,14,13],enableLinks:true,image:{type:'jpeg',quality:.95},html2canvas:{scale:2,backgroundColor:'#ffffff'},jsPDF:{unit:'mm',format:'a4',orientation:'portrait'},pagebreak:{mode:['css','legacy'],avoid:['.lag-o','.lag-del']}}).from(box.firstElementChild).outputPdf('arraybuffer'); } finally{ box.remove(); }
-  const cd=await PDFDocument.load(cov); (await out.copyPages(cd,cd.getPageIndices())).forEach(p=>out.addPage(p));
   const font=await out.embedFont(StandardFonts.HelveticaBold), docs={}, brukt={};
   for(const f of files){ docs[f]=await PDFDocument.load(buf[f],{ignoreEncryption:true}); brukt[f]=new Set(); }
   for(let i=0;i<L.length;i++){ const x=L[i], {f,L:sider}=lagSider(x), d=docs[f];
