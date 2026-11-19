@@ -1,9 +1,10 @@
-/* ===================== Lag oppgavesett (bare ekte eksamensoppgaver) ===================== */
+/* ===================== Lag oppgavesett (ekte eksamener + offisielle eksempeloppgaver) ===================== */
+const LAG_DOK=()=>[...EKTE.dok,...(EKTE.odok||[])], LAG_OPP=()=>[...EKTE.oppg,...(EKTE.ooppg||[])], lagErEks=id=>(EKTE.odok||[]).some(d=>d.id===id);
 let LAG_OPT=null, LAG_L=[]; const LAG_FILER={};
 const lagNavn=f=>f.split('/').pop().split('#')[0].toLowerCase().replace(/\s*\(\d+\)/,'').replace(/\s+/g,'');
 function lagUtvalg(o){
-  const L=EKTE.oppg.filter(x=>x.tema.some(t=>o.tema.includes(t))&&o.eks.includes(x.eks)&&(!o.del_||x.del_===o.del_));
-  const ord=EKTE.dok.map(d=>d.id), hov=x=>o.tema.indexOf(x.tema.find(t=>o.tema.includes(t)));
+  const L=LAG_OPP().filter(x=>x.tema.some(t=>o.tema.includes(t))&&o.eks.includes(x.eks)&&(!o.del_||x.del_===o.del_));
+  const ord=LAG_DOK().map(d=>d.id), hov=x=>o.tema.indexOf(x.tema.find(t=>o.tema.includes(t)));
   L.sort((a,b)=>(o.sort==='tema'?hov(a)-hov(b):0)||ord.indexOf(a.eks)-ord.indexOf(b.eks)||a.del_-b.del_||a.nr-b.nr);
   return L;
 }
@@ -14,22 +15,23 @@ function lagHTML(L,o){
     <p>${x.besk}${i in samme?` <i>(står på samme side som oppgave ${samme[i]+1})</i>`:''}</p><p class="lag-tema">${x.tema.map(t=>EKS.tema[t]).join(' · ')}</p>${o.medSider?'':`<p class="lag-url"><a href="${x.url}">${x.url.replace('https://','')}</a></p>`}</div><div class="lag-box" aria-hidden="true">Gjort</div></section>`;
   let body='', i=0;
   if(o.sort==='tema') o.tema.forEach(t=>{ const G=L.filter(x=>x.tema.find(z=>o.tema.includes(z))===t); if(G.length) body+=`<h2 class="lag-del">${EKS.tema[t]} <small>${G.length} oppgaver</small></h2>`+G.map(x=>row(x,i++)).join(''); });
-  else EKTE.dok.forEach(d=>{ const G=L.filter(x=>x.eks===d.id); if(G.length) body+=`<h2 class="lag-del">Eksamen ${d.navn.toLowerCase()} <small>${d.dato}</small></h2>`+G.map(x=>row(x,i++)).join(''); });
+  else LAG_DOK().forEach(d=>{ const G=L.filter(x=>x.eks===d.id); if(G.length) body+=`<h2 class="lag-del">${lagErEks(d.id)?d.navn:'Eksamen '+d.navn.toLowerCase()} <small>${d.dato}</small></h2>`+G.map(x=>row(x,i++)).join(''); });
   return `<div class="lag-doc"><header class="lag-head"><div><p class="lag-ey">Matematikk 10. trinn · Ekte eksamensoppgaver</p><h1>${tit}</h1></div><p class="lag-name">Navn: ______________________ &nbsp; Dato: __________</p></header>
-    <p class="lag-intro">${L.length} oppgaver fra tidligere eksamener (MAT0015). ${o.medSider?'Oppgavene følger etter denne oversikten, slik de står i eksamen.':'Åpne lenken til hver oppgave, eller finn eksamenen på nettsiden under Eksamen › Ekte eksamener.'} Del 1 skal løses uten hjelpemidler. Kryss av når du er ferdig.</p>
+    <p class="lag-intro">${L.length} oppgaver fra tidligere eksamener (MAT0015)${L.some(x=>lagErEks(x.eks))?' og offisielle eksempeloppgaver':''}. ${o.medSider?'Oppgavene følger etter denne oversikten, slik de står i eksamen.':'Åpne lenken til hver oppgave, eller finn eksamenen på nettsiden under Eksamen › Ekte eksamener.'} Del 1 skal løses uten hjelpemidler. Kryss av når du er ferdig.</p>
     ${body}<p class="lag-src">Oppgavene er laget av Utdanningsdirektoratet.</p></div>`;
 }
 function renderLag(){
   let st={tema:[],eks:EKTE.dok.map(d=>d.id),del_:0,sort:'tema'}; try{ Object.assign(st,JSON.parse(localStorage.getItem('eks-lag2')||'{}')); }catch(e){}
-  const cnt=t=>EKTE.oppg.filter(o=>o.tema.includes(t)).length;
+  const cnt=t=>LAG_OPP().filter(o=>o.tema.includes(t)).length;
   main.innerHTML=`<div class="col">${eksCrumb('Lag oppgavesett')}<header class="topic-head"><p class="eyebrow">10. trinn · Eksamen</p><h1>Lag <span class="hl">oppgavesett</span></h1>
-    <p class="lede">Velg temaene du vil øve på. Du får en PDF med alle oppgavene fra ekte eksamener som handler om dem, slik de står i eksamen.</p></header>${eksSub('eksamen-lag')}
+    <p class="lede">Velg temaene du vil øve på. Du får en PDF med alle oppgavene fra ekte eksamener som handler om dem, slik de står i eksamen. Du kan også ta med de offisielle eksempeloppgavene fra Utdanningsdirektoratet.</p></header>${eksSub('eksamen-lag')}
     <form class="lag-form" onsubmit="return false">
       <fieldset><legend>1. Velg temaer</legend><div class="lag-pills">${Object.entries(EKS.tema).map(([k,n])=>`<label><input type="checkbox" name="tema" value="${k}" ${st.tema.includes(k)?'checked':''}><span>${n} (${cnt(k)})</span></label>`).join('')}</div>
         <p class="lag-q"><button type="button" class="linklike" data-alle>Velg alle</button> · <button type="button" class="linklike" data-ingen>Fjern alle</button></p></fieldset>
       <fieldset><legend>2. Hvilke eksamener?</legend><div class="lag-pills">${EKTE.dok.map(d=>`<label><input type="checkbox" name="eks" value="${d.id}" ${st.eks.includes(d.id)?'checked':''}><span>${d.navn}</span></label>`).join('')}</div></fieldset>
-      <fieldset><legend>3. Del</legend><div class="lag-pills">${[[0,'Begge'],[1,'Del 1 (uten hjelpemidler)'],[2,'Del 2 (med hjelpemidler)']].map(([v,n])=>`<label><input type="radio" name="del" value="${v}" ${st.del_===v?'checked':''}><span>${n}</span></label>`).join('')}</div></fieldset>
-      <fieldset><legend>4. Rekkefølge</legend><div class="lag-pills">${[['tema','Etter tema'],['eks','Etter eksamen']].map(([v,n])=>`<label><input type="radio" name="sort" value="${v}" ${st.sort===v?'checked':''}><span>${n}</span></label>`).join('')}</div></fieldset>
+      <fieldset><legend>3. Offisielle eksempeloppgaver</legend><p class="lag-q">Øvingsoppgaver fra Utdanningsdirektoratet i samme form som eksamen. Kryss av for å ta dem med.</p><div class="lag-pills">${(EKTE.odok||[]).map(d=>`<label><input type="checkbox" name="eks" value="${d.id}" ${st.eks.includes(d.id)?'checked':''}><span>${d.navn} (${EKTE.ooppg.filter(o=>o.eks===d.id).length})</span></label>`).join('')}</div></fieldset>
+      <fieldset><legend>4. Del</legend><div class="lag-pills">${[[0,'Begge'],[1,'Del 1 (uten hjelpemidler)'],[2,'Del 2 (med hjelpemidler)']].map(([v,n])=>`<label><input type="radio" name="del" value="${v}" ${st.del_===v?'checked':''}><span>${n}</span></label>`).join('')}</div></fieldset>
+      <fieldset><legend>5. Rekkefølge</legend><div class="lag-pills">${[['tema','Etter tema'],['eks','Etter eksamen']].map(([v,n])=>`<label><input type="radio" name="sort" value="${v}" ${st.sort===v?'checked':''}><span>${n}</span></label>`).join('')}</div></fieldset>
       <div class="lag-btns"><button type="button" class="btn" data-lag>Lag oppgavesett</button><span class="lag-msg" role="status"></span></div>
     </form>
     <div class="lag-out" hidden><div class="lag-btns"><button type="button" class="btn" data-full>Last ned PDF med oppgavene</button><span class="lag-hint">PDF-en inneholder bare eksamenssidene med oppgavene.</span></div>
@@ -43,7 +45,7 @@ function renderLag(){
   const full=async b=>{ b=b||main.querySelector('[data-full]'); b.disabled=true; const old=b.textContent; b.textContent='Henter oppgavene …'; const box=main.querySelector('.lag-files');
     try{ const r=await lagOppgavePDF(LAG_L,LAG_OPT);
       if(r.miss){ box.hidden=false; box.innerHTML=`<p><b>Nettleseren fikk ikke hente eksamens-PDF-ene direkte.</b> Last ned ${r.miss.length===1?'denne filen':'disse filene'} først, og velg ${r.miss.length===1?'den':'dem'} under. Filene blir bare brukt på din maskin.</p>
-          <ul>${r.miss.map(f=>`<li><a href="${f}" target="_blank" rel="noopener" download>${f.split('/').pop()}</a> (${EKTE.dok.find(d=>d.deler.some(x=>x.url.split('#')[0]===f)).navn})</li>`).join('')}</ul>
+          <ul>${r.miss.map(f=>`<li><a href="${f}" target="_blank" rel="noopener" download>${f.split('/').pop()}</a> (${LAG_DOK().find(d=>d.deler.some(x=>x.url.split('#')[0]===f)).navn})</li>`).join('')}</ul>
           <label class="btn small">Velg PDF-filene <input type="file" accept="application/pdf" multiple hidden></label>`;
         box.querySelector('input').onchange=async ev=>{ await lagLesFiler(ev.target.files); full(); }; }
       else { box.hidden=true; msg.textContent=''; } }

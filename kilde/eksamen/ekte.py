@@ -9,6 +9,11 @@ DOK=[
  dict(id='v23',navn='Våren 2023',dato='22.05.2023',deler=[(1,'V23_Del1.pdf',1),(2,'V23_Del2.pdf',1)]),
  dict(id='v22',navn='Våren 2022',dato='24.05.2022',deler=[(1,'V22_Del1.pdf',1),(2,'V22_Del2.pdf',1)]),
 ]
+# Offisielle eksempeloppgaver fra Utdanningsdirektoratet (kan velges i «Lag oppgavesett»)
+OFF=[
+ dict(id='e26',navn='Eksempelsett 2026',dato='Udir',deler=[(1,'Eksempel_2026_Del1.pdf',1),(2,'Eksempel_2026_Del2.pdf',1)]),
+ dict(id='e22',navn='Eksempelsett 2022',dato='14.01.2022',deler=[(1,'Eksempel_2022_Del1.pdf',1),(2,'Eksempel_2022_Del2.pdf',1)]),
+]
 # (eksamen, del, nr, første side, siste side, [temaer], beskrivelse i egne ord)
 # Sidetallene er fysiske sider i PDF-filen (det #page=N peker på), ikke sidetallet som står trykt på arket.
 R=[
@@ -92,13 +97,51 @@ R=[
  ('v22',2,8,7,7,['programmering','geometri'],'Forklare et program og tegne figuren det lager'),
  ('v22',2,9,8,8,['tall','resonnering'],'Utforske og generalisere et mønster med kvadrattall'),
  ('v22',2,10,9,9,['okonomi','resonnering'],'Velge mobilabonnement ut fra en prisoversikt'),
+ ('e26',1,1,2,2,['statistikk'],'Lese av et diagram over arbeidsledige ungdommer'),
+ ('e26',1,2,3,3,['tall','okonomi'],'Rabatt i prosent på en høyttaler, og sammenligne to butikker'),
+ ('e26',1,3,4,4,['algebra','resonnering'],'Fortsette et tallmønster og lage en formel'),
+ ('e26',1,4,5,5,['geometri'],'Hvor mange ganger større arealet blir når sidene endres'),
+ ('e26',1,5,6,6,['algebra','okonomi'],'Finne billettprisene ut fra hva to familier betaler'),
+ ('e26',1,6,7,7,['funksjoner'],'Stigningstallet til en graf for vekten til en kalv'),
+ ('e26',1,7,8,8,['sannsynlighet'],'Er det rettferdig å avgjøre ordensplikt med en terning?'),
+ ('e26',1,8,9,9,['programmering','okonomi'],'Forklare et spareprogram og finne saldoen'),
+ ('e26',1,9,10,10,['geometri'],'Vise hva høyden i en trekant er med Pytagoras'),
+ ('e26',1,10,11,11,['statistikk','resonnering'],'Finne fem tall med gitt gjennomsnitt, median og typetall'),
+ ('e26',1,11,12,12,['geometri','algebra'],'Lage et uttrykk for arealet av et trapes'),
+ ('e26',1,12,13,13,['algebra','resonnering'],'Vise hvilke algebraiske uttrykk som alltid har lik verdi'),
+ ('e26',1,13,14,14,['funksjoner'],'Velge grafen som passer til y = 0,5x − 2'),
+ ('e26',2,1,2,2,['statistikk'],'Gjennomsnitt, median og variasjonsbredde for søvn i en klasse'),
+ ('e26',2,2,3,3,['funksjoner','okonomi'],'Forklare en spareformel og regne ut saldo'),
+ ('e26',2,3,4,4,['funksjoner','okonomi'],'Grafer for tre lønnstilbud, blant annet ett som dobles hver time'),
+ ('e26',2,4,5,5,['algebra','okonomi'],'Likningssett for salg av kakestykker og boller'),
+ ('e26',2,5,6,6,['okonomi','programmering'],'Modell for overskudd på en festival, og justere den'),
+ ('e26',2,6,7,7,['resonnering','algebra'],'Undersøke og generalisere påstander om tall'),
+ ('e22',1,1,3,3,['algebra','resonnering'],'Antall trekanter og kvadrater i figur 10 i et mønster'),
+ ('e22',1,2,3,3,['algebra'],'Hvilke verdier av a og b gjør at (a + b)² = 16'),
+ ('e22',1,3,4,4,['tall'],'Finne det ukjente tallet i en likhet med produkter'),
+ ('e22',1,4,4,4,['funksjoner'],'Velge funksjonsuttrykk ut fra en beskrivelse av grafen'),
+ ('e22',1,5,5,5,['okonomi'],'Betale mobilen med en gang eller per måned i to år'),
+ ('e22',1,6,6,6,['geometri'],'Hvor mye volumet av en kule øker når radien tredobles'),
+ ('e22',1,7,7,7,['tall'],'Fordele penger likt mellom søsken'),
+ ('e22',2,1,3,3,['algebra','resonnering'],'Vurdere en elevs forenkling av et uttrykk'),
+ ('e22',2,2,3,3,['funksjoner','okonomi'],'Sammenligne priser for leie av sparkesykkel hos tre firmaer'),
+ ('e22',2,3,4,4,['geometri','resonnering'],'Argumentere for avstanden mellom sentrene i to sirkler'),
+ ('e22',2,4,4,4,['algebra'],'Finne tre løsninger av likningen (4 − a)(4 + b) = 8'),
+ ('e22',2,5,5,5,['programmering'],'Forklare hva en algoritme undersøker'),
+ ('e22',2,6,6,6,['funksjoner','okonomi'],'Forklare en funksjon for omregning fra euro til kroner'),
+ ('e22',2,7,6,6,['algebra'],'Likningssett for pant av små og store flasker'),
+ ('e22',2,8,7,7,['statistikk'],'Vurdere grafiske framstillinger om uføretrygd kritisk'),
+ ('e22',2,9,8,8,['resonnering','algebra'],'Vise kompetanse i abstraksjon og generalisering ut fra påstander'),
+ ('e22',2,10,9,9,['okonomi'],'Regne på hva det koster å eie en moped i to år'),
 ]
 TEMA={'tall','algebra','funksjoner','geometri','sannsynlighet','statistikk','okonomi','programmering','resonnering'}
-fil={(d['id'],p):f for d in DOK for p,f,_ in d['deler']}
+fil={(d['id'],p):f for d in DOK+OFF for p,f,_ in d['deler']}
 O=[dict(id=f'{e}-{dl}-{nr}',eks=e,del_=dl,nr=nr,side=s,slutt=sl,tema=t,besk=b,url=P+fil[(e,dl)]+f'#page={s}') for e,dl,nr,s,sl,t,b in R]
 assert len({o['id'] for o in O})==len(O)
 for o in O:
     assert o['slutt']>=o['side'] and set(o['tema'])<=TEMA, o
-json.dump(dict(dok=[dict(id=d['id'],navn=d['navn'],dato=d['dato'],deler=[dict(del_=p,url=P+f+f'#page={s}') for p,f,s in d['deler']]) for d in DOK],oppg=O),open('ekte.json','w',encoding='utf-8'),ensure_ascii=False)
+dok=lambda L:[dict(id=d['id'],navn=d['navn'],dato=d['dato'],deler=[dict(del_=p,url=P+f+f'#page={s}') for p,f,s in d['deler']]) for d in L]
+offid={d['id'] for d in OFF}
+json.dump(dict(dok=dok(DOK),oppg=[o for o in O if o['eks'] not in offid],odok=dok(OFF),ooppg=[o for o in O if o['eks'] in offid]),open('ekte.json','w',encoding='utf-8'),ensure_ascii=False)
 from collections import Counter
 print(len(O),Counter(t for o in O for t in o['tema']))
