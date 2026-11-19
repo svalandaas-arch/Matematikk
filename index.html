@@ -2872,7 +2872,7 @@ function renderNav(route){
     ch.groups.forEach(g=>{ h+=`<li class="grp">${g.title}</li>`; g.topics.forEach(tid=>{ const r=`${ch.id}-${tid}`; h+=`<li class="sub"><a href="#${r}" ${route===r?'aria-current="page"':''}><span>${TOPICS[tid].title}</span>${tally(topicStat(tid))}</a></li>`; }); });
   });
   side.innerHTML = h+`</ul>`;
-  const d=side.querySelector('.tgrp'); if(d) d.addEventListener('toggle',()=>{ try{ localStorage.setItem('nav-laerer',d.open?'1':'0'); }catch(e){} });
+  const d=side.querySelector('.tgrp'); if(d) d.querySelector('summary').addEventListener('click',()=>setTimeout(()=>{ try{ localStorage.setItem('nav-laerer',d.open?'1':'0'); }catch(e){} },0));
 }
 function refreshNav(){ renderNav(curRoute); }
 function renderHome(){

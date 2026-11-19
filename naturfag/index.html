@@ -76,6 +76,19 @@ code,.math{font-family:var(--f-mono);font-weight:500;font-size:.94em;white-space
 .nav .grp{font-family:var(--f-mono);font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);padding:12px 10px 4px}
 .nav .sub a{padding-left:20px}
 .nav a.tool{font-weight:700;border:1.5px solid var(--pen);color:var(--pen)}.nav a.tool:hover{background:var(--pen-soft)}
+.nav .tgrp>summary{list-style:none;cursor:pointer;display:flex;justify-content:space-between;align-items:center;font-family:var(--f-mono);font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);padding:12px 10px 4px;border-radius:6px}
+.nav .tgrp>summary::-webkit-details-marker{display:none}
+.nav .tgrp>summary::after{content:"+";font-size:1rem;line-height:1}.nav .tgrp[open]>summary::after{content:"−"}
+.nav .tgrp>summary:hover{color:var(--pen)}
+.nav .tgrp ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:2px}
+.quick{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:12px}
+.qcard{display:flex;flex-direction:column;gap:4px;padding:14px 16px;border:1.5px solid var(--line);border-radius:10px;background:var(--surface);text-decoration:none;color:var(--ink)}
+.qcard:hover{border-color:var(--pen);box-shadow:3px 3px 0 var(--pen)}
+.qcard b{font-family:var(--f-display);font-size:1.12rem}
+.qcard span{color:var(--muted);font-size:.92rem;line-height:1.4}
+details.kmbox>summary{cursor:pointer;list-style:none}
+details.kmbox>summary::-webkit-details-marker{display:none}
+details.kmbox>summary::after{content:" +";color:var(--pen)}details.kmbox[open]>summary::after{content:" −"}
 .nav .soon{color:var(--muted);padding:6px 10px;font-size:.92rem}
 .tally{font-family:var(--f-mono);font-size:.74rem;color:var(--muted);font-variant-numeric:tabular-nums;white-space:nowrap}
 .tally.done{color:var(--ok);font-weight:700}
@@ -3751,18 +3764,20 @@ const labHTML = (lab, ch, tid, meta) => `<article class="labx">
 let curRoute='';
 function renderNav(route){
   const cur = r => route===r?'aria-current="page"':'';
+  let lOpen=route==='laerer'||route==='maal'; try{ lOpen=lOpen||localStorage.getItem('nav-laerer')==='1'; }catch(e){}
   let h=`<div class="fag-sw" role="group" aria-label="Velg fag"><a href="${SITE}#matte">Matematikk</a><a href="#" aria-current="true">Naturfag</a></div><a class="brand-big" href="#">Naturfag<small>${GRADE}. trinn · ${BOOKNAME[GRADE]}</small></a>${gradeSw()}<ul class="nav">
     <li><a href="#" ${cur('')}><span>Forside</span></a></li>
-    <li><a href="#maal" ${cur('maal')}><span>Kompetansemål</span><span class="tally">${KM.length} mål</span></a></li>
     <li><a href="#forsok" ${cur('forsok')}><span>Forsøksbank</span><span class="tally">${bankGrade(GRADE).length} forsøk</span></a></li>
     <li><a href="#spill" ${cur('spill')}><span>Spill</span><span class="tally">${GAMES.length} spill</span></a></li>
-    <li><a href="#laerer" ${cur('laerer')}><span>For lærere</span><span class="tally">Ark</span></a></li><li class="grp">Lærerverktøy</li><li><a class="tool" href="${GRUPPER_URL}"><span>👥 Grupper og klassekart</span><span class="tally">Logg inn</span></a></li>`;
+    <li><details class="tgrp" ${lOpen?'open':''}><summary>For lærere</summary><ul><li><a href="#laerer" ${cur('laerer')}><span>Oppgaveark og prøver</span><span class="tally">Ark</span></a></li><li><a href="#maal" ${cur('maal')}><span>Kompetansemål</span><span class="tally">${KM.length} mål</span></a></li><li><a href="${GRUPPER_URL}"><span>Grupper og klassekart</span><span class="tally">Logg inn</span></a></li></ul></details></li>
+    <li class="grp">Kapitler</li>`;
   CHS().forEach(ch=>{
     const s=chapterStat(ch);
     h+=`<li><a class="chap" href="#${ch.id}" ${cur(ch.id)}><span>Kap ${ch.num} · ${ch.title}</span>${s.t?`<span class="tally${s.n===s.t?' done':''}">${pct(s)} %</span>`:''}</a></li>`;
     ch.topics.forEach(tid=>{ const r=`${ch.id}-${tid}`; h+=`<li class="sub"><a href="#${r}" ${cur(r)}><span>${TOPICS[tid].title}</span>${tallyT(tid)}</a></li>`; });
   });
   side.innerHTML=h+`</ul>`;
+  const d=side.querySelector('.tgrp'); if(d) d.querySelector('summary').addEventListener('click',()=>setTimeout(()=>{ try{ localStorage.setItem('nav-laerer',d.open?'1':'0'); }catch(e){} },0));
 }
 
 /* ---------- forside ---------- */
@@ -3772,13 +3787,15 @@ function renderHome(){
   main.innerHTML=`<div class="col">
     <header class="home-hero"><p class="eyebrow">Digital lærebok · ${GRADE}. trinn</p><h1>Naturfag <span class="hl">${GRADE}. trinn</span></h1>
       <p class="lede">Bygget på kapitlene i ${BOOKNAME[GRADE]} og kompetansemålene i læreplanen i naturfag (NAT01-05). Hvert delkapittel har fagstoff, modeller, oppgaver og forsøk.</p>
-      <div class="hero-row"><a class="btn" href="#${ch.id}">${started?`Fortsett med kapittel ${ch.num}`:'Start på kapittel 1'} →</a>${gradeSw()}</div></header>
-    <section class="group" aria-labelledby="kh"><h2 id="kh">Kapitler</h2><div class="chapters">${CH.map(c=>{ const cs=chapterStat(c); return `<a class="chap-card" href="#${c.id}"><span class="num">${c.num}</span><h3>${c.title}</h3><p class="meta">${c.topics.length} delkapitler · side ${c.page} i boka${c.topics.every(has)?'':' · under arbeid'}</p><div><div class="kms">${c.km.map(n=>`<span class="km">KM${n}</span>`).join('')}</div>${bar(cs)}</div></a>`; }).join('')}</div></section>
-    <section class="group" aria-labelledby="mh"><h2 id="mh">Kompetansemål</h2><a class="chap-card" href="#maal"><span class="num" style="font-size:2.6rem">KM</span><h3>Kompetansemål etter 10. trinn</h3><p class="meta">Kapitlene på ${GRADE}. trinn dekker ${kms.length} av ${KM.length} mål. Se hele oversikten over hvor hvert mål dekkes på 8., 9. og 10. trinn.</p></a></section>
-    <section class="group" aria-labelledby="ah"><h2 id="ah">Mer</h2><div class="chapters">
-      <a class="chap-card" href="#forsok"><span class="num" style="font-size:2.6rem">Lab</span><h3>Forsøksbank</h3><p class="meta">${bankGrade(GRADE).length} forsøk og aktiviteter for ${GRADE}. trinn – minst fem til hvert kapittel, med variabler, risikovurdering og analyse.</p></a>
-      <a class="chap-card" href="#spill"><span class="num" style="font-size:2.6rem">Spill</span><h3>Naturfagspill</h3><p class="meta">Begrepsmemory, Lynquiz og Gjett begrepet – med spørsmål og begreper fra kapitlene.</p></a>
-      <a class="chap-card" href="#laerer"><span class="num" style="font-size:2.6rem">Ark</span><h3>For lærere</h3><p class="meta">Oppgaveark på tre nivåer, begrepsprøver med fasit og kapitteloversikt – klare til utskrift.</p></a></div></section>
+      <div class="hero-row"><a class="btn" href="#${ch.id}">${started?`Fortsett med kapittel ${ch.num}`:'Start på kapittel 1'} →</a></div></header>
+    <section class="group" aria-labelledby="kh"><h2 id="kh">Kapitler</h2><div class="chapters">${CH.map(c=>{ const cs=chapterStat(c); return `<a class="chap-card" href="#${c.id}"><span class="num">${c.num}</span><h3>${c.title}</h3><p class="meta">${c.topics.length} delkapitler · side ${c.page} i boka${c.topics.every(has)?'':' · under arbeid'}</p><div>${bar(cs)}</div></a>`; }).join('')}</div></section>
+    <section class="group" aria-labelledby="ah"><h2 id="ah">Utforsk og øv</h2><div class="quick">
+      <a class="qcard" href="#forsok"><b>Forsøksbank</b><span>${bankGrade(GRADE).length} forsøk og aktiviteter for ${GRADE}. trinn.</span></a>
+      <a class="qcard" href="#spill"><b>Naturfagspill</b><span>Begrepsmemory, Lynquiz og Gjett begrepet.</span></a></div></section>
+    <section class="group" aria-labelledby="mh"><h2 id="mh">For lærere</h2><div class="quick">
+      <a class="qcard" href="#laerer"><b>Oppgaveark og prøver</b><span>Tre nivåer og begrepsprøver med fasit.</span></a>
+      <a class="qcard" href="#maal"><b>Kompetansemål</b><span>Kapitlene på ${GRADE}. trinn dekker ${kms.length} av ${KM.length} mål.</span></a>
+      <a class="qcard" href="${GRUPPER_URL}"><b>Grupper og klassekart</b><span>Lag grupper med skjulte betingelser.</span></a></div></section>
     <section class="group" aria-labelledby="sh"><h2 id="sh">Slik jobber du</h2><ol class="steps-how">
       <li><b>Lær</b><span>Les fagstoffet og bruk modellene for å se hvordan ting henger sammen.</span></li>
       <li><b>Utforsk</b><span>Gjør forsøk: still spørsmål, lag hypoteser og samle data.</span></li>
@@ -3796,7 +3813,7 @@ function renderChapter(ch){
     <nav class="crumb" aria-label="Brødsmuler"><a href="#">Forside</a><span>›</span><span>Kapittel ${ch.num}</span></nav>
     <header class="chap-hero"><span class="num" aria-hidden="true">${ch.num}</span><p class="eyebrow">${ch.grade}. trinn · Kapittel ${ch.num} · side ${ch.page}</p><h1>${ch.title.replace(/(\S+)$/,'<span class="hl">$1</span>')}</h1><p class="lede">${ch.intro}</p></header>
     <section class="goals" aria-labelledby="gh"><h2 id="gh">Etter kapitlet skal du kunne</h2><ul>${ch.goals.map(g=>`<li>${g}</li>`).join('')}</ul></section>
-    <section class="kmbox" aria-labelledby="kmh"><h2 id="kmh" class="eyebrow">Kompetansemål kapitlet bygger på</h2><ul>${ch.km.map(n=>`<li>${kmChip(n)}<span>${KM[n-1].t}</span></li>`).join('')}</ul></section>
+    <details class="kmbox"><summary class="eyebrow">Kompetansemål kapitlet bygger på (${ch.km.length})</summary><ul>${ch.km.map(n=>`<li>${kmChip(n)}<span>${KM[n-1].t}</span></li>`).join('')}</ul></details>
     <section class="group"><div class="group-head"><span class="eyebrow">Delkapitler</span><h2>Innhold</h2></div>
       <ul class="rows">${ch.topics.map((tid,i)=>{ const t=TOPICS[tid], st=topicStat(tid); return `<li><a href="#${ch.id}-${tid}"><span class="t"><span class="ix">${ch.num}.${i+1}</span>${t.title}</span><span class="d">${t.short}${has(tid)&&CONTENT[tid].lab?' · forsøk':''}</span><span class="p">${tallyT(tid)}${st.t?bar(st):''}</span></a></li>`; }).join('')}</ul></section>
     <section class="group" id="ord"><div class="group-head"><span class="eyebrow">Avslutning av kapitlet</span><h2>Ordforklaringer</h2></div>
