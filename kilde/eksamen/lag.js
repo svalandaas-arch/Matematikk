@@ -10,14 +10,14 @@ function lagUtvalg(o){
 function lagHTML(L,o){
   const tit=o.tema.map(t=>EKS.tema[t]).join(', ');
   const forst={}, samme={}; if(o.medSider) L.forEach((x,i)=>{ const k=x.url; if(k in forst) samme[i]=forst[k]; else forst[k]=i; });
-  const row=(x,i)=>`<section class="lag-o"><div class="lag-n">${i+1}</div><div class="lag-b"><h3>${EKTE_NAVN(x.eks)} · Del ${x.del_} · Oppgave ${x.nr} <small>side ${x.side} · ${x.del_===1?'uten hjelpemidler':'med hjelpemidler'}</small></h3>
+  const row=(x,i)=>`<section class="lag-o"><div class="lag-n">${i+1}</div><div class="lag-b"><h3>${EKTE_NAVN(x.eks)} · Del ${x.del_} · Oppgave ${x.nr} <small>${x.slutt>x.side?`sidene ${x.side}–${x.slutt}`:`side ${x.side}`} · ${x.del_===1?'uten hjelpemidler':'med hjelpemidler'}</small></h3>
     <p>${x.besk}${i in samme?` <i>(står på samme side som oppgave ${samme[i]+1})</i>`:''}</p><p class="lag-tema">${x.tema.map(t=>EKS.tema[t]).join(' · ')}</p>${o.medSider?'':`<p class="lag-url"><a href="${x.url}">${x.url.replace('https://','')}</a></p>`}</div><div class="lag-box" aria-hidden="true">Gjort</div></section>`;
   let body='', i=0;
   if(o.sort==='tema') o.tema.forEach(t=>{ const G=L.filter(x=>x.tema.find(z=>o.tema.includes(z))===t); if(G.length) body+=`<h2 class="lag-del">${EKS.tema[t]} <small>${G.length} oppgaver</small></h2>`+G.map(x=>row(x,i++)).join(''); });
   else EKTE.dok.forEach(d=>{ const G=L.filter(x=>x.eks===d.id); if(G.length) body+=`<h2 class="lag-del">Eksamen ${d.navn.toLowerCase()} <small>${d.dato}</small></h2>`+G.map(x=>row(x,i++)).join(''); });
   return `<div class="lag-doc"><header class="lag-head"><div><p class="lag-ey">Matematikk 10. trinn · Ekte eksamensoppgaver</p><h1>${tit}</h1></div><p class="lag-name">Navn: ______________________ &nbsp; Dato: __________</p></header>
     <p class="lag-intro">${L.length} oppgaver fra tidligere eksamener (MAT0015). ${o.medSider?'Oppgavene følger etter denne oversikten, slik de står i eksamen.':'Åpne lenken til hver oppgave, eller finn eksamenen på nettsiden under Eksamen › Ekte eksamener.'} Del 1 skal løses uten hjelpemidler. Kryss av når du er ferdig.</p>
-    ${body}<p class="lag-src">Oppgavene er laget av Utdanningsdirektoratet. Eksamens-PDF-ene ligger hos matematikk.net.</p></div>`;
+    ${body}<p class="lag-src">Oppgavene er laget av Utdanningsdirektoratet.</p></div>`;
 }
 function renderLag(){
   let st={tema:[],eks:EKTE.dok.map(d=>d.id),del_:0,sort:'tema'}; try{ Object.assign(st,JSON.parse(localStorage.getItem('eks-lag2')||'{}')); }catch(e){}
@@ -43,7 +43,7 @@ function renderLag(){
   const full=async b=>{ b=b||main.querySelector('[data-full]'); b.disabled=true; const old=b.textContent; b.textContent='Henter oppgavene …'; const box=main.querySelector('.lag-files');
     try{ const r=await lagOppgavePDF(LAG_L,LAG_OPT);
       if(r.miss){ box.hidden=false; box.innerHTML=`<p><b>Nettleseren fikk ikke hente eksamens-PDF-ene direkte.</b> Last ned ${r.miss.length===1?'denne filen':'disse filene'} først, og velg ${r.miss.length===1?'den':'dem'} under. Filene blir bare brukt på din maskin.</p>
-          <ul>${r.miss.map(f=>`<li><a href="${f}" target="_blank" rel="noopener" download>${f.split('/').pop()}</a> (${EKTE.dok.find(d=>d.deler.some(x=>x.url===f)).navn})</li>`).join('')}</ul>
+          <ul>${r.miss.map(f=>`<li><a href="${f}" target="_blank" rel="noopener" download>${f.split('/').pop()}</a> (${EKTE.dok.find(d=>d.deler.some(x=>x.url.split('#')[0]===f)).navn})</li>`).join('')}</ul>
           <label class="btn small">Velg PDF-filene <input type="file" accept="application/pdf" multiple hidden></label>`;
         box.querySelector('input').onchange=async ev=>{ await lagLesFiler(ev.target.files); full(); }; }
       else { box.hidden=true; msg.textContent=''; } }
@@ -68,10 +68,8 @@ async function lagPDF(el,name){
 
 function lagLastPdfLib(){ return window.PDFLib?Promise.resolve():new Promise((ok,no)=>{ const s=document.createElement('script'); s.src='vendor/pdf-lib.min.js'; s.onload=ok; s.onerror=no; document.head.appendChild(s); }); }
 async function lagLesFiler(files){ for(const f of files){ LAG_FILER[lagNavn(f.name)]=await f.arrayBuffer(); } }
-function lagSider(x){ // sidene oppgaven står på i eksamens-PDF-en
-  const f=x.url.split('#')[0], p=+x.url.split('#page=')[1];
-  const starts=[...new Set(EKTE.oppg.filter(o=>o.url.split('#')[0]===f&&o.del_===x.del_).map(o=>+o.url.split('#page=')[1]))].sort((a,b)=>a-b);
-  const nxt=starts.find(s=>s>p); const end=nxt?Math.min(nxt-1,p+2):p; const L=[]; for(let i=p;i<=end;i++) L.push(i); return {f,L};
+function lagSider(x){ // sidene oppgaven står på i eksamens-PDF-en (fysiske sider, fra side til slutt i ekte.py)
+  const f=x.url.split('#')[0], p=x.side, end=Math.max(p,x.slutt||p), L=[]; for(let i=p;i<=end;i++) L.push(i); return {f,L};
 }
 async function lagOppgavePDF(L,o){
   await Promise.all([lagLastLib(),lagLastPdfLib()]);
