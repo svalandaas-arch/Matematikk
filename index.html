@@ -2876,7 +2876,7 @@ function renderNav(route){
   const d=side.querySelector('.tgrp'); if(d) d.querySelector('summary').addEventListener('click',()=>setTimeout(()=>{ try{ localStorage.setItem('nav-laerer',d.open?'1':'0'); }catch(e){} },0));
 }
 function refreshNav(){ renderNav(curRoute); }
-const TEACH_ROUTE=r=>r==='laerer'||r==='brettspill'||r==='aktiviteter'||r.startsWith('aktiviteter/')||!!BOARDS[r];
+const TEACH_ROUTE=r=>r==='laerer'||r==='brettspill'||r==='aktiviteter'||r.startsWith('aktiviteter/')||r.startsWith('escape-')||!!BOARDS[r];
 function renderTeacherNav(route){
   const cur=r=>route===r?'aria-current="page"':'', h=location.hash;
   const tav=ACTS.filter(a=>a.board&&a.grade===GRADE);
@@ -2885,6 +2885,7 @@ function renderTeacherNav(route){
     <li class="grp">Verktøy</li>
     <li><a href="#laerer" ${cur('laerer')}><span>Oppgaveark</span><span class="tally">PDF</span></a></li>
     <li><a href="#aktiviteter" ${route==='aktiviteter'&&!tav.some(a=>a.board===h)?'aria-current="page"':''}><span>Klasseaktiviteter</span><span class="tally">${ACTS.length}</span></a></li>
+    <li><a href="#escape-bygger" ${cur('escape-bygger')}><span>Escape room-bygger</span><span class="tally">Ny</span></a></li>
     <li><a href="#brettspill" ${cur('brettspill')}><span>Brettspill</span><span class="tally">${BRETT.length}</span></a></li>
     <li><a href="grupper/"><span>Grupper og klassekart</span><span class="tally">Logg inn</span></a></li>
     <li class="grp">Interaktive tavler</li>
@@ -2903,6 +2904,7 @@ function renderTeacherHome(){
     <section class="group" aria-labelledby="tv1"><h2 id="tv1">Verktøy</h2><div class="quick">
       <a class="qcard" href="#laerer"><b>Oppgaveark</b><span>${gradeTids().filter(t=>ARK[t]).length*3} ark på tre nivåer med fasit.</span></a>
       <a class="qcard" href="#aktiviteter"><b>Klasseaktiviteter</b><span>${ACTS.filter(a=>a.grade===GRADE).length} opplegg for hele klassen på ${GRADE}. trinn.</span></a>
+      <a class="qcard" href="#escape-bygger"><b>Escape room-bygger</b><span>Lag et escape room med temaene du velger, med utskrifter og låseside.</span></a>
       <a class="qcard" href="#brettspill"><b>Brettspill</b><span>${BRETT.length} brettspill til utskrift.</span></a>
       <a class="qcard" href="grupper/"><b>Grupper og klassekart</b><span>Lag grupper med skjulte betingelser.</span></a></div></section>
     ${tav.length?`<section class="group" aria-labelledby="tv2"><h2 id="tv2">Interaktive tavler</h2><div class="quick">${tav.map(a=>`<a class="qcard" href="${a.board}"><b>${a.title}</b><span>${a.short||a.fit||''}</span></a>`).join('')}</div></section>`:''}
@@ -7211,14 +7213,14 @@ function renderStart(){
 const ESC_CFG={"posts": [{"n": 1, "name": "Fryseboksen", "tema": "Negative tall", "h": "fb8b8686", "l": 110, "hint": "Tegn en tallinje. Å trekke fra et negativt tall er det samme som å legge til: 3 − (−4) = 3 + 4. Minus delt på minus gir pluss."}, {"n": 2, "name": "Regnemaskinen", "tema": "Regnerekkefølge og de fire regneartene", "h": "cdbb76ad", "l": 96, "hint": "Parenteser først. Deretter gange og dele. Til slutt pluss og minus, fra venstre mot høyre."}, {"n": 3, "name": "Potenstårnet", "tema": "Potenser og potensregler", "h": "8f315de6", "l": 107, "hint": "Når du deler potenser med samme grunntall, trekker du fra eksponentene. Alle tall (unntatt 0) opphøyd i 0 er 1."}, {"n": 4, "name": "Primtallsvalvet", "tema": "Delelighet, primtall og faktorisering", "h": "8f7e79a3", "l": 105, "hint": "Et tall er delelig med 9 når tverrsummen er delelig med 9. Bruk et faktortre for å primtallsfaktorisere. SFF finner du ved å gange sammen faktorene tallene har felles."}, {"n": 5, "name": "Brøkbiblioteket", "tema": "Forkorting og addisjon og subtraksjon av brøker", "h": "091117d4", "l": 253, "hint": "Finn fellesnevner før du legger sammen eller trekker fra. Gjør blandede tall om til uekte brøker først: 2 1/2 = 5/2 = 10/4."}, {"n": 6, "name": "Prosentkassen", "tema": "Ganging og deling med brøk, desimaltall og prosent", "h": "801b2e4e", "l": 110, "hint": "Å dele med en brøk er det samme som å gange med den omvendte brøken. 25 % er det samme som 1/4."}], "word": ["3fd72ea1", "4567d291"], "wordHint": "Ordet er noe dere trenger for å åpne en dør.", "n": 6};
 const ESC_KEY='escape-mattelaben';
 const escHash=s=>{ let h=0x811c9dc5; for(const b of new TextEncoder().encode(s)){ h^=b; h=Math.imul(h,0x01000193)>>>0; } return h.toString(16).padStart(8,'0'); };
-const escLoad=()=>{ try{ const v=JSON.parse(localStorage.getItem(ESC_KEY)||'null'); if(v&&Array.isArray(v.groups)) return v; }catch(e){} return null; };
-const escSave=s=>{ try{ localStorage.setItem(ESC_KEY,JSON.stringify(s)); }catch(e){} };
+const escLoad=(k=ESC_KEY)=>{ try{ const v=JSON.parse(localStorage.getItem(k)||'null'); if(v&&Array.isArray(v.groups)) return v; }catch(e){} return null; };
+const escSave=(s,k=ESC_KEY)=>{ try{ localStorage.setItem(k,JSON.stringify(s)); }catch(e){} };
 const escMMSS=ms=>{ const neg=ms<0, t=Math.floor(Math.abs(ms)/1000); return (neg?'+':'')+Math.floor(t/60)+':'+String(t%60).padStart(2,'0'); };
 const ESC_LOCK=open=>open
   ?'<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 10V7a5 5 0 0 1 9.6-2" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/><rect x="4" y="10" width="16" height="12" rx="2.5" fill="currentColor"/></svg>'
   :'<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 10V7a5 5 0 0 1 10 0v3" fill="none" stroke="currentColor" stroke-width="2.4"/><rect x="4" y="10" width="16" height="12" rx="2.5" fill="currentColor"/></svg>';
 let ESC_TICK=null;
-BOARDS['escaperom-mattelaben']=()=>{
+function escCss(){
   if(!document.getElementById('esc-css')){ const st=document.createElement('style'); st.id='esc-css'; st.textContent=`
 .esc{gap:16px}.esc .pb-bar h2{font-size:1.25rem}
 .esc-clock{font:800 clamp(2rem,5vw,3.4rem)/1 var(--f-display);font-variant-numeric:tabular-nums;letter-spacing:-.02em}
@@ -7260,19 +7262,22 @@ BOARDS['escaperom-mattelaben']=()=>{
 .esc-set{display:grid;gap:14px}.esc-names{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:8px}
 .esc-names input{font:inherit;padding:8px 10px;border:2px solid var(--line);border-radius:8px;background:var(--surface);color:var(--ink);width:100%}
 .pb:fullscreen.esc,.pb.pb-fake.esc{overflow:auto}`; document.head.appendChild(st); }
-  clearInterval(ESC_TICK);
-  const P=ESC_CFG.posts, N=P.length;
-  let S=escLoad(), sel={g:(S&&S.groups&&S.groups.length===1)?0:null,p:null}, msgT=null, armReset=false;
-  const crumb=`<nav class="crumb" aria-label="Brødsmuler"><a href="#matte">Forside</a><span>›</span><a href="#aktiviteter/escaperom-mattelaben">Klasseaktiviteter</a><span>›</span><span>Escape room: Mattelaben</span></nav>`;
+  if(!document.getElementById('esc-css2')){ const s2=document.createElement('style'); s2.id='esc-css2'; s2.textContent='.esc-bld{gap:16px}.esc-bh{display:flex;align-items:center;gap:12px;font-size:1.3rem}\n.esc-note{color:var(--muted);font-size:.95rem;max-width:68ch}.esc-note.bad{color:var(--bad);font-weight:700}\n.esc-chap{display:flex;flex-direction:column;gap:6px;margin-top:6px}\n.esc-tops button{font-size:.95rem;min-height:44px;padding:6px 12px}\n.esc-tops button.na{opacity:.4;text-decoration:line-through;text-decoration-thickness:1.5px}\n.esc-ord{font-style:normal;display:inline-grid;place-items:center;width:22px;height:22px;border-radius:50%;background:var(--surface);color:var(--ink);font:800 .8rem var(--f-display)}\n.esc-cnt{font:500 .85rem var(--f-mono);color:var(--muted)}\n.esc-word{display:flex;gap:8px;align-items:center;flex-wrap:wrap}\n.esc-word input{font:800 1.5rem/1 var(--f-mono);letter-spacing:.25em;width:11em;max-width:100%;text-transform:uppercase;padding:10px 12px;border:2px solid var(--ink);border-radius:10px;background:var(--paper);color:var(--ink)}\n.esc-go{display:flex;flex-direction:column;gap:8px;align-items:flex-start}\n.esc-rooms .dl{flex-wrap:wrap}\n.esc-ov{margin:0;padding:0;list-style:none;display:grid;gap:6px}\n.esc-ov li{display:flex;flex-wrap:wrap;gap:4px 12px;align-items:baseline;padding:10px 12px;border:1px solid var(--line);border-radius:8px;background:var(--surface)}\n.esc-ovt{color:var(--muted)}.esc-ovl{margin-left:auto;font:700 .8rem var(--f-mono);color:var(--red)}\n.esc-ansf{align-items:flex-end}\n.esc-ans{display:flex;flex-wrap:wrap;gap:10px}\n.esc-ans label{display:flex;flex-direction:column;gap:2px;font:800 1rem var(--f-display)}\n.esc-ans input{font:700 1.5rem/1 var(--f-mono);width:6.2em;text-align:center;padding:10px 6px;border:3px solid var(--ink);border-radius:10px;background:var(--paper);color:var(--ink)}\n.esc-ans input:focus{outline:none;border-color:var(--pen)}\n.esc-tip{font-size:.88rem;color:var(--muted);margin-top:6px}\n/* utskrift */\n.esc-ws .escw-h1{font-family:var(--f-display);font-weight:800;font-size:24pt;line-height:1.05;letter-spacing:-.01em;margin:0 0 2mm}\n.esc-ws .escw-lede{color:var(--muted);font-size:10.5pt;margin-bottom:3mm}\n.esc-ws .escw-story{font-family:var(--f-hand);font-weight:700;font-size:16pt;line-height:1.15;color:var(--red);margin:1mm 0 4mm}\n.esc-ws .escw-box{border:1.3px solid;border-radius:2mm;padding:3mm 4mm;margin-top:4mm;font-size:10pt}.esc-ws .escw-box b{display:block;font-size:11pt;margin-bottom:1mm}\n.esc-ws .escw-box ol{margin:0;padding-left:5mm;display:grid;gap:1mm}\n.esc-ws .escw-box.g{border-color:#1B7646;background:#EAF4EE}.esc-ws .escw-box.g b{color:#1B7646}\n.esc-ws .escw-box.r{border-color:#C2362B;background:#FBEDEC}.esc-ws .escw-box.r b{color:#C2362B}\n.esc-ws table{width:100%;border-collapse:collapse;margin-top:4mm;font-size:9.6pt}\n.esc-ws th{font-family:var(--f-mono);font-size:7pt;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);text-align:left;border-bottom:1.3px solid var(--ink);padding:1.2mm 1.5mm}\n.esc-ws td{border-bottom:.6px solid var(--line);padding:1.8mm 1.5mm;vertical-align:middle}\n.esc-ws td span{color:var(--muted);font-size:8.5pt}\n.esc-ws .escw-a{display:inline-flex;gap:1mm;align-items:center;margin-right:4mm;color:var(--ink)!important;font-size:9.6pt!important}\n.esc-ws .escw-l{font-family:var(--f-display);font-weight:800;font-size:14pt;color:var(--red);text-align:center}\n.esc-ws .escw-ol{margin:0 0 3mm;padding-left:5mm;display:grid;gap:1mm;font-size:10.5pt}\n.esc-ws .escw-who{display:grid;grid-template-columns:auto 1fr auto 1.4fr;gap:3mm;align-items:end;font-size:9pt;color:var(--muted);margin-top:2mm}.esc-ws .escw-who i{border-bottom:1px solid var(--ink);height:6mm}\n.esc-ws .escw-card .pn{font-family:var(--f-display);font-weight:800;font-size:13pt}\n.esc-ws .bx{display:inline-block;width:14mm;height:9mm;border:1.5px solid var(--ink);border-radius:1.4mm;margin-right:1.5mm;vertical-align:middle}\n.esc-ws .bx.l{width:10mm;height:10mm;border-color:#C2362B;border-width:2px}\n.esc-ws .escw-sub{font-family:var(--f-mono);font-size:7.5pt;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin:5mm 0 1.5mm}\n.esc-ws .escw-final{display:flex;gap:2.5mm}.esc-ws .escw-final span{width:15mm;height:17mm;border:2.2px solid #C2362B;border-radius:2mm}\n.esc-ws .escw-ph{display:flex;align-items:center;gap:5mm;border-bottom:2.5px solid var(--ink);padding-bottom:3mm;margin-bottom:4mm}\n.esc-ws .escw-num{flex:none;width:22mm;height:22mm;border-radius:3mm;background:#141E36;color:#fff;display:flex;flex-direction:column;align-items:center;justify-content:center;font-family:var(--f-display);font-weight:800;font-size:28pt;line-height:1}\n.esc-ws .escw-num small{font-family:var(--f-mono);font-weight:400;font-size:6.5pt;letter-spacing:.14em;text-transform:uppercase;margin-bottom:1mm;opacity:.8}\n.esc-ws .escw-ph .escw-h1{font-size:26pt;margin:0}\n.esc-ws .escw-tema{font-family:var(--f-mono);font-size:8pt;letter-spacing:.1em;text-transform:uppercase;color:var(--pen);margin-top:1mm}\n.esc-ws .escw-tasks{display:grid;grid-template-columns:1fr 1fr;gap:4mm}\n.esc-ws .escw-tasks.n3 .escw-task:last-child{grid-column:1/-1}\n.esc-ws .escw-task{border:1.3px solid var(--ink);border-radius:2.5mm;padding:3mm;display:flex;flex-direction:column;gap:2mm;height:96mm;break-inside:avoid}\n.esc-ws .escw-tasks.n3 .escw-task{height:96mm}\n.esc-ws .escw-q{display:flex;gap:2.5mm;align-items:flex-start}\n.esc-ws .escw-q>div{min-width:0;flex:1}\n.esc-ws .escw-tl{flex:none;width:8mm;height:8mm;border-radius:50%;background:#2343B0;color:#fff;display:grid;place-items:center;font-family:var(--f-display);font-weight:800;font-size:12pt}\n.esc-ws .escw-ins{font-size:8.5pt;color:var(--muted);margin:0 0 1mm}\n.esc-ws .escw-q .q{font-size:11pt}\n.esc-ws .escw-opts{display:flex;flex-wrap:wrap;gap:1.5mm 5mm;margin-top:2mm;font-size:10.5pt}.esc-ws .escw-opts b{color:#2343B0}\n.esc-ws .escw-work{flex:1;border:1px solid #CBD3E3;border-radius:1.5mm;background-image:linear-gradient(rgba(48,92,168,.14) 1px,transparent 1px),linear-gradient(90deg,rgba(48,92,168,.14) 1px,transparent 1px);background-size:5mm 5mm;background-position:-1px -1px}\n.esc-ws .escw-ans{align-self:flex-end;display:flex;align-items:flex-end;gap:2mm;font-size:9.5pt;color:var(--muted)}.esc-ws .escw-ans span{display:inline-block;width:30mm;border-bottom:1.6px solid var(--ink);height:7mm}\n.esc-ws .escw-lock{display:flex;align-items:center;gap:4mm;margin-top:4mm;border:2px solid var(--ink);border-radius:3mm;padding:3mm 4mm;background:#FFF6D8;font-size:10pt}\n.esc-ws .escw-lock svg{width:9mm;height:9mm;flex:none}.esc-ws .escw-lock b{display:block;font-family:var(--f-display);font-size:12pt}\n'; document.head.appendChild(s2); }
+}
+function escLock(R){
+  escCss(); clearInterval(ESC_TICK);
+  const P=R.posts, N=P.length, KEY=R.key;
+  let S=escLoad(KEY), sel={g:(S&&S.groups&&S.groups.length===1)?0:null,p:null}, msgT=null, armReset=false;
+  const crumb=R.crumb||'';
   const now=()=>Date.now();
   const gTime=g=>((g.done||now())-S.t0)+g.hints.filter(Boolean).length*60000;
   function setup(){
     const old=S&&S.groups?S.groups.map(g=>g.name):[]; let n=Math.max(2,Math.min(8,old.length||6)), dur=S&&S.dur!=null?S.dur:45;
     main.innerHTML=`<div class="col pb-col">${crumb}
       <section class="pb esc" id="pb" aria-label="Escape room, låsesiden">
-        <div class="pb-bar"><h2>Escape room: Mattelaben · låsesiden</h2><span class="sp"></span><a class="btn ghost small" href="aktiviteter/escaperom-mattelaben.pdf" target="_blank" rel="noopener">PDF med poster og fasit</a></div>
+        <div class="pb-bar"><h2>${R.title} · låsesiden</h2><span class="sp"></span>${R.pdf?`<a class="btn ghost small" href="${R.pdf.href}" target="_blank" rel="noopener">${R.pdf.label}</a>`:''}</div>
         <div class="esc-card esc-set">
-          <p>Gruppene løser oppgavene på papir og kommer hit for å taste inn koden for hver post. Riktig kode gir en bokstav. Når en gruppe har alle seks bokstavene, taster de inn kodeordet og er ute.</p>
+          <p>${R.intro}</p>
           <div><p class="esc-step">1 · Antall grupper</p><div class="esc-pick" id="esc-n">${[2,3,4,5,6,7,8].map(k=>`<button type="button" data-n="${k}" aria-pressed="${k===n}">${k}</button>`).join('')}</div></div>
           <div><p class="esc-step">2 · Navn på gruppene</p><div class="esc-names" id="esc-names"></div></div>
           <div><p class="esc-step">3 · Tid</p><div class="esc-pick" id="esc-dur">${[[30,'30 min'],[45,'45 min'],[60,'60 min'],[0,'Uten tidsgrense']].map(([v,t])=>`<button type="button" data-d="${v}" aria-pressed="${v===dur}">${t}</button>`).join('')}</div></div>
@@ -7286,7 +7291,7 @@ BOARDS['escaperom-mattelaben']=()=>{
     main.querySelector('#esc-start').addEventListener('click',()=>{
       const nm=[...names.querySelectorAll('input')].map((i,k)=>i.value.trim()||'Gruppe '+(k+1));
       sel={g:nm.length===1?0:null,p:null}; S={t0:now(),dur,groups:nm.map(name=>({name,open:Array(N).fill(false),hints:Array(N).fill(false),fails:Array(N).fill(0),wait:Array(N).fill(0),done:null}))};
-      escSave(S); run(); });
+      escSave(S,KEY); run(); });
   }
   function run(){
     main.innerHTML=`<div class="col pb-col">${crumb}
@@ -7297,12 +7302,12 @@ BOARDS['escaperom-mattelaben']=()=>{
           <div class="esc-card" id="esc-in" aria-live="polite"></div>
           <div class="esc-card"><h3>Tavla</h3><ul class="esc-board" id="esc-board"></ul></div>
         </div></section>
-      <div class="box"><span class="lab">Slik bruker du låsesiden</span><p>Gruppa velger navnet sitt og posten, og taster inn koden. Riktig kode gir en bokstav til kodeordet. Et hint gir 1 minutt ekstra på gruppas tid. Etter tre feil koder på rad på samme post må gruppa vente 20 sekunder. Siden husker runden i denne nettleseren til du trykker <b>Ny runde</b>.</p></div></div>`;
+      <div class="box"><span class="lab">Slik bruker du låsesiden</span><p>Gruppa velger navnet sitt og posten, og taster inn ${R.code?'koden':'svarene'}. Riktig ${R.code?'kode':'svar'} gir en bokstav til kodeordet. Et hint gir 1 minutt ekstra på gruppas tid. Etter tre feil forsøk på rad på samme post må gruppa vente 20 sekunder. Siden husker runden i denne nettleseren til du trykker <b>Ny runde</b>.</p></div></div>`;
     const root=main.querySelector('#pb'), inp=main.querySelector('#esc-in');
     root.addEventListener('click',e=>{ const b=e.target.closest('[data-pb="fs"]'); if(!b) return;
       const fake=()=>{ const on=root.classList.toggle('pb-fake'); b.textContent=on?'Avslutt fullskjerm':'Fullskjerm'; };
       if(root.classList.contains('pb-fake')) fake(); else if(document.fullscreenElement) document.exitFullscreen(); else { try{ const pr=root.requestFullscreen&&root.requestFullscreen(); if(pr&&pr.catch) pr.catch(fake); else if(!pr) fake(); }catch(err){ fake(); } } });
-    main.querySelector('#esc-reset').addEventListener('click',e=>{ const b=e.currentTarget; if(armReset){ armReset=false; clearInterval(ESC_TICK); try{ localStorage.removeItem(ESC_KEY); }catch(err){} S={dur:S.dur,groups:S.groups.map(g=>({name:g.name}))}; setup(); return; }
+    main.querySelector('#esc-reset').addEventListener('click',e=>{ const b=e.currentTarget; if(armReset){ armReset=false; clearInterval(ESC_TICK); try{ localStorage.removeItem(KEY); }catch(err){} S={dur:S.dur,groups:S.groups.map(g=>({name:g.name}))}; setup(); return; }
       armReset=true; b.textContent='Trykk igjen for å starte på nytt'; setTimeout(()=>{ if(b.isConnected){ armReset=false; b.textContent='Ny runde'; } },3500); });
     const clock=()=>{ const el=main.querySelector('#esc-clock'); if(!el) { clearInterval(ESC_TICK); return; }
       const t=now()-S.t0; if(S.dur){ const left=S.dur*60000-t; el.innerHTML=`<small>${left>=0?'Tid igjen':'Over tiden'}</small>${escMMSS(left>=0?left:-left)}`; el.classList.toggle('low',left<5*60000); }
@@ -7315,16 +7320,16 @@ BOARDS['escaperom-mattelaben']=()=>{
     function say(cls,html,keep){ const m=inp.querySelector('#esc-msg'); if(!m) return; clearTimeout(msgT); m.className='esc-msg '+cls; m.innerHTML=html; if(!keep) msgT=setTimeout(()=>{ if(m.isConnected){ m.className='esc-msg'; m.innerHTML=''; } },9000); }
     function drawIn(){
       const g=sel.g!=null?S.groups[sel.g]:null;
-      let h=`<h3>Tast inn koden</h3><div><p class="esc-step">1 · Hvilken gruppe er dere?</p><div class="esc-pick" id="esc-g">${S.groups.map((x,i)=>`<button type="button" data-g="${i}" aria-pressed="${i===sel.g}" ${x.done?'class="ok"':''}>${esc(x.name)}${x.done?' ✓':''}</button>`).join('')}</div></div>`;
-      if(g&&g.done) h+=`<div class="esc-msg ok"><p class="esc-win">${esc(g.name)} har rømt fra mattelaben!</p><p>Tid: ${escMMSS(gTime(g))}${g.hints.some(Boolean)?' (medregnet hint)':''}</p></div>`;
+      let h=`<h3>${R.code?'Tast inn koden':'Tast inn svarene'}</h3><div><p class="esc-step">1 · Hvilken gruppe er dere?</p><div class="esc-pick" id="esc-g">${S.groups.map((x,i)=>`<button type="button" data-g="${i}" aria-pressed="${i===sel.g}" ${x.done?'class="ok"':''}>${esc(x.name)}${x.done?' ✓':''}</button>`).join('')}</div></div>`;
+      if(g&&g.done) h+=`<div class="esc-msg ok"><p class="esc-win">${esc(g.name)} ${R.won||'har rømt!'}</p><p>Tid: ${escMMSS(gTime(g))}${g.hints.some(Boolean)?' (medregnet hint)':''}</p></div>`;
       else if(g&&g.open.every(Boolean)){
-        h+=`<div><p class="esc-step">2 · Alle låsene er åpne. Hva er kodeordet?</p><form class="esc-code" id="esc-f"><input class="word" id="esc-c" autocomplete="off" maxlength="${ESC_CFG.n+2}" aria-label="Kodeordet" placeholder="${'_'.repeat(ESC_CFG.n)}"><button class="btn" type="submit">Åpne døra</button></form></div>
-          <div class="esc-hint"><button type="button" class="btn ghost small" data-hint="w" style="align-self:flex-start">${g.hintW?'Hint':'Hint (+1 min)'}</button>${g.hintW?`<p>${ESC_CFG.wordHint}</p>`:''}</div>`;
+        h+=`<div><p class="esc-step">2 · Alle låsene er åpne. Hva er kodeordet?</p><form class="esc-code" id="esc-f"><input class="word" id="esc-c" autocomplete="off" maxlength="${R.wordLen+2}" aria-label="Kodeordet" placeholder="${'_'.repeat(R.wordLen)}"><button class="btn" type="submit">Åpne døra</button></form></div>
+          <div class="esc-hint"><button type="button" class="btn ghost small" data-hint="w" style="align-self:flex-start">${g.hintW?'Hint':'Hint (+1 min)'}</button>${g.hintW?`<p>${R.wordHint}</p>`:''}</div>`;
       } else if(g){
         h+=`<div><p class="esc-step">2 · Hvilken post?</p><div class="esc-pick posts" id="esc-p">${P.map((p,j)=>`<button type="button" data-p="${j}" aria-pressed="${j===sel.p}" ${g.open[j]?'disabled class="ok"':''}><b>${g.open[j]?'✓ ':''}${p.n}</b><span>${p.name}</span></button>`).join('')}</div></div>`;
         if(sel.p!=null&&!g.open[sel.p]){ const w=g.wait[sel.p]-now();
           h+= w>0?`<p class="esc-msg bad">For mange feil på rad. Sjekk svarene på posten igjen. Dere kan prøve igjen om <b id="esc-wait">${Math.ceil(w/1000)}</b> sekunder.</p>`
-            :`<div><p class="esc-step">3 · Koden til post ${P[sel.p].n} (A B C D)</p><form class="esc-code" id="esc-f"><input id="esc-c" inputmode="numeric" pattern="[0-9]*" autocomplete="off" maxlength="4" aria-label="Fire siffer" placeholder="____"><button class="btn" type="submit">Lås opp</button></form></div>`;
+            :escFieldsHtml(P[sel.p],sel.vals);
           h+=`<div class="esc-hint"><button type="button" class="btn ghost small" data-hint="${sel.p}" style="align-self:flex-start">${g.hints[sel.p]?'Hint':'Hint til post '+P[sel.p].n+' (+1 min)'}</button>${g.hints[sel.p]?`<p>${P[sel.p].hint}</p>`:''}</div>`; }
       } else h+=`<p class="esc-msg info">Velg gruppa deres for å taste inn en kode.</p>`;
       h+=`<div class="esc-msg" id="esc-msg"></div>`;
@@ -7334,30 +7339,235 @@ BOARDS['escaperom-mattelaben']=()=>{
     }
     inp.addEventListener('click',e=>{
       const bg=e.target.closest('[data-g]'), bp=e.target.closest('[data-p]'), bh=e.target.closest('[data-hint]');
-      if(bg){ const i=+bg.dataset.g; sel={g:i,p:null}; const m=inp.querySelector('#esc-msg'); if(m){ m.className='esc-msg'; m.innerHTML=''; } drawIn(); }
-      else if(bp){ sel.p=+bp.dataset.p; drawIn(); }
+      if(bg){ const i=+bg.dataset.g; sel={g:i,p:null,vals:null}; const m=inp.querySelector('#esc-msg'); if(m){ m.className='esc-msg'; m.innerHTML=''; } drawIn(); }
+      else if(bp){ sel.p=+bp.dataset.p; sel.vals=null; drawIn(); }
       else if(bh){ const g=S.groups[sel.g]; if(bh.dataset.hint==='w'){ if(!g.hintW){ if(!bh.dataset.arm){ bh.dataset.arm='1'; bh.textContent='Trykk igjen for hint (+1 min)'; return; } g.hintW=true; g.hints.push(true); } }
         else { const j=+bh.dataset.hint; if(!g.hints[j]){ if(!bh.dataset.arm){ bh.dataset.arm='1'; bh.textContent='Trykk igjen for hint (+1 min)'; return; } g.hints[j]=true; } }
-        escSave(S); drawIn(); board(); }
+        escSave(S,KEY); drawIn(); board(); }
     });
     inp.addEventListener('submit',e=>{ e.preventDefault(); const g=S.groups[sel.g], c=inp.querySelector('#esc-c'); if(!g||!c) return; const v=c.value.trim();
       if(g.open.every(Boolean)){ const w=v.toUpperCase().replace(/\s+/g,'');
         if(!w) return;
-        if(ESC_CFG.word.includes(escHash('ml|ord|'+w))){ g.done=now(); escSave(S); sel.p=null; const m=inp.querySelector('#esc-msg'); if(m){ m.className='esc-msg'; m.innerHTML=''; } drawIn(); board(); }
+        if(R.checkWord(w)){ g.done=now(); escSave(S,KEY); sel.p=null; const m=inp.querySelector('#esc-msg'); if(m){ m.className='esc-msg'; m.innerHTML=''; } drawIn(); board(); }
         else { c.value=''; say('bad','Døra er fortsatt låst. Prøv å sette bokstavene sammen på en annen måte.'); c.focus(); }
         return; }
-      const j=sel.p; if(j==null) return;
-      if(!/^\d{4}$/.test(v)){ say('bad','Koden har fire siffer, ett for hver oppgave A, B, C og D.'); c.focus(); return; }
-      if(escHash('ml|'+P[j].n+'|'+v)===P[j].h){ g.open[j]=true; g.fails[j]=0; escSave(S); const L=String.fromCharCode(P[j].l^37);
-        sel.p=null; drawIn(); board();
-        say('ok',`<div class="esc-letter"><b class="big">${L}</b><div><p><b>Lås ${P[j].n} er åpen!</b></p><p>${esc(g.name)}: skriv bokstaven <b>${L}</b> på låsekortet.${g.open.every(Boolean)?' Nå har dere alle bokstavene. Finn kodeordet!':''}</p></div></div>`); }
-      else { g.fails[j]++; if(g.fails[j]>=3){ g.fails[j]=0; g.wait[j]=now()+20000; } escSave(S); c.value=''; drawIn(); if(!(g.wait[j]>now())) say('bad',`Feil kode på post ${P[j].n}. Minst ett av svarene er feil. Sjekk oppgavene igjen.`); }
+      const j=sel.p; if(j==null) return; const Pj=P[j]; let vals;
+      if(Pj.code){ if(!/^\d{4}$/.test(v)){ say('bad','Koden har fire siffer, ett for hver oppgave A, B, C og D.'); c.focus(); return; } vals=[v]; }
+      else { vals=[...inp.querySelectorAll('[data-k]')].map(x=>x.value.trim()); if(vals.some(x=>!x)){ say('bad','Fyll inn alle svarene før dere låser opp.'); const f=[...inp.querySelectorAll('[data-k]')].find(x=>!x.value.trim()); if(f) f.focus(); return; } }
+      if(Pj.check(vals)){ g.open[j]=true; g.fails[j]=0; escSave(S,KEY); const L=Pj.letter;
+        sel.p=null; sel.vals=null; drawIn(); board();
+        say('ok',`<div class="esc-letter"><b class="big">${L}</b><div><p><b>Lås ${Pj.n} er åpen!</b></p><p>${esc(g.name)}: skriv bokstaven <b>${L}</b> på låsekortet.${g.open.every(Boolean)?' Nå har dere alle bokstavene. Finn kodeordet!':''}</p></div></div>`); }
+      else { g.fails[j]++; if(g.fails[j]>=3){ g.fails[j]=0; g.wait[j]=now()+20000; } escSave(S,KEY); sel.vals=Pj.code?null:vals; drawIn(); if(!(g.wait[j]>now())) say('bad',Pj.code?`Feil kode på post ${Pj.n}. Minst ett av svarene er feil. Sjekk oppgavene igjen.`:`Feil på post ${Pj.n}. Minst ett av svarene er feil. Sjekk oppgavene igjen.`); }
     });
     drawIn(); board();
   }
   const esc=t=>String(t).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
   if(S&&S.t0) run(); else setup();
-};
+}
+
+/* ---------- felles: felt for koder/svar på låsesiden ---------- */
+const escAttr=t=>String(t==null?'':t).replace(/&/g,'&amp;').replace(/"/g,'&quot;').replace(/</g,'&lt;');
+function escFieldsHtml(Pj,vals){
+  if(Pj.code) return `<div><p class="esc-step">3 · Koden til post ${Pj.n} (A B C D)</p><form class="esc-code" id="esc-f"><input id="esc-c" inputmode="numeric" pattern="[0-9]*" autocomplete="off" maxlength="4" aria-label="Fire siffer" placeholder="____"><button class="btn" type="submit">Lås opp</button></form></div>`;
+  const tips=[...new Set(Pj.kinds||[])].map(k=>({fr:'brøk som 3/4',pa:'potens som 2^5',fac:'primfaktorer som 2*2*3',neg:'minus som -4',mc:'bokstaven til riktig svar (a, b, c …)',ex:'uttrykk som 3x + 2'}[k])).filter(Boolean);
+  return `<div><p class="esc-step">3 · Svarene på post ${Pj.n}</p><form class="esc-code esc-ansf" id="esc-f"><div class="esc-ans">${Pj.fields.map((l,k)=>`<label><span>${l}</span><input ${k===0?'id="esc-c"':''} data-k="${k}" autocomplete="off" autocapitalize="off" spellcheck="false" aria-label="Svar ${l}" value="${escAttr(vals&&vals[k])}"></label>`).join('')}</div><button class="btn" type="submit">Lås opp</button></form>${tips.length?`<p class="esc-tip">Skriv ${tips.join(', ')}.</p>`:''}</div>`;
+}
+/* ---------- Mattelaben (fast escape room med koder) ---------- */
+BOARDS['escaperom-mattelaben']=()=>escLock({key:ESC_KEY,title:'Escape room: Mattelaben',code:true,
+  crumb:`<nav class="crumb" aria-label="Brødsmuler"><a href="#matte">Forside</a><span>›</span><a href="#aktiviteter/escaperom-mattelaben">Klasseaktiviteter</a><span>›</span><span>Escape room: Mattelaben</span></nav>`,
+  pdf:{href:'aktiviteter/escaperom-mattelaben.pdf',label:'PDF med poster og fasit'},
+  intro:'Gruppene løser oppgavene på papir og kommer hit for å taste inn koden for hver post. Riktig kode gir en bokstav. Når en gruppe har alle seks bokstavene, taster de inn kodeordet og er ute.',
+  won:'har rømt fra mattelaben!',
+  posts:ESC_CFG.posts.map(p=>({n:p.n,name:p.name,code:true,hint:p.hint,letter:String.fromCharCode(p.l^37),check:v=>escHash('ml|'+p.n+'|'+v[0])===p.h})),
+  checkWord:w=>ESC_CFG.word.includes(escHash('ml|ord|'+w)),wordHint:ESC_CFG.wordHint,wordLen:ESC_CFG.n});
+
+/* ===================== escape room-bygger ===================== */
+const ESC_THEMES={
+  lab:{name:'Mattelaben',intro:'Professor Primus har låst dere inne i mattelaben og mistet nøkkelen. Døra åpnes bare med et hemmelig kodeord. Rundt i laben står låste poster. Hver lås dere åpner, gir dere én bokstav av kodeordet.',
+    rooms:['Fryseboksen','Regnemaskinen','Potenstårnet','Primtallsvalvet','Brøkbiblioteket','Prosentkassen','Kjemiskapet','Tavleskapet'],won:'har rømt fra mattelaben!',door:'Åpne døra'},
+  rom:{name:'Romstasjonen',intro:'Romstasjonen Kepler mister strømmen, og luftslusen har låst seg. Den åpnes bare med et kodeord. Hver modul dere reparerer, gir dere én bokstav av kodeordet.',
+    rooms:['Kontrollrommet','Motorrommet','Solcellepanelet','Lageret','Laboratoriet','Kommandobroen','Romdraktskapet','Radiorommet'],won:'har kommet seg ut av romstasjonen!',door:'Åpne luftslusen'},
+  pyr:{name:'Pyramiden',intro:'Dere har gått dere vill i faraoens pyramide, og steinporten har gått igjen bak dere. Den åpnes bare med et hemmelig ord. Hvert kammer dere løser, gir dere én bokstav av ordet.',
+    rooms:['Gravkammeret','Skattkammeret','Hieroglyfveggen','Sfinksens gåte','Sarkofagen','Den skjulte gangen','Tempelhallen','Sandklokka'],won:'har funnet veien ut av pyramiden!',door:'Åpne steinporten'},
+  ub:{name:'Ubåten',intro:'Ubåten Nautilus ligger på havbunnen, og lukene er låst. Kapteinen har gjemt kodeordet bak låste skap. Hver lås dere åpner, gir dere én bokstav.',
+    rooms:['Torpedorommet','Maskinrommet','Periskopet','Kartrommet','Byssa','Sonarrommet','Kapteinens lugar','Dykkerkammeret'],won:'har kommet seg opp til overflaten!',door:'Åpne luka'}};
+const ESC_WORDS={3:'DØR',4:'KODE',5:'FLUKT',6:'NØKKEL',7:'RØMNING',8:'UTGANGEN'};
+const escEnc=c=>btoa(unescape(encodeURIComponent(JSON.stringify(c)))).replace(/\+/g,'-').replace(/\//g,'_').replace(/=+$/,'');
+const escDec=s=>{ try{ const c=JSON.parse(decodeURIComponent(escape(atob(String(s).replace(/-/g,'+').replace(/_/g,'/'))))); return c&&Array.isArray(c.t)&&c.t.length?c:null; }catch(e){ return null; } };
+const escFold=w=>String(w||'').toUpperCase().replace(/\s+/g,'').replace(/Æ/g,'AE').replace(/Ø/g,'O').replace(/Å/g,'A');
+function escWithSeed(seed,fn){ const R0=Math.random; let a=seed>>>0;
+  Math.random=()=>{ a=(a+0x6D2B79F5)>>>0; let t=a; t=Math.imul(t^(t>>>15),t|1); t^=t+Math.imul(t^(t>>>7),t|61); return ((t^(t>>>14))>>>0)/4294967296; };
+  try{ return fn(); } finally{ Math.random=R0; } }
+const ESC_OKP=p=>!!p&&typeof p.q==='string'&&!p.multi&&!p.ansHTML&&!/<svg|<table|tr-fig|<canvas|<img/.test(p.q)&&!(p.mc&&(!Array.isArray(p.mc.opts)||p.mc.opts.length>6||p.mc.opts.some(o=>/<svg|<table/.test(String(o)))))&&(!!p.mc||!!p.ex||!!p.alg||!!p.chk||!!p.fr||!!p.pa||!!p.fac||(typeof p.a==='number'&&isFinite(p.a)));
+function escTopicTasks(tid,L,n){
+  const W=WS_R[tid]; if(!W) return [];
+  const rec=(W[L]&&W[L].length?W[L]:(W[2]||W[1]||W[3]||[])); if(!rec.length) return [];
+  const out=[], seen=new Set();
+  for(let g=0; g<240&&out.length<n; g++){
+    const [id,Lv,f,,, ,ins]=rec[g%rec.length], T=TRAINERS[id]; if(!T) continue;
+    const ff={}; (T.filters||[]).forEach(F0=>ff[F0.k]=F0.def); Object.assign(ff,f||{});
+    const nL=T.levels?T.levels.length:1; let p; try{ p=T.gen(Math.min(Lv,nL),ff); }catch(e){ continue; }
+    if(!ESC_OKP(p)||seen.has(p.q)||/^(.+) − \1$/.test(p.q)) continue; seen.add(p.q); out.push(Object.assign({},p,{ins:ins||''}));
+  }
+  return out;
+}
+const ESC_AV={};
+function escAvail(tid,L,n){ const k=tid+'|'+L+'|'+n; if(!(k in ESC_AV)) ESC_AV[k]=escWithSeed(7,()=>escTopicTasks(tid,L,n)).length>=n; return ESC_AV[k]; }
+function escRoom(cfg){
+  return escWithSeed(cfg.s,()=>{
+    const th=ESC_THEMES[cfg.th]||ESC_THEMES.lab, word=String(cfg.w||ESC_WORDS[cfg.t.length]||'').toUpperCase();
+    const ord=cfg.t.map((_,i)=>i); for(let i=ord.length-1;i>0;i--){ const j=Math.floor(Math.random()*(i+1)); [ord[i],ord[j]]=[ord[j],ord[i]]; }
+    const posts=cfg.t.map((tid,i)=>{ const tasks=escTopicTasks(tid,cfg.L,cfg.n); const T0=tasks[0];
+      const kinds=tasks.map(p=>p.mc?'mc':(p.ex||p.alg)?'ex':p.fr?'fr':p.pa?'pa':p.fac?'fac':(typeof p.a==='number'&&p.a<0?'neg':'num'));
+      const hint=WS_HUSK[tid]||`Se på modellen og eksemplene i delkapitlet «${TOPICS[tid].title}».`;
+      return {n:i+1,tid,title:TOPICS[tid].title,room:th.rooms[i%th.rooms.length],tasks,kinds,letter:word[ord[i]]||'?',hint}; });
+    return {cfg,th,word,posts,name:`${th.name} · ${cfg.t.length} poster`};
+  });
+}
+const escAnsTxt=p=>p.mc?`${'abcdef'[p.mc.a]}) ${p.mc.opts[p.mc.a]}`:wsAns(p);
+function escFrac(s){ s=norm(String(s).replace(/:/g,'/')).replace(/^\+/,''); let m;
+  if((m=s.match(/^(-?\d+)\/(-?\d+)$/))) return [+m[1],+m[2]];
+  if((m=s.match(/^-?\d+$/))) return [+s,1];
+  return null; }
+function escFracMixed(raw){ const t=String(raw).trim().replace(/[−–]/g,'-'); const m=t.match(/^(-?)(\d+)\s+(\d+)\s*\/\s*(\d+)$/); if(m){ const w=+m[2], n=+m[3], d=+m[4]; const v=w*d+n; return [m[1]?-v:v,d]; } return escFrac(t); }
+function escCheck(p,s){
+  s=String(s||'').trim(); if(!s) return false;
+  if(p.mc){ const v=s.toLowerCase().replace(/[)\s.]/g,''), i='abcdef'.indexOf(v); if(v.length===1&&i>=0) return i===p.mc.a; const tx=o=>String(o).replace(/<[^>]+>/g,'').replace(/\s+/g,' ').trim().toLowerCase(); return tx(p.mc.opts[p.mc.a])===tx(s); }
+  if(p.alg){ try{ return !!(ALG.check(s,p)||{}).ok; }catch(e){ return false; } }
+  if(p.chk){ try{ return !!(p.chk(s)||{}).ok; }catch(e){ return false; } }
+  if(p.ex){ const r=parsePoly(s); return !!r&&polyEq(r.m,p.ex)&&!r.dup; }
+  if(p.pa){ const m=norm(s).replace(/\*\*/g,'^').match(/^(-?\d+)\^\(?(-?\d+)\)?$/); return !!m&&+m[1]===p.pa.b&&+m[2]===p.pa.e; }
+  if(p.fac){ const f=parseFac(s.replace(/[*x×]/gi,'·')); if(!f) return false; return f.reduce((a,b)=>a*b,1)===p.fac&&f.every(isPrime); }
+  if(p.fr){ const v=escFracMixed(s); if(!v||v[1]===0) return false; const [t,d]=v; if(t*p.fr.d!==p.fr.n*d) return false; if(p.fr.simp&&t!==0&&(gcd(t,d)!==1||d<0)) return false; return true; }
+  if(p.tol){ const x=parseFloat(norm(s)); return !isNaN(x)&&Math.abs(x-p.a)<=p.tol; }
+  if(/\//.test(s)){ const v=escFracMixed(s); return !!v&&v[1]!==0&&Math.abs(v[0]/v[1]-p.a)<1e-9; }
+  return numOk(s,p.a)===true;
+}
+/* ---------- lagrede rom ---------- */
+const ESC_ROOMS='esc-rooms', ESC_BS='esc-builder';
+const escRooms=()=>{ try{ const v=JSON.parse(localStorage.getItem(ESC_ROOMS)||'[]'); return Array.isArray(v)?v:[]; }catch(e){ return []; } };
+const escRoomsSave=l=>{ try{ localStorage.setItem(ESC_ROOMS,JSON.stringify(l.slice(0,30))); }catch(e){} };
+const escBS=()=>{ let v=null; try{ v=JSON.parse(localStorage.getItem(ESC_BS)||'null'); }catch(e){} return Object.assign({g:GRADE,tids:[],L:1,n:4,th:'lab',w:'',wAuto:true},v||{}); };
+const escBSave=v=>{ try{ localStorage.setItem(ESC_BS,JSON.stringify(v)); }catch(e){} };
+function escRemember(cfg,name){ const l=escRooms().filter(r=>r.s!==cfg.s); l.unshift({s:cfg.s,code:escEnc(cfg),name,t:Date.now(),g:cfg.g}); escRoomsSave(l); }
+/* ---------- utskrift ---------- */
+function escSheets(room,o){
+  const c=room.cfg, th=room.th, nP=room.posts.length, ft=`Escape room: ${th.name}`;
+  const lvTxt=['','Nivå 1','Nivå 2','Nivå 3'][c.L]||'';
+  const sheet=(lab,h)=>`<article class="ws ws-sheet esc-ws" style="${WS_NEUTRAL}" aria-label="${lab}">${h}</article>`;
+  let out='';
+  if(o.teacher){
+    out+=sheet('Lærerark',`<p class="kick">Til læreren · ikke del ut · ${c.g}. trinn · ${lvTxt}</p><h1 class="escw-h1">${ft}</h1>
+      <p class="escw-lede">${th.intro}</p>
+      <div class="escw-box g"><b>Slik gjør du</b><ol><li>Skriv ut oppdraget og låsekortet (ett per gruppe) og postene (ett sett per gruppe). Legg postene på hver sin plass i rommet.</li>
+      <li>Åpne låsesiden på PC-en din: Lærerdelen → Escape room-bygger → Mine escape rooms → «Åpne låsen». Skriv inn gruppene og trykk Start.</li>
+      <li>Gruppene løser oppgavene på en post og taster inn svarene A–${'ABCD'[c.n-1]} på PC-en. Riktige svar gir en bokstav. Når en gruppe har alle ${nP} bokstavene, taster de inn kodeordet.</li></ol></div>
+      <table class="escw-key"><thead><tr><th>Post</th><th>Svar</th><th>Bokstav</th></tr></thead><tbody>${room.posts.map(p=>`<tr><td><b>${p.n}. ${p.room}</b><br><span>${p.title}</span></td><td>${p.tasks.map((t,k)=>`<span class="escw-a"><b>${'ABCD'[k]}:</b> ${escAnsTxt(t)}</span>`).join('')}</td><td class="escw-l">${p.letter}</td></tr>`).join('')}</tbody></table>
+      <div class="escw-box r"><b>Kodeordet: ${room.word}</b>Bokstavene gruppene får, i postrekkefølge: ${room.posts.map(p=>p.letter).join(', ')}. Låsesiden godtar også ordet uten æ, ø og å.</div>`);
+  }
+  out+=sheet('Oppdraget og låsekort',`<p class="kick">${ft} · ${c.g}. trinn · én per gruppe</p><h1 class="escw-h1">Oppdraget</h1><p class="escw-story">${th.intro}</p>
+    <ol class="escw-ol"><li>Løs oppgavene på posten.</li><li>Tast svarene inn på lærerens PC. Riktige svar gir en bokstav. Skriv den i den røde ruta.</li><li>Når dere har alle ${nP} bokstavene, finner dere kodeordet og taster det inn.</li></ol>
+    <div class="escw-who"><span>Gruppe</span><i></i><span>Navn</span><i></i></div>
+    <table class="escw-card"><thead><tr><th>Post</th><th>Navn</th><th>Svar ${room.posts[0].tasks.map((_,k)=>'ABCD'[k]).join(' ')}</th><th>Bokstav</th></tr></thead><tbody>${room.posts.map(p=>`<tr><td class="pn">${p.n}</td><td>${p.room}<br><span>${p.title}</span></td><td>${p.tasks.map(()=>'<span class="bx"></span>').join('')}</td><td><span class="bx l"></span></td></tr>`).join('')}</tbody></table>
+    <p class="escw-sub">Kodeordet</p><div class="escw-final">${room.word.split('').map(()=>'<span></span>').join('')}</div>`);
+  room.posts.forEach(p=>{
+    const n=p.tasks.length;
+    out+=sheet(`Post ${p.n}`,`<div class="escw-ph"><div class="escw-num"><small>Post</small>${p.n}</div><div><h1 class="escw-h1">${p.room}</h1><p class="escw-tema">${p.title}</p></div></div>
+      <div class="escw-tasks n${n}">${p.tasks.map((t,k)=>`<div class="escw-task"><div class="escw-q"><span class="escw-tl">${'ABCD'[k]}</span><div>${t.ins?`<p class="escw-ins">${t.ins}</p>`:''}<div class="${t.expr?'qx':'q'}">${t.q}${t.expr?' =':''}</div>${t.mc?`<div class="escw-opts">${t.mc.opts.map((o,i)=>`<span><b>${'abcdef'[i]})</b> ${o}</span>`).join('')}</div>`:''}</div></div><div class="escw-work"></div><div class="escw-ans">Svar ${'ABCD'[k]}:${t.pre?` <b class="qx">${t.pre}</b>`:''} <span></span></div></div>`).join('')}</div>
+      <div class="escw-lock"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 10V7a5 5 0 0 1 10 0v3" fill="none" stroke="currentColor" stroke-width="2.4"/><rect x="4" y="10" width="16" height="12" rx="2.5" fill="currentColor"/></svg><div><b>Lås ${p.n}</b>Tast svarene ${p.tasks.map((_,k)=>'ABCD'[k]).join(', ').replace(/, ([A-D])$/,' og $1')} inn på lærerens PC.</div></div>`);
+  });
+  return out+`<style>@media print{@page{@bottom-left{content:"Matematikk ${c.g}. trinn · ${ft}"}}}</style>`;
+}
+function escPrint(html,msgEl){ let host=document.getElementById('ws-print'); if(!host){ host=document.createElement('div'); host.id='ws-print'; document.body.appendChild(host); }
+  host.innerHTML=html; document.documentElement.classList.add('ws-printing');
+  const done=()=>{ document.documentElement.classList.remove('ws-printing'); window.removeEventListener('afterprint',done); };
+  window.addEventListener('afterprint',done);
+  try{ window.print(); }catch(e){ done(); if(msgEl) msgEl.textContent='Utskrift er sperret i denne visningen. Åpne nettsiden i en egen fane og prøv igjen.'; } }
+/* ---------- byggeren ---------- */
+const escCrumb=(...xs)=>{ const L=[['Lærerforside','#matte'],['Escape room-bygger','#escape-bygger'],...xs]; return `<nav class="crumb" aria-label="Brødsmuler">${L.map(([t,h],i)=>i<L.length-1?`<a href="${h}">${t}</a><span>›</span>`:`<span>${t}</span>`).join('')}</nav>`; };
+function renderEscBuilder(code){
+  escCss();
+  if(code){ const cfg=escDec(code); if(cfg) return renderEscRoom(cfg,code); }
+  const B=escBS(); if(B.g!==GRADE){ B.g=GRADE; B.tids=[]; }
+  const rooms=escRooms();
+  const chs=CHS();
+  main.innerHTML=`<div class="col" id="esc-bld">${escCrumb()}
+    <header class="topic-head"><p class="eyebrow">For lærere · ${GRADE}. trinn</p><h1>Escape room-<span class="hl">bygger</span></h1>
+      <p class="lede">Velg temaene du vil ha med. Hvert tema blir én post med oppgaver som lages automatisk. Du får utskrifter med fasit og en låseside der gruppene taster inn svarene.</p></header>
+    ${rooms.length?`<section class="group" aria-labelledby="esr"><h2 id="esr">Mine escape rooms</h2><ul class="trows esc-rooms">${rooms.map(r=>`<li><span class="t">${escE(r.name)}</span><span class="d">${r.g}. trinn · laget ${new Date(r.t).toLocaleDateString('nb-NO',{day:'numeric',month:'long'})}</span><span class="dl"><a class="btn ghost small" href="#escape-bygger/${r.code}">Utskrifter</a><a class="btn small" href="#escape-las/${r.code}">Åpne låsen</a><button type="button" class="btn ghost small" data-del="${r.s}">Slett</button></span></li>`).join('')}</ul></section>`:''}
+    <section class="esc-card esc-bld"><h2 class="esc-bh"><span class="g-n">1</span>Velg temaer</h2>
+      <p class="esc-note">Velg 3–8 delkapitler. Rekkefølgen du trykker i, blir rekkefølgen på postene. Grå temaer har ikke nok oppgaver med svar som kan tastes inn.</p>
+      <div id="esc-tp">${chs.map(ch=>`<div class="esc-chap"><p class="esc-step">Kapittel ${ch.num} · ${ch.title}</p><div class="esc-pick esc-tops">${order(ch).map(tid=>`<button type="button" data-t="${tid}">${TOPICS[tid].title}</button>`).join('')}</div></div>`).join('')}</div>
+      <p class="esc-cnt" id="esc-cnt" aria-live="polite"></p></section>
+    <section class="esc-card esc-bld"><h2 class="esc-bh"><span class="g-n">2</span>Innstillinger</h2>
+      <div><p class="esc-step">Nivå</p><div class="esc-pick" id="esc-L">${[1,2,3].map(l=>`<button type="button" data-l="${l}">Nivå ${l}</button>`).join('')}</div></div>
+      <div><p class="esc-step">Oppgaver per post</p><div class="esc-pick" id="esc-nn">${[3,4].map(k=>`<button type="button" data-nn="${k}">${k} oppgaver</button>`).join('')}</div></div>
+      <div><p class="esc-step">Historie</p><div class="esc-pick" id="esc-th">${Object.entries(ESC_THEMES).map(([k,t])=>`<button type="button" data-th="${k}">${t.name}</button>`).join('')}</div><p class="esc-note" id="esc-thi"></p></div>
+      <div><p class="esc-step">Kodeord</p><div class="esc-word"><input id="esc-w" maxlength="8" autocomplete="off" aria-label="Kodeord" placeholder="NØKKEL"><button type="button" class="btn ghost small" id="esc-wr">Foreslå</button></div><p class="esc-note" id="esc-wn"></p></div></section>
+    <div class="esc-go"><button type="button" class="btn" id="esc-make" style="font-size:1.15rem;padding:14px 26px">Lag escape room</button><p class="role-err" id="esc-err" aria-live="polite"></p></div></div>`;
+  const $q=s=>main.querySelector(s);
+  const sync=()=>{
+    main.querySelectorAll('[data-t]').forEach(b=>{ const t=b.dataset.t, ok=escAvail(t,B.L,B.n), i=B.tids.indexOf(t); b.disabled=!ok&&i<0; b.classList.toggle('na',!ok);
+      b.setAttribute('aria-pressed',String(i>=0)); b.innerHTML=(i>=0?`<i class="esc-ord">${i+1}</i>`:'')+escE(TOPICS[t].title); });
+    const k=B.tids.length; $q('#esc-cnt').textContent=k?`${k} ${k===1?'post':'poster'} valgt${k<3?' · velg minst 3':k>8?' · maks 8':''}`:'Ingen temaer valgt ennå.';
+    main.querySelectorAll('[data-l]').forEach(b=>b.setAttribute('aria-pressed',String(+b.dataset.l===B.L)));
+    main.querySelectorAll('[data-nn]').forEach(b=>b.setAttribute('aria-pressed',String(+b.dataset.nn===B.n)));
+    main.querySelectorAll('[data-th]').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.th===B.th)));
+    $q('#esc-thi').textContent=(ESC_THEMES[B.th]||ESC_THEMES.lab).intro;
+    if(B.wAuto) B.w=ESC_WORDS[Math.min(8,Math.max(3,k))]||'';
+    const wi=$q('#esc-w'); if(document.activeElement!==wi) wi.value=B.w;
+    const wl=[...B.w].length; $q('#esc-wn').textContent=k?(wl===k?`Ordet har ${wl} bokstaver, én per post.`:`Ordet må ha ${k} bokstaver, én per post. Det har nå ${wl}.`):'Ordet må ha like mange bokstaver som det er poster.';
+    $q('#esc-wn').classList.toggle('bad',!!k&&wl!==k);
+    escBSave(B); };
+  main.querySelector('#esc-bld').addEventListener('click',e=>{
+    const bt=e.target.closest('[data-t]'), bl=e.target.closest('[data-l]'), bn=e.target.closest('[data-nn]'), bth=e.target.closest('[data-th]'), bd=e.target.closest('[data-del]');
+    if(bt){ const t=bt.dataset.t, i=B.tids.indexOf(t); if(i>=0) B.tids.splice(i,1); else if(B.tids.length<8) B.tids.push(t); sync(); }
+    else if(bl){ B.L=+bl.dataset.l; sync(); } else if(bn){ B.n=+bn.dataset.nn; sync(); } else if(bth){ B.th=bth.dataset.th; sync(); }
+    else if(e.target.closest('#esc-wr')){ B.wAuto=true; sync(); }
+    else if(bd){ if(!bd.dataset.arm){ bd.dataset.arm='1'; bd.textContent='Trykk igjen'; setTimeout(()=>{ if(bd.isConnected){ delete bd.dataset.arm; bd.textContent='Slett'; } },3000); return; }
+      escRoomsSave(escRooms().filter(r=>String(r.s)!==bd.dataset.del)); try{ localStorage.removeItem('escape-'+bd.dataset.del); }catch(err){} renderEscBuilder(); }
+    else if(e.target.closest('#esc-make')){
+      const er=$q('#esc-err'), k=B.tids.length, w=String($q('#esc-w').value).toUpperCase().replace(/\s+/g,'');
+      if(k<3){ er.textContent='Velg minst 3 temaer.'; return; }
+      if(!/^[A-ZÆØÅ]+$/.test(w)){ er.textContent='Kodeordet kan bare ha bokstaver.'; return; }
+      if([...w].length!==k){ er.textContent=`Kodeordet må ha ${k} bokstaver, én per post.`; return; }
+      const bad=B.tids.filter(t=>!escAvail(t,B.L,B.n)); if(bad.length){ er.textContent=`Disse temaene har ikke nok oppgaver på nivå ${B.L}: ${bad.map(t=>TOPICS[t].title).join(', ')}.`; return; }
+      const cfg={v:1,g:GRADE,t:B.tids.slice(),L:B.L,n:B.n,th:B.th,w,s:(Math.floor(Math.random()*2147483646)+1)};
+      const room=escRoom(cfg); escRemember(cfg,room.name+' · '+B.tids.map(t=>TOPICS[t].title).slice(0,3).join(', ')+(k>3?' …':''));
+      location.hash='escape-bygger/'+escEnc(cfg); }
+  });
+  $q('#esc-w').addEventListener('input',e=>{ B.w=e.target.value.toUpperCase().replace(/\s+/g,''); B.wAuto=false; sync(); });
+  sync();
+}
+const escE=t=>String(t).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+function renderEscRoom(cfg,code){
+  const room=escRoom(cfg), c=cfg;
+  if(!escRooms().some(r=>r.s===c.s)) escRemember(c,room.name+' · '+c.t.map(t=>(TOPICS[t]||{}).title).filter(Boolean).slice(0,3).join(', '));
+  main.innerHTML=`<div class="col">${escCrumb([room.th.name,''])}
+    <header class="topic-head"><p class="eyebrow">Escape room · ${c.g}. trinn · Nivå ${c.L}</p><h1>Escape room: <span class="hl">${room.th.name}</span></h1>
+      <p class="lede">${room.posts.length} poster med ${c.n} oppgaver hver. Kodeordet er <b>${room.word}</b>.</p>
+      <div class="jump"><a class="btn" href="#escape-las/${code}">Åpne låsen</a><button type="button" class="btn ghost" id="esc-pa">Skriv ut alt</button><button type="button" class="btn ghost" id="esc-pe">Skriv ut elevark</button><button type="button" class="btn ghost" id="esc-new">Nye oppgaver</button></div>
+      <p class="esc-note" id="esc-pm">Velg «Lagre som PDF» i utskriftsvinduet for å få en PDF-fil. «Skriv ut elevark» tar med oppdraget og postene, men ikke lærerarket med fasit.</p></header>
+    <section class="group" aria-labelledby="eso"><h2 id="eso">Postene</h2><ol class="esc-ov">${room.posts.map(p=>`<li><b>${p.n}. ${p.room}</b> <span class="esc-ovt">${p.title}</span><span class="esc-ovl">Bokstav ${p.letter}</span></li>`).join('')}</ol></section>
+    <section class="group" aria-labelledby="esp"><h2 id="esp">Forhåndsvisning</h2><div class="wsg-prev" id="esc-prev">${escSheets(room,{teacher:true})}</div></section></div>`;
+  const pv=main.querySelector('#esc-prev'), fit=()=>{ if(!pv.isConnected) return; const z=Math.min(1,(pv.clientWidth-4)/794); pv.querySelectorAll('.ws-sheet').forEach(s=>{ s.style.zoom=z; }); };
+  fit(); window.__escfit=fit; if(!window.__escfitOn){ window.__escfitOn=1; window.addEventListener('resize',()=>{ if(window.__escfit) window.__escfit(); }); }
+  main.querySelector('#esc-pa').addEventListener('click',()=>escPrint(escSheets(room,{teacher:true}),main.querySelector('#esc-pm')));
+  main.querySelector('#esc-pe').addEventListener('click',()=>escPrint(escSheets(room,{teacher:false}),main.querySelector('#esc-pm')));
+  main.querySelector('#esc-new').addEventListener('click',e=>{ const b=e.currentTarget; if(!b.dataset.arm){ b.dataset.arm='1'; b.textContent='Trykk igjen for nye oppgaver'; setTimeout(()=>{ if(b.isConnected){ delete b.dataset.arm; b.textContent='Nye oppgaver'; } },3500); return; }
+    const n2=Object.assign({},c,{s:Math.floor(Math.random()*2147483646)+1}); const r2=escRoom(n2);
+    const l=escRooms(), i=l.findIndex(r=>r.s===c.s), nm=i>=0?l[i].name:r2.name; if(i>=0) l.splice(i,1); escRoomsSave(l); escRemember(n2,nm);
+    location.hash='escape-bygger/'+escEnc(n2); });
+}
+function escLockRoom(code){
+  const cfg=escDec(code); if(!cfg){ main.innerHTML=`<div class="col">${escCrumb(['Låsesiden',''])}<p class="lede">Fant ikke dette escape roomet. Lag det på nytt i escape room-byggeren.</p></div>`; return; }
+  const room=escRoom(cfg);
+  escLock({key:'escape-'+cfg.s,title:'Escape room: '+room.th.name,code:false,crumb:escCrumb([room.th.name,'#escape-bygger/'+code],['Låsesiden','']),
+    intro:`Gruppene løser oppgavene på postene og kommer hit for å taste inn svarene. Riktige svar gir en bokstav. Når en gruppe har alle ${room.posts.length} bokstavene, taster de inn kodeordet og er ute.`,
+    won:room.th.won,
+    posts:room.posts.map(p=>({n:p.n,name:p.room,fields:p.tasks.map((_,k)=>'ABCD'[k]),kinds:p.kinds,hint:p.hint,letter:p.letter,check:vals=>p.tasks.every((t,k)=>escCheck(t,vals[k]))})),
+    checkWord:w=>escFold(w)===escFold(room.word),wordHint:`Ordet har ${[...room.word].length} bokstaver. Prøv å flytte rundt på bokstavene dere har fått.`,wordLen:[...room.word].length});
+}
 
 function route(){
   const r=decodeURIComponent(location.hash.slice(1));
@@ -7378,6 +7588,8 @@ function route(){
   else if (r==='eksamen'||r.startsWith('eksamen-')){ renderEksamen(r); cur='eksamen'; }
   else if (r==='aktiviteter'){ renderActivities(); cur=r; }
   else if (r.startsWith('aktiviteter/')){ const a=ACTS.find(x=>x.id===r.slice(12)); if(a&&a.grade!==GRADE) setGrade(a.grade); renderActivities(a&&a.id); cur='aktiviteter'; }
+  else if (r==='escape-bygger'||r.startsWith('escape-bygger/')){ renderEscBuilder(r.slice(14)); cur='escape-bygger'; }
+  else if (r.startsWith('escape-las/')){ escLockRoom(r.slice(11)); cur='escape-bygger'; }
   else if (BOARDS[r]){ BOARDS[r](); cur='aktiviteter'; }
   else if (ch && r===ch.id){ renderChapter(ch); cur=r; }
   else if (ch && TOPICS[r.slice(ch.id.length+1)]){ renderTopic(ch, r.slice(ch.id.length+1)); cur=r; }
@@ -7396,9 +7608,9 @@ function closeMenu(){ side.classList.remove('open'); scrim.hidden=true; menuBtn.
 menuBtn.addEventListener('click', ()=> side.classList.contains('open')?closeMenu():openMenu());
 scrim.addEventListener('click', closeMenu);
 document.addEventListener('keydown', e=>{ if(e.key==='Escape'&&side.classList.contains('open')){ closeMenu(); menuBtn.focus(); } });
-try{ window.__mat8={TRAINERS,poly,parsePoly,polyEq,TOPICS,BOOK,F,P,fmt,powStr,pfac,MODELS}; }catch(e){}
+try{ window.__mat8={TRAINERS,poly,parsePoly,polyEq,TOPICS,BOOK,F,P,fmt,powStr,pfac,MODELS,escRoom,escCheck,escDec,escAvail,gradeTids}; }catch(e){}
 document.addEventListener('click',e=>{ const b=e.target.closest('[data-grade]'); if(!b) return; const g=+b.dataset.grade; if(g===GRADE) return; setGrade(g);
-  const r=decodeURIComponent(location.hash.slice(1)); if(r==='laerer'||r==='spill'||r==='brettspill'||r.startsWith('eksamen')||r==='aktiviteter'||BOARDS[r]||r===''||r==='matte') route(); else location.hash='matte'; });
+  const r=decodeURIComponent(location.hash.slice(1)); if(r==='laerer'||r==='spill'||r==='brettspill'||r.startsWith('eksamen')||r==='aktiviteter'||r==='escape-bygger'||BOARDS[r]||r===''||r==='matte') route(); else location.hash='matte'; });
 setGrade(GRADE);
 window.addEventListener('hashchange', route);
 route();
