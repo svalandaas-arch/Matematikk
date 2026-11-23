@@ -7230,7 +7230,7 @@ BOARDS['escaperom-mattelaben']=()=>{
 .pb:fullscreen.esc,.pb.pb-fake.esc{overflow:auto}`; document.head.appendChild(st); }
   clearInterval(ESC_TICK);
   const P=ESC_CFG.posts, N=P.length;
-  let S=escLoad(), sel={g:null,p:null}, msgT=null, armReset=false;
+  let S=escLoad(), sel={g:(S&&S.groups&&S.groups.length===1)?0:null,p:null}, msgT=null, armReset=false;
   const crumb=`<nav class="crumb" aria-label="Brødsmuler"><a href="#matte">Forside</a><span>›</span><a href="#aktiviteter/escaperom-mattelaben">Klasseaktiviteter</a><span>›</span><span>Escape room: Mattelaben</span></nav>`;
   const now=()=>Date.now();
   const gTime=g=>((g.done||now())-S.t0)+g.hints.filter(Boolean).length*60000;
@@ -7253,7 +7253,7 @@ BOARDS['escaperom-mattelaben']=()=>{
     main.querySelector('#esc-dur').addEventListener('click',e=>{ const b=e.target.closest('[data-d]'); if(!b) return; dur=+b.dataset.d; main.querySelectorAll('#esc-dur button').forEach(x=>x.setAttribute('aria-pressed',x===b)); });
     main.querySelector('#esc-start').addEventListener('click',()=>{
       const nm=[...names.querySelectorAll('input')].map((i,k)=>i.value.trim()||'Gruppe '+(k+1));
-      S={t0:now(),dur,groups:nm.map(name=>({name,open:Array(N).fill(false),hints:Array(N).fill(false),fails:Array(N).fill(0),wait:Array(N).fill(0),done:null}))};
+      sel={g:nm.length===1?0:null,p:null}; S={t0:now(),dur,groups:nm.map(name=>({name,open:Array(N).fill(false),hints:Array(N).fill(false),fails:Array(N).fill(0),wait:Array(N).fill(0),done:null}))};
       escSave(S); run(); });
   }
   function run(){
@@ -7311,7 +7311,7 @@ BOARDS['escaperom-mattelaben']=()=>{
     inp.addEventListener('submit',e=>{ e.preventDefault(); const g=S.groups[sel.g], c=inp.querySelector('#esc-c'); if(!g||!c) return; const v=c.value.trim();
       if(g.open.every(Boolean)){ const w=v.toUpperCase().replace(/\s+/g,'');
         if(!w) return;
-        if(ESC_CFG.word.includes(escHash('ml|ord|'+w))){ g.done=now(); escSave(S); sel.p=null; drawIn(); board(); say('ok',`<p class="esc-win">Døra er åpen! ${esc(g.name)} er ute.</p><p>Tid: ${escMMSS(gTime(g))}</p>`,true); }
+        if(ESC_CFG.word.includes(escHash('ml|ord|'+w))){ g.done=now(); escSave(S); sel.p=null; const m=inp.querySelector('#esc-msg'); if(m){ m.className='esc-msg'; m.innerHTML=''; } drawIn(); board(); }
         else { c.value=''; say('bad','Døra er fortsatt låst. Prøv å sette bokstavene sammen på en annen måte.'); c.focus(); }
         return; }
       const j=sel.p; if(j==null) return;
