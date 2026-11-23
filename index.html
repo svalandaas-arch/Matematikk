@@ -7592,6 +7592,7 @@ const LIVE_CFG={apiKey:'AIzaSyDhQTffCGoKOkJAx9qp_WLzKSGsKClRzOU',authDomain:'sig
 const LIVE_URL='https://www.gstatic.com/firebasejs/10.12.2/';
 let LIVE=null, ESC_SUBS=[];
 function escLiveStop(){ ESC_SUBS.forEach(u=>{ try{ u(); }catch(e){} }); ESC_SUBS=[]; }
+const escToken=()=>{ const a=new Uint8Array(18); crypto.getRandomValues(a); return Array.from(a,x=>x.toString(16).padStart(2,'0')).join(''); };
 const escMs=v=>v&&typeof v.toMillis==='function'?v.toMillis():(typeof v==='number'?v:null);
 const escNorm=d=>{ if(!d) return d; const o=Object.assign({},d); ['start','ferdig','sist','laget'].forEach(k=>{ if(k in o) o[k]=escMs(o[k]); }); return o; };
 async function liveInit(){
@@ -7600,22 +7601,21 @@ async function liveInit(){
   LIVE=mock?liveMock():await liveFirebase(); return LIVE;
 }
 async function liveFirebase(){
-  const [appM,authM,F]=await Promise.all(['firebase-app.js','firebase-auth.js','firebase-firestore.js'].map(f=>import(LIVE_URL+f)));
+  const [appM,F]=await Promise.all(['firebase-app.js','firebase-firestore.js'].map(f=>import(LIVE_URL+f)));
   const app=appM.getApps().length?appM.getApp():appM.initializeApp(LIVE_CFG);
-  const auth=authM.getAuth(app), db=F.getFirestore(app);
-  await new Promise(r=>{ const u=authM.onAuthStateChanged(auth,()=>{ u(); r(); }); });
+  const db=F.getFirestore(app);
+  const vert=pin=>F.doc(db,'spillvert',pin), spill=pin=>F.doc(db,'spill',pin);
   const D=s=>s.exists()?escNorm(s.data({serverTimestamps:'estimate'})):null;
   return {
     ts:()=>F.serverTimestamp(),
-    user:()=>auth.currentUser,
-    signIn:async()=>{ const p=new authM.GoogleAuthProvider(); p.setCustomParameters({prompt:'select_account'}); await authM.signInWithPopup(auth,p); return auth.currentUser; },
     getGame:async pin=>D(await F.getDoc(F.doc(db,'spill',pin))),
-    createGame:(pin,d)=>F.setDoc(F.doc(db,'spill',pin),Object.assign({},d,{owner:auth.currentUser.uid,laget:F.serverTimestamp()})),
-    updateGame:(pin,d)=>F.updateDoc(F.doc(db,'spill',pin),d),
+    createGame:async(pin,d)=>{ const n=escToken(); const b=F.writeBatch(db);
+      b.set(vert(pin),{n,status:'lobby',start:null,kick:null}); b.set(spill(pin),Object.assign({},d,{laget:F.serverTimestamp()})); await b.commit(); return n; },
+    updateGame:async(pin,d,n)=>{ const b=F.writeBatch(db); b.update(vert(pin),Object.assign({n},d)); b.update(spill(pin),d); await b.commit(); },
     watchGame:(pin,cb)=>F.onSnapshot(F.doc(db,'spill',pin),s=>cb(D(s)),()=>cb(null)),
     addTeam:async(pin,d)=>(await F.addDoc(F.collection(db,'spill',pin,'lag'),d)).id,
     updateTeam:(pin,id,d)=>F.updateDoc(F.doc(db,'spill',pin,'lag',id),d),
-    delTeam:(pin,id)=>F.deleteDoc(F.doc(db,'spill',pin,'lag',id)),
+    delTeam:async(pin,id,n)=>{ const b=F.writeBatch(db); if(n) b.update(vert(pin),{n,kick:id}); b.delete(F.doc(db,'spill',pin,'lag',id)); await b.commit(); },
     watchTeams:(pin,cb)=>F.onSnapshot(F.collection(db,'spill',pin,'lag'),q=>cb(q.docs.map(d=>Object.assign({id:d.id},escNorm(d.data({serverTimestamps:'estimate'}))))),()=>cb(null))
   };
 }
@@ -7623,17 +7623,15 @@ async function liveFirebase(){
 function liveMock(){
   const K='esc-live-db', rd=()=>{ try{ return JSON.parse(localStorage.getItem(K)||'{}'); }catch(e){ return {}; } }, wr=d=>localStorage.setItem(K,JSON.stringify(d));
   const poll=(get,cb)=>{ let last=null; const f=()=>{ const v=JSON.stringify(get()); if(v!==last){ last=v; cb(JSON.parse(v)); } }; f(); const t=setInterval(f,250); return ()=>clearInterval(t); };
-  let me=null; try{ me=JSON.parse(sessionStorage.getItem('esc-mock-user')||'null'); }catch(e){}
   return {
-    ts:()=>Date.now(), user:()=>me,
-    signIn:async()=>{ me={uid:'laerer1',email:'laerer@skole.no'}; sessionStorage.setItem('esc-mock-user',JSON.stringify(me)); return me; },
+    ts:()=>Date.now(),
     getGame:async pin=>{ const g=rd()[pin]; return g?g.d:null; },
-    createGame:async(pin,d)=>{ const db=rd(); db[pin]={d:Object.assign({},d,{owner:me.uid,laget:Date.now()}),lag:{}}; wr(db); },
-    updateGame:async(pin,d)=>{ const db=rd(); Object.assign(db[pin].d,d); wr(db); },
+    createGame:async(pin,d)=>{ const db=rd(), n=escToken(); db[pin]={d:Object.assign({},d,{laget:Date.now()}),n,lag:{}}; wr(db); return n; },
+    updateGame:async(pin,d,n)=>{ const db=rd(); if(db[pin].n!==n) throw Object.assign(new Error('nei'),{code:'permission-denied'}); Object.assign(db[pin].d,d); wr(db); },
     watchGame:(pin,cb)=>poll(()=>{ const g=rd()[pin]; return g?g.d:null; },cb),
     addTeam:async(pin,d)=>{ const db=rd(), id='t'+Math.random().toString(36).slice(2,10); if(!db[pin]||!['lobby','spill'].includes(db[pin].d.status)) throw new Error('nei'); db[pin].lag[id]=d; wr(db); return id; },
     updateTeam:async(pin,id,d)=>{ const db=rd(); if(!db[pin]||!db[pin].lag[id]) throw new Error('borte'); Object.assign(db[pin].lag[id],d); wr(db); },
-    delTeam:async(pin,id)=>{ const db=rd(); delete db[pin].lag[id]; wr(db); },
+    delTeam:async(pin,id,n)=>{ const db=rd(); if(n&&db[pin].n!==n) throw Object.assign(new Error('nei'),{code:'permission-denied'}); if(!n&&db[pin].d.status!=='lobby') throw Object.assign(new Error('nei'),{code:'permission-denied'}); delete db[pin].lag[id]; wr(db); },
     watchTeams:(pin,cb)=>poll(()=>{ const g=rd()[pin]; return g?Object.entries(g.lag).map(([id,v])=>Object.assign({id},v)):[]; },cb)
   };
 }
@@ -7649,7 +7647,7 @@ function escBoardHtml(teams,N,start,meId){
 function escFsWire(root){ root.addEventListener('click',e=>{ const b=e.target.closest('[data-pb="fs"]'); if(!b) return;
   const fake=()=>{ const on=root.classList.toggle('pb-fake'); b.textContent=on?'Avslutt fullskjerm':'Fullskjerm'; };
   if(root.classList.contains('pb-fake')) fake(); else if(document.fullscreenElement) document.exitFullscreen(); else { try{ const pr=root.requestFullscreen&&root.requestFullscreen(); if(pr&&pr.catch) pr.catch(fake); else if(!pr) fake(); }catch(err){ fake(); } } }); }
-const escLiveErr=e=>{ const c=e&&e.code||''; return c==='permission-denied'?'Firebase sa nei. Sjekk at Firestore-reglene for escape room er publisert (se veiledningen under Grupper og klassekart).':
+const escLiveErr=e=>{ const c=e&&e.code||''; return c==='permission-denied'?'Firebase sa nei. Spillet kan bare styres fra PC-en og nettleseren der spillkoden ble laget, og Firestore-reglene for escape room må være publisert.':
   c==='auth/unauthorized-domain'?'Denne nettadressen er ikke godkjent i Firebase (Authentication → Settings → Authorized domains).':
   c==='auth/popup-blocked'?'Nettleseren stoppet innloggingsvinduet. Tillat popup-vinduer for siden og prøv igjen.':
   'Fikk ikke kontakt med Firebase. Sjekk nettforbindelsen og prøv igjen.'; };
@@ -7669,31 +7667,29 @@ async function escHostPage(rom){
   if(!hb.isConnected) return;
   const N=B.posts.length, canTasks=true;
   const sv=escJ(ESC_HOST);
-  if(sv&&sv.rom===rom){ try{ const g=await L.getGame(sv.pin); if(g&&g.status!=='slutt'&&L.user()&&g.owner===L.user().uid) return run(sv.pin); }catch(e){} }
+  if(sv&&sv.rom===rom&&sv.n){ try{ const g=await L.getGame(sv.pin); if(g&&g.status!=='slutt') return run(sv.pin,sv.n); }catch(e){} }
   setup();
   function setup(){
-    const u=L.user(); let dur=45, vo=rom!=='mattelaben';
+    let dur=45, vo=rom!=='mattelaben';
     hb.innerHTML=`<div class="esc-card esc-set">
       <p>Hver gruppe bruker sin egen PC. Elevene går til <b>${escSiteHost()}/#bli-med</b>, skriver inn spillkoden og et gruppenavn. Du ser hvem som er med, starter spillet og følger tavla her.</p>
       <div><p class="esc-step">Tid</p><div class="esc-pick" id="esc-dur">${[[30,'30 min'],[45,'45 min'],[60,'60 min'],[0,'Uten tidsgrense']].map(([v,t])=>`<button type="button" data-d="${v}" aria-pressed="${v===dur}">${t}</button>`).join('')}</div></div>
       ${canTasks?`<div><p class="esc-step">Oppgavene</p><div class="esc-pick" id="esc-vo"><button type="button" data-vo="1" aria-pressed="${vo}">Vises på elevenes skjerm</button><button type="button" data-vo="0" aria-pressed="${!vo}">Bare på papir</button></div></div>`:''}
-      ${u?`<div class="esc-go"><button type="button" class="btn" id="esc-mk" style="font-size:1.15rem;padding:14px 26px">Lag spillkode</button><p class="esc-note">Logget inn som ${escE(u.email||'lærer')}.</p></div>`
-         :`<div class="esc-go"><button type="button" class="btn" id="esc-login">Logg inn med Google</button><p class="esc-note">For å lage en spillkode logger du inn med Google-kontoen du bruker i Grupper og klassekart. Elevene trenger ikke å logge inn.</p></div>`}
+      <div class="esc-go"><button type="button" class="btn" id="esc-mk" style="font-size:1.15rem;padding:14px 26px">Lag spillkode</button><p class="esc-note">Ingen trenger å logge inn. Spillet kan bare styres fra denne PC-en og denne nettleseren.</p></div>
       <p class="role-err" id="esc-he" aria-live="polite"></p></div>`;
     const er=hb.querySelector('#esc-he');
     hb.querySelector('#esc-dur').addEventListener('click',e=>{ const b=e.target.closest('[data-d]'); if(!b) return; dur=+b.dataset.d; hb.querySelectorAll('#esc-dur button').forEach(x=>x.setAttribute('aria-pressed',x===b)); });
     const vb=hb.querySelector('#esc-vo'); if(vb) vb.addEventListener('click',e=>{ const b=e.target.closest('[data-vo]'); if(!b) return; vo=b.dataset.vo==='1'; vb.querySelectorAll('button').forEach(x=>x.setAttribute('aria-pressed',x===b)); });
-    const lb=hb.querySelector('#esc-login'); if(lb) lb.addEventListener('click',async()=>{ er.textContent=''; try{ await L.signIn(); setup(); }catch(e){ if(e&&/popup-closed|cancelled-popup/.test(e.code||'')) return; er.textContent=escLiveErr(e); } });
     const mk=hb.querySelector('#esc-mk'); if(mk) mk.addEventListener('click',async()=>{ er.textContent=''; mk.disabled=true;
       try{ let pin=null; for(let i=0;i<6&&!pin;i++){ const p=String(100000+Math.floor(Math.random()*900000)); if(!(await L.getGame(p))) pin=p; }
         if(!pin) throw new Error('ingen kode');
-        await L.createGame(pin,{rom,navn:B.title,dur,status:'lobby',start:null,visOppg:vo});
-        escJ(ESC_HOST,{pin,rom}); run(pin); }
+        const n=await L.createGame(pin,{rom,navn:B.title,dur,status:'lobby',start:null,visOppg:vo});
+        escJ(ESC_HOST,{pin,rom,n}); run(pin,n); }
       catch(e){ mk.disabled=false; er.textContent=escLiveErr(e); } });
   }
-  function run(pin){
+  function run(pin,n){
     let game=null, teams=[], armEnd=false;
-    hb.innerHTML=`<div class="esc-main">
+    hb.innerHTML=`<div class="esc-main" id="esc-run">
       <div class="esc-card"><div class="esc-pin"><small>Spillkode</small><strong class="pn">${pin.slice(0,3)} ${pin.slice(3)}</strong><span>Gå til <b>${escSiteHost()}/#bli-med</b></span></div>
         <div class="esc-clock" id="esc-clock"></div><div id="esc-hc" class="esc-hctl"></div><p class="role-err" id="esc-he" aria-live="polite"></p></div>
       <div class="esc-card"><h3 id="esc-bh">Tavla</h3><ul class="esc-board" id="esc-board"></ul></div></div>`;
@@ -7717,13 +7713,13 @@ async function escHostPage(rom){
     clearInterval(ESC_TICK); ESC_TICK=setInterval(()=>{ if(!clockEl.isConnected){ clearInterval(ESC_TICK); return; } if(game&&game.status==='spill') tick(); },500);
     ESC_SUBS.push(L.watchGame(pin,g=>{ game=g; draw(); }));
     ESC_SUBS.push(L.watchTeams(pin,ts=>{ if(ts) teams=ts; draw(); }));
-    hb.addEventListener('click',async e=>{
+    hb.querySelector('#esc-run').addEventListener('click',async e=>{
       const k=e.target.closest('[data-kick]');
       try{
-        if(k){ await L.delTeam(pin,k.dataset.kick); }
-        else if(e.target.closest('#esc-go')){ await L.updateGame(pin,{status:'spill',start:L.ts()}); }
-        else if(e.target.closest('#esc-end')){ if(!armEnd){ armEnd=true; draw(); setTimeout(()=>{ armEnd=false; if(hb.isConnected) draw(); },3500); return; } await L.updateGame(pin,{status:'slutt'}); }
-        else if(e.target.closest('#esc-nw')){ if(game&&game.status==='lobby') await L.updateGame(pin,{status:'slutt'}); escJ(ESC_HOST,null); escLiveStop(); setup(); }
+        if(k){ await L.delTeam(pin,k.dataset.kick,n); }
+        else if(e.target.closest('#esc-go')){ await L.updateGame(pin,{status:'spill',start:L.ts()},n); }
+        else if(e.target.closest('#esc-end')){ if(!armEnd){ armEnd=true; draw(); setTimeout(()=>{ armEnd=false; if(hb.isConnected) draw(); },3500); return; } await L.updateGame(pin,{status:'slutt'},n); }
+        else if(e.target.closest('#esc-nw')){ if(game&&game.status==='lobby') await L.updateGame(pin,{status:'slutt'},n); escJ(ESC_HOST,null); escLiveStop(); setup(); }
       }catch(err){ er.textContent=escLiveErr(err); }
     });
   }

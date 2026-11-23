@@ -6,24 +6,46 @@ service cloud.firestore {
       allow read, write: if request.auth != null && request.auth.uid == uid;
     }
 
-    // Escape room med spillkode (Kahoot-modus).
-    // Læreren lager spillet og må være innlogget. Elevene trenger ikke å logge inn.
+    // ---------------- Escape room med spillkode (Kahoot-modus) ----------------
+    // Ingen trenger å logge inn. Når læreren lager et spill, lages også et skjult
+    // dokument i /spillvert med en tilfeldig nøkkel som bare lærerens nettleser kjenner.
+    // Spillet kan bare startes, avsluttes og styres av den som kjenner nøkkelen.
+
+    // Skjult styringsdokument. Ingen kan lese det.
+    match /spillvert/{pin} {
+      allow read: if false;
+      allow create: if pin.matches('^[0-9]{6}$')
+        && !exists(/databases/$(database)/documents/spill/$(pin))
+        && request.resource.data.keys().hasOnly(['n', 'status', 'start', 'kick'])
+        && request.resource.data.n is string && request.resource.data.n.size() >= 20
+        && request.resource.data.status == 'lobby';
+      allow update: if request.resource.data.n == resource.data.n
+        && request.resource.data.keys().hasOnly(['n', 'status', 'start', 'kick'])
+        && request.resource.data.status in ['lobby', 'spill', 'slutt'];
+      allow delete: if false;
+    }
+
+    // Det offentlige spillet, som elevene leser.
     match /spill/{pin} {
       allow read: if pin.matches('^[0-9]{6}$');
-      allow create: if request.auth != null
-        && pin.matches('^[0-9]{6}$')
-        && request.resource.data.owner == request.auth.uid
-        && request.resource.data.keys().hasOnly(['owner', 'rom', 'navn', 'dur', 'status', 'start', 'visOppg', 'laget'])
+      // Må lages samtidig med styringsdokumentet.
+      allow create: if pin.matches('^[0-9]{6}$')
+        && !exists(/databases/$(database)/documents/spillvert/$(pin))
+        && existsAfter(/databases/$(database)/documents/spillvert/$(pin))
+        && request.resource.data.keys().hasOnly(['rom', 'navn', 'dur', 'status', 'start', 'visOppg', 'laget'])
         && request.resource.data.rom is string && request.resource.data.rom.size() < 4000
         && request.resource.data.status == 'lobby';
-      allow update: if request.auth != null
-        && resource.data.owner == request.auth.uid
-        && request.resource.data.owner == resource.data.owner
+      // Status og starttid må være de samme som i styringsdokumentet etter skrivingen,
+      // og det kan bare endres av den som kjenner nøkkelen.
+      allow update: if request.resource.data.keys().hasOnly(['rom', 'navn', 'dur', 'status', 'start', 'visOppg', 'laget'])
         && request.resource.data.rom == resource.data.rom
-        && request.resource.data.keys().hasOnly(['owner', 'rom', 'navn', 'dur', 'status', 'start', 'visOppg', 'laget'])
-        && request.resource.data.status in ['lobby', 'spill', 'slutt'];
-      allow delete: if request.auth != null && resource.data.owner == request.auth.uid;
+        && request.resource.data.dur == resource.data.dur
+        && request.resource.data.visOppg == resource.data.visOppg
+        && request.resource.data.status == getAfter(/databases/$(database)/documents/spillvert/$(pin)).data.status
+        && request.resource.data.start == getAfter(/databases/$(database)/documents/spillvert/$(pin)).data.start;
+      allow delete: if false;
 
+      // Gruppene. Elevene melder seg på og oppdaterer sin egen framgang.
       match /lag/{lag} {
         allow read: if true;
         allow create: if get(/databases/$(database)/documents/spill/$(pin)).data.status in ['lobby', 'spill']
@@ -37,7 +59,8 @@ service cloud.firestore {
           && request.resource.data.navn == resource.data.navn
           && request.resource.data.open is list && request.resource.data.open.size() <= 8
           && request.resource.data.hint is int && request.resource.data.hint >= 0 && request.resource.data.hint <= 20;
-        allow delete: if (request.auth != null && get(/databases/$(database)/documents/spill/$(pin)).data.owner == request.auth.uid)
+        // Læreren kan fjerne en gruppe (med nøkkelen). En gruppe kan forlate spillet før det starter.
+        allow delete: if getAfter(/databases/$(database)/documents/spillvert/$(pin)).data.kick == lag
           || get(/databases/$(database)/documents/spill/$(pin)).data.status == 'lobby';
       }
     }
