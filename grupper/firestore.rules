@@ -5,5 +5,41 @@ service cloud.firestore {
     match /brukere/{uid} {
       allow read, write: if request.auth != null && request.auth.uid == uid;
     }
+
+    // Escape room med spillkode (Kahoot-modus).
+    // Læreren lager spillet og må være innlogget. Elevene trenger ikke å logge inn.
+    match /spill/{pin} {
+      allow read: if pin.matches('^[0-9]{6}$');
+      allow create: if request.auth != null
+        && pin.matches('^[0-9]{6}$')
+        && request.resource.data.owner == request.auth.uid
+        && request.resource.data.keys().hasOnly(['owner', 'rom', 'navn', 'dur', 'status', 'start', 'visOppg', 'laget'])
+        && request.resource.data.rom is string && request.resource.data.rom.size() < 4000
+        && request.resource.data.status == 'lobby';
+      allow update: if request.auth != null
+        && resource.data.owner == request.auth.uid
+        && request.resource.data.owner == resource.data.owner
+        && request.resource.data.rom == resource.data.rom
+        && request.resource.data.keys().hasOnly(['owner', 'rom', 'navn', 'dur', 'status', 'start', 'visOppg', 'laget'])
+        && request.resource.data.status in ['lobby', 'spill', 'slutt'];
+      allow delete: if request.auth != null && resource.data.owner == request.auth.uid;
+
+      match /lag/{lag} {
+        allow read: if true;
+        allow create: if get(/databases/$(database)/documents/spill/$(pin)).data.status in ['lobby', 'spill']
+          && request.resource.data.keys().hasOnly(['navn', 'open', 'hint', 'ferdig', 'sist'])
+          && request.resource.data.navn is string
+          && request.resource.data.navn.size() > 0 && request.resource.data.navn.size() <= 24
+          && request.resource.data.open is list && request.resource.data.open.size() <= 8
+          && request.resource.data.hint == 0;
+        allow update: if get(/databases/$(database)/documents/spill/$(pin)).data.status == 'spill'
+          && request.resource.data.keys().hasOnly(['navn', 'open', 'hint', 'ferdig', 'sist'])
+          && request.resource.data.navn == resource.data.navn
+          && request.resource.data.open is list && request.resource.data.open.size() <= 8
+          && request.resource.data.hint is int && request.resource.data.hint >= 0 && request.resource.data.hint <= 20;
+        allow delete: if (request.auth != null && get(/databases/$(database)/documents/spill/$(pin)).data.owner == request.auth.uid)
+          || get(/databases/$(database)/documents/spill/$(pin)).data.status == 'lobby';
+      }
+    }
   }
 }
