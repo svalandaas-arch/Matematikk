@@ -1132,6 +1132,7 @@ body.fag-start .app{grid-template-columns:minmax(0,1fr)}
   <main class="main" id="main" tabindex="-1"></main>
 </div>
 
+<script src="rolle.js"></script>
 <script>
 (function(){
 "use strict";
@@ -2864,8 +2865,8 @@ let curRoute='';
 function renderNav(route){
   const cur=r=>route===r?'aria-current="page"':'', lr=['brettspill','aktiviteter','laerer'].some(r=>route===r||route.startsWith(r+'/'));
   let lOpen=lr; try{ lOpen=lOpen||localStorage.getItem('nav-laerer')==='1'; }catch(e){}
-  let h=`${fagSw()}<a class="brand-big" href="#matte">Matematikk<small>${GRADE}. trinn</small></a>${gradeSw()}<ul class="nav"><li><a href="#matte" ${cur('matte')}><span>Forside</span></a></li><li><a href="#spill" ${cur('spill')}><span>Spill</span><span class="tally">6 spill</span></a></li><li><a href="#eksamen" ${cur('eksamen')}><span>Eksamen</span><span class="tally">10. trinn</span></a></li>
-    <li><details class="tgrp" ${lOpen?'open':''}><summary>For lærere</summary><ul><li><a href="#laerer" ${cur('laerer')}><span>Oppgaveark</span><span class="tally">PDF</span></a></li><li><a href="#aktiviteter" ${cur('aktiviteter')}><span>Klasseaktiviteter</span><span class="tally">${ACTS.length}</span></a></li><li><a href="#brettspill" ${cur('brettspill')}><span>Brettspill</span><span class="tally">${BRETT.length}</span></a></li><li><a href="grupper/"><span>Grupper og klassekart</span><span class="tally">Logg inn</span></a></li></ul></details></li>
+  if(ROLLE.isTeacher()){ renderTeacherNav(route); return; }
+  let h=`${ROLLE.sw()}${fagSw()}<a class="brand-big" href="#matte">Matematikk<small>${GRADE}. trinn</small></a>${gradeSw()}<ul class="nav"><li><a href="#matte" ${cur('matte')}><span>Forside</span></a></li><li><a href="#spill" ${cur('spill')}><span>Spill</span><span class="tally">6 spill</span></a></li><li><a href="#eksamen" ${cur('eksamen')}><span>Eksamen</span><span class="tally">10. trinn</span></a></li>
     <li class="grp">Kapitler</li>`;
   CHS().forEach(ch=>{
     h+=`<li><a class="chap" href="#${ch.id}" ${route===ch.id?'aria-current="page"':''}><span>Kap ${ch.num} · ${ch.title}</span></a></li>`;
@@ -2875,7 +2876,42 @@ function renderNav(route){
   const d=side.querySelector('.tgrp'); if(d) d.querySelector('summary').addEventListener('click',()=>setTimeout(()=>{ try{ localStorage.setItem('nav-laerer',d.open?'1':'0'); }catch(e){} },0));
 }
 function refreshNav(){ renderNav(curRoute); }
+const TEACH_ROUTE=r=>r==='laerer'||r==='brettspill'||r==='aktiviteter'||r.startsWith('aktiviteter/')||!!BOARDS[r];
+function renderTeacherNav(route){
+  const cur=r=>route===r?'aria-current="page"':'', h=location.hash;
+  const tav=ACTS.filter(a=>a.board&&a.grade===GRADE);
+  side.innerHTML=`${ROLLE.sw()}${fagSw()}<a class="brand-big" href="#matte">Lærerdelen<small>Matematikk · ${GRADE}. trinn</small></a>${gradeSw()}<ul class="nav">
+    <li><a href="#matte" ${cur('matte')}><span>Lærerforside</span></a></li>
+    <li class="grp">Verktøy</li>
+    <li><a href="#laerer" ${cur('laerer')}><span>Oppgaveark</span><span class="tally">PDF</span></a></li>
+    <li><a href="#aktiviteter" ${route==='aktiviteter'&&!tav.some(a=>a.board===h)?'aria-current="page"':''}><span>Klasseaktiviteter</span><span class="tally">${ACTS.length}</span></a></li>
+    <li><a href="#brettspill" ${cur('brettspill')}><span>Brettspill</span><span class="tally">${BRETT.length}</span></a></li>
+    <li><a href="grupper/"><span>Grupper og klassekart</span><span class="tally">Logg inn</span></a></li>
+    <li class="grp">Interaktive tavler</li>
+    ${tav.map(a=>`<li class="sub"><a href="${a.board}" ${h===a.board?'aria-current="page"':''}><span>${a.title}</span></a></li>`).join('')||'<li class="soon">Ingen tavler på dette trinnet</li>'}
+  </ul><button type="button" class="role-lockbtn" data-role-lock>Lås lærerdelen</button>`;
+}
+function renderGate(){
+  main.innerHTML=`<div class="col"><nav class="crumb" aria-label="Brødsmuler"><a href="#matte">Forside</a><span>›</span><span>For lærere</span></nav>${ROLLE.gateHtml()}</div>`;
+  ROLLE.wire(main,()=>{});
+}
+function renderTeacherHome(){
+  const tav=ACTS.filter(a=>a.board&&a.grade===GRADE);
+  main.innerHTML=`<div class="col">
+    <header class="home-hero"><p class="eyebrow">Lærerdelen · ${GRADE}. trinn</p><h1>Verktøy for <span class="hl">lærere</span></h1>
+      <p class="lede">Oppgaveark med fasit, opplegg for hele klassen, brettspill til utskrift og interaktive tavler. Bytt til «Elev» øverst for å se det elevene ser.</p></header>
+    <section class="group" aria-labelledby="tv1"><h2 id="tv1">Verktøy</h2><div class="quick">
+      <a class="qcard" href="#laerer"><b>Oppgaveark</b><span>${gradeTids().filter(t=>ARK[t]).length*3} ark på tre nivåer med fasit.</span></a>
+      <a class="qcard" href="#aktiviteter"><b>Klasseaktiviteter</b><span>${ACTS.filter(a=>a.grade===GRADE).length} opplegg for hele klassen på ${GRADE}. trinn.</span></a>
+      <a class="qcard" href="#brettspill"><b>Brettspill</b><span>${BRETT.length} brettspill til utskrift.</span></a>
+      <a class="qcard" href="grupper/"><b>Grupper og klassekart</b><span>Lag grupper med skjulte betingelser.</span></a></div></section>
+    ${tav.length?`<section class="group" aria-labelledby="tv2"><h2 id="tv2">Interaktive tavler</h2><div class="quick">${tav.map(a=>`<a class="qcard" href="${a.board}"><b>${a.title}</b><span>${a.short||a.fit||''}</span></a>`).join('')}</div></section>`:''}
+    <footer class="foot">Lærerdelen er åpen i denne fanen til du lukker den eller trykker «Lås lærerdelen» i menyen.</footer></div>`;
+}
+document.addEventListener('rolle',()=>{ const r=decodeURIComponent(location.hash.slice(1)); if(TEACH_ROUTE(r)&&!ROLLE.isTeacher()) location.hash='matte'; else route(); });
+
 function renderHome(){
+  if(ROLLE.isTeacher()) return renderTeacherHome();
   const CH=CHS(), ch=CH.find(c=>chapterStat(c).n<chapterStat(c).t)||CH[0], started=CH.some(c=>chapterStat(c).n>0);
   main.innerHTML=`<div class="col">
     <header class="home-hero"><p class="eyebrow">Digital lærebok · ${GRADE}. trinn</p><h1>Matematikk <span class="hl">${GRADE}. trinn</span></h1>
@@ -2885,11 +2921,6 @@ function renderHome(){
     <section class="group" aria-labelledby="sp2"><h2 id="sp2">Øv mer</h2><div class="quick">
       <a class="qcard" href="#spill"><b>Mattespill</b><span>Seks spill med mattespørsmål underveis. Du har tre liv.</span></a>
       <a class="qcard" href="#eksamen"><b>Eksamenstrening</b><span>${EKTE.oppg.length} oppgaver fra ekte eksamener på 10. trinn, sortert etter tema.</span></a></div></section>
-    <section class="group" aria-labelledby="lh2"><h2 id="lh2">For lærere</h2><div class="quick">
-      <a class="qcard" href="#laerer"><b>Oppgaveark</b><span>${gradeTids().filter(t=>ARK[t]).length*3} ark på tre nivåer med fasit.</span></a>
-      <a class="qcard" href="#aktiviteter"><b>Klasseaktiviteter</b><span>${ACTS.length} opplegg for hele klassen.</span></a>
-      <a class="qcard" href="#brettspill"><b>Brettspill</b><span>${BRETT.length} brettspill til utskrift.</span></a>
-      <a class="qcard" href="grupper/"><b>Grupper og klassekart</b><span>Lag grupper med skjulte betingelser.</span></a></div></section>
     <section class="group" aria-labelledby="sh"><h2 id="sh">Slik jobber du</h2><ol class="steps-how">
       <li><b>Lær med modellen</b><span>Velg dine egne tall og trykk «Neste steg». Forklaringen under viser hva som skjer og hvorfor.</span></li>
       <li><b>Øv på tre nivåer</b><span>Nye oppgaver hver gang. Bommer du, ser du føringen, og ofte kan du åpne oppgaven i modellen.</span></li>
@@ -2912,7 +2943,7 @@ function renderTopic(ch, tid){
     <nav class="crumb" aria-label="Brødsmuler"><a href="#matte">Forside</a><span>›</span><a href="#${ch.id}">Kapittel ${ch.num}</a><span>›</span><span>${g.title}</span></nav>
     <header class="topic-head"><h1>${t.title}</h1><p class="lede">${t.short}</p>
       <div class="jump"><button class="btn ghost small" data-jump="laer">Lær</button><button class="btn ghost small" data-jump="ov">Øv</button></div></header>
-    <section class="part" id="laer" aria-labelledby="lh"><div class="part-title"><span class="tag">Lær</span><h2 id="lh">Slik gjør du det</h2></div>${VIDS.includes(tid)?`<figure class="vid"><video controls preload="none" playsinline poster="video/${tid}.jpg" src="video/${tid}.mp4"></video><figcaption>Video · forklaring med tale, cirka ett minutt</figcaption></figure>`:''}<div class="learn">${t.learn}</div>${actBox(tid)}</section>
+    <section class="part" id="laer" aria-labelledby="lh"><div class="part-title"><span class="tag">Lær</span><h2 id="lh">Slik gjør du det</h2></div>${VIDS.includes(tid)?`<figure class="vid"><video controls preload="none" playsinline poster="video/${tid}.jpg" src="video/${tid}.mp4"></video><figcaption>Video · forklaring med tale, cirka ett minutt</figcaption></figure>`:''}<div class="learn">${t.learn}</div>${ROLLE.isTeacher()?actBox(tid):''}</section>
     <section class="part" id="ov" aria-labelledby="oh"><div class="part-title"><span class="tag">Øv</span><h2 id="oh">Oppgaver</h2></div>
       ${t.trainers.map(x=>`<div class="trainer" data-trainer="${x.id}"></div>`).join('')}</section>
     <nav class="pager" aria-label="Neste og forrige">
@@ -7162,17 +7193,18 @@ const ICO={mat:`<svg viewBox="0 0 64 64" aria-hidden="true"><rect x="8" y="8" wi
 function renderStart(){
   const nTop=BOOK.chapters.flatMap(order).length;
   main.innerHTML=`<div class="col start">
+    <div class="start-role">${ROLLE.sw()}</div>
     <header class="home-hero"><p class="eyebrow">Digital lærebok · 8.–10. trinn</p><h1>Matte og <span class="hl">naturfag</span></h1>
       <p class="lede">Velg fag for å komme i gang. Du kan bytte fag når som helst øverst i menyen.</p></header>
     <div class="fag-cards">
       <a class="fag-card mat" href="#matte"><span class="fag-ico">${ICO.mat}</span><h2>Matematikk</h2>
         <p>Trinnvise modeller, øving på tre nivåer, forklaringsvideoer, spill og klasseaktiviteter.</p>
-        <p class="fag-meta">${nTop} delkapitler · ${VIDS.length} videoer · ${ACTS.length} klasseopplegg</p><span class="btn">Gå til matematikk →</span></a>
+        <p class="fag-meta">${nTop} delkapitler · ${VIDS.length} videoer${ROLLE.isTeacher()?` · ${ACTS.length} klasseopplegg`:''}</p><span class="btn">Gå til matematikk →</span></a>
       <a class="fag-card nat" href="naturfag/"><span class="fag-ico">${ICO.nat}</span><h2>Naturfag</h2>
         <p>Fagstoff med modeller, forsøksbank, spill og oppgaveark – bygd på kompetansemålene i læreplanen.</p>
         <p class="fag-meta">61 delkapitler · 72 forsøk · 3 spill</p><span class="btn">Gå til naturfag →</span></a>
     </div>
-    <section class="group" aria-labelledby="stv"><h2 id="stv">Lærerverktøy</h2><a class="chap-card" href="grupper/"><span class="num" style="font-size:2.6rem">Grupper</span><h3>Grupper og klassekart</h3><p class="meta">Lag grupper og klassekart med skjulte betingelser for hvem som skal eller ikke skal være sammen. Logg inn med Google.</p></a></section>
+    ${ROLLE.isTeacher()?`<section class="group" aria-labelledby="stv"><h2 id="stv">Lærerverktøy</h2><a class="chap-card" href="grupper/"><span class="num" style="font-size:2.6rem">Grupper</span><h3>Grupper og klassekart</h3><p class="meta">Lag grupper og klassekart med skjulte betingelser for hvem som skal eller ikke skal være sammen. Logg inn med Google.</p></a></section>`:''}
     <footer class="foot">Matte og naturfag 8.–10. trinn · Fremgangen lagres bare i denne nettleseren.</footer></div>`;
 }
 /* ===================== escape room: Mattelaben (låsesiden) ===================== */
@@ -7337,6 +7369,7 @@ function route(){
   if(ch&&gradeOf(ch)!==GRADE) setGrade(gradeOf(ch));
   document.body.classList.toggle('fag-start',!FAG); setTitle();
   const br=document.getElementById('brand'); if(br){ br.textContent=FAG==='mat'?`Matematikk ${GRADE}`:'Matte og naturfag'; br.setAttribute('href',FAG==='mat'?'#matte':'#'); }
+  if (TEACH_ROUTE(r)&&!ROLLE.isTeacher()){ FAG='mat'; document.body.classList.remove('fag-start'); setTitle(); renderGate(); curRoute=''; renderNav(''); closeMenu(); window.scrollTo(0,0); return; }
   if (r===''){ renderStart(); }
   else if (r==='matte'){ renderHome(); cur=r; }
   else if (r==='laerer'){ renderTeacher(); cur=r; }

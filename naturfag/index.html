@@ -659,6 +659,7 @@ pre.code .cl{display:block;padding:0 6px;border-radius:4px}pre.code .cl.on{backg
   <nav class="side" id="side" aria-label="Innhold"></nav>
   <main class="main" id="main" tabindex="-1"></main>
 </div>
+<script src="../rolle.js"></script>
 <script>
 /* ===================== Kompetansemål etter 10. trinn – Læreplan i naturfag (NAT01-05), gjelder fra 1.8.2026 ===================== */
 const KM = [
@@ -3765,11 +3766,11 @@ let curRoute='';
 function renderNav(route){
   const cur = r => route===r?'aria-current="page"':'';
   let lOpen=route==='laerer'||route==='maal'; try{ lOpen=lOpen||localStorage.getItem('nav-laerer')==='1'; }catch(e){}
-  let h=`<div class="fag-sw" role="group" aria-label="Velg fag"><a href="${SITE}#matte">Matematikk</a><a href="#" aria-current="true">Naturfag</a></div><a class="brand-big" href="#">Naturfag<small>${GRADE}. trinn · ${BOOKNAME[GRADE]}</small></a>${gradeSw()}<ul class="nav">
+  if(ROLLE.isTeacher()){ renderTeacherNav(route); return; }
+  let h=`${ROLLE.sw()}<div class="fag-sw" role="group" aria-label="Velg fag"><a href="${SITE}#matte">Matematikk</a><a href="#" aria-current="true">Naturfag</a></div><a class="brand-big" href="#">Naturfag<small>${GRADE}. trinn · ${BOOKNAME[GRADE]}</small></a>${gradeSw()}<ul class="nav">
     <li><a href="#" ${cur('')}><span>Forside</span></a></li>
     <li><a href="#forsok" ${cur('forsok')}><span>Forsøksbank</span><span class="tally">${bankGrade(GRADE).length} forsøk</span></a></li>
     <li><a href="#spill" ${cur('spill')}><span>Spill</span><span class="tally">${GAMES.length} spill</span></a></li>
-    <li><details class="tgrp" ${lOpen?'open':''}><summary>For lærere</summary><ul><li><a href="#laerer" ${cur('laerer')}><span>Oppgaveark og prøver</span><span class="tally">Ark</span></a></li><li><a href="#maal" ${cur('maal')}><span>Kompetansemål</span><span class="tally">${KM.length} mål</span></a></li><li><a href="${GRUPPER_URL}"><span>Grupper og klassekart</span><span class="tally">Logg inn</span></a></li></ul></details></li>
     <li class="grp">Kapitler</li>`;
   CHS().forEach(ch=>{
     const s=chapterStat(ch);
@@ -3780,8 +3781,40 @@ function renderNav(route){
   const d=side.querySelector('.tgrp'); if(d) d.querySelector('summary').addEventListener('click',()=>setTimeout(()=>{ try{ localStorage.setItem('nav-laerer',d.open?'1':'0'); }catch(e){} },0));
 }
 
+/* ---------- lærerdelen ---------- */
+const TEACH_ROUTE=r=>r==='laerer'||r==='maal'||r.startsWith('ark-');
+function renderTeacherNav(route){
+  const cur=r=>route===r?'aria-current="page"':'';
+  side.innerHTML=`${ROLLE.sw()}<div class="fag-sw" role="group" aria-label="Velg fag"><a href="${SITE}#matte">Matematikk</a><a href="#" aria-current="true">Naturfag</a></div><a class="brand-big" href="#">Lærerdelen<small>Naturfag · ${GRADE}. trinn</small></a>${gradeSw()}<ul class="nav">
+    <li><a href="#" ${cur('')}><span>Lærerforside</span></a></li>
+    <li class="grp">Verktøy</li>
+    <li><a href="#laerer" ${cur('laerer')}><span>Oppgaveark og prøver</span><span class="tally">Ark</span></a></li>
+    <li><a href="#maal" ${cur('maal')}><span>Kompetansemål</span><span class="tally">${KM.length} mål</span></a></li>
+    <li><a href="#forsok" ${cur('forsok')}><span>Forsøksbank</span><span class="tally">${bankGrade(GRADE).length} forsøk</span></a></li>
+    <li><a href="${GRUPPER_URL}"><span>Grupper og klassekart</span><span class="tally">Logg inn</span></a></li>
+  </ul><button type="button" class="role-lockbtn" data-role-lock>Lås lærerdelen</button>`;
+}
+function renderTeacherHome(){
+  const kms=[...new Set(CHS().flatMap(c=>c.km))];
+  main.innerHTML=`<div class="col">
+    <header class="home-hero"><p class="eyebrow">Lærerdelen · ${GRADE}. trinn</p><h1>Verktøy for <span class="hl">lærere</span></h1>
+      <p class="lede">Oppgaveark og prøver med fasit, kompetansemål, forsøksbanken og gruppeverktøyet. Bytt til «Elev» øverst for å se det elevene ser.</p></header>
+    <section class="group" aria-labelledby="tv1"><h2 id="tv1">Verktøy</h2><div class="quick">
+      <a class="qcard" href="#laerer"><b>Oppgaveark og prøver</b><span>Tre nivåer og begrepsprøver med fasit.</span></a>
+      <a class="qcard" href="#maal"><b>Kompetansemål</b><span>Kapitlene på ${GRADE}. trinn dekker ${kms.length} av ${KM.length} mål.</span></a>
+      <a class="qcard" href="#forsok"><b>Forsøksbank</b><span>${bankGrade(GRADE).length} forsøk og aktiviteter for ${GRADE}. trinn.</span></a>
+      <a class="qcard" href="${GRUPPER_URL}"><b>Grupper og klassekart</b><span>Lag grupper med skjulte betingelser.</span></a></div></section>
+    <footer class="foot">Lærerdelen er åpen i denne fanen til du lukker den eller trykker «Lås lærerdelen» i menyen.</footer></div>`;
+}
+function renderGate(){
+  main.innerHTML=`<div class="col"><nav class="crumb" aria-label="Brødsmuler"><a href="#">Forside</a><span>›</span><span>For lærere</span></nav>${ROLLE.gateHtml()}</div>`;
+  ROLLE.wire(main,()=>{});
+}
+document.addEventListener('rolle',()=>{ const r=decodeURIComponent(location.hash.slice(1)); if(TEACH_ROUTE(r)&&!ROLLE.isTeacher()) location.hash=''; else route(); });
+
 /* ---------- forside ---------- */
 function renderHome(){
+  if(ROLLE.isTeacher()) return renderTeacherHome();
   const CH=CHS(), ch=CH.find(c=>chapterStat(c).n<chapterStat(c).t)||CH[0], started=CH.some(c=>chapterStat(c).n>0);
   const kms=[...new Set(CH.flatMap(c=>c.km))].sort((a,b)=>a-b);
   main.innerHTML=`<div class="col">
@@ -3792,10 +3825,6 @@ function renderHome(){
     <section class="group" aria-labelledby="ah"><h2 id="ah">Utforsk og øv</h2><div class="quick">
       <a class="qcard" href="#forsok"><b>Forsøksbank</b><span>${bankGrade(GRADE).length} forsøk og aktiviteter for ${GRADE}. trinn.</span></a>
       <a class="qcard" href="#spill"><b>Naturfagspill</b><span>Begrepsmemory, Lynquiz og Gjett begrepet.</span></a></div></section>
-    <section class="group" aria-labelledby="mh"><h2 id="mh">For lærere</h2><div class="quick">
-      <a class="qcard" href="#laerer"><b>Oppgaveark og prøver</b><span>Tre nivåer og begrepsprøver med fasit.</span></a>
-      <a class="qcard" href="#maal"><b>Kompetansemål</b><span>Kapitlene på ${GRADE}. trinn dekker ${kms.length} av ${KM.length} mål.</span></a>
-      <a class="qcard" href="${GRUPPER_URL}"><b>Grupper og klassekart</b><span>Lag grupper med skjulte betingelser.</span></a></div></section>
     <section class="group" aria-labelledby="sh"><h2 id="sh">Slik jobber du</h2><ol class="steps-how">
       <li><b>Lær</b><span>Les fagstoffet og bruk modellene for å se hvordan ting henger sammen.</span></li>
       <li><b>Utforsk</b><span>Gjør forsøk: still spørsmål, lag hypoteser og samle data.</span></li>
@@ -4071,6 +4100,7 @@ function route(){
   const ch=BOOK.chapters.find(c=>r===c.id||r.startsWith(c.id+'-'));
   let cur='', m, ach;
   stopGame();
+  if(TEACH_ROUTE(r)&&!ROLLE.isTeacher()){ renderGate(); curRoute=''; renderNav(''); closeMenu(); window.scrollTo(0,0); return; }
   if(ch&&ch.grade!==GRADE) setGrade(ch.grade);
   if(r==='maal'){ renderGoals(); cur=r; }
   else if(r==='forsok'){ renderLabs(); cur=r; }
