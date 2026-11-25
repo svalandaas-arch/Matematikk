@@ -7263,7 +7263,8 @@ function escCss(){
 .esc-names input{font:inherit;padding:8px 10px;border:2px solid var(--line);border-radius:8px;background:var(--surface);color:var(--ink);width:100%}
 .pb:fullscreen.esc,.pb.pb-fake.esc{overflow:auto}`; document.head.appendChild(st); }
   if(!document.getElementById('esc-css3')){ const s3=document.createElement('style'); s3.id='esc-css3'; s3.textContent='.esc-or{border-top:1px solid var(--line);padding-top:14px;display:flex;flex-direction:column;gap:8px;align-items:flex-start}\n.esc-pin{display:flex;flex-direction:column;align-items:center;gap:4px;padding:14px;border-radius:12px;background:var(--ink);color:var(--surface);text-align:center}\n.esc-pin small{font:500 .78rem var(--f-mono);letter-spacing:.14em;text-transform:uppercase;opacity:.8}\n.esc-pin .pn{font:800 clamp(2.4rem,5.6vw,4.4rem)/1 var(--f-display);letter-spacing:.04em;font-variant-numeric:tabular-nums;white-space:nowrap}\n.esc-pin span{font-size:.95rem;opacity:.9;overflow-wrap:anywhere}\n.esc-hctl{display:flex;flex-wrap:wrap;gap:10px;align-items:center}\n.esc-board li.me{border-color:var(--pen);box-shadow:0 0 0 1.5px var(--pen)}\n.esc-board li.esc-lobby{grid-template-columns:minmax(0,1fr) auto}.esc-board li.esc-lobby .nm{grid-column:auto}\n.esc-board li.esc-empty{display:block;color:var(--muted);border-style:dashed}\n.esc-joinf{max-width:520px}.esc-joinf label{display:flex;flex-direction:column;gap:4px}\n.esc-joinf input{font:700 1.5rem/1 var(--f-mono);padding:12px;border:3px solid var(--ink);border-radius:10px;background:var(--paper);color:var(--ink);width:100%}\n.esc-joinf input#esc-jn{font:700 1.25rem var(--f-body)}\n.esc-joinf input:focus{outline:none;border-color:var(--pen)}\n.esc-wait{max-width:560px}.esc-wait h2{font-size:clamp(1.6rem,4vw,2.2rem)}\n.esc-wl{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:8px}\n.esc-wl li{padding:6px 12px;border-radius:99px;border:1.5px solid var(--line);font-weight:700;animation:escpop .4s ease}.esc-wl li.me{border-color:var(--pen);color:var(--pen)}\n.esc-qs{display:grid;gap:8px;margin-bottom:4px}\n.esc-qq{display:flex;gap:10px;align-items:flex-start;padding:10px 12px;border:1px solid var(--line);border-radius:10px;background:var(--paper)}\n.esc-qq>div{min-width:0;flex:1}.esc-qq .q,.esc-qq .qx{font-size:1.08rem}\n.esc-qtl{flex:none;width:28px;height:28px;border-radius:50%;background:var(--pen);color:#fff;display:grid;place-items:center;font:800 .95rem var(--f-display)}\n.esc-qins{font-size:.85rem;color:var(--muted);margin:0 0 2px}\n.esc-qmc{display:flex;flex-wrap:wrap;gap:4px 14px;margin-top:4px}.esc-qmc b{color:var(--pen)}\n'; document.head.appendChild(s3); }
-  if(!document.getElementById('esc-css2')){ const s2=document.createElement('style'); s2.id='esc-css2'; s2.textContent='.esc-bld{gap:16px}.esc-bh{display:flex;align-items:center;gap:12px;font-size:1.3rem}\n.esc-note{color:var(--muted);font-size:.95rem;max-width:68ch}.esc-note.bad{color:var(--bad);font-weight:700}\n.esc-chap{display:flex;flex-direction:column;gap:6px;margin-top:6px}\n.esc-tops button{font-size:.95rem;min-height:44px;padding:6px 12px}\n.esc-tops button.na{opacity:.4;text-decoration:line-through;text-decoration-thickness:1.5px}\n.esc-ord{font-style:normal;display:inline-grid;place-items:center;width:22px;height:22px;border-radius:50%;background:var(--surface);color:var(--ink);font:800 .8rem var(--f-display)}\n.esc-cnt{font:500 .85rem var(--f-mono);color:var(--muted)}\n.esc-word{display:flex;gap:8px;align-items:center;flex-wrap:wrap}\n.esc-word input{font:800 1.5rem/1 var(--f-mono);letter-spacing:.25em;width:11em;max-width:100%;text-transform:uppercase;padding:10px 12px;border:2px solid var(--ink);border-radius:10px;background:var(--paper);color:var(--ink)}\n.esc-go{display:flex;flex-direction:column;gap:8px;align-items:flex-start}\n.esc-rooms .dl{flex-wrap:wrap}\n.esc-ov{margin:0;padding:0;list-style:none;display:grid;gap:6px}\n.esc-ov li{display:flex;flex-wrap:wrap;gap:4px 12px;align-items:baseline;padding:10px 12px;border:1px solid var(--line);border-radius:8px;background:var(--surface)}\n.esc-ovt{color:var(--muted)}.esc-ovl{margin-left:auto;font:700 .8rem var(--f-mono);color:var(--red)}\n.esc-ansf{align-items:flex-end}\n.esc-ans{display:flex;flex-wrap:wrap;gap:10px}\n.esc-ans label{display:flex;flex-direction:column;gap:2px;font:800 1rem var(--f-display)}\n.esc-ans input{font:700 1.5rem/1 var(--f-mono);width:6.2em;text-align:center;padding:10px 6px;border:3px solid var(--ink);border-radius:10px;background:var(--paper);color:var(--ink)}\n.esc-ans input:focus{outline:none;border-color:var(--pen)}\n.esc-tip{font-size:.88rem;color:var(--muted);margin-top:6px}\n/* utskrift */\n.esc-ws .escw-h1{font-family:var(--f-display);font-weight:800;font-size:24pt;line-height:1.05;letter-spacing:-.01em;margin:0 0 2mm}\n.esc-ws .escw-lede{color:var(--muted);font-size:10.5pt;margin-bottom:3mm}\n.esc-ws .escw-story{font-family:var(--f-hand);font-weight:700;font-size:16pt;line-height:1.15;color:var(--red);margin:1mm 0 4mm}\n.esc-ws .escw-box{border:1.3px solid;border-radius:2mm;padding:3mm 4mm;margin-top:4mm;font-size:10pt}.esc-ws .escw-box b{display:block;font-size:11pt;margin-bottom:1mm}\n.esc-ws .escw-box ol{margin:0;padding-left:5mm;display:grid;gap:1mm}\n.esc-ws .escw-box.g{border-color:#1B7646;background:#EAF4EE}.esc-ws .escw-box.g b{color:#1B7646}\n.esc-ws .escw-box.r{border-color:#C2362B;background:#FBEDEC}.esc-ws .escw-box.r b{color:#C2362B}\n.esc-ws table{width:100%;border-collapse:collapse;margin-top:4mm;font-size:9.6pt}\n.esc-ws th{font-family:var(--f-mono);font-size:7pt;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);text-align:left;border-bottom:1.3px solid var(--ink);padding:1.2mm 1.5mm}\n.esc-ws td{border-bottom:.6px solid var(--line);padding:1.8mm 1.5mm;vertical-align:middle}\n.esc-ws td span{color:var(--muted);font-size:8.5pt}\n.esc-ws .escw-a{display:inline-flex;gap:1mm;align-items:center;margin-right:4mm;color:var(--ink)!important;font-size:9.6pt!important}\n.esc-ws .escw-l{font-family:var(--f-display);font-weight:800;font-size:14pt;color:var(--red);text-align:center}\n.esc-ws .escw-ol{margin:0 0 3mm;padding-left:5mm;display:grid;gap:1mm;font-size:10.5pt}\n.esc-ws .escw-who{display:grid;grid-template-columns:auto 1fr auto 1.4fr;gap:3mm;align-items:end;font-size:9pt;color:var(--muted);margin-top:2mm}.esc-ws .escw-who i{border-bottom:1px solid var(--ink);height:6mm}\n.esc-ws .escw-card .pn{font-family:var(--f-display);font-weight:800;font-size:13pt}\n.esc-ws .bx{display:inline-block;width:14mm;height:9mm;border:1.5px solid var(--ink);border-radius:1.4mm;margin-right:1.5mm;vertical-align:middle}\n.esc-ws .bx.l{width:10mm;height:10mm;border-color:#C2362B;border-width:2px}\n.esc-ws .escw-sub{font-family:var(--f-mono);font-size:7.5pt;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin:5mm 0 1.5mm}\n.esc-ws .escw-final{display:flex;gap:2.5mm}.esc-ws .escw-final span{width:15mm;height:17mm;border:2.2px solid #C2362B;border-radius:2mm}\n.esc-ws .escw-ph{display:flex;align-items:center;gap:5mm;border-bottom:2.5px solid var(--ink);padding-bottom:3mm;margin-bottom:4mm}\n.esc-ws .escw-num{flex:none;width:22mm;height:22mm;border-radius:3mm;background:#141E36;color:#fff;display:flex;flex-direction:column;align-items:center;justify-content:center;font-family:var(--f-display);font-weight:800;font-size:28pt;line-height:1}\n.esc-ws .escw-num small{font-family:var(--f-mono);font-weight:400;font-size:6.5pt;letter-spacing:.14em;text-transform:uppercase;margin-bottom:1mm;opacity:.8}\n.esc-ws .escw-ph .escw-h1{font-size:26pt;margin:0}\n.esc-ws .escw-tema{font-family:var(--f-mono);font-size:8pt;letter-spacing:.1em;text-transform:uppercase;color:var(--pen);margin-top:1mm}\n.esc-ws .escw-tasks{display:grid;grid-template-columns:1fr 1fr;gap:4mm}\n.esc-ws .escw-tasks.n3 .escw-task:last-child{grid-column:1/-1}\n.esc-ws .escw-task{border:1.3px solid var(--ink);border-radius:2.5mm;padding:3mm;display:flex;flex-direction:column;gap:2mm;height:96mm;break-inside:avoid}\n.esc-ws .escw-tasks.n3 .escw-task{height:96mm}\n.esc-ws .escw-q{display:flex;gap:2.5mm;align-items:flex-start}\n.esc-ws .escw-q>div{min-width:0;flex:1}\n.esc-ws .escw-tl{flex:none;width:8mm;height:8mm;border-radius:50%;background:#2343B0;color:#fff;display:grid;place-items:center;font-family:var(--f-display);font-weight:800;font-size:12pt}\n.esc-ws .escw-ins{font-size:8.5pt;color:var(--muted);margin:0 0 1mm}\n.esc-ws .escw-q .q{font-size:11pt}\n.esc-ws .escw-opts{display:flex;flex-wrap:wrap;gap:1.5mm 5mm;margin-top:2mm;font-size:10.5pt}.esc-ws .escw-opts b{color:#2343B0}\n.esc-ws .escw-work{flex:1;border:1px solid #CBD3E3;border-radius:1.5mm;background-image:linear-gradient(rgba(48,92,168,.14) 1px,transparent 1px),linear-gradient(90deg,rgba(48,92,168,.14) 1px,transparent 1px);background-size:5mm 5mm;background-position:-1px -1px}\n.esc-ws .escw-ans{align-self:flex-end;display:flex;align-items:flex-end;gap:2mm;font-size:9.5pt;color:var(--muted)}.esc-ws .escw-ans span{display:inline-block;width:30mm;border-bottom:1.6px solid var(--ink);height:7mm}\n.esc-ws .escw-lock{display:flex;align-items:center;gap:4mm;margin-top:4mm;border:2px solid var(--ink);border-radius:3mm;padding:3mm 4mm;background:#FFF6D8;font-size:10pt}\n.esc-ws .escw-lock svg{width:9mm;height:9mm;flex:none}.esc-ws .escw-lock b{display:block;font-family:var(--f-display);font-size:12pt}\n'; document.head.appendChild(s2); }
+  if(!document.getElementById('esc-css4')){ const s4=document.createElement('style'); s4.id='esc-css4'; s4.textContent='.esc-mix{display:flex;flex-wrap:wrap;gap:10px}\n.esc-mixr{display:flex;align-items:center;gap:8px;border:2px solid var(--line);border-radius:10px;padding:6px 10px;background:var(--surface)}\n.esc-mixr span{font-weight:700}.esc-mixr b{font:800 1.4rem/1 var(--f-display);min-width:1.3em;text-align:center;font-variant-numeric:tabular-nums}\n.esc-stp{font:800 1.3rem/1 var(--f-display);width:40px;height:40px;border-radius:8px;border:2px solid var(--ink);background:var(--paper);color:var(--ink);cursor:pointer}\n.esc-stp:hover:not(:disabled){border-color:var(--pen);color:var(--pen)}.esc-stp:disabled{opacity:.35;cursor:default}\n.esc-ed{display:grid;gap:16px}\n.esc-edp{border:1.5px solid var(--ink);border-radius:12px;background:var(--surface);padding:14px 16px;display:flex;flex-direction:column;gap:10px}\n.esc-edh{display:flex;flex-wrap:wrap;gap:4px 12px;align-items:baseline}.esc-edh b{font:800 1.15rem var(--f-display)}\n.esc-edl{list-style:none;margin:0;padding:0;display:grid;gap:8px}\n.esc-edt{border:1px solid var(--line);border-radius:10px;background:var(--paper);padding:10px 12px;display:flex;flex-direction:column;gap:8px}\n.esc-edq{display:flex;gap:10px;align-items:flex-start}.esc-edb{min-width:0;flex:1;display:flex;flex-direction:column;gap:4px}\n.esc-edb .q,.esc-edb .qx{font-size:1.05rem}\n.esc-eda{margin:0;font-size:.92rem;color:var(--muted)}.esc-eda b{color:var(--ink)}\n.esc-tags{display:flex;flex-wrap:wrap;gap:6px}\n.esc-tag{font:500 .7rem var(--f-mono);letter-spacing:.06em;text-transform:uppercase;padding:2px 8px;border-radius:99px;border:1px solid var(--line);color:var(--muted);background:var(--surface)}\n.esc-tag.tk{border-color:var(--pen);color:var(--pen)}.esc-tag.own{border-color:var(--red);color:var(--red)}\n.esc-edc{display:flex;flex-wrap:wrap;gap:6px;align-items:center;padding-left:38px}\n.esc-lvp{display:inline-flex;border:1.5px solid var(--line);border-radius:8px;overflow:hidden}\n.esc-lvp button{font:700 .85rem var(--f-mono);padding:6px 10px;border:0;border-right:1px solid var(--line);background:var(--surface);color:var(--ink);cursor:pointer}.esc-lvp button:last-child{border-right:0}\n.esc-lvp button[aria-pressed="true"]{background:var(--ink);color:var(--surface)}\n.esc-edadd{display:flex;flex-wrap:wrap;gap:8px}\n.esc-edf{display:flex;flex-direction:column;gap:8px;border-top:1px dashed var(--line);padding-top:10px}\n.esc-edf label{display:flex;flex-direction:column;gap:4px}\n.esc-edf textarea,.esc-edf input{font:inherit;font-size:1rem;padding:8px 10px;border:2px solid var(--ink);border-radius:8px;background:var(--surface);color:var(--ink);width:100%}\n.esc-edf textarea{resize:vertical;min-height:5.5em}\n.esc-edf textarea:focus,.esc-edf input:focus{outline:none;border-color:var(--pen)}\n.esc-edfb{display:flex;gap:8px;flex-wrap:wrap}\n@media (max-width:600px){.esc-edc{padding-left:0}}\n'; document.head.appendChild(s4); }
+  if(!document.getElementById('esc-css2')){ const s2=document.createElement('style'); s2.id='esc-css2'; s2.textContent='.esc-bld{gap:16px}.esc-bh{display:flex;align-items:center;gap:12px;font-size:1.3rem}\n.esc-note{color:var(--muted);font-size:.95rem;max-width:68ch}.esc-note.bad{color:var(--bad);font-weight:700}\n.esc-chap{display:flex;flex-direction:column;gap:6px;margin-top:6px}\n.esc-tops button{font-size:.95rem;min-height:44px;padding:6px 12px}\n.esc-tops button.na{opacity:.4;text-decoration:line-through;text-decoration-thickness:1.5px}\n.esc-ord{font-style:normal;display:inline-grid;place-items:center;width:22px;height:22px;border-radius:50%;background:var(--surface);color:var(--ink);font:800 .8rem var(--f-display)}\n.esc-cnt{font:500 .85rem var(--f-mono);color:var(--muted)}\n.esc-word{display:flex;gap:8px;align-items:center;flex-wrap:wrap}\n.esc-word input{font:800 1.5rem/1 var(--f-mono);letter-spacing:.25em;width:11em;max-width:100%;text-transform:uppercase;padding:10px 12px;border:2px solid var(--ink);border-radius:10px;background:var(--paper);color:var(--ink)}\n.esc-go{display:flex;flex-direction:column;gap:8px;align-items:flex-start}\n.esc-rooms .dl{flex-wrap:wrap}\n.esc-ov{margin:0;padding:0;list-style:none;display:grid;gap:6px}\n.esc-ov li{display:flex;flex-wrap:wrap;gap:4px 12px;align-items:baseline;padding:10px 12px;border:1px solid var(--line);border-radius:8px;background:var(--surface)}\n.esc-ovt{color:var(--muted)}.esc-ovl{margin-left:auto;font:700 .8rem var(--f-mono);color:var(--red)}\n.esc-ansf{align-items:flex-end}\n.esc-ans{display:flex;flex-wrap:wrap;gap:10px}\n.esc-ans label{display:flex;flex-direction:column;gap:2px;font:800 1rem var(--f-display)}\n.esc-ans input{font:700 1.5rem/1 var(--f-mono);width:6.2em;text-align:center;padding:10px 6px;border:3px solid var(--ink);border-radius:10px;background:var(--paper);color:var(--ink)}\n.esc-ans input:focus{outline:none;border-color:var(--pen)}\n.esc-tip{font-size:.88rem;color:var(--muted);margin-top:6px}\n/* utskrift */\n.esc-ws .escw-h1{font-family:var(--f-display);font-weight:800;font-size:24pt;line-height:1.05;letter-spacing:-.01em;margin:0 0 2mm}\n.esc-ws .escw-lede{color:var(--muted);font-size:10.5pt;margin-bottom:3mm}\n.esc-ws .escw-story{font-family:var(--f-hand);font-weight:700;font-size:16pt;line-height:1.15;color:var(--red);margin:1mm 0 4mm}\n.esc-ws .escw-box{border:1.3px solid;border-radius:2mm;padding:3mm 4mm;margin-top:4mm;font-size:10pt}.esc-ws .escw-box b{display:block;font-size:11pt;margin-bottom:1mm}\n.esc-ws .escw-box ol{margin:0;padding-left:5mm;display:grid;gap:1mm}\n.esc-ws .escw-box.g{border-color:#1B7646;background:#EAF4EE}.esc-ws .escw-box.g b{color:#1B7646}\n.esc-ws .escw-box.r{border-color:#C2362B;background:#FBEDEC}.esc-ws .escw-box.r b{color:#C2362B}\n.esc-ws table{width:100%;border-collapse:collapse;margin-top:4mm;font-size:9.6pt}\n.esc-ws th{font-family:var(--f-mono);font-size:7pt;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);text-align:left;border-bottom:1.3px solid var(--ink);padding:1.2mm 1.5mm}\n.esc-ws td{border-bottom:.6px solid var(--line);padding:1.8mm 1.5mm;vertical-align:middle}\n.esc-ws td span{color:var(--muted);font-size:8.5pt}\n.esc-ws .escw-a{display:inline-flex;gap:1mm;align-items:center;margin-right:4mm;color:var(--ink)!important;font-size:9.6pt!important}\n.esc-ws .escw-l{font-family:var(--f-display);font-weight:800;font-size:14pt;color:var(--red);text-align:center}\n.esc-ws .escw-ol{margin:0 0 3mm;padding-left:5mm;display:grid;gap:1mm;font-size:10.5pt}\n.esc-ws .escw-who{display:grid;grid-template-columns:auto 1fr auto 1.4fr;gap:3mm;align-items:end;font-size:9pt;color:var(--muted);margin-top:2mm}.esc-ws .escw-who i{border-bottom:1px solid var(--ink);height:6mm}\n.esc-ws .escw-card .pn{font-family:var(--f-display);font-weight:800;font-size:13pt}\n.esc-ws .bx{display:inline-block;width:14mm;height:9mm;border:1.5px solid var(--ink);border-radius:1.4mm;margin-right:1.5mm;vertical-align:middle}\n.esc-ws .bx.l{width:10mm;height:10mm;border-color:#C2362B;border-width:2px}\n.esc-ws .escw-sub{font-family:var(--f-mono);font-size:7.5pt;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin:5mm 0 1.5mm}\n.esc-ws .escw-final{display:flex;gap:2.5mm}.esc-ws .escw-final span{width:15mm;height:17mm;border:2.2px solid #C2362B;border-radius:2mm}\n.esc-ws .escw-ph{display:flex;align-items:center;gap:5mm;border-bottom:2.5px solid var(--ink);padding-bottom:3mm;margin-bottom:4mm}\n.esc-ws .escw-num{flex:none;width:22mm;height:22mm;border-radius:3mm;background:#141E36;color:#fff;display:flex;flex-direction:column;align-items:center;justify-content:center;font-family:var(--f-display);font-weight:800;font-size:28pt;line-height:1}\n.esc-ws .escw-num small{font-family:var(--f-mono);font-weight:400;font-size:6.5pt;letter-spacing:.14em;text-transform:uppercase;margin-bottom:1mm;opacity:.8}\n.esc-ws .escw-ph .escw-h1{font-size:26pt;margin:0}\n.esc-ws .escw-tema{font-family:var(--f-mono);font-size:8pt;letter-spacing:.1em;text-transform:uppercase;color:var(--pen);margin-top:1mm}\n.esc-ws .escw-tasks{display:grid;grid-template-columns:1fr 1fr;gap:4mm}\n.esc-ws .escw-tasks.n3 .escw-task:last-child{grid-column:1/-1}\n.esc-ws .escw-task{border:1.3px solid var(--ink);border-radius:2.5mm;padding:3mm;display:flex;flex-direction:column;gap:2mm;height:96mm;break-inside:avoid}\n.esc-ws .escw-tasks.n3 .escw-task{height:96mm}\n.esc-ws .escw-q{display:flex;gap:2.5mm;align-items:flex-start}\n.esc-ws .escw-q>div{min-width:0;flex:1}\n.esc-ws .escw-tl{flex:none;width:8mm;height:8mm;border-radius:50%;background:#2343B0;color:#fff;display:grid;place-items:center;font-family:var(--f-display);font-weight:800;font-size:12pt}\n.esc-ws .escw-ins{font-size:8.5pt;color:var(--muted);margin:0 0 1mm}\n.esc-ws .escw-q .q{font-size:11pt}\n.esc-ws .escw-opts{display:flex;flex-wrap:wrap;gap:1.5mm 5mm;margin-top:2mm;font-size:10.5pt}.esc-ws .escw-opts b{color:#2343B0}\n.esc-ws .escw-work{flex:1;border:1px solid #CBD3E3;border-radius:1.5mm;background-image:linear-gradient(rgba(48,92,168,.14) 1px,transparent 1px),linear-gradient(90deg,rgba(48,92,168,.14) 1px,transparent 1px);background-size:5mm 5mm;background-position:-1px -1px}\n.esc-ws .escw-ans{align-self:flex-end;display:flex;align-items:flex-end;gap:2mm;font-size:9.5pt;color:var(--muted)}.esc-ws .escw-ans span{display:inline-block;width:30mm;border-bottom:1.6px solid var(--ink);height:7mm}\n.esc-ws .escw-lock{display:flex;align-items:center;gap:4mm;margin-top:4mm;border:2px solid var(--ink);border-radius:3mm;padding:3mm 4mm;background:#FFF6D8;font-size:10pt}\n.esc-ws .escw-tasks.n1{grid-template-columns:1fr}.esc-ws .escw-tasks.n1 .escw-task{height:150mm}\n.esc-ws .escw-tasks.n5 .escw-task,.esc-ws .escw-tasks.n6 .escw-task{height:63mm}\n.esc-ws .escw-tasks.n5 .escw-task:last-child{grid-column:1/-1}\n.esc-ws td.sm .bx{width:10mm;margin-right:1mm}\n.esc-ws .escw-lock svg{width:9mm;height:9mm;flex:none}.esc-ws .escw-lock b{display:block;font-family:var(--f-display);font-size:12pt}\n'; document.head.appendChild(s2); }
 }
 function escLock(R){
   escCss(); clearInterval(ESC_TICK);
@@ -7413,7 +7414,7 @@ function escTopicTasks(tid,L,n){
 }
 const ESC_AV={};
 function escAvail(tid,L,n){ const k=tid+'|'+L+'|'+n; if(!(k in ESC_AV)) ESC_AV[k]=escWithSeed(7,()=>escTopicTasks(tid,L,n)).length>=n; return ESC_AV[k]; }
-function escRoom(cfg){
+function escRoomV1(cfg){
   return escWithSeed(cfg.s,()=>{
     const th=ESC_THEMES[cfg.th]||ESC_THEMES.lab, word=String(cfg.w||ESC_WORDS[cfg.t.length]||'').toUpperCase();
     const ord=cfg.t.map((_,i)=>i); for(let i=ord.length-1;i>0;i--){ const j=Math.floor(Math.random()*(i+1)); [ord[i],ord[j]]=[ord[j],ord[i]]; }
@@ -7423,6 +7424,382 @@ function escRoom(cfg){
       return {n:i+1,tid,title:TOPICS[tid].title,room:th.rooms[i%th.rooms.length],tasks,kinds,letter:word[ord[i]]||'?',hint}; });
     return {cfg,th,word,posts,name:`${th.name} · ${cfg.t.length} poster`};
   });
+}
+/* ---------- tenkeoppgaver (problemløsning) til escape room ---------- */
+/* Hver generator tar nivået (1–3) og gir en oppgave med ett svar som kan tastes inn. */
+const TK_NAV=['Ida','Emil','Sara','Jonas','Aisha','Noah','Nora','Ali','Maja','Filip','Linnea','Elias'], TK_J=['Ida','Sara','Aisha','Nora','Maja','Linnea'], TK_G=['Emil','Jonas','Noah','Ali','Filip','Elias'];
+const tk=(q,a,o)=>Object.assign({q,a},o||{});
+const tkFr=(q,n,d)=>{ const g=gcd(n,d)||1; return {q,fr:{n:n/g,d:d/g,simp:true}}; };
+const tkR=(x,k=2)=>Math.round(x*10**k)/10**k;
+const tkNav2=()=>{ const a=pick(TK_NAV); let b=pick(TK_NAV); while(b===a) b=pick(TK_NAV); return [a,b]; };
+const TK={
+  /* ===== 8. trinn, kapittel 1 ===== */
+  sumRekke:L=>{ const n=rnd([0,8,40,300][L],[0,30,150,900][L]), s=3*n+3; return tk(`Summen av tre tall som kommer rett etter hverandre (som 4, 5 og 6), er <b>${nf(s)}</b>. Hva er det <b>største</b> av de tre tallene?`,n+2); },
+  klassetur:L=>{ const T=rnd(30,60)*100*L, a=Math.round(T*rnd(25,40)/1000)*10, b=Math.round(T*rnd(15,30)/1000)*10, c=rnd(2,9)*10*L;
+    return tk(`Klassen trenger <b>${nf(T)} kr</b> til klassetur. De tjener <b>${nf(a)} kr</b> på kakesalg og <b>${nf(b)} kr</b> på loddsalg, men må bruke <b>${nf(c)} kr</b> på premier til loddsalget. Hvor mange kroner mangler de?`,T-a-b+c,{u:'kr'}); },
+  hoyde:L=>{ const [A,B]=tkNav2(), e=rnd(140,165), d=rnd(3,9)+(L>1?rnd(0,8):0), S=2*e+d;
+    return tk(`${A} er <b>${d} cm</b> høyere enn ${B}. Til sammen er de <b>${S} cm</b> høye. Hvor høy er ${A}?`,e+d,{u:'cm'}); },
+  kino:L=>{ const r=rnd(8,12+4*L), s=rnd(12,16+4*L), e=rnd(3,15), res=L>1?rnd(1,2):0;
+    return tk(`En kinosal har <b>${r}</b> rader med <b>${s}</b> seter i hver rad. ${res?`${res===1?'Den første raden':'De to første radene'} er sperret. `:''}<b>${e}</b> av de andre setene er ødelagte. Hvor mange personer kan se filmen?`,(r-res)*s-e); },
+  naboProdukt:L=>{ const n=rnd(4+L*3,10+L*7); return L===1?tk(`Hvilket tall ganget med seg selv gir <b>${n*n}</b>?`,n)
+    :tk(`To tall som kommer rett etter hverandre, ganges sammen. Produktet er <b>${nf(n*(n+1))}</b>. Hva er det <b>minste</b> av de to tallene?`,n); },
+  kartong:L=>{ const a=rnd(3,6+L*2), b=rnd(4,8), c=rnd(6,12), s=L===3?rnd(2,a-1)*b*c-rnd(1,c-1)*b:0;
+    return tk(`En butikk får <b>${a}</b> kartonger. I hver kartong er det <b>${b}</b> esker, og i hver eske er det <b>${c}</b> sjokolader.${s?` I løpet av dagen selger butikken <b>${nf(s)}</b> sjokolader. Hvor mange sjokolader er igjen?`:' Hvor mange sjokolader får butikken?'}`,a*b*c-s); },
+  busser:L=>{ const k=pick([12,14,16,18,20,24]), n=rnd(3,8+L*4)*k+rnd(1,k-1);
+    return tk(`<b>${n}</b> elever og lærere skal på tur. En minibuss har plass til <b>${k}</b> personer. Hvor mange minibusser må skolen bestille?`,Math.ceil(n/k)); },
+  rest:L=>{ const d=rnd(3,9), q=rnd(5,8+8*L), r=rnd(1,d-1);
+    return tk(`Jeg tenker på et tall. Når jeg deler det på <b>${d}</b>, får jeg <b>${q}</b> og <b>${r}</b> i rest. Hvilket tall tenker jeg på?`,d*q+r); },
+  bestemor:L=>{ const g=rnd(3,7+L), p=rnd(20,60*L)*g+rnd(1,g-1);
+    return tk(`Bestemor deler <b>${nf(p)} kr</b> likt mellom <b>${g}</b> barnebarn. Alle får like mange hele kroner, og så mye som mulig. Hvor mange kroner blir til overs?`,p%g,{u:'kr'}); },
+  kinoPris:L=>{ const v=rnd(2,4), pv=pick([120,130,140,150]), b=rnd(2,5), pb=pick([70,80,90,95]), pop=L>1?pick([45,55,65]):0, np=L>1?rnd(2,4):0, rab=L===3?pick([10,15,20]):0;
+    const tot=v*pv+b*pb+np*pop, a=rab?tot-Math.round(tot*rab/100):tot;
+    return tk(`En familie går på kino. Det er <b>${v}</b> voksne og <b>${b}</b> barn. Voksenbillett koster <b>${pv} kr</b> og barnebillett <b>${pb} kr</b>.${np?` De kjøper også <b>${np}</b> popcorn til <b>${pop} kr</b> stykket.`:''}${rab?` Med familiekort får de <b>${rab} %</b> rabatt på alt.`:''} Hva betaler de til sammen?`,a,{u:'kr'}); },
+  finnFeil:L=>{ const a=rnd(2,9), b=rnd(2,9), c=rnd(2,9), d=L===3?rnd(2,9):0;
+    if(L===3){ const wrong=(a+b)*c-d; return tk(`Ola regnet <b>${a} + ${b} · ${c} − ${d}</b> og fikk ${wrong}. Han glemte regnerekkefølgen. Hva er riktig svar?`,a+b*c-d); }
+    return tk(`Ola regnet <b>${a} + ${b} · ${c}</b> og fikk ${(a+b)*c}. Han glemte regnerekkefølgen. Hva er riktig svar?`,a+b*c); },
+  tenkTall:L=>{ const x=rnd(3,12+6*L), k=rnd(2,6), m=rnd(3,20);
+    if(L===1) return tk(`Jeg tenker på et tall. Jeg ganger det med <b>${k}</b> og legger til <b>${m}</b>. Da får jeg <b>${k*x+m}</b>. Hvilket tall tenker jeg på?`,x);
+    let mm=m; if((k*x+mm)%2) mm++; return tk(`Jeg tenker på et tall. Jeg ganger det med <b>${k}</b>, legger til <b>${mm}</b> og deler svaret på <b>2</b>. Da får jeg <b>${(k*x+mm)/2}</b>. Hvilket tall tenker jeg på?`,x); },
+  temp:L=>{ const t=rnd(-15,-3), d=rnd(4,12), e=rnd(5,14), f=L===3?rnd(2,6):0;
+    return tk(`Klokka 06 var det <b>${fmt(t)} °C</b>. Til klokka 13 steg temperaturen med <b>${d}</b> grader. Til kvelden falt den med <b>${e}</b> grader${f?`, og i løpet av natta falt den <b>${f}</b> grader til`:''}. Hva var temperaturen ${f?'om natta':'om kvelden'}?`,t+d-e-f,{u:'°C'}); },
+  tempDiff:L=>{ const hi=rnd(1,8+4*L), lo=-rnd(3,10+6*L);
+    return L<3?tk(`Den høyeste temperaturen i januar var <b>${hi} °C</b>, og den laveste var <b>${fmt(lo)} °C</b>. Hvor mange grader var forskjellen?`,hi-lo,{u:'grader'})
+      :tk(`Forskjellen mellom høyeste og laveste temperatur i februar var <b>${hi-lo}</b> grader. Den høyeste var <b>${hi} °C</b>. Hva var den laveste temperaturen?`,lo,{u:'°C'}); },
+  saldo:L=>{ const s=rnd(2,9)*50*L, a=rnd(2,8)*100, b=rnd(3,9)*100;
+    return tk(`${pick(TK_J)} har brukt for mye på kontoen, og saldoen er <b>${fmt(-s)} kr</b>. Hun setter inn <b>${a} kr</b> og bruker <b>${b} kr</b> på en ny jakke. Hva er saldoen nå?`,-s+a-b,{u:'kr'}); },
+  dykker:L=>{ const s=-rnd(5,15), u=rnd(2,8), d=rnd(6,15), u2=L>1?rnd(2,7):0;
+    return tk(`En dykker er på <b>${fmt(s)} m</b>. Hun svømmer <b>${u} m</b> opp og så <b>${d} m</b> ned${u2?`, og til slutt <b>${u2} m</b> opp igjen`:''}. Hvor er hun nå? Skriv svaret med fortegn.`,s+u-d+u2,{u:'m'}); },
+  bakterie:L=>{ const n=[0,rnd(3,5),rnd(6,8),rnd(9,10)][L]; return tk(`En bakterie deler seg i to hver time. Etter 1 time er det 2 bakterier, etter 2 timer er det 4. Hvor mange bakterier er det etter <b>${n}</b> timer?`,2**n); },
+  terning:L=>{ const k=rnd(3,3+L*2); return L<3?tk(`Hvor mange små terninger med side 1 cm trengs for å bygge en stor, massiv terning med side <b>${k} cm</b>?`,k**3)
+    :tk(`En stor terning med side <b>${k} cm</b> er bygd av små terninger med side 1 cm. Den store terningen males utenpå. Hvor mange av de små terningene har <b>ingen</b> maling?`,(k-2)**3); },
+  sammenlign:L=>{ const pr=[[2,3],[2,5],[3,4],[2,6],[3,5],[2,7]][rnd(0,L+2)], a=pr[0], b=pr[1], x=a**b, y=b**a;
+    return tk(`Regn ut differansen mellom det største og det minste av tallene ${P(a,b)} og ${P(b,a)}.`,Math.abs(x-y)); },
+  kjedebrev:L=>{ const k=L===1?2:3, n=rnd(3,4+L), A=pick(TK_NAV); return tk(`${A} sender en melding til ${k} venner. Hver av dem sender den videre til ${k} nye, og slik fortsetter det. ${A}s ${k} venner er runde 1. Hvor mange får meldingen i runde <b>${n}</b>?`,k**n); },
+  potGrunn:L=>{ const a=rnd(2,6), b=rnd(2,5); return L===1?tk(`Skriv ${P(2,a)} · ${P(2,b)} · 2 som én potens med grunntall 2. Hva blir eksponenten?`,a+b+1)
+    :tk(`Skriv ${P(4,a)} · 8 som én potens med grunntall 2. Hva blir eksponenten?`,2*a+3); },
+  potPot:L=>{ const a=rnd(2,4), b=rnd(2,4), c=rnd(1,a*b-1); return tk(`(${P(2,a)})<sup>${b}</sup> : ${P(2,c)} = ${P(2,'<i>x</i>')}. Hva er <i>x</i>?`,a*b-c); },
+  tiGanger:L=>{ const d=rnd(1,L+1), b=rnd(2,6); return tk(`Hvor mange ganger større er ${P(10,b+d)} enn ${P(10,b)}?`,10**d); },
+  likEks:L=>{ const k=rnd(2,6); return L<3?tk(`Hva må <i>x</i> være for at ${P(3,'<i>x</i>')} · ${P(3,'<i>x</i>')} = ${P(3,2*k)}?`,k)
+    :tk(`Hva må <i>x</i> være for at ${P(9,'<i>x</i>')} = ${P(3,4*k)}?`,2*k); },
+  /* ===== kapittel 2 ===== */
+  minsteFelles:L=>{ const pr=[[4,6],[6,8],[6,9],[8,12],[9,12],[10,15],[12,18],[14,21]][rnd(0,2+L*2-1)], m=lcm(pr[0],pr[1]), N=rnd(3,10*L)*m+rnd(1,m-1);
+    return tk(`Hva er det minste tallet som er større enn <b>${N}</b>, og som er delelig med både <b>${pr[0]}</b> og <b>${pr[1]}</b>?`,Math.ceil(N/m)*m); },
+  rute9:L=>{ for(let g=0;g<50;g++){ const len=L+2, ds=Array.from({length:len},(_,i)=>i===0?rnd(1,9):rnd(0,9)), pos=rnd(1,len-1); ds[pos]=null;
+      const s=ds.reduce((x,y)=>x+(y||0),0), need=(9-s%9)%9; if(need===0) continue;
+      return tk(`Hvilket siffer må stå i ruta for at <b>${ds.map(x=>x==null?'☐':x).join('')}</b> skal være delelig med 9?`,need); } return null; },
+  rader:L=>{ const mods=L===1?[2,3]:L===2?[2,3,4]:[3,4,5], m=mods.reduce((x,y)=>lcm(x,y),1);
+    const cand=[]; for(let n=m+1;n<200;n+=m) cand.push(n); const ans=pick(cand.slice(0,L===1?3:2)), lo=ans-rnd(1,Math.min(m-1,9)), hi=ans+rnd(1,Math.min(m-1,9));
+    return tk(`Når elevene stiller seg i rader på ${mods.join(', ').replace(/, (\d+)$/,' eller $1')}, blir det alltid <b>én</b> elev til overs. Det er mellom <b>${lo}</b> og <b>${hi}</b> elever. Hvor mange elever er det?`,ans); },
+  antallDelelig:L=>{ const N=rnd(5,10)*10*L+rnd(0,9); if(L<3){ const d=rnd(3,9); return tk(`Hvor mange av tallene fra 1 til <b>${N}</b> er delelige med <b>${d}</b>?`,Math.floor(N/d)); }
+    const [a,b]=pick([[2,3],[3,5],[2,5],[4,6]]); return tk(`Hvor mange av tallene fra 1 til <b>${N}</b> er delelige med <b>${a}</b> eller <b>${b}</b> (eller begge)?`,Math.floor(N/a)+Math.floor(N/b)-Math.floor(N/lcm(a,b))); },
+  primProd:L=>{ const ps=[2,3,5,7,11,13,17,19,23,29,31,37].slice(0,4+L*2), p=pick(ps); let q=pick(ps); while(q===p) q=pick(ps);
+    return tk(`Produktet av to ulike primtall er <b>${p*q}</b>. Hva er summen av de to primtallene?`,p+q); },
+  busserLcm:L=>{ const [a,b]=pick([[6,8],[8,12],[10,15],[12,15],[9,12],[12,20],[14,21],[15,20]].slice(0,3+L*2)), m=lcm(a,b);
+    return tk(`Buss A går hvert <b>${a}.</b> minutt, og buss B går hvert <b>${b}.</b> minutt. Begge går fra stasjonen kl. 08.00. Hvor mange minutter etter kl. 08.00 går de samtidig igjen?`,m,{u:'min'}); },
+  poser:L=>{ const g=rnd(3,8+2*L); let x=rnd(2,7), y=rnd(2,7); while(gcd(x,y)!==1||x===y) y=rnd(2,9);
+    const J=pick(TK_J); return L<3?tk(`${J} har <b>${g*x}</b> røde og <b>${g*y}</b> blå kuler. Hun vil fordele alle kulene i like poser, med så mange poser som mulig og ingen kuler til overs. Hvor mange poser blir det?`,g)
+      :tk(`${J} har <b>${g*x}</b> røde og <b>${g*y}</b> blå kuler. Hun vil fordele alle kulene i like poser, med så mange poser som mulig og ingen kuler til overs. Hvor mange kuler blir det i hver pose?`,x+y); },
+  kvadrattall:L=>{ const base=pick([[2,3],[3,1],[2,5],[5,1],[3,7],[2,1,3,1],[2,3,3,2],[5,3,2,2]]); let N=1, need=1; for(let i=0;i<base.length;i+=2){ N*=base[i]**base[i+1]; if(base[i+1]%2) need*=base[i]; }
+    const m=rnd(1,L)===1?1:pick([4,9]); N*=m; return tk(`Hva er det minste hele tallet du kan gange <b>${N}</b> med for å få et kvadrattall?`,need); },
+  delAv:L=>{ const d=pick([4,5,8,10,12,20,25]), n=rnd(1,d-1), k=rnd(2,3+L*2); const [a,b]=[n*k,d*k];
+    return tkFr(`<b>${a}</b> av <b>${b}</b> elever har hund. Hvor stor del av elevene har hund? Skriv svaret som en brøk forkortet så mye som mulig.`,a,b); },
+  nyNevner:L=>{ const d=rnd(3,9), n=rnd(1,d-1), D=d*rnd(3,4+L*3); return tk(`Brøken ${F(n,d)} skal skrives med nevner <b>${D}</b>. Hva blir telleren?`,n*D/d); },
+  forkortetMed:L=>{ let d=rnd(3,9), n=rnd(1,d-1); while(gcd(n,d)!==1) n=rnd(1,d-1); const k=rnd(2,4+L*2);
+    return tk(`En brøk ble forkortet med <b>${k}</b> og ble da ${F(n,d)}. Hva var summen av telleren og nevneren <b>før</b> den ble forkortet?`,k*(n+d)); },
+  likHalv:L=>{ const all=[[2,4],[3,6],[4,10],[5,10],[6,12],[7,14],[4,9],[5,12],[8,16],[6,14],[9,18],[10,21]], s=shuffle(all.slice()).slice(0,4+L);
+    return tk(`Hvor mange av brøkene ${s.map(([a,b])=>F(a,b)).join(', ')} er lik ${F(1,2)}?`,s.filter(([a,b])=>2*a===b).length); },
+  midt:L=>{ const pairs=[[0.4,[3,4]],[0.2,[1,2]],[0.5,[3,4]],[0.6,[4,5]],[0.25,[1,2]],[0.1,[2,5]]]; const [a,[n,d]]=pick(pairs);
+    return tk(`Hvilket tall ligger midt mellom <b>${fmt(a)}</b> og ${F(n,d)}? Svar med desimaltall.`,tkR((a+n/d)/2,4)); },
+  prosentAv:L=>{ const p=pick([10,20,25,40,50,60,75]), N=pick([20,24,28,32,40,60,80].filter(x=>x*p%100===0));
+    return tk(`I en klasse på <b>${N}</b> elever har <b>${p} %</b> sykkel. Hvor mange elever har <b>ikke</b> sykkel?`,N-N*p/100); },
+  storst:L=>{ const o=shuffle([[3,5],[5,8],[2,3],[7,10],[4,7]]).slice(0,3), v=o.map(([n,d])=>n/d), forms=[x=>F(x[0],x[1]),x=>fmt(tkR(x[0]/x[1],3)),x=>fmt(tkR(100*x[0]/x[1],1))+' %'];
+    const opts=o.map((x,i)=>forms[i](x)); const best=v.indexOf(Math.max(...v)); return {q:'Hvilket tall er størst?',mc:{opts,a:best}}; },
+  poengProsent:L=>{ const t=pick([20,24,25,40,50,80]), p=pick([60,75,80,85,90,95].filter(x=>t*x%100===0)); return tk(`${pick(TK_NAV)} fikk <b>${t*p/100}</b> av <b>${t}</b> poeng på prøven. Hvor mange prosent riktig er det?`,p,{u:'%'}); },
+  pizza:L=>{ const ds=[[2,3],[3,4],[4,6],[3,8],[4,5],[6,8]][rnd(0,L+2)]; const n1=1,d1=ds[0],n2=L>1?rnd(1,ds[1]-1):1,d2=ds[1]; if(gcd(n2,d2)!==1) return null;
+    const rn=d1*d2-n1*d2-n2*d1, rd=d1*d2; if(rn<=0) return null;
+    return tkFr(`${TK_NAV[0]} spiser ${F(n1,d1)} av en pizza, og ${TK_NAV[1]} spiser ${F(n2,d2)}. Hvor stor del av pizzaen er igjen?`,rn,rd); },
+  tank:L=>{ const d1=pick([3,4,5,6]), n1=rnd(1,d1-2>0?d1-2:1), d2=pick([3,4,6,8]), n2=1; if(gcd(n1,d1)!==1) return null; const rn=n1*d2+n2*d1, rd=d1*d2; if(rn>=rd) return null;
+    return tkFr(`En vanntank er ${F(n1,d1)} full. Så fyller vi på ${F(n2,d2)} av tanken. Hvor stor del av tanken er full nå?`,rn,rd); },
+  tilEn:L=>{ const d1=pick([3,4,5,6,8]), n1=rnd(1,d1-1), d2=pick([2,3,4]), n2=L>1?1:0; if(gcd(n1,d1)!==1) return null; const rn=d1*d2-n1*d2-n2*d1, rd=d1*d2; if(rn<=0) return null;
+    return tkFr(n2?`${pick(TK_NAV)} har gått ${F(n1,d1)} av turen før lunsj og ${F(n2,d2)} av turen etter lunsj. Hvor stor del av turen er igjen?`:`Hva må du legge til ${F(n1,d1)} for å få <b>1</b>?`,rn,rd); },
+  lonn:L=>{ const [a,b]=pick([[3,4],[4,5],[3,5],[4,6],[5,6]].slice(0,2+L)), rest=1-1/a-1/b, den=lcm(a,b); const k=rnd(2,6)*(L===3?500:100); const tot=den*k, left=tot*rest;
+    return tk(`${pick(TK_G)} bruker ${F(1,a)} av lommepengene på klær og ${F(1,b)} på mat. Da er det <b>${nf(tkR(left))} kr</b> igjen. Hvor mye fikk han i lommepenger?`,tot,{u:'kr'}); },
+  delAvDel:L=>{ const d1=pick([3,4,5]), n1=rnd(1,d1-1), d2=pick([2,3,4]), n2=1, N=d1*d2*rnd(2,4+L);
+    return tk(`I en klasse er det <b>${N}</b> elever. ${F(n1,d1)} av elevene går på ski, og ${F(n2,d2)} av dem går også på skøyter. Hvor mange elever går på både ski og skøyter?`,N*n1/d1*n2/d2); },
+  arealBrok:L=>{ const [a,b]=[pick([2,3,4,5]),pick([3,4,5,6])], na=rnd(1,a-1), nb=rnd(1,b-1);
+    return tkFr(`Et rektangel er ${F(na,a)} m langt og ${F(nb,b)} m bredt. Hvor mange m² er arealet? Svar med forkortet brøk.`,na*nb,a*b); },
+  avAv:L=>{ const d1=pick([3,4,5]), d2=pick([2,3,4]), n1=rnd(1,d1-1), n2=rnd(1,d2-1), N=d1*d2*rnd(2,6*L); return tk(`Hva er ${F(n1,d1)} av ${F(n2,d2)} av <b>${N}</b>?`,N*n1*n2/d1/d2); },
+  glass:L=>{ const [n,d]=pick([[1,4],[1,5],[1,3],[2,5],[3,4],[3,10]]), k=n*rnd(2,4+L); return tk(`Hvor mange glass på ${F(n,d)} liter kan du fylle fra en kanne med <b>${k}</b> liter?`,k*d/n); },
+  tau:L=>{ const [n,d]=pick([[3,4],[2,3],[3,5],[5,8]]); let len=rnd(4,8+L*3); while((len*d)%n===0) len++;
+    if(L<3) return tk(`Et tau er <b>${len} m</b> langt. Du kutter det i biter på ${F(n,d)} m. Hvor mange <b>hele</b> biter får du?`,Math.floor(len*d/n));
+    const k=Math.floor(len*d/n), r=len-k*n/d; return tk(`Et tau er <b>${len} m</b> langt. Du kutter det i så mange biter på ${F(n,d)} m som mulig. Hvor mange <b>centimeter</b> blir til overs? Svar med hele centimeter.`,Math.round(r*100),{u:'cm',tol:0.51}); },
+  deltPaa:L=>{ const [n,d]=pick([[2,3],[3,4],[1,2],[2,5],[3,5]]), r=n*rnd(2,4+L*2); return tk(`Hvilket tall må du dele på ${F(n,d)} for å få <b>${r*d/n}</b>?`,r); },
+  /* ===== kapittel 3 ===== */
+  fyrstikk:L=>{ const a=rnd(2,5), b=rnd(1,3), f=k=>a*k+b, k=rnd(8,12+8*L);
+    if(L<3) return tk(`I et mønster har figur 1 <b>${f(1)}</b> fyrstikker, figur 2 har <b>${f(2)}</b> og figur 3 har <b>${f(3)}</b>. Mønsteret fortsetter på samme måte. Hvor mange fyrstikker har figur <b>${k}</b>?`,f(k));
+    return tk(`I et mønster har figur 1 <b>${f(1)}</b> fyrstikker, figur 2 har <b>${f(2)}</b> og figur 3 har <b>${f(3)}</b>. Mønsteret fortsetter på samme måte. Hvilken figur har <b>${f(k)}</b> fyrstikker?`,k); },
+  aPlussB:L=>{ const s=rnd(4,15); if(L===1){ const k=rnd(2,5); return tk(`Vi vet at <i>a</i> + <i>b</i> = <b>${s}</b>. Hva er ${k}<i>a</i> + ${k}<i>b</i>?`,k*s); }
+    if(L===2){ const t=rnd(2,9); return tk(`Vi vet at <i>a</i> + <i>b</i> = <b>${s}</b> og <i>c</i> = <b>${t}</b>. Hva er 2<i>a</i> + 2<i>b</i> − <i>c</i>?`,2*s-t); }
+    const m=rnd(2,9); return tk(`Vi vet at <i>a</i> − <i>b</i> = <b>${s}</b>. Hva er 4<i>b</i> − 4<i>a</i> + ${m}?`,-4*s+m); },
+  verdi:L=>{ const x=L===3?-rnd(2,6):rnd(2,4+L*2), k=rnd(2,3); return tk(`Hva er verdien av ${k}<i>x</i><sup>2</sup> − <i>x</i> når <i>x</i> = ${fmt(x)}?`,k*x*x-x); },
+  rutaX:L=>{ const a=rnd(2,6), b=rnd(1,4), c=rnd(2,5), want=rnd(a+1,a+b+8), box=want-a+c; return tk(`Hvilket tall må stå i ruta? &nbsp;${a}<i>x</i> + ☐<i>x</i> − ${c}<i>x</i> = ${want}<i>x</i>`,box); },
+  forenkleVerdi:L=>{ const a=rnd(2,5), b=rnd(1,4), c=rnd(2,6), d=rnd(3,9), e=rnd(2,9), x=rnd(10,30)*L;
+    return tk(`Forenkle først, og regn så ut: Hva er ${a}<i>x</i> + ${d} − ${b}<i>x</i> + ${c}<i>x</i> − ${e} når <i>x</i> = ${x}?`,(a-b+c)*x+d-e); },
+  omkretsX:L=>{ const a=rnd(2,6), b=rnd(1,4), x=rnd(b+2,10+L*4); return tk(`En trekant har sidene <i>x</i>, <i>x</i> + ${a} og 2<i>x</i> − ${b} (i cm). Hva er omkretsen når <i>x</i> = ${x}?`,4*x+a-b,{u:'cm'}); },
+  arealK:L=>{ const k=rnd(2,6), m=rnd(2,5); return tk(`Et rektangel har lengde <i>k</i><i>x</i> og bredde ${m}<i>x</i>. Arealet er ${k*m}<i>x</i><sup>2</sup>. Hva er <i>k</i>?`,k); },
+  kvadratSide:L=>{ const c=rnd(2,4), x=rnd(2,6); return tk(`Et kvadrat har sider på ${c}<i>x</i> cm. Omkretsen er <b>${4*c*x} cm</b>. Hva er arealet?`,(c*x)**2,{u:'cm²'}); },
+  rektX:L=>{ const a=rnd(2,4), b=a+rnd(1,4), x=rnd(2,6); return tk(`Et rektangel har sider på ${a}<i>x</i> og ${b}<i>x</i> cm. Arealet er <b>${a*b*x*x} cm²</b>. Hva er omkretsen?`,2*(a+b)*x,{u:'cm'}); },
+  rutaPar:L=>{ const a=rnd(2,7), k=rnd(2,9); if(L===1) return tk(`Hvilket tall må stå i ruta? &nbsp;${a}(<i>x</i> + ☐) = ${a}<i>x</i> + ${a*k}`,k);
+    const b=rnd(2,4), c=rnd(1,5), d=rnd(2,3), t=rnd(1,6), R=a*c-d*t; if(a*b-d<=0) return null;
+    const cs=R===0?'':(R>0?` − ${R}`:` + ${-R}`); return tk(`Hvilket tall må stå i ruta? &nbsp;${a}(${b}<i>x</i> − ${c}) − ${d}(<i>x</i> − ☐) = ${a*b-d}<i>x</i>${cs}`,t); },
+  parVerdi:L=>{ const d=rnd(2,4), e=rnd(2,5), a=d*rnd(1,3), b=rnd(1,2)*e, f=a*b/d, c=rnd(1,9), g=rnd(1,9), x=rnd(10,99)*L;
+    return tk(`Hva er ${a}(${b}<i>x</i> − ${c}) − ${d}(${f}<i>x</i> − ${g}) når <i>x</i> = ${nf(x)}? Tips: Løs opp parentesene og forenkle først.`,a*(b*x-c)-d*(f*x-g)); },
+  monsterLin:L=>{ const a=rnd(2,6), b=rnd(0,4), f=n=>a*n+b, n=rnd(10,20*L);
+    return tk(`Figur 1 i et mønster har <b>${f(1)}</b> ruter, figur 2 har <b>${f(2)}</b>, og figur 3 har <b>${f(3)}</b>. Hvor mange ruter har figur <b>${n}</b>?`,f(n)); },
+  monsterBak:L=>{ const a=rnd(3,7), b=rnd(1,5), f=n=>a*n+b, n=rnd(12,25*L);
+    return tk(`Figur 1 i et mønster har <b>${f(1)}</b> klosser, figur 2 har <b>${f(2)}</b>, og figur 3 har <b>${f(3)}</b>. Hvilket figurnummer har <b>${f(n)}</b> klosser?`,n); },
+  monsterKv:L=>{ const c=rnd(1,4), t=pick([n=>n*n+c,n=>n*(n+1)]), n=rnd(6,9+L*2);
+    return tk(`Figur 1 har <b>${t(1)}</b> prikker, figur 2 har <b>${t(2)}</b>, figur 3 har <b>${t(3)}</b> og figur 4 har <b>${t(4)}</b>. Hvor mange prikker har figur <b>${n}</b>?`,t(n)); },
+  alder:L=>{ const [m,f,rel]=pick([[3,2,k=>k],[4,3,k=>2*k],[5,3,k=>k]].slice(0,L)), k=rnd(6,14), e=rel(k), N=pick(TK_NAV);
+    return tk(`Mamma er <b>${m}</b> ganger så gammel som ${N}. Om <b>${k}</b> år er mamma <b>${f}</b> ganger så gammel som ${N}. Hvor gammel er ${N} nå?`,e,{u:'år'}); },
+  treVenner:L=>{ const a=rnd(5,20)*5, k=rnd(1,4)*5, m=pick([2,3]); const [A,B]=tkNav2(); let C=pick(TK_NAV); while(C===A||C===B) C=pick(TK_NAV);
+    return tk(`Tre venner har til sammen <b>${(m+2)*a+k} kr</b>. ${A} har ${m===2?'dobbelt':'tre ganger'} så mye som ${B}, og ${C} har <b>${k} kr</b> mer enn ${B}. Hvor mye har ${B}?`,a,{u:'kr'}); },
+  pizzaer:L=>{ const p=pick([129,139,149,159]), b=pick([29,35,39]), nb=rnd(2,6), x=rnd(2,6+L*2);
+    return tk(`Klassen kjøper noen pizzaer til <b>${p} kr</b> stykket og <b>${nb}</b> flasker brus til <b>${b} kr</b>. Til sammen betaler de <b>${nf(x*p+nb*b)} kr</b>. Hvor mange pizzaer kjøper de?`,x); },
+  honsKuer:L=>{ const h=rnd(5,15*L), k=rnd(3,10*L); const [A,B,ba,bb]=L===3?['høner','sauer',2,4]:pick([['høner','kuer',2,4],['ender','griser',2,4]]);
+    return tk(`På en gård er det ${A} og ${B}. Til sammen har dyrene <b>${h+k}</b> hoder og <b>${ba*h+bb*k}</b> bein. Hvor mange ${B} er det?`,k); },
+  billetter:L=>{ const pv=pick([150,180,200]), pb=pick([80,90,100]), v=rnd(3,12*L), b=rnd(3,15*L);
+    return tk(`Til en konsert ble det solgt <b>${v+b}</b> billetter. Voksenbillett kostet <b>${pv} kr</b> og barnebillett <b>${pb} kr</b>. Til sammen kom det inn <b>${nf(v*pv+b*pb)} kr</b>. Hvor mange barnebilletter ble solgt?`,b); },
+  spare:L=>{ const [A,B]=tkNav2(), s=rnd(2,6)*10, t=s+rnd(1,4)*10, u=rnd(3,8*L), a=rnd(5,20)*50, b=a-(t-s)*u;
+    if(b<0) return null; return tk(`${A} har <b>${a} kr</b> og sparer <b>${s} kr</b> i uka. ${B} har <b>${b} kr</b> og sparer <b>${t} kr</b> i uka. Etter hvor mange uker har de like mye?`,u,{u:'uker'}); },
+  /* ===== kapittel 4 ===== */
+  hjorne:L=>{ const a=rnd(-6,2), b=rnd(-5,1), c=a+rnd(2,7), d=b+rnd(2,7), ask=rnd(0,1);
+    const pts=shuffle([[a,b],[c,b],[c,d]]); return tk(`Tre av hjørnene i et rektangel er (${pts.map(p=>p.map(fmt).join(', ')).join('), (')}). Sidene er parallelle med aksene. Hva er <b>${ask?'y':'x'}-koordinaten</b> til det fjerde hjørnet?`,ask?d:a); },
+  rektAreal:L=>{ const a=-rnd(1,6), b=-rnd(1,5), c=rnd(1,6), d=rnd(1,6); return tk(`Et rektangel har hjørnene (${fmt(a)}, ${fmt(b)}), (${c}, ${fmt(b)}), (${c}, ${d}) og (${fmt(a)}, ${d}). Ruteside er 1 cm. Hva er arealet?`,(c-a)*(d-b),{u:'cm²'}); },
+  midtpunkt:L=>{ const a=rnd(-8,4), c=a+2*rnd(1,6), b=rnd(-5,5), d=rnd(-5,5); return tk(`Hva er <b>x-koordinaten</b> til punktet som ligger midt mellom (${fmt(a)}, ${fmt(b)}) og (${fmt(c)}, ${fmt(d)})?`,(a+c)/2); },
+  speil:L=>{ const a=rndNZ(-7,7), b=rnd(-6,6), u=rnd(2,5); return tk(`Punktet (${fmt(a)}, ${fmt(b)}) speiles om y-aksen. Så flyttes det <b>${u}</b> ruter ned. Hva er <b>x-koordinaten</b> pluss <b>y-koordinaten</b> til det nye punktet?`,-a+b-u); },
+  abonnement:L=>{ const a=rnd(1,4)*50, b=rnd(2,6)*5, x=rnd(4,12), c=a+b*x;
+    return tk(`Mobilabonnement A koster <b>${a} kr</b> i måneden pluss <b>${b} kr</b> per GB. Abonnement B koster <b>${c} kr</b> i måneden uansett hvor mye du bruker. Ved hvor mange GB koster de to abonnementene like mye?`,x,{u:'GB'}); },
+  finnA:L=>{ const a=rndNZ(-5,6), b=rnd(-9,9), x1=rnd(0,2), x2=x1+rnd(2,4); return tk(`<i>f</i>(<i>x</i>) = <i>ax</i> + <i>b</i>. Vi vet at <i>f</i>(${x1}) = ${fmt(a*x1+b)} og <i>f</i>(${x2}) = ${fmt(a*x2+b)}. Hva er <i>a</i>?`,a); },
+  taxi:L=>{ const s=pick([45,50,60,75]), k=pick([12,14,15,18]), n=rnd(4,10+L*5); return tk(`En taxi koster <b>${s} kr</b> i startpris og <b>${k} kr</b> per km. En tur kostet <b>${s+k*n} kr</b>. Hvor mange km var turen?`,n,{u:'km'}); },
+  stigning:L=>{ const a=rndNZ(-4,5), x1=rnd(-3,2), x2=x1+rnd(1,4), b=rnd(-5,5); return tk(`En rett linje går gjennom punktene (${fmt(x1)}, ${fmt(a*x1+b)}) og (${fmt(x2)}, ${fmt(a*x2+b)}). Hvor mye stiger linjen når <i>x</i> øker med 1?`,a); },
+  nullpunkt:L=>{ const a=rndNZ(-4,4), x0=rnd(-6,8), b=-a*x0; const bs=b===0?'':(b>0?` + ${b}`:` − ${-b}`);
+    return tk(`Grafen til <i>f</i>(<i>x</i>) = ${a===1?'':a===-1?'−':fmt(a)}<i>x</i>${bs} skjærer x-aksen i ett punkt. Hva er <i>x</i> i dette punktet?`,x0); },
+  kryss:L=>{ const x=rnd(-4,6), a=rndNZ(-3,4); let c=rndNZ(-3,4); while(c===a) c=rndNZ(-3,4); const b=rnd(-6,6), d=a*x+b-c*x;
+    const s=(k,m)=>`${k===1?'':k===-1?'−':fmt(k)}<i>x</i>${m===0?'':m>0?` + ${m}`:` − ${-m}`}`; return tk(`Linjene <i>y</i> = ${s(a,b)} og <i>y</i> = ${s(c,d)} krysser hverandre. Hva er <i>x</i>-koordinaten til skjæringspunktet?`,x); },
+  diagRest:L=>{ const N=pick([20,25,40,50]), f=rnd(2,N/2-2), h=rnd(2,N-f-3); return tk(`I en undersøkelse svarte <b>${N}</b> elever på hvilken idrett de liker best. <b>${f}</b> svarte fotball, <b>${h}</b> svarte håndball, og resten svarte ski. Hvor mange prosent svarte ski?`,(N-f-h)*100/N,{u:'%'}); },
+  sektorBak:L=>{ const N=pick([24,30,36,40,45,60,72,90]), k=rnd(2,N/3), g=360*k/N; if(g%1) return null;
+    return tk(`I et sektordiagram er sektoren for «katt» <b>${g}°</b>. Den viser <b>${k}</b> elever. Hvor mange elever var med i undersøkelsen?`,N); },
+  okningPst:L=>{ const a=pick([20,40,50,80,200,240,250]), p=pick([10,20,25,50,60,75].filter(x=>(a*x)%100===0)), b=a*(100+p)/100; return tk(`Antall besøkende økte fra <b>${a}</b> til <b>${b}</b>. Hvor mange prosent var økningen?`,p,{u:'%'}); },
+  /* ===== 9. trinn ===== */
+  snittTrengs:L=>{ const n=pick([3,4]), m=rnd(3,4), sc=Array.from({length:n},()=>rnd(2,6)); const s=sc.reduce((a,b)=>a+b,0), need=(n+1)*m-s; if(need<1||need>6) return null;
+    return tk(`${pick(TK_J)} har fått karakterene ${sc.join(', ')}. Hvilken karakter må hun få på neste prøve for å få gjennomsnitt <b>${m}</b>?`,need); },
+  fjernet:L=>{ const n=pick([5,6]), m=rnd(6,12), m2=m-rnd(1,2), x=n*m-(n-1)*m2; if(x<1) return null;
+    return tk(`Gjennomsnittet av <b>${n}</b> tall er <b>${m}</b>. Vi fjerner ett av tallene, og da blir gjennomsnittet av de andre <b>${m2}</b>. Hvilket tall fjernet vi?`,x); },
+  ukjentSnitt:L=>{ const v=Array.from({length:4},()=>rnd(2,15)), m=rnd(6,12), x=5*m-v.reduce((a,b)=>a+b,0); if(x<0) return null;
+    return tk(`Gjennomsnittet av tallene ${v.join(', ')} og <i>x</i> er <b>${m}</b>. Hva er <i>x</i>?`,x); },
+  klokke:L=>{ if(L<3){ const h=rnd(1,6); return tk(`Hvor mange grader er vinkelen mellom timeviseren og minuttviseren når klokka er nøyaktig <b>${h}</b>?`,h*30,{u:'°'}); }
+    const h=rnd(1,5); const ang=Math.abs(h*30+15-180); return tk(`Hvor mange grader er den minste vinkelen mellom viserne når klokka er <b>${h}.30</b>? (Husk at timeviseren også flytter seg.)`,Math.min(ang,360-ang),{u:'°'}); },
+  naboforskjell:L=>{ const d=rnd(1,7)*10; return tk(`To vinkler er nabovinkler. Den ene er <b>${d}°</b> større enn den andre. Hvor stor er den minste vinkelen?`,(180-d)/2,{u:'°'}); },
+  trekantRel:L=>{ const s=rnd(20,42), k=180-4*s;
+    return tk(`I en trekant er én vinkel dobbelt så stor som den minste vinkelen. Den tredje vinkelen er <b>${k}°</b> større enn den minste. Hvor stor er den minste vinkelen?`,s,{u:'°'}); },
+  regulSider:L=>{ const n=pick([5,6,8,9,10,12,15,18,20]); return tk(`Hver vinkel i en regulær mangekant er <b>${180-360/n}°</b>. Hvor mange sider har mangekanten?`,n); },
+  diagonaler:L=>{ const n=rnd(5,6+L*3); return tk(`Hvor mange diagonaler har en <b>${n}</b>-kant? (En diagonal går mellom to hjørner som ikke er naboer.)`,n*(n-3)/2); },
+  basisvinkel:L=>{ const t=2*rnd(10,70); return tk(`Toppvinkelen i en likebeint trekant er <b>${t}°</b>. Hvor stor er hver av basisvinklene?`,(180-t)/2,{u:'°'}); },
+  hjul:L=>{ const d=pick([50,60,64,70]), n=rnd(10,40)*L; return tk(`Et sykkelhjul har diameter <b>${d} cm</b>. Hjulet går rundt <b>${n}</b> ganger. Hvor mange meter har sykkelen kjørt? Bruk π ≈ 3,14 og svar med hele meter.`,Math.round(3.14*d*n/100),{u:'m',tol:0.51}); },
+  radiusBak:L=>{ const r=rnd(3,20); return tk(`Omkretsen av en sirkel er <b>${fmt(tkR(2*3.14*r))} cm</b>. Hva er radien? Bruk π ≈ 3,14.`,r,{u:'cm',tol:0.05}); },
+  pizzaSammen:L=>{ const [D,d]=pick([[30,20],[32,22],[40,28],[36,24]]); const A=3.14*(D/2)**2, B=2*3.14*(d/2)**2;
+    return tk(`Hva gir mest pizza: én pizza med diameter <b>${D} cm</b> eller to med diameter <b>${d} cm</b>? Svar med hvor mange cm² mer den største mengden er. Bruk π ≈ 3,14 og svar med hele cm².`,Math.round(Math.abs(A-B)),{u:'cm²',tol:0.51}); },
+  rektRatio:L=>{ const b=rnd(3,12), k=pick([2,3]); return tk(`Et rektangel er <b>${k===2?'dobbelt':'tre ganger'}</b> så langt som det er bredt. Omkretsen er <b>${2*(b+k*b)} cm</b>. Hva er arealet?`,k*b*b,{u:'cm²'}); },
+  kvadOmkrets:L=>{ const s=rnd(4,15); return tk(`Et kvadrat har areal <b>${s*s} cm²</b>. Hva er omkretsen?`,4*s,{u:'cm'}); },
+  arealEndring:L=>{ const l=rnd(8,20), b=rnd(4,l-2), d=rnd(1,3); return tk(`Et rektangel er <b>${l} cm</b> langt og <b>${b} cm</b> bredt. Lengden økes med <b>${d} cm</b>, og bredden minskes med <b>${d} cm</b>. Hvor mange cm² mindre blir arealet?`,l*b-(l+d)*(b-d),{u:'cm²'}); },
+  trapesSide:L=>{ const a=rnd(4,12), b=a+rnd(2,8), h=2*rnd(2,6); return tk(`Et trapes har areal <b>${(a+b)*h/2} cm²</b> og høyde <b>${h} cm</b>. Den ene parallelle siden er <b>${a} cm</b>. Hvor lang er den andre parallelle siden?`,b,{u:'cm'}); },
+  trekantHoyde:L=>{ const g=rnd(4,16), h=rnd(3,14); if((g*h)%2) return null; return tk(`En trekant har areal <b>${g*h/2} cm²</b> og grunnlinje <b>${g} cm</b>. Hvor høy er trekanten?`,h,{u:'cm'}); },
+  paraKvadrat:L=>{ const s=rnd(4,12), g=pick([2,3,4,6,8,9,12,16].filter(x=>(s*s)%x===0&&x!==s)); if(!g) return null;
+    return tk(`Et parallellogram har samme areal som et kvadrat med side <b>${s} cm</b>. Grunnlinjen i parallellogrammet er <b>${g} cm</b>. Hvor høyt er parallellogrammet?`,s*s/g,{u:'cm'}); },
+  stige:L=>{ const [a,b,c]=pick([[3,4,5],[6,8,10],[5,12,13],[8,15,17],[9,12,15],[7,24,25]].slice(0,2+L*1)); return tk(`En stige som er <b>${c} m</b> lang, står mot en vegg. Foten av stigen står <b>${a} m</b> fra veggen. Hvor høyt opp på veggen når stigen?`,b,{u:'m'}); },
+  diagonal:L=>{ const k=rnd(1,3+L), [a,b,c]=pick([[3,4,5],[5,12,13],[8,15,17]]); return tk(`En rektangulær plen er <b>${a*k} m</b> lang og <b>${b*k} m</b> bred. Du går på skrå fra det ene hjørnet til det motsatte i stedet for langs kantene. Hvor mange meter sparer du?`,(a+b-c)*k,{u:'m'}); },
+  skygge:L=>{ const h=pick([1,2,1.5]), s=pick([2,3,1.2,2.5]), H=rnd(4,12); const S=tkR(H*s/h,2); if(S%0.5) return null;
+    return tk(`En stang som er <b>${fmt(h)} m</b> høy, kaster en skygge på <b>${fmt(s)} m</b>. Samtidig kaster et tre en skygge på <b>${fmt(S)} m</b>. Hvor høyt er treet?`,H,{u:'m'}); },
+  formlik:L=>{ const k=pick([2,3,1.5,2.5]), a=rnd(2,8)*2; let b=rnd(3,9)*2; while(b===a) b=rnd(3,9)*2; return tk(`To trekanter er formlike. Den minste har sider på <b>${a} cm</b> og <b>${b} cm</b>. I den største trekanten er siden som svarer til ${a} cm, <b>${fmt(a*k)} cm</b>. Hvor lang er siden som svarer til ${b} cm?`,b*k,{u:'cm'}); },
+  lForm:L=>{ const A=rnd(8,14), B=rnd(6,10), a=rnd(2,A-4), b=rnd(2,B-3); return tk(`Et rektangel på <b>${A} m</b> × <b>${B} m</b> mangler et rektangulært hjørne på <b>${a} m</b> × <b>${b} m</b>, slik at gulvet blir L-formet. Hva er arealet av gulvet?`,A*B-a*b,{u:'m²'}); },
+  ramme:L=>{ const a=rnd(10,30), b=rnd(10,25), w=rnd(2,5); return tk(`Et bilde er <b>${a} cm</b> × <b>${b} cm</b>. Rundt bildet er det en ramme som er <b>${w} cm</b> bred. Hvor mange cm² er selve rammen?`,(a+2*w)*(b+2*w)-a*b,{u:'cm²'}); },
+  akvarium:L=>{ const l=rnd(4,8)*10, b=rnd(2,4)*10, h=rnd(3,5)*10, f=rnd(1,3)*5; return tk(`Et akvarium er <b>${l} cm</b> langt, <b>${b} cm</b> bredt og <b>${h} cm</b> høyt. Det fylles med vann til <b>${f} cm</b> under kanten. Hvor mange liter vann er det i akvariet?`,l*b*(h-f)/1000,{u:'L'}); },
+  hoydeV:L=>{ const l=rnd(2,6)*10, b=rnd(1,4)*10, h=rnd(2,8)*5; return tk(`En eske har en bunn som er <b>${l} cm</b> × <b>${b} cm</b>. Hvor høy må esken være for å romme <b>${fmt(l*b*h/1000)} liter</b>?`,h,{u:'cm'}); },
+  eskerKasse:L=>{ const e=pick([5,10]), A=e*rnd(3,6), B=e*rnd(2,5), C=e*rnd(2,4), x=L===3?rnd(1,e-1):0;
+    return tk(`Hvor mange terningformede esker med side <b>${e} cm</b> får plass i en kasse som er <b>${A+x} cm</b> × <b>${B} cm</b> × <b>${C} cm</b>?`,Math.floor((A+x)/e)*(B/e)*(C/e)); },
+  utenLokk:L=>{ const l=rnd(3,8)*10, b=rnd(2,5)*10, h=rnd(2,5)*10; return tk(`En eske uten lokk er <b>${l} cm</b> lang, <b>${b} cm</b> bred og <b>${h} cm</b> høy. Hvor mange cm² papp går med (uten skjøter)?`,l*b+2*l*h+2*b*h,{u:'cm²'}); },
+  terningOverflate:L=>{ const s=rnd(2,9); return tk(`En terning har volum <b>${s**3} cm³</b>. Hva er overflaten?`,6*s*s,{u:'cm²'}); },
+  pyramideTredel:L=>{ const V=3*rnd(2,20); return tk(`En pyramide og et prisme har like stor grunnflate og like stor høyde. Prismet rommer <b>${V} liter</b>. Hvor mange liter rommer pyramiden?`,V/3,{u:'L'}); },
+  pyramideHoyde:L=>{ const s=rnd(3,10), h=3*rnd(2,6); return tk(`En pyramide har kvadratisk grunnflate med side <b>${s} cm</b>. Volumet er <b>${s*s*h/3} cm³</b>. Hvor høy er pyramiden?`,h,{u:'cm'}); },
+  glassKanne:L=>{ const r=pick([3,4]), h=pick([8,10,12]), V=pick([1.5,2,2.5,3]); const g=3.14*r*r*h; return tk(`Et sylinderformet glass har radius <b>${r} cm</b> og høyde <b>${h} cm</b>. Hvor mange <b>fulle</b> glass kan du fylle fra en kanne med <b>${fmt(V)} liter</b>? Bruk π ≈ 3,14.`,Math.floor(V*1000/g)); },
+  tankHoyde:L=>{ const [r,V]=pick([[10,5],[10,10],[20,20],[20,50],[25,50],[50,100],[50,200]]); const h=V*1000/(3.14*r*r); return tk(`En sylinderformet tank har radius <b>${r} cm</b>. Det er <b>${V} liter</b> vann i tanken. Hvor høyt står vannet? Bruk π ≈ 3,14 og svar med hele cm.`,Math.round(h),{u:'cm',tol:0.51}); },
+  kuleDobbel:L=>{ const k=L===1?2:pick([2,3]); return tk(`Radien i en kule blir <b>${k}</b> ganger så stor. Hvor mange ganger så stort blir volumet?`,k**3); },
+  masse:L=>{ const [s,rho]=pick([['jern',7.9],['aluminium',2.7],['gull',19.3],['olivenolje',0.9],['is',0.92]]), V=rnd(2,20)*10; return tk(`${s[0].toUpperCase()+s.slice(1)} har massetetthet <b>${fmt(rho)} g/cm³</b>. Hvor mange gram veier <b>${V} cm³</b> ${s}?`,tkR(rho*V,2),{u:'g'}); },
+  volumMasse:L=>{ const rho=pick([2.7,7.9,19.3,8.9]), V=rnd(2,40)*5; return tk(`En metallbit har massetetthet <b>${fmt(rho)} g/cm³</b> og veier <b>${fmt(tkR(rho*V,1))} g</b>. Hva er volumet?`,V,{u:'cm³',tol:0.05}); },
+  handtrykk:L=>{ const n=rnd(5,6+L*6); return tk(`<b>${n}</b> personer møtes, og alle håndhilser på alle de andre én gang. Hvor mange håndtrykk blir det?`,n*(n-1)/2); },
+  antrekk:L=>{ const a=rnd(2,5), b=rnd(2,4), c=rnd(2,4), x=L===3?1:0; return tk(`${pick(TK_J)} har <b>${a}</b> gensere, <b>${b}</b> bukser og <b>${c}</b> par sko.${x?' Den røde genseren kan ikke brukes sammen med de grønne buksene.':''} Hvor mange ulike antrekk med én genser, én bukse og ett par sko kan hun lage?`,a*b*c-(x?c:0)); },
+  kodeLas:L=>{ if(L===1) return tk(`En kode har tre siffer (0–9), og det første sifferet kan ikke være 0. Hvor mange ulike koder finnes?`,900);
+    if(L===2) return tk(`En kode har tre ulike siffer (0–9). Hvor mange ulike koder finnes?`,720); return tk(`En kode har fire siffer (0–9). Det første sifferet er et oddetall, og alle sifrene er ulike. Hvor mange koder finnes?`,5*9*8*7); },
+  ko:L=>{ const n=rnd(4,5+L); return L<3?tk(`På hvor mange ulike måter kan <b>${n}</b> personer stille seg i kø?`,[1,1,2,6,24,120,720,5040,40320][n]):tk(`På hvor mange måter kan <b>${n}</b> personer stille seg i kø når ${pick(TK_NAV)} må stå først?`,[1,1,2,6,24,120,720,5040][n-1]); },
+  leggTilRod:L=>{ const r=rnd(2,6), b=r+rnd(2,8); return tk(`I en pose er det <b>${r}</b> røde og <b>${b}</b> blå kuler. Hvor mange røde kuler må du legge i posen for at sannsynligheten for å trekke en rød kule skal bli ${F(1,2)}?`,b-r); },
+  toTerninger:L=>{ const s=rnd(3,11), w=[0,0,1,2,3,4,5,6,5,4,3,2,1][s]; return tkFr(`Du kaster to vanlige terninger. Hva er sannsynligheten for at summen av øynene blir <b>${s}</b>? Svar med forkortet brøk.`,w,36); },
+  rodeFraP:L=>{ const [n,d]=pick([[1,3],[1,4],[2,5],[1,5],[3,8]]), k=rnd(1,4), r=n*k, b=(d-n)*k; return tk(`I en eske er det røde og blå kuler. Sannsynligheten for å trekke en rød kule er ${F(n,d)}. Det er <b>${b}</b> blå kuler. Hvor mange røde kuler er det?`,r); },
+  forventet:L=>{ const [t,d]=pick([['en sekser med én terning',6],['krone med én mynt',2],['en ener eller en toer med én terning',3]]), N=d*rnd(10,50); return tk(`Du gjør <b>${N}</b> kast og håper på ${t}. Hvor mange ganger kan du forvente å få det?`,N/d); },
+  minstEn:L=>{ const n=L===1?2:3; return tkFr(`Du kaster <b>${n}</b> mynter. Hva er sannsynligheten for å få <b>minst én</b> krone? Svar med brøk.`,2**n-1,2**n); },
+  /* ===== 10. trinn ===== */
+  konjugat:L=>{ const k=rnd(1,4), m=pick([20,30,50,100]); return tk(`Regn ut uten kalkulator. Tips: bruk konjugatsetningen. &nbsp;${P(m+k,2)} − ${P(m-k,2)}`,(m+k)**2-(m-k)**2); },
+  nesten100:L=>{ const k=rnd(1,3), s=rnd(0,1); const n=s?100+k:100-k; return tk(`Regn ut ${P(n,2)} uten kalkulator. Tips: skriv tallet som (100 ${s?'+':'−'} ${k}).`,n*n); },
+  fullKvadrat:L=>{ const a=rnd(2,9); return tk(`Hvilket tall må stå i ruta for at <i>x</i><sup>2</sup> + ${2*a}<i>x</i> + ☐ skal være et fullstendig kvadrat?`,a*a); },
+  xyDiff:L=>{ const s=rnd(5,20), d=rnd(1,9); return tk(`Vi vet at <i>x</i> + <i>y</i> = ${s} og <i>x</i> − <i>y</i> = ${d}. Hva er <i>x</i><sup>2</sup> − <i>y</i><sup>2</sup>?`,s*d); },
+  naboProdukt2:L=>{ const n=rnd(8,25*L); return tk(`Produktet av to positive tall som kommer rett etter hverandre, er <b>${nf(n*(n+1))}</b>. Hva er summen av tallene?`,2*n+1); },
+  rektLik:L=>{ const b=rnd(3,15), k=rnd(2,6); return tk(`Et rektangel er <b>${k} cm</b> lengre enn det er bredt. Arealet er <b>${b*(b+k)} cm²</b>. Hvor bredt er rektangelet?`,b,{u:'cm'}); },
+  kvadratOker:L=>{ const s=rnd(3,12), d=rnd(2,5); return tk(`Hver side i et kvadrat økes med <b>${d} cm</b>. Da øker arealet med <b>${(s+d)**2-s*s} cm²</b>. Hvor lange var sidene først?`,s,{u:'cm'}); },
+  oppskrift:L=>{ const p=4, m=pick([300,400,500,600]), n=rnd(5,14); if((m*n)%p) return null; return tk(`En oppskrift for <b>${p}</b> personer bruker <b>${m} g</b> mel. Hvor mange gram mel trengs til <b>${n}</b> personer?`,m*n/p,{u:'g'}); },
+  malere:L=>{ const a=pick([2,3,4,6]), d=pick([6,8,9,12]), b=pick([3,4,6,8,12].filter(x=>(a*d)%x===0&&x!==a)); if(!b) return null; return tk(`<b>${a}</b> malere bruker <b>${d}</b> dager på å male et hus. Hvor mange dager bruker <b>${b}</b> malere, hvis alle jobber like fort?`,a*d/b,{u:'dager'}); },
+  tosett:L=>{ const v=pick([120,140,150,160]), b=pick([60,70,80,90]), [a1,b1,a2,b2]=pick([[3,2,2,4],[2,3,1,4],[4,1,2,5],[3,4,2,1]]);
+    return tk(`Familie A kjøpte <b>${a1}</b> voksenbilletter og <b>${b1}</b> ${b1===1?'barnebillett':'barnebilletter'} og betalte <b>${a1*v+b1*b} kr</b>. Familie B kjøpte <b>${a2}</b> ${a2===1?'voksenbillett':'voksenbilletter'} og <b>${b2}</b> ${b2===1?'barnebillett':'barnebilletter'} og betalte <b>${a2*v+b2*b} kr</b>. Hva koster en barnebillett?`,b,{u:'kr'}); },
+  sumDiff:L=>{ const x=rnd(10,60), y=rnd(2,x-1); return tk(`Summen av to tall er <b>${x+y}</b>, og differansen mellom dem er <b>${x-y}</b>. Hva er det største tallet?`,x); },
+  dele:L=>{ const p=rnd(3,12), each=pick([40,50,60,75,80,120]); return tk(`En premie på <b>${p*each} kr</b> deles likt mellom noen vinnere. Hver vinner får <b>${each} kr</b>. Hvis det hadde vært én vinner mer, hvor mye ville hver fått? Svar med to desimaler hvis det trengs.`,tkR(p*each/(p+1),2),{u:'kr',tol:0.011}); },
+  fart:L=>{ const v=pick([40,50,60,80,90]), t=pick([2,3,1.5]), t2=pick([1.5,2,2.5,4,5].filter(x=>x!==t&&((v*t)/x)%1===0)); if(!t2) return null;
+    return tk(`En tur tar <b>${fmt(t)} timer</b> når farten er <b>${v} km/h</b>. Hvor fort må du kjøre for å bruke <b>${fmt(t2)} timer</b>?`,v*t/t2,{u:'km/h'}); },
+  ball:L=>{ const v=5*rnd(2,8); return tk(`Høyden til en ball (i meter) etter <i>t</i> sekunder er <i>h</i>(<i>t</i>) = −5<i>t</i><sup>2</sup> + ${v}<i>t</i>. Etter hvor mange sekunder treffer ballen bakken igjen?`,v/5,{u:'s'}); },
+  toppunkt:L=>{ const a=rndNZ(-6,8), c=rnd(-9,9); const cs=c===0?'':c>0?` + ${c}`:` − ${-c}`; return tk(`Hva er <i>x</i>-koordinaten til bunnpunktet på grafen til <i>f</i>(<i>x</i>) = <i>x</i><sup>2</sup> ${2*a>0?'−':'+'} ${Math.abs(2*a)}<i>x</i>${cs}?`,a); },
+  gjerde:L=>{ const Lg=4*rnd(5,20); return tk(`Du har <b>${Lg} m</b> gjerde og skal lage en rektangulær innhegning inntil en lang vegg. Gjerdet skal bare gå langs de tre andre sidene. Hva er det største arealet innhegningen kan få?`,Lg*Lg/8,{u:'m²'}); },
+  nullprod:L=>{ const a=rnd(1,9); let b=rnd(1,9); while(b===a) b=rnd(1,9); return tk(`Grafen til <i>f</i>(<i>x</i>) = <i>x</i><sup>2</sup> − ${a+b}<i>x</i> + ${a*b} skjærer x-aksen i to punkter. Hva er den største <i>x</i>-verdien?`,Math.max(a,b)); },
+  oppNed:L=>{ const p=pick([10,20,25,50]), x=pick([200,400,800,1000,1200]); return tk(`En jakke koster <b>${x} kr</b>. Prisen settes først opp <b>${p} %</b> og så ned <b>${p} %</b>. Hva koster jakka nå?`,tkR(x*(1+p/100)*(1-p/100),2),{u:'kr'}); },
+  halvering:L=>{ const p=pick([10,15,20,25]); let n=0, v=1; while(v>0.5){ v*=1-p/100; n++; } return tk(`Verdien av en bil synker med <b>${p} %</b> hvert år. Etter hvor mange hele år er verdien for første gang mindre enn halvparten av det den kostet ny?`,n,{u:'år'}); },
+  forOkning:L=>{ const p=pick([10,20,25,50]), x=pick([200,400,500,800,1200]); return tk(`Etter en prisøkning på <b>${p} %</b> koster en vare <b>${nf(x*(100+p)/100)} kr</b>. Hva kostet varen før økningen?`,x,{u:'kr'}); },
+  samletOkning:L=>{ const p=pick([10,20,5]); return tk(`En pris øker med <b>${p} %</b> to år på rad. Hvor mange prosent har prisen økt til sammen? Svar med to desimaler hvis det trengs.`,tkR(((1+p/100)**2-1)*100,2),{u:'%',tol:0.006}); },
+  mvaDel:L=>{ const x=pick([100,200,240,400,800,1000]); return tk(`En vare koster <b>${nf(x*1.25)} kr</b> med 25 % merverdiavgift. Hvor mange kroner av prisen er merverdiavgift?`,x*0.25,{u:'kr'}); },
+  utenMva:L=>{ const x=pick([80,160,240,320,400,1200]); return tk(`En vare koster <b>${nf(x*1.25)} kr</b> med 25 % merverdiavgift. Hva koster den uten merverdiavgift?`,x,{u:'kr'}); },
+  renter:L=>{ const K=rnd(2,10)*1000, r=pick([2,3,4,5]), n=L===3?3:2; return tk(`Du setter <b>${nf(K)} kr</b> i banken med <b>${r} %</b> rente per år. Rentene blir stående på kontoen. Hvor mye har du etter <b>${n}</b> år? Svar med hele kroner.`,Math.round(K*(1+r/100)**n),{u:'kr',tol:0.51}); },
+  serie:L=>{ const Lb=rnd(5,30)*10000, n=pick([5,10,20]), r=pick([4,5,6]); return tk(`Du tar opp et serielån på <b>${nf(Lb)} kr</b> som skal betales ned over <b>${n}</b> år med ett terminbeløp per år. Renten er <b>${r} %</b>. Hva blir det første terminbeløpet?`,Lb/n+Lb*r/100,{u:'kr'}); },
+  netto:L=>{ const p=pick([20,25,30]), B=rnd(20,60)*1000; return tk(`${pick(TK_NAV)} fikk utbetalt <b>${nf(B*(100-p)/100)} kr</b> etter at <b>${p} %</b> skatt ble trukket. Hva var bruttolønna?`,B,{u:'kr'}); },
+  overtid:L=>{ const t=pick([180,200,220,240]), h=rnd(2,8), s=pick([50,100]); return tk(`${pick(TK_G)} tjener <b>${t} kr</b> per time. En uke jobber han <b>${30+h} timer</b>. Timene over 30 er overtid med <b>${s} %</b> tillegg. Hva tjener han denne uka?`,30*t+h*t*(1+s/100),{u:'kr'}); },
+  valuta:L=>{ const k=pick([10,11.5,12,8.5]), f=pick([0,40,50,60]), E=rnd(10,50)*10; const T=tkR(E*k+f,2); return tk(`1 euro koster <b>${fmt(k)} kr</b>.${f?` Banken tar <b>${f} kr</b> i gebyr.`:''} Du betaler <b>${nf(T)} kr</b> til sammen. Hvor mange euro får du?`,E,{u:'€'}); },
+  binar:L=>{ const n=rnd(5,15+L*15), b=n.toString(2); return tk(`Skriv tallet <b>${b}</b> fra totallssystemet i titallsystemet.`,n); },
+  storsteBin:L=>{ const k=rnd(3,8); return tk(`Hva er det største tallet du kan skrive med <b>${k}</b> siffer i totallssystemet? Svar i titallsystemet.`,2**k-1); },
+  tilBin:L=>{ const n=rnd(5,12+L*10); return tk(`Skriv <b>${n}</b> i totallssystemet.`,+n.toString(2)); }
+};
+const tkF=(...ks)=>ks.map(k=>TK[k]);
+const ESC_TENK={
+  addisjon:tkF('sumRekke','klassetur','hoyde'), multiplikasjon:tkF('kino','naboProdukt','kartong'), divisjon:tkF('busser','rest','bestemor'),
+  'flere-ledd':tkF('kinoPris','finnFeil','tenkTall'), 'negative-tall':tkF('temp','tempDiff','saldo','dykker'),
+  potenser:tkF('bakterie','terning','sammenlign','kjedebrev'), potensregler:tkF('potGrunn','potPot','tiGanger','likEks'),
+  delelighet:tkF('minsteFelles','rute9','rader','antallDelelig'), faktorisering:tkF('primProd','busserLcm','poser','kvadrattall'),
+  forkorting:tkF('delAv','nyNevner','forkortetMed','likHalv'), 'brok-desimal':tkF('midt','prosentAv','storst','poengProsent'),
+  'brok-add':tkF('pizza','tank','tilEn','lonn'), 'brok-mul':tkF('delAvDel','arealBrok','avAv'), 'brok-div':tkF('glass','tau','deltPaa'),
+  uttrykk:tkF('fyrstikk','aPlussB','verdi'), forenkling:tkF('rutaX','forenkleVerdi','omkretsX'), 'gange-alg':tkF('arealK','kvadratSide','rektX'),
+  parenteser:tkF('rutaPar','parVerdi'), monster:tkF('monsterLin','monsterBak','monsterKv','fyrstikk'),
+  likninger:tkF('tenkTall','alder','treVenner','pizzaer'), problemlosning:tkF('honsKuer','billetter','spare','alder'),
+  koordinater:tkF('hjorne','rektAreal','midtpunkt','speil'), funksjonsuttrykk:tkF('abonnement','finnA','taxi'),
+  grafer:tkF('stigning','nullpunkt','kryss'), diagrammer:tkF('diagRest','sektorBak','okningPst'),
+  datasett:tkF('snittTrengs','fjernet','ukjentSnitt'), sentralmal:tkF('snittTrengs','fjernet','ukjentSnitt'),
+  linjediagram:tkF('okningPst','diagRest'), stolpediagram:tkF('diagRest','okningPst'), sektordiagram:tkF('sektorBak','diagRest'), 'tolke-diagram':tkF('okningPst','sektorBak','diagRest'),
+  'geo-monster':tkF('monsterLin','monsterBak','monsterKv'), 'monster-alg':tkF('monsterLin','monsterBak','monsterKv','fyrstikk'),
+  vinkler:tkF('klokke','naboforskjell'), vinkelsum:tkF('trekantRel','regulSider','diagonaler'), trekanter:tkF('trekantRel','basisvinkel'),
+  regulare:tkF('regulSider','diagonaler'), sirkelen:tkF('hjul','radiusBak'), 'sirkel-areal':tkF('pizzaSammen','radiusBak'),
+  rektangel:tkF('rektRatio','arealEndring'), kvadrat:tkF('kvadOmkrets','rektRatio'), parallellogram:tkF('paraKvadrat','trekantHoyde'),
+  trapes:tkF('trapesSide'), 'trekant-areal':tkF('trekantHoyde','paraKvadrat'),
+  pytagoras:tkF('stige','diagonal'), hypotenus:tkF('stige','diagonal'), katet:tkF('stige','diagonal'),
+  formlikhet:tkF('skygge','formlik'), 'formlik-sider':tkF('skygge','formlik'), sammensatte:tkF('lForm','ramme'), 'utforsking-plan':tkF('lForm','ramme','arealEndring'),
+  'prisme-volum':tkF('akvarium','hoydeV','eskerKasse'), 'kvadratisk-prisme':tkF('akvarium','hoydeV','terningOverflate'), 'andre-prismer':tkF('akvarium','hoydeV'),
+  'prisme-overflate':tkF('utenLokk','terningOverflate'), pyramider:tkF('pyramideTredel','pyramideHoyde'), 'kjegle-volum':tkF('pyramideTredel'),
+  'sylinder-volum':tkF('glassKanne','tankHoyde'), 'sylinder-overflate':tkF('glassKanne','tankHoyde'), kule:tkF('kuleDobbel'),
+  massetetthet:tkF('masse','volumMasse'), 'utforsking-rom':tkF('eskerKasse','akvarium','kuleDobbel'),
+  kombinatorikk:tkF('handtrykk','antrekk','kodeLas','ko'), multiplikasjonsprinsippet:tkF('antrekk','kodeLas','ko'),
+  utfall:tkF('toTerninger','minstEn'), 'en-hendelse':tkF('leggTilRod','rodeFraP'), 'flere-hendelser':tkF('toTerninger','minstEn'),
+  'like-sannsynlig':tkF('leggTilRod','rodeFraP','toTerninger'), 'stat-sanns':tkF('forventet','rodeFraP'), simulering:tkF('forventet'),
+  'faktor-alg':tkF('konjugat','fullKvadrat','xyDiff'), 'forkort-alg':tkF('xyDiff','konjugat'), 'parentes-alg':tkF('rutaPar','parVerdi'),
+  polynom:tkF('parVerdi','fullKvadrat'), kvsetn1:tkF('nesten100','fullKvadrat'), kvsetn2:tkF('nesten100','fullKvadrat'), kvsetn3:tkF('konjugat','xyDiff'),
+  likn10:tkF('alder','treVenner','sumDiff'), 'kvadratisk-likn':tkF('naboProdukt2','rektLik','kvadratOker'), proporsjon:tkF('oppskrift','malere'),
+  brokliknx:tkF('dele','malere'), likningssett:tkF('tosett','sumDiff','honsKuer'), 'grafisk-sett':tkF('kryss','abonnement'), 'problem-alg':tkF('tosett','rektLik','billetter'),
+  'koord-10':tkF('midtpunkt','hjorne','stigning'), 'funksjon-graf':tkF('abonnement','taxi','finnA'), 'tegne-lineaer':tkF('stigning','nullpunkt'),
+  stigningstall:tkF('stigning','finnA'), konstantledd:tkF('taxi','finnA'), 'lin-funk':tkF('abonnement','taxi','kryss'), 'lin-graf':tkF('kryss','nullpunkt','stigning'),
+  brokfunk:tkF('malere','fart','dele'), 'brok-graf':tkF('malere','fart'), andregrad:tkF('ball','nullprod'), 'andregrad-graf':tkF('toppunkt','nullprod'), ekstremal:tkF('gjerde','toppunkt','ball'),
+  'eksp-funk':tkF('halvering','renter'), 'eksp-vekst':tkF('halvering','samletOkning'), 'mat-modell':tkF('taxi','ball','halvering'),
+  prosentendring:tkF('oppNed','forOkning'), vekstfaktor10:tkF('samletOkning','forOkning','oppNed'), 'finne-prosent':tkF('okningPst','poengProsent'),
+  mva:tkF('mvaDel','utenMva'), 'toll-mva':tkF('mvaDel','utenMva'), 'finne-mva':tkF('utenMva','mvaDel'),
+  sparing:tkF('renter'), lan:tkF('serie','renter'), serielan:tkF('serie'), kredittkort:tkF('renter'), 'lonn-skatt':tkF('netto','overtid'),
+  utgifter:tkF('overtid','netto'), budsjett:tkF('lonn','netto'), valuta:tkF('valuta'), tallsystem:tkF('binar','storsteBin','tilBin')
+};
+/* ---------- oppgavesett v2: nivåmiks, tenkeoppgaver, egne oppgaver ---------- */
+const ESC_LET='ABCDEF', ESC_MAXT=6;
+const ESC_ST={rett:'Rett fram',blandet:'Blanding',tenk:'Tenkeoppgaver'};
+const escMixH=(...v)=>{ let h=0x9e3779b9; v.forEach(x=>{ h=Math.imul(h^(((x|0)+0x7f4a7c15)>>>0),0x85ebca6b)>>>0; h^=h>>>13; }); return h||1; };
+const escMixOf=c=>{ if(Array.isArray(c.mix)) return c.mix; const m=[0,0,0]; m[(c.L||1)-1]=c.n||4; return m; };
+function escLvlTxt(c){ if(!Array.isArray(c.mix)) return 'Nivå '+(c.L||1);
+  const m=c.mix, parts=[1,2,3].filter(l=>m[l-1]).map(l=>`${m[l-1]} på nivå ${l}`); return parts.join(', ')+(c.st&&c.st!=='rett'?' · '+(ESC_ST[c.st]||'').toLowerCase():''); }
+function escDefSlots(c){ const m=escMixOf(c), st=c.st||'rett', out=[]; let id=0;
+  [1,2,3].forEach(L=>{ for(let k=0;k<(m[L-1]||0);k++){ out.push({id,L,k:st==='tenk'?'t':st==='blandet'?(id%2?'t':'n'):'n'}); id++; } });
+  return out; }
+function escGenSlot(c,i,tid,sl,seen){
+  return escWithSeed(escMixH(c.s,i,sl.id,sl.r||0),()=>{
+    const tryT=()=>{ const G=ESC_TENK[tid]; if(!G||!G.length) return null;
+      for(let g=0;g<60;g++){ let p=null; try{ p=pick(G)(sl.L); }catch(e){ p=null; } if(p&&typeof p.q==='string'&&!seen.has(p.q)) return Object.assign(p,{tk:true}); } return null; };
+    const tryN=L=>escTopicTasks(tid,L,12).find(p=>!seen.has(p.q))||null;
+    let p=sl.k==='t'?tryT():null;
+    if(!p) p=tryN(sl.L);
+    if(!p) for(const L2 of [2,1,3]) if(L2!==sl.L&&(p=tryN(L2))) break;
+    if(!p&&sl.k!=='t') p=tryT();
+    return p; });
+}
+function escAvail2(tid,mix,st){ const key=tid+'|'+mix.join(',')+'|'+st;
+  if(!(key in ESC_AV)){ const c={v:2,s:7,t:[tid],mix,st}, seen=new Set(); let ok=true;
+    for(const sl of escDefSlots(c)){ const p=escGenSlot(c,0,tid,sl,seen); if(!p){ ok=false; break; } seen.add(p.q); }
+    ESC_AV[key]=ok; }
+  return ESC_AV[key]; }
+/* egne oppgaver: tekst inn, oppgave ut */
+function escNumParse(s){ let t=String(s==null?'':s).trim().replace(/[−–]/g,'-'); const m=t.match(/^(-?)(\d+)\s+(\d+)\s*\/\s*(\d+)$/);
+  if(m) return +m[4]?(m[1]?-1:1)*(+m[2]+(+m[3])/(+m[4])):null;
+  t=t.replace(/\s+/g,'').replace(/,/g,'.'); let r;
+  if((r=t.match(/^(-?\d+(?:\.\d+)?)\/(-?\d+(?:\.\d+)?)$/))) return +r[2]?(+r[1])/(+r[2]):null;
+  if(/^[-+]?(\d+\.?\d*|\.\d+)$/.test(t)) return parseFloat(t); return null; }
+const escNumU=s=>{ const v=escNumParse(s); if(v!=null) return v;
+  const m=String(s==null?'':s).trim().match(/^(.*?[\d)])\s*(kr|cm²|cm³|m²|m³|dm³|cm|mm|dm|km\/h|km|m|kg|g|l|dl|ml|liter|%|°|grader|år|timer|min|s|stk|€)\.?$/i);
+  return m?escNumParse(m[1]):null; };
+const escTxtN=s=>String(s==null?'':s).toLowerCase().replace(/[−–]/g,'-').replace(/[·×*]/g,'*').replace(/\s+/g,'').replace(/\.+$/,'');
+function escFmtTxt(t){ let h=escE(String(t||'').trim());
+  h=h.replace(/\*\*(.+?)\*\*/g,'<b>$1</b>').replace(/(^|[^\d,.])(\d+)\/(\d+)(?![\d,.])/g,(m,pre,a,b)=>pre+F(+a,+b))
+    .replace(/\^\(([^)]+)\)/g,'<sup>$1</sup>').replace(/\^(-?[0-9a-zæøåA-ZÆØÅ]+)/g,'<sup>$1</sup>').replace(/\n/g,'<br>');
+  return h; }
+function escHtmlTxt(h){ const d=document.createElement('div'); d.innerHTML=String(h==null?'':h).replace(/<br\s*\/?>/gi,'\n');
+  d.querySelectorAll('.frac,.fr').forEach(f=>{ const s=f.querySelectorAll(':scope>span'); if(s.length===2) f.replaceWith(s[0].textContent+'/'+s[1].textContent); });
+  d.querySelectorAll('sup').forEach(x=>{ const t=x.textContent; x.replaceWith('^'+(t.length>1?'('+t+')':t)); });
+  d.querySelectorAll('b,strong').forEach(x=>{ const t=x.textContent; x.replaceWith(/^\s*$/.test(t)?t:'**'+t+'**'); });
+  return d.textContent.replace(/ /g,' ').replace(/[ \t]+/g,' ').replace(/ *\n */g,'\n').trim(); }
+function escCustomTask(c){
+  const alts=String(c.a==null?'':c.a).split('|').map(x=>x.trim()).filter(Boolean), nums=alts.map(escNumU), isNum=alts.length>0&&nums.every(v=>v!=null);
+  const ok=s=>{ const vn=escNumU(s); return alts.some((a,j)=>nums[j]!=null?(vn!=null&&Math.abs(nums[j]-vn)<1e-9):escTxtN(a)===escTxtN(s)); };
+  return {q:escFmtTxt(c.q)||'?',ansHTML:escE(alts.join(' eller ')||'?'),chk:s=>({ok:ok(s)}),own:true,kind:isNum?(nums.some(v=>v<0)?'neg':'num'):'txt'}; }
+/* oppgaven som tekst, til «Skriv om» */
+function escTaskTxt(t){ if(t.own&&t.src) return {q:t.src.q,a:t.src.a};
+  let q=(t.ins?escHtmlTxt(t.ins)+'\n':'')+escHtmlTxt(t.q)+(t.expr?' =':'');
+  if(t.mc) q+='\n'+t.mc.opts.map((o,j)=>`${'abcdef'[j]}) ${escHtmlTxt(o)}`).join('\n');
+  const a=t.mc?`${'abcdef'[t.mc.a]} | ${escHtmlTxt(t.mc.opts[t.mc.a])}`:escHtmlTxt(wsAns(Object.assign({},t,{pre:''})));
+  return {q,a}; }
+function escRoom(cfg){
+  const c=cfg;
+  if(c.v!==2&&!c.p) return escRoomV1(c);
+  const base=c.v!==2?escRoomV1(c):null;
+  let th, word, ord;
+  if(base){ th=base.th; word=base.word; }
+  else escWithSeed(c.s,()=>{ th=ESC_THEMES[c.th]||ESC_THEMES.lab; word=String(c.w||ESC_WORDS[c.t.length]||'').toUpperCase();
+    ord=c.t.map((_,i)=>i); for(let i=ord.length-1;i>0;i--){ const j=Math.floor(Math.random()*(i+1)); [ord[i],ord[j]]=[ord[j],ord[i]]; } });
+  const posts=c.t.map((tid,i)=>{
+    const slots=(c.p&&c.p[i])||(base?base.posts[i].tasks.map((_,k)=>({b:k})):escDefSlots(c));
+    const seen=new Set(), tasks=[];
+    slots.slice(0,ESC_MAXT).forEach((sl,si)=>{ let p=null;
+      if(sl.c) p=Object.assign(escCustomTask(sl.c),{src:sl.c});
+      else if(sl.b!=null) p=base&&base.posts[i].tasks[sl.b]?Object.assign({},base.posts[i].tasks[sl.b]):null;
+      else p=escGenSlot(c,i,tid,sl,seen);
+      if(!p) return;
+      seen.add(p.q); p.si=si; p.lv=sl.c?0:(sl.b!=null?(c.L||1):sl.L); p.ty=sl.c?'c':(p.tk?'t':'n'); tasks.push(p); });
+    const kinds=tasks.map(p=>p.kind||(p.mc?'mc':(p.ex||p.alg)?'ex':p.fr?'fr':p.pa?'pa':p.fac?'fac':(typeof p.a==='number'&&p.a<0?'neg':'num')));
+    const T=TOPICS[tid]||{title:tid}, hint=WS_HUSK[tid]||`Se på modellen og eksemplene i delkapitlet «${T.title}».`;
+    return {n:i+1,tid,title:T.title,room:th.rooms[i%th.rooms.length],tasks,kinds,letter:base?base.posts[i].letter:(word[ord[i]]||'?'),hint,slots}; });
+  return {cfg:c,th,word,posts,name:`${th.name} · ${c.t.length} poster`};
 }
 const escAnsTxt=p=>p.mc?`${'abcdef'[p.mc.a]}) ${p.mc.opts[p.mc.a]}`:wsAns(p);
 function escFrac(s){ s=norm(String(s).replace(/:/g,'/')).replace(/^\+/,''); let m;
@@ -7447,13 +7824,13 @@ function escCheck(p,s){
 const ESC_ROOMS='esc-rooms', ESC_BS='esc-builder';
 const escRooms=()=>{ try{ const v=JSON.parse(localStorage.getItem(ESC_ROOMS)||'[]'); return Array.isArray(v)?v:[]; }catch(e){ return []; } };
 const escRoomsSave=l=>{ try{ localStorage.setItem(ESC_ROOMS,JSON.stringify(l.slice(0,30))); }catch(e){} };
-const escBS=()=>{ let v=null; try{ v=JSON.parse(localStorage.getItem(ESC_BS)||'null'); }catch(e){} return Object.assign({g:GRADE,tids:[],L:1,n:4,th:'lab',w:'',wAuto:true},v||{}); };
+const escBS=()=>{ let v=null; try{ v=JSON.parse(localStorage.getItem(ESC_BS)||'null'); }catch(e){} const o=Object.assign({g:GRADE,tids:[],mix:[2,1,1],st:'blandet',th:'lab',w:'',wAuto:true},v||{}); if(!Array.isArray(o.mix)||o.mix.length!==3) o.mix=[2,1,1]; if(!ESC_ST[o.st]) o.st='blandet'; return o; };
 const escBSave=v=>{ try{ localStorage.setItem(ESC_BS,JSON.stringify(v)); }catch(e){} };
 function escRemember(cfg,name){ const l=escRooms().filter(r=>r.s!==cfg.s); l.unshift({s:cfg.s,code:escEnc(cfg),name,t:Date.now(),g:cfg.g}); escRoomsSave(l); }
 /* ---------- utskrift ---------- */
 function escSheets(room,o){
   const c=room.cfg, th=room.th, nP=room.posts.length, ft=`Escape room: ${th.name}`;
-  const lvTxt=['','Nivå 1','Nivå 2','Nivå 3'][c.L]||'';
+  const lvTxt=escLvlTxt(c), mxT=Math.max(...room.posts.map(p=>p.tasks.length));
   const sheet=(lab,h)=>`<article class="ws ws-sheet esc-ws" style="${WS_NEUTRAL}" aria-label="${lab}">${h}</article>`;
   let out='';
   if(o.teacher){
@@ -7461,20 +7838,20 @@ function escSheets(room,o){
       <p class="escw-lede">${th.intro}</p>
       <div class="escw-box g"><b>Slik gjør du</b><ol><li>Skriv ut oppdraget og låsekortet (ett per gruppe) og postene (ett sett per gruppe). Legg postene på hver sin plass i rommet.</li>
       <li>Åpne låsesiden på PC-en din: Lærerdelen → Escape room-bygger → Mine escape rooms → «Åpne låsen». Skriv inn gruppene og trykk Start.</li>
-      <li>Gruppene løser oppgavene på en post og taster inn svarene A–${'ABCD'[c.n-1]} på PC-en. Riktige svar gir en bokstav. Når en gruppe har alle ${nP} bokstavene, taster de inn kodeordet.</li></ol></div>
-      <table class="escw-key"><thead><tr><th>Post</th><th>Svar</th><th>Bokstav</th></tr></thead><tbody>${room.posts.map(p=>`<tr><td><b>${p.n}. ${p.room}</b><br><span>${p.title}</span></td><td>${p.tasks.map((t,k)=>`<span class="escw-a"><b>${'ABCD'[k]}:</b> ${escAnsTxt(t)}</span>`).join('')}</td><td class="escw-l">${p.letter}</td></tr>`).join('')}</tbody></table>
+      <li>Gruppene løser oppgavene på en post og taster inn svarene A–${ESC_LET[mxT-1]} på PC-en. Riktige svar gir en bokstav. Når en gruppe har alle ${nP} bokstavene, taster de inn kodeordet.</li></ol></div>
+      <table class="escw-key"><thead><tr><th>Post</th><th>Svar</th><th>Bokstav</th></tr></thead><tbody>${room.posts.map(p=>`<tr><td><b>${p.n}. ${p.room}</b><br><span>${p.title}</span></td><td>${p.tasks.map((t,k)=>`<span class="escw-a"><b>${ESC_LET[k]}:</b> ${escAnsTxt(t)}</span>`).join('')}</td><td class="escw-l">${p.letter}</td></tr>`).join('')}</tbody></table>
       <div class="escw-box r"><b>Kodeordet: ${room.word}</b>Bokstavene gruppene får, i postrekkefølge: ${room.posts.map(p=>p.letter).join(', ')}. Låsesiden godtar også ordet uten æ, ø og å.</div>`);
   }
   out+=sheet('Oppdraget og låsekort',`<p class="kick">${ft} · ${c.g}. trinn · én per gruppe</p><h1 class="escw-h1">Oppdraget</h1><p class="escw-story">${th.intro}</p>
     <ol class="escw-ol"><li>Løs oppgavene på posten.</li><li>Tast svarene inn på lærerens PC. Riktige svar gir en bokstav. Skriv den i den røde ruta.</li><li>Når dere har alle ${nP} bokstavene, finner dere kodeordet og taster det inn.</li></ol>
     <div class="escw-who"><span>Gruppe</span><i></i><span>Navn</span><i></i></div>
-    <table class="escw-card"><thead><tr><th>Post</th><th>Navn</th><th>Svar ${room.posts[0].tasks.map((_,k)=>'ABCD'[k]).join(' ')}</th><th>Bokstav</th></tr></thead><tbody>${room.posts.map(p=>`<tr><td class="pn">${p.n}</td><td>${p.room}<br><span>${p.title}</span></td><td>${p.tasks.map(()=>'<span class="bx"></span>').join('')}</td><td><span class="bx l"></span></td></tr>`).join('')}</tbody></table>
+    <table class="escw-card"><thead><tr><th>Post</th><th>Navn</th><th>Svar ${ESC_LET.slice(0,mxT).split('').join(' ')}</th><th>Bokstav</th></tr></thead><tbody>${room.posts.map(p=>`<tr><td class="pn">${p.n}</td><td>${p.room}<br><span>${p.title}</span></td><td class="${p.tasks.length>4?'sm':''}">${p.tasks.map(()=>'<span class="bx"></span>').join('')}</td><td><span class="bx l"></span></td></tr>`).join('')}</tbody></table>
     <p class="escw-sub">Kodeordet</p><div class="escw-final">${room.word.split('').map(()=>'<span></span>').join('')}</div>`);
   room.posts.forEach(p=>{
     const n=p.tasks.length;
     out+=sheet(`Post ${p.n}`,`<div class="escw-ph"><div class="escw-num"><small>Post</small>${p.n}</div><div><h1 class="escw-h1">${p.room}</h1><p class="escw-tema">${p.title}</p></div></div>
-      <div class="escw-tasks n${n}">${p.tasks.map((t,k)=>`<div class="escw-task"><div class="escw-q"><span class="escw-tl">${'ABCD'[k]}</span><div>${t.ins?`<p class="escw-ins">${t.ins}</p>`:''}<div class="${t.expr?'qx':'q'}">${t.q}${t.expr?' =':''}</div>${t.mc?`<div class="escw-opts">${t.mc.opts.map((o,i)=>`<span><b>${'abcdef'[i]})</b> ${o}</span>`).join('')}</div>`:''}</div></div><div class="escw-work"></div><div class="escw-ans">Svar ${'ABCD'[k]}:${t.pre?` <b class="qx">${t.pre}</b>`:''} <span></span></div></div>`).join('')}</div>
-      <div class="escw-lock"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 10V7a5 5 0 0 1 10 0v3" fill="none" stroke="currentColor" stroke-width="2.4"/><rect x="4" y="10" width="16" height="12" rx="2.5" fill="currentColor"/></svg><div><b>Lås ${p.n}</b>Tast svarene ${p.tasks.map((_,k)=>'ABCD'[k]).join(', ').replace(/, ([A-D])$/,' og $1')} inn på lærerens PC.</div></div>`);
+      <div class="escw-tasks n${n}">${p.tasks.map((t,k)=>`<div class="escw-task"><div class="escw-q"><span class="escw-tl">${ESC_LET[k]}</span><div>${t.ins?`<p class="escw-ins">${t.ins}</p>`:''}<div class="${t.expr?'qx':'q'}">${t.q}${t.expr?' =':''}</div>${t.mc?`<div class="escw-opts">${t.mc.opts.map((o,i)=>`<span><b>${'abcdef'[i]})</b> ${o}</span>`).join('')}</div>`:''}</div></div><div class="escw-work"></div><div class="escw-ans">Svar ${ESC_LET[k]}:${t.pre?` <b class="qx">${t.pre}</b>`:''} <span></span></div></div>`).join('')}</div>
+      <div class="escw-lock"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 10V7a5 5 0 0 1 10 0v3" fill="none" stroke="currentColor" stroke-width="2.4"/><rect x="4" y="10" width="16" height="12" rx="2.5" fill="currentColor"/></svg><div><b>Lås ${p.n}</b>Tast svar${n>1?'ene':'et'} ${p.tasks.map((_,k)=>ESC_LET[k]).join(', ').replace(/, ([A-F])$/,' og $1')} inn på lærerens PC.</div></div>`);
   });
   return out+`<style>@media print{@page{@bottom-left{content:"Matematikk ${c.g}. trinn · ${ft}"}}}</style>`;
 }
@@ -7493,25 +7870,28 @@ function renderEscBuilder(code){
   const chs=CHS();
   main.innerHTML=`<div class="col" id="esc-bld">${escCrumb()}
     <header class="topic-head"><p class="eyebrow">For lærere · ${GRADE}. trinn</p><h1>Escape room-<span class="hl">bygger</span></h1>
-      <p class="lede">Velg temaene du vil ha med. Hvert tema blir én post med oppgaver som lages automatisk. Du får utskrifter med fasit og en låseside der gruppene taster inn svarene.</p></header>
+      <p class="lede">Velg temaene du vil ha med. Hvert tema blir én post med oppgaver som lages automatisk. Etterpå kan du bytte ut enkeltoppgaver og legge inn egne. Du får utskrifter med fasit og en låseside der gruppene taster inn svarene.</p></header>
     ${rooms.length?`<section class="group" aria-labelledby="esr"><h2 id="esr">Mine escape rooms</h2><ul class="trows esc-rooms">${rooms.map(r=>`<li><span class="t">${escE(r.name)}</span><span class="d">${r.g}. trinn · laget ${new Date(r.t).toLocaleDateString('nb-NO',{day:'numeric',month:'long'})}</span><span class="dl"><a class="btn ghost small" href="#escape-bygger/${r.code}">Utskrifter</a><a class="btn small" href="#escape-las/${r.code}">Åpne låsen</a><button type="button" class="btn ghost small" data-del="${r.s}">Slett</button></span></li>`).join('')}</ul></section>`:''}
     <section class="esc-card esc-bld"><h2 class="esc-bh"><span class="g-n">1</span>Velg temaer</h2>
-      <p class="esc-note">Velg 3–8 delkapitler. Rekkefølgen du trykker i, blir rekkefølgen på postene. Grå temaer har ikke nok oppgaver med svar som kan tastes inn.</p>
+      <p class="esc-note">Velg 3–8 delkapitler. Rekkefølgen du trykker i, blir rekkefølgen på postene. Grå temaer har ikke nok oppgaver med svar som kan tastes inn med innstillingene under.</p>
       <div id="esc-tp">${chs.map(ch=>`<div class="esc-chap"><p class="esc-step">Kapittel ${ch.num} · ${ch.title}</p><div class="esc-pick esc-tops">${order(ch).map(tid=>`<button type="button" data-t="${tid}">${TOPICS[tid].title}</button>`).join('')}</div></div>`).join('')}</div>
       <p class="esc-cnt" id="esc-cnt" aria-live="polite"></p></section>
     <section class="esc-card esc-bld"><h2 class="esc-bh"><span class="g-n">2</span>Innstillinger</h2>
-      <div><p class="esc-step">Nivå</p><div class="esc-pick" id="esc-L">${[1,2,3].map(l=>`<button type="button" data-l="${l}">Nivå ${l}</button>`).join('')}</div></div>
-      <div><p class="esc-step">Oppgaver per post</p><div class="esc-pick" id="esc-nn">${[3,4].map(k=>`<button type="button" data-nn="${k}">${k} oppgaver</button>`).join('')}</div></div>
+      <div><p class="esc-step">Oppgaver per post, fordelt på nivå</p><div class="esc-mix" id="esc-mix">${[1,2,3].map(l=>`<div class="esc-mixr"><span>Nivå ${l}</span><button type="button" class="esc-stp" data-mx="${l}" data-d="-1" aria-label="Færre oppgaver på nivå ${l}">−</button><b id="esc-mx${l}" aria-live="polite">0</b><button type="button" class="esc-stp" data-mx="${l}" data-d="1" aria-label="Flere oppgaver på nivå ${l}">+</button></div>`).join('')}</div><p class="esc-note" id="esc-mxn"></p></div>
+      <div><p class="esc-step">Oppgavetype</p><div class="esc-pick" id="esc-st">${Object.entries(ESC_ST).map(([k,t])=>`<button type="button" data-st="${k}">${t}</button>`).join('')}</div><p class="esc-note" id="esc-stn"></p></div>
       <div><p class="esc-step">Historie</p><div class="esc-pick" id="esc-th">${Object.entries(ESC_THEMES).map(([k,t])=>`<button type="button" data-th="${k}">${t.name}</button>`).join('')}</div><p class="esc-note" id="esc-thi"></p></div>
       <div><p class="esc-step">Kodeord</p><div class="esc-word"><input id="esc-w" maxlength="8" autocomplete="off" aria-label="Kodeord" placeholder="NØKKEL"><button type="button" class="btn ghost small" id="esc-wr">Foreslå</button></div><p class="esc-note" id="esc-wn"></p></div></section>
     <div class="esc-go"><button type="button" class="btn" id="esc-make" style="font-size:1.15rem;padding:14px 26px">Lag escape room</button><p class="role-err" id="esc-err" aria-live="polite"></p></div></div>`;
   const $q=s=>main.querySelector(s);
   const sync=()=>{
-    main.querySelectorAll('[data-t]').forEach(b=>{ const t=b.dataset.t, ok=escAvail(t,B.L,B.n), i=B.tids.indexOf(t); b.disabled=!ok&&i<0; b.classList.toggle('na',!ok);
+    main.querySelectorAll('[data-t]').forEach(b=>{ const t=b.dataset.t, ok=escAvail2(t,B.mix,B.st), i=B.tids.indexOf(t); b.disabled=!ok&&i<0; b.classList.toggle('na',!ok);
       b.setAttribute('aria-pressed',String(i>=0)); b.innerHTML=(i>=0?`<i class="esc-ord">${i+1}</i>`:'')+escE(TOPICS[t].title); });
     const k=B.tids.length; $q('#esc-cnt').textContent=k?`${k} ${k===1?'post':'poster'} valgt${k<3?' · velg minst 3':k>8?' · maks 8':''}`:'Ingen temaer valgt ennå.';
-    main.querySelectorAll('[data-l]').forEach(b=>b.setAttribute('aria-pressed',String(+b.dataset.l===B.L)));
-    main.querySelectorAll('[data-nn]').forEach(b=>b.setAttribute('aria-pressed',String(+b.dataset.nn===B.n)));
+    const tot=B.mix.reduce((x,y)=>x+y,0); [1,2,3].forEach(l=>{ $q('#esc-mx'+l).textContent=B.mix[l-1]; });
+    main.querySelectorAll('[data-mx]').forEach(b=>{ const l=+b.dataset.mx, d=+b.dataset.d; b.disabled=d<0?(B.mix[l-1]<=0||tot<=1):tot>=ESC_MAXT; });
+    $q('#esc-mxn').textContent=`${tot} ${tot===1?'oppgave':'oppgaver'} per post (svar ${ESC_LET.slice(0,tot).split('').join(', ').replace(/, ([A-F])$/,' og $1')}). Oppgavene kommer i rekkefølge fra nivå 1 til nivå 3. Maks ${ESC_MAXT}.`;
+    main.querySelectorAll('[data-st]').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.st===B.st)));
+    $q('#esc-stn').textContent={rett:'Vanlige regneoppgaver, som i oppgavearkene.',blandet:'Annenhver oppgave er en tenkeoppgave: en hverdagssituasjon eller et lite problem der elevene selv må finne ut hva de skal regne.',tenk:'Alle oppgavene er tenkeoppgaver der elevene selv må finne ut hva de skal regne. Temaer uten tenkeoppgaver får vanlige oppgaver.'}[B.st];
     main.querySelectorAll('[data-th]').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.th===B.th)));
     $q('#esc-thi').textContent=(ESC_THEMES[B.th]||ESC_THEMES.lab).intro;
     if(B.wAuto) B.w=ESC_WORDS[Math.min(8,Math.max(3,k))]||'';
@@ -7520,9 +7900,10 @@ function renderEscBuilder(code){
     $q('#esc-wn').classList.toggle('bad',!!k&&wl!==k);
     escBSave(B); };
   main.querySelector('#esc-bld').addEventListener('click',e=>{
-    const bt=e.target.closest('[data-t]'), bl=e.target.closest('[data-l]'), bn=e.target.closest('[data-nn]'), bth=e.target.closest('[data-th]'), bd=e.target.closest('[data-del]');
+    const bt=e.target.closest('[data-t]'), bm=e.target.closest('[data-mx]'), bs=e.target.closest('[data-st]'), bth=e.target.closest('[data-th]'), bd=e.target.closest('[data-del]');
     if(bt){ const t=bt.dataset.t, i=B.tids.indexOf(t); if(i>=0) B.tids.splice(i,1); else if(B.tids.length<8) B.tids.push(t); sync(); }
-    else if(bl){ B.L=+bl.dataset.l; sync(); } else if(bn){ B.n=+bn.dataset.nn; sync(); } else if(bth){ B.th=bth.dataset.th; sync(); }
+    else if(bm){ const l=+bm.dataset.mx-1, tot=B.mix.reduce((x,y)=>x+y,0), d=+bm.dataset.d; if(d>0&&tot<ESC_MAXT) B.mix[l]++; else if(d<0&&B.mix[l]>0&&tot>1) B.mix[l]--; sync(); }
+    else if(bs){ B.st=bs.dataset.st; sync(); } else if(bth){ B.th=bth.dataset.th; sync(); }
     else if(e.target.closest('#esc-wr')){ B.wAuto=true; sync(); }
     else if(bd){ if(!bd.dataset.arm){ bd.dataset.arm='1'; bd.textContent='Trykk igjen'; setTimeout(()=>{ if(bd.isConnected){ delete bd.dataset.arm; bd.textContent='Slett'; } },3000); return; }
       escRoomsSave(escRooms().filter(r=>String(r.s)!==bd.dataset.del)); try{ localStorage.removeItem('escape-'+bd.dataset.del); }catch(err){} renderEscBuilder(); }
@@ -7531,8 +7912,8 @@ function renderEscBuilder(code){
       if(k<3){ er.textContent='Velg minst 3 temaer.'; return; }
       if(!/^[A-ZÆØÅ]+$/.test(w)){ er.textContent='Kodeordet kan bare ha bokstaver.'; return; }
       if([...w].length!==k){ er.textContent=`Kodeordet må ha ${k} bokstaver, én per post.`; return; }
-      const bad=B.tids.filter(t=>!escAvail(t,B.L,B.n)); if(bad.length){ er.textContent=`Disse temaene har ikke nok oppgaver på nivå ${B.L}: ${bad.map(t=>TOPICS[t].title).join(', ')}.`; return; }
-      const cfg={v:1,g:GRADE,t:B.tids.slice(),L:B.L,n:B.n,th:B.th,w,s:(Math.floor(Math.random()*2147483646)+1)};
+      const bad=B.tids.filter(t=>!escAvail2(t,B.mix,B.st)); if(bad.length){ er.textContent=`Disse temaene har ikke nok oppgaver med denne fordelingen: ${bad.map(t=>TOPICS[t].title).join(', ')}. Velg andre temaer eller færre oppgaver.`; return; }
+      const cfg={v:2,g:GRADE,t:B.tids.slice(),mix:B.mix.slice(),st:B.st,th:B.th,w,s:(Math.floor(Math.random()*2147483646)+1)};
       const room=escRoom(cfg); escRemember(cfg,room.name+' · '+B.tids.map(t=>TOPICS[t].title).slice(0,3).join(', ')+(k>3?' …':''));
       location.hash='escape-bygger/'+escEnc(cfg); }
   });
@@ -7543,12 +7924,23 @@ const escE=t=>String(t).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,
 function renderEscRoom(cfg,code){
   const room=escRoom(cfg), c=cfg;
   if(!escRooms().some(r=>r.s===c.s)) escRemember(c,room.name+' · '+c.t.map(t=>(TOPICS[t]||{}).title).filter(Boolean).slice(0,3).join(', '));
+  const cnt=room.posts.map(p=>p.tasks.length), mn=Math.min(...cnt), mx=Math.max(...cnt);
+  const hasT=tid=>!!(ESC_TENK[tid]&&ESC_TENK[tid].length);
+  const edPost=(p,i)=>`<div class="esc-edp" id="esc-edp-${i}"><div class="esc-edh"><b>Post ${p.n} · ${p.room}</b><span class="esc-ovt">${p.title}</span><span class="esc-ovl">Bokstav ${p.letter}</span></div>
+    <ol class="esc-edl">${p.tasks.map((t,k)=>`<li class="esc-edt" data-i="${i}" data-si="${t.si}"><div class="esc-edq"><b class="esc-qtl">${ESC_LET[k]}</b><div class="esc-edb">
+      <div class="esc-tags">${t.ty==='c'?'<span class="esc-tag own">Egen oppgave</span>':`<span class="esc-tag">Nivå ${t.lv}</span>${t.ty==='t'?'<span class="esc-tag tk">Tenkeoppgave</span>':''}`}</div>
+      ${t.ins?`<p class="esc-qins">${t.ins}</p>`:''}<div class="${t.expr?'qx':'q'}">${t.q}${t.expr?' =':''}</div>${t.mc?`<div class="esc-qmc">${t.mc.opts.map((o,j)=>`<span><b>${'abcdef'[j]})</b> ${o}</span>`).join('')}</div>`:''}
+      <p class="esc-eda">Svar: <b>${escAnsTxt(t)}</b></p></div></div>
+      <div class="esc-edc">${t.ty!=='c'?`<button type="button" class="btn ghost small" data-op="bytt" title="Lag en ny oppgave på samme nivå">Bytt</button><span class="esc-lvp" role="group" aria-label="Nivå">${[1,2,3].map(l=>`<button type="button" data-op="lv" data-l="${l}" aria-pressed="${t.lv===l}" title="Nivå ${l}">N${l}</button>`).join('')}</span>${hasT(p.tid)?`<button type="button" class="btn ghost small" data-op="tk">${t.ty==='t'?'Gjør til vanlig':'Gjør til tenkeoppgave'}</button>`:''}`:''}<button type="button" class="btn ghost small" data-op="ed">Skriv om</button>${p.tasks.length>1?'<button type="button" class="btn ghost small" data-op="rm">Fjern</button>':''}</div></li>`).join('')}</ol>
+    ${p.tasks.length<ESC_MAXT?`<div class="esc-edadd"><button type="button" class="btn ghost small" data-op="addc" data-i="${i}">+ Egen oppgave</button><button type="button" class="btn ghost small" data-op="addg" data-i="${i}">+ Oppgave fra temaet</button></div>`:''}</div>`;
   main.innerHTML=`<div class="col">${escCrumb([room.th.name,''])}
-    <header class="topic-head"><p class="eyebrow">Escape room · ${c.g}. trinn · Nivå ${c.L}</p><h1>Escape room: <span class="hl">${room.th.name}</span></h1>
-      <p class="lede">${room.posts.length} poster med ${c.n} oppgaver hver. Kodeordet er <b>${room.word}</b>.</p>
+    <header class="topic-head"><p class="eyebrow">Escape room · ${c.g}. trinn · ${escLvlTxt(c)}</p><h1>Escape room: <span class="hl">${room.th.name}</span></h1>
+      <p class="lede">${room.posts.length} poster med ${mn===mx?mn:mn+'–'+mx} oppgaver ${mn===mx?'hver':'per post'}. Kodeordet er <b>${room.word}</b>.</p>
       <div class="jump"><a class="btn" href="#escape-las/${code}">Åpne låsen</a><button type="button" class="btn ghost" id="esc-pa">Skriv ut alt</button><button type="button" class="btn ghost" id="esc-pe">Skriv ut elevark</button><button type="button" class="btn ghost" id="esc-new">Nye oppgaver</button></div>
-      <p class="esc-note" id="esc-pm">Velg «Lagre som PDF» i utskriftsvinduet for å få en PDF-fil. «Skriv ut elevark» tar med oppdraget og postene, men ikke lærerarket med fasit.</p></header>
-    <section class="group" aria-labelledby="eso"><h2 id="eso">Postene</h2><ol class="esc-ov">${room.posts.map(p=>`<li><b>${p.n}. ${p.room}</b> <span class="esc-ovt">${p.title}</span><span class="esc-ovl">Bokstav ${p.letter}</span></li>`).join('')}</ol></section>
+      <p class="esc-note" id="esc-pm">Velg «Lagre som PDF» i utskriftsvinduet for å få en PDF-fil. «Skriv ut elevark» tar med oppdraget og postene, men ikke lærerarket med fasit. «Nye oppgaver» lager nye automatiske oppgaver, men beholder dine egne.</p>
+      ${code.length>=4000?'<p class="esc-note bad">Dette escape roomet har så mye egen tekst at spillkode (elevene på egne PC-er) kanskje ikke virker. Låsesiden på én PC virker som vanlig. Gjør tekstene kortere hvis du trenger spillkode.</p>':''}</header>
+    <section class="group" aria-labelledby="esed"><h2 id="esed">Oppgavene</h2><p class="esc-note">Bytt ut én og én oppgave, velg nivå, gjør den til en tenkeoppgave eller skriv den om helt. Du kan også legge til egne oppgaver (opptil ${ESC_MAXT} per post). Endringene lagres med en gang. Skriv ut på nytt etter at du har endret.</p>
+      <div class="esc-ed" id="esc-ed">${room.posts.map(edPost).join('')}</div></section>
     <section class="group" aria-labelledby="esp"><h2 id="esp">Forhåndsvisning</h2><div class="wsg-prev" id="esc-prev">${escSheets(room,{teacher:true})}</div></section></div>`;
   const pv=main.querySelector('#esc-prev'), fit=()=>{ if(!pv.isConnected) return; const z=Math.min(1,(pv.clientWidth-4)/794); pv.querySelectorAll('.ws-sheet').forEach(s=>{ s.style.zoom=z; }); };
   fit(); window.__escfit=fit; if(!window.__escfitOn){ window.__escfitOn=1; window.addEventListener('resize',()=>{ if(window.__escfit) window.__escfit(); }); }
@@ -7558,12 +7950,44 @@ function renderEscRoom(cfg,code){
     const n2=Object.assign({},c,{s:Math.floor(Math.random()*2147483646)+1}); const r2=escRoom(n2);
     const l=escRooms(), i=l.findIndex(r=>r.s===c.s), nm=i>=0?l[i].name:r2.name; if(i>=0) l.splice(i,1); escRoomsSave(l); escRemember(n2,nm);
     location.hash='escape-bygger/'+escEnc(n2); });
+  /* ---- redigering ---- */
+  const nextId=c2=>{ let m=ESC_MAXT-1; (c2.p||[]).forEach(a=>a&&a.forEach(s=>{ if(s&&s.id!=null) m=Math.max(m,s.id); })); return m+1; };
+  const apply=(i,fn)=>{ const c2=JSON.parse(JSON.stringify(c)); c2.p=c2.p||[]; for(let j=0;j<c2.t.length;j++) if(c2.p[j]===undefined) c2.p[j]=null;
+    if(!c2.p[i]) c2.p[i]=JSON.parse(JSON.stringify(room.posts[i].slots));
+    if(fn(c2,c2.p[i])===false) return;
+    const code2=escEnc(c2), l=escRooms(), j=l.findIndex(r=>r.s===c.s); escRemember(c2,j>=0?l[j].name:room.name);
+    try{ history.replaceState(null,'','#escape-bygger/'+code2); }catch(e){}
+    const y=window.scrollY; renderEscRoom(c2,code2); window.scrollTo(0,y); };
+  const genSlot=(c2,sl,L,k)=>({id:nextId(c2),L:L||(sl&&sl.L)||c2.L||1,k:k||'n'});
+  const form=(host,init,onSave)=>{ host.querySelectorAll('.esc-edf').forEach(f=>f.remove());
+    const f=document.createElement('form'); f.className='esc-edf';
+    f.innerHTML=`<label><span class="esc-step">Oppgaveteksten</span><textarea rows="4" data-f="q" placeholder="For eksempel: Ida har 3 ganger så mange klistremerker som Ali. Til sammen har de 48. Hvor mange har Ali?">${escE(init.q||'')}</textarea></label>
+      <label><span class="esc-step">Svaret elevene skal taste inn</span><input data-f="a" autocomplete="off" value="${escAttr(init.a||'')}" placeholder="For eksempel: 12"></label>
+      <p class="esc-note">Skriv brøk som 3/4 og potens som 2^5. **ord** blir fet skrift. Tall godtas med og uten enhet, og med komma eller punktum. Vil du godta flere svar, skiller du dem med | (for eksempel 0,5 | 1/2).</p>
+      <div class="esc-edfb"><button type="submit" class="btn small">Lagre oppgaven</button><button type="button" class="btn ghost small" data-op="cancel">Avbryt</button></div><p class="role-err" aria-live="polite"></p>`;
+    host.appendChild(f); const ta=f.querySelector('[data-f=q]'); ta.focus({preventScroll:true});
+    f.addEventListener('click',e=>{ if(e.target.closest('[data-op=cancel]')){ e.stopPropagation(); f.remove(); } });
+    f.addEventListener('submit',e=>{ e.preventDefault(); const q=ta.value.trim(), a=f.querySelector('[data-f=a]').value.trim(), er=f.querySelector('.role-err');
+      if(!q){ er.textContent='Skriv oppgaveteksten.'; ta.focus(); return; } if(!a){ er.textContent='Skriv svaret.'; f.querySelector('[data-f=a]').focus(); return; }
+      onSave({q:q.slice(0,600),a:a.slice(0,120)}); }); };
+  main.querySelector('#esc-ed').addEventListener('click',e=>{
+    const b=e.target.closest('[data-op]'); if(!b||b.closest('.esc-edf')) return;
+    const op=b.dataset.op, li=b.closest('.esc-edt'), i=+(li?li.dataset.i:b.dataset.i), si=li?+li.dataset.si:-1;
+    if(op==='bytt') apply(i,(c2,S)=>{ const sl=S[si]; if(sl.b!=null) S[si]=genSlot(c2,null,c2.L||1,'n'); else sl.r=(sl.r||0)+1; });
+    else if(op==='lv') apply(i,(c2,S)=>{ const L=+b.dataset.l, sl=S[si]; if(sl.b!=null) S[si]=genSlot(c2,null,L,'n'); else { if(sl.L===L) return false; sl.L=L; sl.r=(sl.r||0)+1; } });
+    else if(op==='tk') apply(i,(c2,S)=>{ const sl=S[si]; if(sl.b!=null) S[si]=genSlot(c2,null,c2.L||1,'t'); else { const t=room.posts[i].tasks.find(x=>x.si===si); sl.k=t&&t.ty==='t'?'n':'t'; sl.r=(sl.r||0)+1; } });
+    else if(op==='rm'){ if(!b.dataset.arm){ b.dataset.arm='1'; b.textContent='Trykk igjen'; setTimeout(()=>{ if(b.isConnected){ delete b.dataset.arm; b.textContent='Fjern'; } },3000); return; }
+      apply(i,(c2,S)=>{ if(S.length<=1) return false; S.splice(si,1); }); }
+    else if(op==='ed'){ const t=room.posts[i].tasks.find(x=>x.si===si); form(li,escTaskTxt(t),v=>apply(i,(c2,S)=>{ S[si]={c:v}; })); }
+    else if(op==='addc'){ form(b.closest('.esc-edp'),{},v=>apply(i,(c2,S)=>{ if(S.length>=ESC_MAXT) return false; S.push({c:v}); })); }
+    else if(op==='addg') apply(i,(c2,S)=>{ if(S.length>=ESC_MAXT) return false; const st=c2.st||'rett'; S.push(genSlot(c2,null,2,st==='tenk'||(st==='blandet'&&hasT(c2.t[i]))?'t':'n')); });
+  });
 }
 
 
 /* ===================== escape room: felles romdefinisjon ===================== */
 const ESC_ML_Q=[["Regn ut: <b>−7 + 12</b>", "Regn ut: <b>3 − (−4) − 5</b>", "Klokka 06 er det <b>−6 °C</b> i laben. Temperaturen stiger <b>2 grader</b> hver time. Hvor mange timer tar det før det er <b>8 °C</b>?", "Regn ut: <b>−36 : (−4)</b>"], ["Regn ut: <b>3 + 4 · 5 − 20</b>", "Regn ut: <b>(18 − 6) : 4 + 5</b>", "Regn ut: <b>48 : (2 + 6) − 2</b>", "En klasse på <b>28 elever</b> deles i grupper på <b>4</b>. Hver gruppe får <b>3 blyanter</b>. Læreren har <b>25 blyanter</b>. Hvor mange blyanter har læreren igjen?"], ["Regn ut: <b>3<sup>2</sup> − 2<sup>3</sup></b>", "Hva må <b><i>x</i></b> være? <b>3<sup><i>x</i></sup> = 81</b>", "Skriv som én potens: <b>2<sup>6</sup> : 2<sup>3</sup> = 2<sup><i>x</i></sup></b>. Hva er <b><i>x</i></b>?", "Regn ut: <b>6<sup>0</sup> + 2<sup>3</sup></b>"], ["Hvor mange <b>primtall</b> er det mellom 20 og 40?", "Hvilket siffer må stå i ruta for at <b>2 ☐ 5</b> skal være delelig med 9?", "Primtallsfaktoriser <b>84</b>. Hva er den <b>største</b> primfaktoren?", "Hva er <b>største felles faktor</b> (SFF) for 24 og 30?"], ["Forkort <span class=\"fr\"><span>18</span><span>24</span></span> så mye som mulig. Skriv <b>telleren</b>.", "Regn ut: <span class=\"fr\"><span>1</span><span>2</span></span> + <span class=\"fr\"><span>1</span><span>3</span></span>. Skriv <b>nevneren</b> i svaret.", "Regn ut: <span class=\"fr\"><span>5</span><span>6</span></span> − <span class=\"fr\"><span>1</span><span>4</span></span>. Skriv <b>telleren</b> i svaret.", "Regn ut: 2<span class=\"fr\"><span>1</span><span>2</span></span> − <span class=\"fr\"><span>3</span><span>4</span></span>. Svaret er et blandet tall. Skriv <b>hele tallet</b>."], ["Regn ut: <span class=\"fr\"><span>2</span><span>3</span></span> · 9", "Regn ut: <span class=\"fr\"><span>3</span><span>4</span></span> : <span class=\"fr\"><span>3</span><span>8</span></span>", "Hvilket tall skal stå i ruta? <b>0,8 =</b> <span class=\"fr\"><span>☐</span><span>5</span></span>", "Hvor mye er <b>25 %</b> av <b>32</b>?"]];
-function escQHtml(qs){ return `<div class="esc-qs">${qs.map((q,k)=>`<div class="esc-qq"><b class="esc-qtl">${'ABCD'[k]}</b><div>${q}</div></div>`).join('')}</div>`; }
+function escQHtml(qs){ return `<div class="esc-qs">${qs.map((q,k)=>`<div class="esc-qq"><b class="esc-qtl">${ESC_LET[k]}</b><div>${q}</div></div>`).join('')}</div>`; }
 function escRBase(rom){
   if(rom==='mattelaben') return {roomRef:'mattelaben',title:'Escape room: Mattelaben',code:true,won:'har rømt fra mattelaben!',
     posts:ESC_CFG.posts.map(p=>({n:p.n,name:p.name,code:true,hint:p.hint,letter:String.fromCharCode(p.l^37),check:v=>escHash('ml|'+p.n+'|'+v[0])===p.h})),
@@ -7571,7 +7995,7 @@ function escRBase(rom){
     taskHtml:i=>escQHtml(ESC_ML_Q[i]||[])};
   const cfg=escDec(rom); if(!cfg) return null; const room=escRoom(cfg);
   return {roomRef:rom,room,cfg,title:'Escape room: '+room.th.name,code:false,won:room.th.won,
-    posts:room.posts.map(p=>({n:p.n,name:p.room,fields:p.tasks.map((_,k)=>'ABCD'[k]),kinds:p.kinds,hint:p.hint,letter:p.letter,check:vals=>p.tasks.every((t,k)=>escCheck(t,vals[k]))})),
+    posts:room.posts.map(p=>({n:p.n,name:p.room,fields:p.tasks.map((_,k)=>ESC_LET[k]),kinds:p.kinds,hint:p.hint,letter:p.letter,check:vals=>p.tasks.every((t,k)=>escCheck(t,vals[k]))})),
     checkWord:w=>escFold(w)===escFold(room.word),wordHint:`Ordet har ${[...room.word].length} bokstaver. Prøv å flytte rundt på bokstavene dere har fått.`,wordLen:[...room.word].length,
     taskHtml:i=>escQHtml(room.posts[i].tasks.map(t=>`${t.ins?`<p class="esc-qins">${t.ins}</p>`:''}<div class="${t.expr?'qx':'q'}">${t.q}${t.expr?' =':''}</div>${t.mc?`<div class="esc-qmc">${t.mc.opts.map((o,j)=>`<span><b>${'abcdef'[j]})</b> ${o}</span>`).join('')}</div>`:''}`))};
 }
@@ -7824,7 +8248,7 @@ function closeMenu(){ side.classList.remove('open'); scrim.hidden=true; menuBtn.
 menuBtn.addEventListener('click', ()=> side.classList.contains('open')?closeMenu():openMenu());
 scrim.addEventListener('click', closeMenu);
 document.addEventListener('keydown', e=>{ if(e.key==='Escape'&&side.classList.contains('open')){ closeMenu(); menuBtn.focus(); } });
-try{ window.__mat8={TRAINERS,poly,parsePoly,polyEq,TOPICS,BOOK,F,P,fmt,powStr,pfac,MODELS,escRoom,escCheck,escDec,escAvail,gradeTids}; }catch(e){}
+try{ window.__mat8={ESC_TENK,escTopicTasks,escGenSlot,escCustomTask,escNumU,escFmtTxt,escHtmlTxt,escTaskTxt,escEnc,escAvail2,escWithSeed,WS_R,escSheets,escAnsTxt,TRAINERS,poly,parsePoly,polyEq,TOPICS,BOOK,F,P,fmt,powStr,pfac,MODELS,escRoom,escCheck,escDec,escAvail,gradeTids}; }catch(e){}
 document.addEventListener('click',e=>{ const b=e.target.closest('[data-grade]'); if(!b) return; const g=+b.dataset.grade; if(g===GRADE) return; setGrade(g);
   const r=decodeURIComponent(location.hash.slice(1)); if(r==='laerer'||r==='spill'||r==='brettspill'||r.startsWith('eksamen')||r==='aktiviteter'||r==='escape-bygger'||BOARDS[r]||r===''||r==='matte') route(); else location.hash='matte'; });
 setGrade(GRADE);
