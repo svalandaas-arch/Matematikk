@@ -7245,7 +7245,7 @@ function escCss(){
 .esc-code input:focus{outline:none;border-color:var(--pen)}
 .esc-code .btn{font-size:1.15rem;padding:14px 22px}
 .esc-msg{border-radius:10px;padding:14px 16px;font-size:1.1rem;line-height:1.4}.esc-msg:empty{display:none}
-.esc-msg.ok{background:var(--ok-soft);border:2px solid var(--ok)}.esc-msg.bad{background:var(--bad-soft);border:2px solid var(--bad)}.esc-msg.info{background:var(--note);border:2px dashed var(--note-line)}
+.esc-ans label{position:relative}.esc-ans label.ok input{border-color:var(--ok);background:var(--ok-soft)}.esc-ans label.bad input{border-color:var(--bad);background:var(--bad-soft)}.esc-mk{position:absolute;right:10px;bottom:10px;font-style:normal;font-weight:800;font-size:1.1rem;pointer-events:none}.esc-ans label.ok .esc-mk{color:var(--ok)}.esc-ans label.bad .esc-mk{color:var(--bad)}\n.esc-msg.ok{background:var(--ok-soft);border:2px solid var(--ok)}.esc-msg.bad{background:var(--bad-soft);border:2px solid var(--bad)}.esc-msg.info{background:var(--note);border:2px dashed var(--note-line)}
 .esc-letter{display:flex;align-items:center;gap:18px}.esc-letter p{margin:0 0 4px}.esc-letter .big{flex:none;font:800 5rem/1 var(--f-display);color:var(--red);width:1.2em;height:1.2em;display:grid;place-items:center;background:var(--surface);border:3px solid var(--red);border-radius:12px;animation:escpop .5s ease}
 @keyframes escpop{from{transform:scale(.4) rotate(-12deg);opacity:0}to{transform:none;opacity:1}}
 @media (prefers-reduced-motion:reduce){.esc-letter .big{animation:none}}
@@ -7334,7 +7334,7 @@ function escLock(R){
         h+=`<div><p class="esc-step">2 · Hvilken post?</p><div class="esc-pick posts" id="esc-p">${P.map((p,j)=>`<button type="button" data-p="${j}" aria-pressed="${j===sel.p}" ${g.open[j]?'disabled class="ok"':''}><b>${g.open[j]?'✓ ':''}${p.n}</b><span>${p.name}</span></button>`).join('')}</div></div>`;
         if(sel.p!=null&&!g.open[sel.p]){ const w=g.wait[sel.p]-now();
           h+= w>0?`<p class="esc-msg bad">For mange feil på rad. Sjekk svarene på posten igjen. Dere kan prøve igjen om <b id="esc-wait">${Math.ceil(w/1000)}</b> sekunder.</p>`
-            :(R.taskHtml?R.taskHtml(sel.p):'')+escFieldsHtml(P[sel.p],sel.vals);
+            :(R.taskHtml?R.taskHtml(sel.p):'')+escFieldsHtml(P[sel.p],sel.vals,sel.res);
           h+=`<div class="esc-hint"><button type="button" class="btn ghost small" data-hint="${sel.p}" style="align-self:flex-start">${g.hints[sel.p]?'Hint':'Hint til post '+P[sel.p].n+' (+1 min)'}</button>${g.hints[sel.p]?`<p>${P[sel.p].hint}</p>`:''}</div>`; }
       } else h+=`<p class="esc-msg info">Velg gruppa deres for å taste inn en kode.</p>`;
       h+=`<div class="esc-msg" id="esc-msg"></div>`;
@@ -7346,11 +7346,12 @@ function escLock(R){
     inp.addEventListener('click',e=>{
       const bg=e.target.closest('[data-g]'), bp=e.target.closest('[data-p]'), bh=e.target.closest('[data-hint]');
       if(bg){ const i=+bg.dataset.g; sel={g:i,p:null,vals:null}; const m=inp.querySelector('#esc-msg'); if(m){ m.className='esc-msg'; m.innerHTML=''; } drawIn(); }
-      else if(bp){ sel.p=+bp.dataset.p; sel.vals=null; drawIn(); }
+      else if(bp){ sel.p=+bp.dataset.p; sel.vals=null; sel.res=null; const m=inp.querySelector('#esc-msg'); if(m){ clearTimeout(msgT); m.className='esc-msg'; m.innerHTML=''; } drawIn(); }
       else if(bh){ const g=S.groups[sel.g]; if(bh.dataset.hint==='w'){ if(!g.hintW){ if(!bh.dataset.arm){ bh.dataset.arm='1'; bh.textContent='Trykk igjen for hint (+1 min)'; return; } g.hintW=true; g.hints.push(true); } }
         else { const j=+bh.dataset.hint; if(!g.hints[j]){ if(!bh.dataset.arm){ bh.dataset.arm='1'; bh.textContent='Trykk igjen for hint (+1 min)'; return; } g.hints[j]=true; } }
         save(); drawIn(); board(); }
     });
+    inp.addEventListener('input',e=>{ const x=e.target.closest&&e.target.closest('[data-k]'); if(!x||!sel.res) return; const k=+x.dataset.k; sel.res[k]=null; const lb=x.closest('label'); if(lb){ lb.className=''; const m=lb.querySelector('.esc-mk'); if(m) m.textContent=''; } x.removeAttribute('aria-invalid'); });
     inp.addEventListener('submit',e=>{ e.preventDefault(); const g=S.groups[sel.g], c=inp.querySelector('#esc-c'); if(!g||!c) return; const v=c.value.trim();
       if(g.open.every(Boolean)){ const w=v.toUpperCase().replace(/\s+/g,'');
         if(!w) return;
@@ -7361,9 +7362,16 @@ function escLock(R){
       if(Pj.code){ if(!/^\d{4}$/.test(v)){ say('bad','Koden har fire siffer, ett for hver oppgave A, B, C og D.'); c.focus(); return; } vals=[v]; }
       else { vals=[...inp.querySelectorAll('[data-k]')].map(x=>x.value.trim()); if(vals.some(x=>!x)){ say('bad','Fyll inn alle svarene før dere låser opp.'); const f=[...inp.querySelectorAll('[data-k]')].find(x=>!x.value.trim()); if(f) f.focus(); return; } }
       if(Pj.check(vals)){ g.open[j]=true; g.fails[j]=0; save(); const L=Pj.letter;
-        sel.p=null; sel.vals=null; drawIn(); board();
+        sel.p=null; sel.vals=null; sel.res=null; drawIn(); board();
         say('ok',`<div class="esc-letter"><b class="big">${L}</b><div><p><b>Lås ${Pj.n} er åpen!</b></p><p>${esc(g.name)}: skriv bokstaven <b>${L}</b> på låsekortet.${g.open.every(Boolean)?' Nå har dere alle bokstavene. Finn kodeordet!':''}</p></div></div>`); }
-      else { g.fails[j]++; if(g.fails[j]>=3){ g.fails[j]=0; g.wait[j]=now()+20000; } save(); sel.vals=Pj.code?null:vals; drawIn(); if(!(g.wait[j]>now())) say('bad',Pj.code?`Feil kode på post ${Pj.n}. Minst ett av svarene er feil. Sjekk oppgavene igjen.`:`Feil på post ${Pj.n}. Minst ett av svarene er feil. Sjekk oppgavene igjen.`); }
+      else { g.fails[j]++; if(g.fails[j]>=3){ g.fails[j]=0; g.wait[j]=now()+20000; } save(); sel.vals=Pj.code?null:vals;
+        const res=!Pj.code&&Pj.each?Pj.each(vals):null; sel.res=res; drawIn();
+        let msg; if(res){ const L=Pj.fields, bad=L.filter((_,k)=>!res[k]), ok=L.filter((_,k)=>res[k]), lst=a=>a.join(', ').replace(/, ([^,]+)$/,' og $1');
+          msg=`<b>Post ${Pj.n} er fortsatt låst.</b> `+(!ok.length&&bad.length>1?'Alle svarene er feil.':`Oppgave <b>${lst(bad)}</b> er feil.${ok.length?` ${lst(ok)} er riktig${ok.length>1?'e':''}.`:''}`)+` Regn ${bad.length===1?'den':'dem'} på nytt.`; }
+        else msg=Pj.code?`Feil kode på post ${Pj.n}. Minst ett av svarene er feil. Sjekk oppgavene igjen.`:`Feil på post ${Pj.n}. Minst ett av svarene er feil. Sjekk oppgavene igjen.`;
+        if(g.wait[j]>now()) msg+=' Dere har prøvd tre ganger på rad, så dere må vente litt før neste forsøk.';
+        say('bad',msg,true);
+        if(res){ const f=inp.querySelector(`[data-k="${res.indexOf(false)}"]`); if(f){ f.focus(); f.select(); } } }
     });
     drawIn(); board();
   }
@@ -7375,10 +7383,10 @@ function escLock(R){
 
 /* ---------- felles: felt for koder/svar på låsesiden ---------- */
 const escAttr=t=>String(t==null?'':t).replace(/&/g,'&amp;').replace(/"/g,'&quot;').replace(/</g,'&lt;');
-function escFieldsHtml(Pj,vals){
+function escFieldsHtml(Pj,vals,res){
   if(Pj.code) return `<div><p class="esc-step">3 · Koden til post ${Pj.n} (A B C D)</p><form class="esc-code" id="esc-f"><input id="esc-c" inputmode="numeric" pattern="[0-9]*" autocomplete="off" maxlength="4" aria-label="Fire siffer" placeholder="____"><button class="btn" type="submit">Lås opp</button></form></div>`;
   const tips=[...new Set(Pj.kinds||[])].map(k=>({fr:'brøk som 3/4',pa:'potens som 2^5',fac:'primfaktorer som 2*2*3',neg:'minus som -4',mc:'bokstaven til riktig svar (a, b, c …)',ex:'uttrykk som 3x + 2'}[k])).filter(Boolean);
-  return `<div><p class="esc-step">3 · Svarene på post ${Pj.n}</p><form class="esc-code esc-ansf" id="esc-f"><div class="esc-ans">${Pj.fields.map((l,k)=>`<label><span>${l}</span><input ${k===0?'id="esc-c"':''} data-k="${k}" autocomplete="off" autocapitalize="off" spellcheck="false" aria-label="Svar ${l}" value="${escAttr(vals&&vals[k])}"></label>`).join('')}</div><button class="btn" type="submit">Lås opp</button></form>${tips.length?`<p class="esc-tip">Skriv ${tips.join(', ')}.</p>`:''}</div>`;
+  return `<div><p class="esc-step">3 · Svarene på post ${Pj.n}</p><form class="esc-code esc-ansf" id="esc-f"><div class="esc-ans">${Pj.fields.map((l,k)=>{ const r=res&&res[k]!=null?(res[k]?'ok':'bad'):''; return `<label class="${r}"><span>${l}</span><input ${k===0?'id="esc-c"':''} data-k="${k}" autocomplete="off" autocapitalize="off" spellcheck="false" aria-label="Svar ${l}${r==='ok'?', riktig':r==='bad'?', feil':''}" ${r==='bad'?'aria-invalid="true"':''} value="${escAttr(vals&&vals[k])}"><i class="esc-mk" aria-hidden="true">${r==='ok'?'✓':r==='bad'?'✗':''}</i></label>`; }).join('')}</div><button class="btn" type="submit">Lås opp</button></form>${tips.length?`<p class="esc-tip">Skriv ${tips.join(', ')}.</p>`:''}</div>`;
 }
 /* ---------- Mattelaben (fast escape room med koder) ---------- */
 
@@ -7995,7 +8003,7 @@ function escRBase(rom){
     taskHtml:i=>escQHtml(ESC_ML_Q[i]||[])};
   const cfg=escDec(rom); if(!cfg) return null; const room=escRoom(cfg);
   return {roomRef:rom,room,cfg,title:'Escape room: '+room.th.name,code:false,won:room.th.won,
-    posts:room.posts.map(p=>({n:p.n,name:p.room,fields:p.tasks.map((_,k)=>ESC_LET[k]),kinds:p.kinds,hint:p.hint,letter:p.letter,check:vals=>p.tasks.every((t,k)=>escCheck(t,vals[k]))})),
+    posts:room.posts.map(p=>({n:p.n,name:p.room,fields:p.tasks.map((_,k)=>ESC_LET[k]),kinds:p.kinds,hint:p.hint,letter:p.letter,check:vals=>p.tasks.every((t,k)=>escCheck(t,vals[k])),each:vals=>p.tasks.map((t,k)=>!!escCheck(t,vals[k]))})),
     checkWord:w=>escFold(w)===escFold(room.word),wordHint:`Ordet har ${[...room.word].length} bokstaver. Prøv å flytte rundt på bokstavene dere har fått.`,wordLen:[...room.word].length,
     taskHtml:i=>escQHtml(room.posts[i].tasks.map(t=>`${t.ins?`<p class="esc-qins">${t.ins}</p>`:''}<div class="${t.expr?'qx':'q'}">${t.q}${t.expr?' =':''}</div>${t.mc?`<div class="esc-qmc">${t.mc.opts.map((o,j)=>`<span><b>${'abcdef'[j]})</b> ${o}</span>`).join('')}</div>`:''}`))};
 }
