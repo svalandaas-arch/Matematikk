@@ -1118,6 +1118,98 @@ body.fag-start .app{grid-template-columns:minmax(0,1fr)}
 .lag-hint{font-size:.88rem;color:var(--muted)}
 /*K9CSSEND*/
 .lvd{display:inline-block;width:.6em;height:.6em;border-radius:50%;background:var(--c);margin-right:.45em;vertical-align:.05em;flex:none}
+/* ===== Tavla ===== */
+.tv-grid .tv-soon{opacity:.55;cursor:default}
+.pb.tv{gap:14px}.tv .pb-bar h2.tv-h{font:800 1.35rem var(--f-display);margin:0 6px}
+.tv-tabs{display:inline-flex;border:2px solid var(--ink);border-radius:10px;overflow:hidden}
+.tv-tabs button{font:700 1rem var(--f-body);padding:9px 16px;border:0;background:var(--surface);color:var(--ink);cursor:pointer}
+.tv-tabs button[aria-pressed=true]{background:var(--ink);color:var(--surface)}
+.tv-body{display:flex;flex-direction:column;gap:14px;min-height:0;flex:1}
+.tv-slide{font-size:clamp(1.15rem,1.6vw,1.6rem);line-height:1.45;display:flex;flex-direction:column;gap:14px;min-height:52vh}
+.pb:fullscreen .tv-slide,.pb.pb-fake .tv-slide{font-size:clamp(1.3rem,2.1vw,2.2rem);flex:1;overflow:auto}
+.tv-slide h3{font:800 1.6em/1.1 var(--f-display);margin:0}
+.tv-goal{margin:0;padding:10px 14px;border-left:5px solid var(--pen);background:var(--pen-soft);border-radius:0 10px 10px 0;font-size:.85em}
+.tv-goal .lab{display:block;font:500 .62em var(--f-mono);letter-spacing:.08em;text-transform:uppercase;color:var(--pen);margin-bottom:2px}
+.tv-q{font-size:1.15em;font-weight:500}.tv-q b{font-weight:800}
+.tv-tip{margin:0;color:var(--muted);font-size:.8em}
+.tv-rev{display:flex;flex-wrap:wrap;gap:10px;align-items:flex-start}
+.tv-a{background:var(--ok-soft);border:2px solid var(--ok);border-radius:12px;padding:12px 16px;flex:1 1 100%}
+.tv-st{margin:0;padding-left:1.4em;display:flex;flex-direction:column;gap:8px}
+.tv-st li{opacity:0;transform:translateY(4px);transition:opacity .25s,transform .25s}.tv-st li.on{opacity:1;transform:none}
+.tv-st li::marker{font-weight:800;color:var(--pen)}
+.tv-tasks{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:12px}
+.tv-task{border:1.5px solid var(--ink);border-radius:12px;background:var(--surface);padding:12px 14px;display:flex;flex-direction:column;gap:8px;font-size:.9em}
+.tv-tl{display:flex;align-items:center;gap:10px}.tv-tl b{display:grid;place-items:center;width:1.7em;height:1.7em;border-radius:50%;background:var(--pen);color:#fff;font-size:.85em}
+.tv-ans{margin-top:auto}
+.tv-learn{font-size:.9em}.tv-learn .rule,.tv-learn .trap{margin:0 0 12px}
+.tv-model{font-size:1rem}
+.tv-nav{display:flex;align-items:center;gap:10px;border-top:1.5px solid var(--line);padding-top:12px}
+.tv-dots{flex:1;display:flex;justify-content:center;gap:6px;flex-wrap:wrap}
+.tv-dots button{display:flex;align-items:center;gap:6px;border:1.5px solid var(--line);background:var(--surface);color:var(--ink);border-radius:99px;padding:4px 10px 4px 4px;cursor:pointer;font:600 .85rem var(--f-body)}
+.tv-dots button span{display:grid;place-items:center;width:24px;height:24px;border-radius:50%;background:var(--paper);font:700 .8rem var(--f-mono)}
+.tv-dots button[aria-current=step]{border-color:var(--ink);background:var(--ink);color:var(--surface)}.tv-dots button[aria-current=step] span{background:var(--surface);color:var(--ink)}
+.tv-dots em{font-style:normal}
+@media (max-width:900px){.tv-dots em{display:none}.tv-dots button{padding:4px}}
+.tv-xhead{display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+.tv-x{display:flex;flex-direction:column;gap:12px}
+.tv-xc{display:flex;flex-wrap:wrap;gap:10px 16px;align-items:center;padding:10px 12px;border:1.5px solid var(--line);border-radius:12px;background:var(--surface)}
+.tv-when{display:contents}.tv-when[hidden]{display:none!important}
+.tv-sl{display:inline-flex;align-items:center;gap:8px;font-weight:700}.tv-sl input{width:150px;accent-color:var(--pen)}
+.tv-sl output{font:800 1.25rem var(--f-display);min-width:2.2em;text-align:center;font-variant-numeric:tabular-nums}
+.tv-seg{display:inline-flex;border:1.5px solid var(--line);border-radius:9px;overflow:hidden}
+.tv-seg button{font:700 .9rem var(--f-body);padding:8px 12px;border:0;border-right:1px solid var(--line);background:var(--surface);color:var(--ink);cursor:pointer}.tv-seg button:last-child{border-right:0}
+.tv-seg button[aria-pressed=true]{background:var(--ink);color:var(--surface)}
+.tv-in{display:inline-flex;align-items:center;gap:8px;font-weight:700}.tv-in input{font:600 1.15rem var(--f-mono);padding:6px 10px;border:2px solid var(--ink);border-radius:8px;background:var(--paper);color:var(--ink);width:min(340px,70vw)}.tv-in.sm input{width:110px}
+.tv-lab{font-weight:700}
+.tv-chipb{font:800 1rem var(--f-display);width:40px;height:40px;border-radius:8px;border:2px solid var(--line);background:var(--surface);color:var(--ink);cursor:pointer}.tv-chipb[aria-pressed=true]{border-color:var(--ink);background:var(--ink);color:var(--surface)}
+.tv-xs{min-height:120px}
+.tv-svg{width:100%;height:auto;max-height:62vh;display:block}
+.pb:fullscreen .tv-svg,.pb.pb-fake .tv-svg{max-height:66vh}
+.tv-xcap{font-size:clamp(1.05rem,1.4vw,1.45rem);line-height:1.45}.tv-xcap p{margin:.2em 0}
+.tv-eq{font:600 1.35em/1.4 var(--f-display);margin:.1em 0}.tv-eq.sm{font-size:1em}
+.tv-xcap .red,.tv-xcap b.red{color:var(--red)}.tv-xcap .ok{color:var(--ok)}
+.tv-hi{background:var(--hl);border-radius:6px;padding:0 4px;box-shadow:0 0 0 2px var(--hl)}
+.tv-steps .tv-eq{font-size:clamp(1.4rem,2.6vw,2.6rem)}
+.tv-log{margin:.1em 0;font-size:.9em;color:var(--muted)}.tv-log b{color:var(--ink)}
+.tv-tx,.tv-lb{fill:var(--ink);font:700 26px var(--f-body);text-anchor:middle}.tv-lb.sm{font-size:20px}.tv-lb.xs{font-size:15px;font-weight:600}.tv-lb.e{text-anchor:end}.tv-lb.z{font-weight:800}
+.tv-lb.pen,.tv-big.pen{fill:var(--pen)}.tv-lb.red{fill:var(--red)}.tv-lb.wh{fill:#fff}
+.tv-big{fill:var(--ink);font:800 34px var(--f-display);text-anchor:middle}
+.tv-ax{stroke:var(--ink);stroke-width:3}.tv-ax.thin{stroke-width:2}.tv-tk{stroke:var(--ink);stroke-width:2}.tv-tk.z{stroke-width:4}
+.tv-grid{stroke:var(--line);stroke-width:1}
+.tv-arc{fill:none;stroke:var(--pen);stroke-width:4}.tv-arch{fill:var(--pen)}
+.tv-pt{stroke:var(--surface);stroke-width:3}.tv-pt.a{fill:var(--pen)}.tv-pt.b{fill:var(--red)}
+.tv-cell{stroke:none}.tv-cell.c1,.tv-dot.c1{fill:var(--pen)}.tv-cell.c2,.tv-dot.c2{fill:#C77700}.tv-dot.rest{fill:var(--red)}
+.tv-cut{stroke:var(--red);stroke-width:4;stroke-dasharray:10 6}
+.tv-bar.c1{fill:var(--pen);opacity:.55}.tv-bar.c2{fill:var(--red)}
+.tv-chip{fill:var(--pen-soft);stroke:var(--pen);stroke-width:2.5}.tv-chip.c2{fill:var(--red-soft);stroke:var(--red)}.tv-chip.x{opacity:.35}
+.tv-chipt{fill:var(--ink);font:800 26px var(--f-display);text-anchor:middle}
+.tv-grp{fill:none;stroke:var(--muted);stroke-width:2;stroke-dasharray:6 5}
+.tv-hun{display:grid;grid-template-columns:repeat(10,1fr);gap:4px;max-width:min(100%,62vh);margin:0 auto}
+.pb:fullscreen .tv-hun,.pb.pb-fake .tv-hun{max-width:min(100%,64vh)}
+.tv-hun button{aspect-ratio:1;border:1.5px solid var(--line);border-radius:8px;background:var(--surface);color:var(--ink);font:700 clamp(.8rem,1.7vmin,1.5rem) var(--f-body);position:relative;cursor:pointer;padding:0;display:grid;place-items:center}
+.tv-hun button small{position:absolute;bottom:2px;right:4px;font:600 .55em var(--f-mono);color:var(--muted)}
+.tv-hun button.on.c0{background:color-mix(in srgb,#2343B0 22%,var(--surface))}.tv-hun button.on.c1{background:color-mix(in srgb,#C2362B 22%,var(--surface))}.tv-hun button.on.c2{background:color-mix(in srgb,#1B7646 22%,var(--surface))}.tv-hun button.on.c3{background:color-mix(in srgb,#C77700 22%,var(--surface))}
+.tv-hun button.x{color:var(--muted);text-decoration:line-through;opacity:.5}.tv-hun button.pr{border:3px solid var(--ok);background:var(--ok-soft)}.tv-hun button.sel{outline:3px solid var(--pen);outline-offset:1px}
+.tv-node circle{fill:var(--surface);stroke:var(--ink);stroke-width:2.5}.tv-node.pr circle{fill:var(--ok-soft);stroke:var(--ok);stroke-width:3.5}.tv-node.open circle{stroke-dasharray:6 5;cursor:pointer}.tv-node.open{cursor:pointer}
+.tv-nodet{fill:var(--ink);font:800 24px var(--f-display);text-anchor:middle}
+.tv-fbg{fill:var(--surface);stroke:var(--ink);stroke-width:2.5}.tv-fout{fill:none;stroke:var(--ink);stroke-width:3}
+.tv-fp{fill:var(--surface);stroke:var(--ink);stroke-width:1.5}.tv-fp.c1{fill:color-mix(in srgb,#2343B0 45%,var(--surface))}.tv-fp.c2{fill:color-mix(in srgb,#C2362B 45%,var(--surface))}.tv-fp.c3{fill:color-mix(in srgb,#7A3FB0 55%,var(--surface))}.tv-fp.part{opacity:.45}
+.tv-tile rect{stroke:var(--ink);stroke-width:2}.tv-tile.tx rect{fill:color-mix(in srgb,#1B7646 40%,var(--surface))}.tv-tile.t1 rect{fill:color-mix(in srgb,#C77700 40%,var(--surface))}.tv-tile.tx2 rect{fill:color-mix(in srgb,#2343B0 35%,var(--surface))}
+.tv-tile.neg rect{fill:color-mix(in srgb,#C2362B 35%,var(--surface));stroke-dasharray:6 4}.tv-tile.dim{opacity:.28}
+.tv-tilet{fill:var(--ink);font:800 22px var(--f-display);text-anchor:middle}.tv-tilet.sm{font-size:17px}
+.tv-stick{stroke:#C77700;stroke-width:6;stroke-linecap:round}
+.tv-tab{border-collapse:collapse;font-size:1rem;margin:.3em 0}.tv-tab th,.tv-tab td{border:1.5px solid var(--line);padding:6px 12px;text-align:center}.tv-tab th{background:var(--paper);text-align:left}.tv-tab td.on{background:var(--hl);font-weight:800}
+.tv-tab.v{font-size:1.05rem;align-self:flex-start}
+.tv-tab.ed input{font:inherit;width:7em;border:1px solid var(--line);border-radius:6px;padding:4px 6px;background:var(--surface);color:var(--ink)}.tv-tab.ed td:last-child input{width:4em;text-align:center}
+.tv-koord{display:flex;gap:18px;align-items:flex-start;flex-wrap:wrap}.tv-koord>svg{flex:1 1 480px;max-width:min(100%,74vh)}
+.tv-pl{display:flex;flex-direction:column;gap:2px;font-size:1.15rem;min-width:140px}.tv-pl p{margin:0}
+.tv-quad{fill:var(--muted);opacity:.35;font:800 40px var(--f-display);text-anchor:middle}
+.tv-poly{fill:var(--pen-soft);stroke:var(--pen);stroke-width:3}
+.tv-line{fill:none;stroke:var(--red);stroke-width:4}
+.tv-tri{fill:none;stroke:var(--pen);stroke-width:3;stroke-dasharray:8 5}
+.tv-pan{fill:var(--paper);stroke:var(--ink);stroke-width:2.5}.tv-beam{stroke:var(--ink);stroke-width:8;stroke-linecap:round}.tv-stand{fill:var(--muted)}
+.tv-pie{stroke:var(--surface);stroke-width:3}
+.qcard.tv-link{border-style:dashed}
 </style>
 
 <div class="app">
@@ -2876,7 +2968,7 @@ function renderNav(route){
   const d=side.querySelector('.tgrp'); if(d) d.querySelector('summary').addEventListener('click',()=>setTimeout(()=>{ try{ localStorage.setItem('nav-laerer',d.open?'1':'0'); }catch(e){} },0));
 }
 function refreshNav(){ renderNav(curRoute); }
-const TEACH_ROUTE=r=>r==='laerer'||r==='brettspill'||r==='aktiviteter'||r.startsWith('aktiviteter/')||r.startsWith('escape-')||!!BOARDS[r];
+const TEACH_ROUTE=r=>r==='tavla'||r.startsWith('tavla/')||r==='laerer'||r==='brettspill'||r==='aktiviteter'||r.startsWith('aktiviteter/')||r.startsWith('escape-')||!!BOARDS[r];
 function renderTeacherNav(route){
   const cur=r=>route===r?'aria-current="page"':'', h=location.hash;
   const tav=ACTS.filter(a=>a.board&&a.grade===GRADE);
@@ -2885,7 +2977,8 @@ function renderTeacherNav(route){
     <li class="grp">Verktøy</li>
     <li><a href="#laerer" ${cur('laerer')}><span>Oppgaveark</span><span class="tally">PDF</span></a></li>
     <li><a href="#aktiviteter" ${route==='aktiviteter'&&!tav.some(a=>a.board===h)?'aria-current="page"':''}><span>Klasseaktiviteter</span><span class="tally">${ACTS.length}</span></a></li>
-    <li><a href="#escape-bygger" ${cur('escape-bygger')}><span>Escape room-bygger</span><span class="tally">Ny</span></a></li>
+    <li><a href="#tavla" ${cur('tavla')}><span>Tavla</span><span class="tally">Ny</span></a></li>
+    <li><a href="#escape-bygger" ${cur('escape-bygger')}><span>Escape room-bygger</span></a></li>
     <li><a href="#brettspill" ${cur('brettspill')}><span>Brettspill</span><span class="tally">${BRETT.length}</span></a></li>
     <li><a href="grupper/"><span>Grupper og klassekart</span><span class="tally">Logg inn</span></a></li>
     <li class="grp">Interaktive tavler</li>
@@ -2902,6 +2995,7 @@ function renderTeacherHome(){
     <header class="home-hero"><p class="eyebrow">Lærerdelen · ${GRADE}. trinn</p><h1>Verktøy for <span class="hl">lærere</span></h1>
       <p class="lede">Oppgaveark med fasit, opplegg for hele klassen, brettspill til utskrift og interaktive tavler. Bytt til «Elev» øverst for å se det elevene ser.</p></header>
     <section class="group" aria-labelledby="tv1"><h2 id="tv1">Verktøy</h2><div class="quick">
+      <a class="qcard" href="#tavla"><b>Tavla</b><span>Gjennomgang og utforskingsmodeller for hvert tema, til storskjerm.</span></a>
       <a class="qcard" href="#laerer"><b>Oppgaveark</b><span>${gradeTids().filter(t=>ARK[t]).length*3} ark på tre nivåer med fasit.</span></a>
       <a class="qcard" href="#aktiviteter"><b>Klasseaktiviteter</b><span>${ACTS.filter(a=>a.grade===GRADE).length} opplegg for hele klassen på ${GRADE}. trinn.</span></a>
       <a class="qcard" href="#escape-bygger"><b>Escape room-bygger</b><span>Lag et escape room med temaene du velger, med utskrifter og låseside.</span></a>
@@ -2945,7 +3039,7 @@ function renderTopic(ch, tid){
     <nav class="crumb" aria-label="Brødsmuler"><a href="#matte">Forside</a><span>›</span><a href="#${ch.id}">Kapittel ${ch.num}</a><span>›</span><span>${g.title}</span></nav>
     <header class="topic-head"><h1>${t.title}</h1><p class="lede">${t.short}</p>
       <div class="jump"><button class="btn ghost small" data-jump="laer">Lær</button><button class="btn ghost small" data-jump="ov">Øv</button></div></header>
-    <section class="part" id="laer" aria-labelledby="lh"><div class="part-title"><span class="tag">Lær</span><h2 id="lh">Slik gjør du det</h2></div>${VIDS.includes(tid)?`<figure class="vid"><video controls preload="none" playsinline poster="video/${tid}.jpg" src="video/${tid}.mp4"></video><figcaption>Video · forklaring med tale, cirka ett minutt</figcaption></figure>`:''}<div class="learn">${t.learn}</div>${ROLLE.isTeacher()?actBox(tid):''}</section>
+    <section class="part" id="laer" aria-labelledby="lh"><div class="part-title"><span class="tag">Lær</span><h2 id="lh">Slik gjør du det</h2></div>${VIDS.includes(tid)?`<figure class="vid"><video controls preload="none" playsinline poster="video/${tid}.jpg" src="video/${tid}.mp4"></video><figcaption>Video · forklaring med tale, cirka ett minutt</figcaption></figure>`:''}<div class="learn">${t.learn}</div>${ROLLE.isTeacher()&&TVC[tid]?`<p class="box act-link"><span class="lab">For læreren</span> <a href="#tavla/${tid}">Vis temaet på tavla</a>: gjennomgang i steg og utforskingsmodell.</p>`:''}${ROLLE.isTeacher()?actBox(tid):''}</section>
     <section class="part" id="ov" aria-labelledby="oh"><div class="part-title"><span class="tag">Øv</span><h2 id="oh">Oppgaver</h2></div>
       ${t.trainers.map(x=>`<div class="trainer" data-trainer="${x.id}"></div>`).join('')}</section>
     <nav class="pager" aria-label="Neste og forrige">
@@ -8214,6 +8308,533 @@ async function escJoinPage(pre){
   }
 }
 
+/* ===================== TAVLA: utforsk-modeller ===================== */
+const TVX={};
+const tvS=(k,label,min,max,v,step)=>`<label class="tv-sl"><span>${label}</span><input type="range" data-k="${k}" min="${min}" max="${max}" step="${step||1}" value="${v}" aria-label="${label}"><output data-o="${k}">${fmt(v)}</output></label>`;
+const tvSeg=(k,opts,label)=>`<div class="tv-seg" data-seg="${k}" role="group" aria-label="${label||''}">${opts.map(([v,t])=>`<button type="button" data-v="${v}">${t}</button>`).join('')}</div>`;
+const tvB=(act,t,cls)=>`<button type="button" class="btn ${cls||'ghost'} small" data-act="${act}">${t}</button>`;
+const tvW=(when,h)=>`<span class="tv-when" data-when="${when}">${h}</span>`;
+function tvMount(el,o){
+  el.innerHTML=`<div class="tv-x"><div class="tv-xc">${o.ctl}</div><div class="tv-xs"></div><div class="tv-xcap" aria-live="polite"></div></div>`;
+  const S=o.state, stage=el.querySelector('.tv-xs'), cap=el.querySelector('.tv-xcap');
+  const sync=()=>{
+    el.querySelectorAll('[data-when]').forEach(x=>{ const [k,v]=x.dataset.when.split('='); x.hidden=!v.split('|').includes(String(S[k])); });
+    el.querySelectorAll('input[type=range][data-k]').forEach(i=>{ const k=i.dataset.k; if(o.lim&&o.lim[k]){ const [a,b]=o.lim[k](S); i.min=a; i.max=b; if(S[k]<a) S[k]=a; if(S[k]>b) S[k]=b; } i.value=S[k]; });
+    el.querySelectorAll('[data-o]').forEach(x=>{ x.textContent=fmt(S[x.dataset.o]); });
+    el.querySelectorAll('[data-seg]').forEach(g=>g.querySelectorAll('button').forEach(b=>b.setAttribute('aria-pressed',String(String(b.dataset.v)===String(S[g.dataset.seg])))));
+    cap.innerHTML=o.draw(S,stage)||''; };
+  el.addEventListener('input',e=>{ const i=e.target.closest('[data-k]'); if(!i) return; S[i.dataset.k]=i.type==='range'?+i.value:i.value; if(o.onInput) o.onInput(S,i.dataset.k); sync(); });
+  el.addEventListener('click',e=>{ const b=e.target.closest('[data-seg] button'); if(b){ const k=b.closest('[data-seg]').dataset.seg, v=b.dataset.v; S[k]=v===''||isNaN(+v)?v:+v; if(o.onSeg) o.onSeg(S,k); sync(); return; }
+    const a=e.target.closest('[data-act]'); if(a&&o.act){ o.act(S,a.dataset.act,a); sync(); return; }
+    if(o.click) { if(o.click(S,e)!==false) sync(); } });
+  sync(); return {S,sync}; }
+const tvSvg=(w,h,inner,lab)=>`<svg class="tv-svg" viewBox="0 0 ${w} ${h}" role="img" aria-label="${lab||'Modell'}">${inner}</svg>`;
+const tvT=(x,y,t,cls,extra)=>`<text x="${x}" y="${y}" class="${cls||'tv-tx'}" ${extra||''}>${t}</text>`;
+const tvMinus=v=>String(v).replace(/-/g,'−');
+const tvPar=v=>v<0?`(${fmt(v)})`:fmt(v);
+
+/* ---- tallinje ---- */
+TVX.linje=(el,c={})=>tvMount(el,{
+  ctl:tvS('a','Start',-20,20,c.a??3)+tvSeg('op',[['+','+'],['-','−']],'Regneart')+tvS('b','Tall',c.neg?-20:0,20,c.b??5)+tvSeg('vis',[['0','Bare hopp'],['1','Med forklaring']],'Visning'),
+  state:{a:c.a??3,op:c.op||'+',b:c.b??5,vis:0},
+  draw(S,st){ const res=S.op==='+'?S.a+S.b:S.a-S.b, m=Math.max(Math.abs(S.a),Math.abs(res)), R=m<=10?10:m<=20?20:40, st1=R===40?2:1;
+    const L=40, Rr=960, Y=200, X=v=>L+(v+R)*(Rr-L)/(2*R);
+    let s=`<line x1="${L-20}" y1="${Y}" x2="${Rr+20}" y2="${Y}" class="tv-ax"/>`;
+    for(let v=-R;v<=R;v+=st1){ const big=v%5===0; s+=`<line x1="${X(v)}" x2="${X(v)}" y1="${Y-(big?14:8)}" y2="${Y+(big?14:8)}" class="tv-tk${v===0?' z':''}"/>`; if(R===10||big) s+=tvT(X(v),Y+44,fmt(v),'tv-lb'+(v===0?' z':'')); }
+    const x1=X(S.a), x2=X(res), h=Math.min(140,30+Math.abs(x2-x1)*.4), mx=(x1+x2)/2, d=res-S.a;
+    if(d!==0){ s+=`<path d="M${x1} ${Y-8} Q ${mx} ${Y-8-h*2} ${x2} ${Y-8}" class="tv-arc"/>`; const dir=Math.sign(d);
+      s+=`<path d="M${x2} ${Y-8} l${-dir*18} -12 l${dir*4} 18 z" class="tv-arch"/>`+tvT(mx,Y-16-h,(d>0?'+':'−')+Math.abs(d),'tv-big pen'); }
+    s+=`<circle cx="${x1}" cy="${Y}" r="12" class="tv-pt a"/><circle cx="${x2}" cy="${Y}" r="12" class="tv-pt b"/>`;
+    st.innerHTML=tvSvg(1000,270,s,'Tallinje med hopp');
+    const eq=`${fmt(S.a)} ${S.op==='+'?'+':'−'} ${tvPar(S.b)} = <b>${fmt(res)}</b>`;
+    let ex='';
+    if(S.vis){ if(S.b<0&&S.op==='+') ex=`Å legge til et <b>negativt</b> tall gir et hopp mot <b>venstre</b>: ${fmt(S.a)} + ${tvPar(S.b)} = ${fmt(S.a)} − ${-S.b}.`;
+      else if(S.b<0) ex=`Å trekke fra et <b>negativt</b> tall gir et hopp mot <b>høyre</b>: ${fmt(S.a)} − ${tvPar(S.b)} = ${fmt(S.a)} + ${-S.b}.`;
+      else ex=S.op==='+'?'Pluss et positivt tall: hopp mot høyre på tallinja.':'Minus et positivt tall: hopp mot venstre på tallinja.'; }
+    return `<p class="tv-eq">${eq}</p>${ex?`<p>${ex}</p>`:''}`; } });
+
+/* ---- rutenett: gange og dele ---- */
+TVX.rute=(el,c={})=>tvMount(el,{
+  ctl:tvSeg('mode',[['mult','Gange'],['div','Dele']],'Regneart')+tvW('mode=mult',tvS('r','Rader',1,12,c.r??4)+tvS('k','Kolonner',1,15,c.k??7)+tvS('s','Del ved kolonne',0,15,0))+tvW('mode=div',tvS('n','Antall',1,80,c.n??23)+tvS('g','I hver gruppe',1,12,c.g??5)),
+  state:{mode:c.mode||'mult',r:c.r??4,k:c.k??7,s:0,n:c.n??23,g:c.g??5}, lim:{s:S=>[0,S.k]},
+  draw(S,st){
+    if(S.mode==='mult'){ const z=Math.min(56,Math.floor(900/S.k),Math.floor(380/S.r)), W=S.k*z, H=S.r*z, ox=(1000-W)/2, oy=20; let s='';
+      for(let i=0;i<S.r;i++) for(let j=0;j<S.k;j++) s+=`<rect x="${ox+j*z+2}" y="${oy+i*z+2}" width="${z-4}" height="${z-4}" rx="4" class="tv-cell ${S.s&&j>=S.s?'c2':'c1'}"/>`;
+      if(S.s&&S.s<S.k) s+=`<line x1="${ox+S.s*z}" x2="${ox+S.s*z}" y1="${oy-10}" y2="${oy+H+10}" class="tv-cut"/>`;
+      s+=tvT(ox-16,oy+H/2+8,S.r,'tv-lb e')+tvT(ox+W/2,oy+H+40,S.k,'tv-lb');
+      st.innerHTML=tvSvg(1000,H+70,s,'Rutenett');
+      const p=S.r*S.k; return `<p class="tv-eq">${S.r} · ${S.k} = <b>${p}</b></p>`+(S.s&&S.s<S.k?`<p>Delt opp: ${S.r} · ${S.s} + ${S.r} · ${S.k-S.s} = ${S.r*S.s} + ${S.r*(S.k-S.s)} = ${p}</p>`:`<p>${S.r} rader med ${S.k} i hver. Snu rutenettet, så ser du at ${S.k} · ${S.r} også er ${p}.</p>`); }
+    const q=Math.floor(S.n/S.g), r=S.n%S.g, rows=q+(r?1:0), z=Math.min(54,Math.floor(880/S.g),Math.floor(420/Math.max(1,rows))), ox=(1000-S.g*z)/2; let s='';
+    for(let i=0;i<S.n;i++){ const row=Math.floor(i/S.g), col=i%S.g, rest=row===q; s+=`<circle cx="${ox+col*z+z/2}" cy="${20+row*z+z/2}" r="${z*0.38}" class="tv-dot ${rest?'rest':row%2?'c2':'c1'}"/>`; }
+    for(let i=0;i<q;i++) s+=tvT(ox-20,20+i*z+z/2+7,i+1,'tv-lb e sm');
+    st.innerHTML=tvSvg(1000,rows*z+40,s,'Gruppering');
+    return `<p class="tv-eq">${S.n} : ${S.g} = <b>${q}</b>${r?` &nbsp;og <b class="red">${r}</b> i rest`:''}</p><p>Vi lager grupper med ${S.g} i hver. Det blir ${q} ${q===1?'hel gruppe':'hele grupper'}${r?`, og ${r} blir til overs`:''}.${r?` Sjekk: ${q} · ${S.g} + ${r} = ${S.n}.`:` Sjekk: ${q} · ${S.g} = ${S.n}.`}</p>`; } });
+
+/* ---- regnerekkefølge ---- */
+function tvParse(src){ const s=src.replace(/\s+/g,'').replace(/[·×*]/g,'·').replace(/[:÷/]/g,':').replace(/[−–]/g,'-'); let i=0;
+  const num=()=>{ const m=s.slice(i).match(/^\d+(?:[.,]\d+)?/); if(!m) throw 0; i+=m[0].length; return {t:'n',v:parseFloat(m[0].replace(',','.'))}; };
+  const atom=()=>{ if(s[i]==='('){ i++; if(s[i]==='-'&&/\d/.test(s[i+1]||'')){ i++; const n=num(); if(s[i]===')'){ i++; return {t:'n',v:-n.v}; } let e=rest({t:'n',v:-n.v},0); if(s[i++]!==')') throw 0; e.p=true; return e; } const e=expr(0); if(s[i++]!==')') throw 0; if(e.t==='op') e.p=true; return e; } return num(); };
+  const PR={'+':1,'-':1,'·':2,':':2,'^':3};
+  const rest=(l,min)=>{ while(i<s.length&&PR[s[i]]&&PR[s[i]]>=min){ const o=s[i++]; let r=atom(); while(i<s.length&&PR[s[i]]&&(PR[s[i]]>PR[o]||(s[i]==='^'&&o==='^'))) r=rest(r,PR[s[i]]); l={t:'op',o,l,r}; } return l; };
+  const expr=min=>rest(atom(),min);
+  const e=expr(0); if(i!==s.length) throw 0; return e; }
+const tvOpv=(o,a,b)=>o==='+'?a+b:o==='-'?a-b:o==='·'?a*b:o===':'?a/b:a**b;
+function tvRender(e,hi,top=true){ if(e.t==='n'){ const v=Math.round(e.v*1e6)/1e6; return v<0&&!top?`(${fmt(v)})`:fmt(v); }
+  let h=e.o==='^'?`${tvRender(e.l,hi,false)}<sup>${tvRender(e.r,hi,false)}</sup>`:`${tvRender(e.l,hi,false)} ${e.o==='-'?'−':e.o} ${tvRender(e.r,hi,false)}`;
+  if(e.p) h=`(${h})`; return e===hi?`<span class="tv-hi">${h}</span>`:h; }
+function tvNext(e){ let best=null; const PR={'+':1,'-':1,'·':2,':':2,'^':3}; let ord=0;
+  (function walk(n){ if(n.t!=='op') return; walk(n.l); if(n.l.t==='n'&&n.r.t==='n'){ const sc=(n.p?10:0)+PR[n.o]; if(!best||sc>best.sc) best={n,sc,ord}; ord++; } walk(n.r); })(e); return best&&best.n; }
+function tvReduce(e,n){ if(e===n) return {t:'n',v:tvOpv(n.o,n.l.v,n.r.v)}; if(e.t!=='op') return e; return Object.assign({},e,{l:tvReduce(e.l,n),r:tvReduce(e.r,n)}); }
+function tvLeft(src){ const toks=src.replace(/\s+/g,'').replace(/[·×*]/g,'·').replace(/[:÷/]/g,':').match(/\d+(?:[.,]\d+)?|[-+·:^()]/g)||[]; let v=null,o=null;
+  for(const t of toks){ if(/\d/.test(t)){ const n=parseFloat(t.replace(',','.')); v=v==null?n:tvOpv(o,v,n); } else if(/[-+·:^]/.test(t)) o=t; } return v; }
+const TV_REKKE=[()=>`${rnd(2,9)} + ${rnd(2,9)} · ${rnd(2,9)}`,()=>`(${rnd(2,9)} + ${rnd(2,9)}) · ${rnd(2,6)}`,()=>{ const b=rnd(2,6),c=rnd(2,6); return `${rnd(20,40)} − ${b*c} : ${b} + ${rnd(1,9)}`; },()=>`${rnd(2,5)} · ${rnd(2,3)}^2 − ${rnd(1,9)}`,
+  ()=>{ const d=rnd(2,5); return `${d*rnd(2,6)} : ${d} · ${rnd(2,4)}`; },()=>`${rnd(2,9)} · (${rnd(10,20)} − ${rnd(2,9)}) + ${rnd(1,9)}`,()=>`${rnd(10,30)} − (${rnd(2,9)} + ${rnd(2,9)}) · 2`];
+TVX.rekke=(el,c={})=>{ let src=c.e||'4 + 3 · (8 − 2) : 2'; let tree=null, steps=[];
+  const reset=S=>{ try{ tree=tvParse(S.src); S.err=''; }catch(e){ tree=null; S.err='Uttrykket kan ikke leses. Bruk tall, + − · : ^ og parenteser.'; } steps=[]; S.done=0; S.left=0; };
+  const o=tvMount(el,{ctl:`<label class="tv-in"><span>Uttrykk</span><input data-k="src" value="${escAttr(src)}" spellcheck="false" autocomplete="off"></label>`+tvB('next','Neste steg','')+tvB('all','Vis alle steg')+tvB('restart','Start på nytt')+tvB('new','Nytt uttrykk')+tvB('left','Regn bare fra venstre (feil)'),
+    state:{src,err:'',done:0,left:0},
+    onInput:(S,k)=>{ if(k==='src') reset(S); },
+    act(S,a){ if(a==='new'){ S.src=pick(TV_REKKE)(); el.querySelector('[data-k=src]').value=S.src; reset(S); }
+      else if(a==='restart') reset(S); else if(a==='left') S.left=!S.left;
+      else if(tree&&(a==='next'||a==='all')){ do{ let cur=steps.length?steps[steps.length-1].e:tree; const n=tvNext(cur); if(!n) break; steps.push({e:tvReduce(cur,n),hi:n,from:cur}); }while(a==='all'); } },
+    draw(S,st){ if(!tree){ st.innerHTML=`<p class="tv-eq">${escE(S.src)}</p>`; return `<p class="red">${S.err}</p>`; }
+      const nx=tvNext(steps.length?steps[steps.length-1].e:tree);
+      let h=`<div class="tv-steps"><p class="tv-eq">${tvRender(tree,steps.length?steps[0].hi:nx)}</p>`;
+      steps.forEach((s,k)=>{ const nn=k+1<steps.length?steps[k+1].hi:nx; h+=`<p class="tv-eq">= ${tvRender(s.e,nn)}</p>`; }); h+='</div>';
+      st.innerHTML=h; const done=!nx, why=nx?(nx.p?'Vi regner først ut parentesen.':nx.o==='^'?'Potenser regnes før gange og dele.':/[·:]/.test(nx.o)?'Gange og dele kommer før pluss og minus (fra venstre).':'Til slutt pluss og minus, fra venstre mot høyre.'):'Ferdig!';
+      const lv=tvLeft(S.src), right=(function f(e){ return e.t==='n'?e.v:tvOpv(e.o,f(e.l),f(e.r)); })(tree);
+      return `<p>${done?'<b>Ferdig!</b> Svaret er <b>'+fmt(Math.round(right*1e6)/1e6)+'</b>.':`<span class="tv-hi">Markert</span>: neste regnestykke. ${why}`}</p>${S.left?`<p class="red">Hvis vi bare regner fra venstre mot høyre og hopper over reglene, får vi ${fmt(Math.round(lv*1e6)/1e6)}${lv===right?' – tilfeldigvis det samme her':''}. Det er grunnen til at vi trenger en fast rekkefølge.</p>`:''}`; } });
+  reset(o.S); o.sync(); return o; };
+
+/* ---- potenser ---- */
+TVX.potens=(el,c={})=>tvMount(el,{
+  ctl:tvSeg('mode',[['pot','Potens'],['gange','Gange'],['dele','Dele'],['potpot','Potens av potens']],'Visning')+tvS('a','Grunntall',2,10,c.a??2)+tvW('mode=pot',tvS('n','Eksponent',0,10,c.n??5))+tvW('mode=gange|dele|potpot',tvS('m','Første eksponent',1,6,3)+tvS('k','Andre eksponent',1,5,2)),
+  state:{mode:c.mode||'pot',a:c.a??2,n:c.n??5,m:3,k:2}, lim:{k:S=>[1,S.mode==='dele'?S.m:5]},
+  draw(S,st){ const a=S.a, chip=(t,cls,x,y)=>`<g><rect x="${x}" y="${y}" width="54" height="54" rx="10" class="tv-chip ${cls||''}"/>${tvT(x+27,y+37,t,'tv-chipt')}</g>`;
+    if(S.mode==='pot'){ const n=S.n, vals=Array.from({length:n+1},(_,i)=>a**i), mx=vals[n]; let s='';
+      const bw=Math.min(70,800/(n+1)); vals.forEach((v,i)=>{ const h=Math.max(2,250*v/mx), x=100+i*(bw+12); s+=`<rect x="${x}" y="${290-h}" width="${bw}" height="${h}" class="tv-bar ${i===n?'c2':'c1'}"/>`+tvT(x+bw/2,315,`${a}<tspan dy="-10" font-size="18">${i}</tspan>`,'tv-lb sm')+(i>=n-2||n<6?tvT(x+bw/2,282-h,nf(v),'tv-lb sm'):''); });
+      st.innerHTML=tvSvg(1000,330,s,'Søyler som viser potensene');
+      return `<p class="tv-eq">${P(a,n)} = ${n===0?'1':Array(n).fill(a).join(' · ')+' = <b>'+nf(a**n)+'</b>'}</p><p>${n===0?`Alle tall (unntatt 0) opphøyd i 0 er 1. Se mønsteret: hver gang eksponenten blir én mindre, deler vi på ${a}.`:`Eksponenten ${n} sier hvor mange ganger vi ganger ${a} med seg selv. Søylene viser hvor fort potensene vokser.`}</p>`; }
+    let s='', cap='';
+    if(S.mode==='gange'){ for(let i=0;i<S.m;i++) s+=chip(a,'c1',60+i*62,40); s+=tvT(60+S.m*62+20,77,'·','tv-big'); for(let i=0;i<S.k;i++) s+=chip(a,'c2',60+S.m*62+60+i*62,40);
+      cap=`<p class="tv-eq">${P(a,S.m)} · ${P(a,S.k)} = ${P(a,S.m+'+'+S.k)} = <b>${P(a,S.m+S.k)}</b></p><p>${S.m} faktorer og ${S.k} faktorer blir ${S.m+S.k} faktorer til sammen. Vi <b>legger sammen</b> eksponentene.</p>`; }
+    else if(S.mode==='dele'){ for(let i=0;i<S.m;i++) s+=chip(a,i<S.k?'c1 x':'c1',60+i*62,20); s+=`<line x1="50" x2="${70+S.m*62}" y1="92" y2="92" class="tv-ax"/>`; for(let i=0;i<S.k;i++) s+=chip(a,'c2 x',60+i*62,104);
+      cap=`<p class="tv-eq">${P(a,S.m)} : ${P(a,S.k)} = ${P(a,S.m+'−'+S.k)} = <b>${P(a,S.m-S.k)}</b>${S.m===S.k?' = 1':''}</p><p>Like faktorer over og under brøkstreken kan strykes mot hverandre. ${S.k} faktorer forsvinner, og ${S.m-S.k} blir igjen. Vi <b>trekker fra</b> eksponentene.</p>`; }
+    else { let x=40; for(let g=0;g<S.k;g++){ s+=`<rect x="${x-6}" y="24" width="${S.m*58+8}" height="72" rx="14" class="tv-grp"/>`; for(let i=0;i<S.m;i++) s+=chip(a,g%2?'c2':'c1',x+i*58,33); x+=S.m*58+30; }
+      cap=`<p class="tv-eq">(${P(a,S.m)})<sup>${S.k}</sup> = ${Array(S.k).fill(P(a,S.m)).join(' · ')} = <b>${P(a,S.m*S.k)}</b></p><p>${S.k} grupper med ${S.m} faktorer i hver: ${S.k} · ${S.m} = ${S.m*S.k} faktorer. Vi <b>ganger</b> eksponentene.</p>`; }
+    st.innerHTML=tvSvg(1000,180,s,'Faktorer'); return cap; } });
+
+/* ---- hundreruta ---- */
+TVX.hundre=(el,c={})=>{ const PR=[2,3,5,7];
+  return tvMount(el,{ctl:`<span class="tv-lab">Marker gangetabellen til</span>${[2,3,4,5,6,7,8,9,10].map(n=>`<button type="button" class="tv-chipb" data-act="m${n}" aria-pressed="false">${n}</button>`).join('')}${tvB('sil','Primtall-sil: neste steg','')}${tvB('clear','Tøm')}`,
+    state:{sel:[],sil:0,cell:null},
+    act(S,a){ if(a==='clear'){ S.sel=[]; S.sil=0; S.cell=null; } else if(a==='sil'){ S.sel=[]; S.sil=Math.min(S.sil+1,PR.length+1); } else if(a[0]==='m'){ const n=+a.slice(1), i=S.sel.indexOf(n); if(i>=0) S.sel.splice(i,1); else S.sel.push(n); S.sil=0; }
+      el.querySelectorAll('[data-act^=m]').forEach(b=>b.setAttribute('aria-pressed',String(S.sel.includes(+b.dataset.act.slice(1))))); },
+    click(S,e){ const t=e.target.closest('[data-c]'); if(!t) return false; S.cell=+t.dataset.c; },
+    draw(S,st){ let h='<div class="tv-hun">'; const crossed=n=>{ if(!S.sil||n<2) return n===1&&S.sil>0; for(let j=0;j<Math.min(S.sil,PR.length);j++){ const p=PR[j]; if(n!==p&&n%p===0) return true; } return false; };
+      for(let n=1;n<=100;n++){ const ds=S.sel.filter(d=>n%d===0).sort((a,b)=>a-b), x=crossed(n), pr=S.sil>PR.length&&!x&&n>1;
+        h+=`<button type="button" data-c="${n}" class="${ds.length?'on c'+(S.sel.indexOf(ds[0])%4):''}${x?' x':''}${pr?' pr':''}${S.cell===n?' sel':''}"><b>${n}</b>${ds.length?`<small>${ds.join(' ')}</small>`:''}</button>`; }
+      st.innerHTML=h+'</div>'; let cap='';
+      if(S.sil){ cap=S.sil<=PR.length?`<p>Primtallet <b>${PR[S.sil-1]}</b> beholdes, og alle andre tall i gangetabellen til ${PR[S.sil-1]} strykes. ${S.sil<PR.length?'Trykk på neste steg.':'Trykk én gang til for å se primtallene.'}</p>`:`<p><b>Tallene som er igjen, er primtallene opp til 100.</b> Det er 25 av dem. 1 er verken primtall eller sammensatt.</p>`; }
+      else if(S.sel.length) cap=`<p>Tallene i gangetabellen til ${S.sel.join(' og ')} er farget. Tall som er med i flere tabeller, er delelige med flere av tallene.</p>`;
+      if(S.cell){ const n=S.cell, d=[]; for(let i=1;i<=n;i++) if(n%i===0) d.push(i); cap+=`<p class="tv-eq sm"><b>${n}</b> er delelig med ${d.join(', ')}. ${n===1?'1 er verken primtall eller sammensatt.':d.length===2?'Det er et <b>primtall</b>.':'Det er et <b>sammensatt</b> tall.'}</p>`; }
+      return cap||'<p>Trykk på en gangetabell, eller kjør primtall-silen steg for steg. Trykk på et tall for å se hva det er delelig med.</p>'; } }); };
+
+/* ---- faktortre ---- */
+const tvSpf=n=>{ for(let p=2;p*p<=n;p++) if(n%p===0) return p; return n; };
+TVX.faktor=(el,c={})=>{ const mk=v=>({v,k:null});
+  return tvMount(el,{ctl:`<label class="tv-in sm"><span>Tall</span><input data-k="nv" inputmode="numeric" value="${c.n||360}"></label>`+tvB('split','Del videre','')+tvB('all','Vis hele treet')+tvB('new','Nytt tall'),
+    state:{nv:String(c.n||360),root:mk(c.n||360)},
+    onInput(S){ const n=parseInt(S.nv,10); if(n>=2&&n<=99999) S.root=mk(n); },
+    act(S,a){ const leaves=[]; (function w(t){ if(t.k) t.k.forEach(w); else leaves.push(t); })(S.root);
+      if(a==='new'){ const n=pick([24,36,48,60,72,84,90,96,120,126,150,180,210,240,252,300,360,420,450,504,540,600,630,720,840]); S.nv=String(n); el.querySelector('[data-k=nv]').value=n; S.root=mk(n); return; }
+      const cand=leaves.filter(t=>tvSpf(t.v)!==t.v); if(!cand.length) return;
+      (a==='all'?cand:[cand[0]]).forEach(t=>{ const p=tvSpf(t.v); t.k=[mk(p),mk(t.v/p)]; }); if(a==='all') this.act(S,'all'); },
+    click(S,e){ const g=e.target.closest('[data-node]'); if(!g) return false; const path=g.dataset.node.split('').filter(Boolean).map(Number); let t=S.root; path.forEach(i=>{ t=t.k[i]; }); if(!t.k&&tvSpf(t.v)!==t.v){ const p=tvSpf(t.v); t.k=[mk(p),mk(t.v/p)]; } },
+    draw(S,st){ let depth=0; (function d(t,l){ depth=Math.max(depth,l); if(t.k) t.k.forEach(x=>d(x,l+1)); })(S.root,0);
+      const W=Math.max(1000,260+depth*90), H=Math.max(160,(depth+1)*90+20); let s='', leafs=[];
+      (function lay(t,l,x,path){ const y=50+l*90, pr=tvSpf(t.v)===t.v;
+        if(t.k){ const xs=[x-85,x+85]; t.k.forEach((k,i)=>{ s+=`<line x1="${x}" y1="${y+28}" x2="${xs[i]}" y2="${y+62}" class="tv-ax thin"/>`; lay(k,l+1,xs[i],path+i); }); }
+        else if(pr) leafs.push(t.v);
+        s+=`<g data-node="${path}" class="tv-node${pr?' pr':''}${!t.k&&!pr?' open':''}"><circle cx="${x}" cy="${y}" r="32"/>${tvT(x,y+9,t.v,'tv-nodet')}</g>`; })(S.root,0,150,'');
+      st.innerHTML=tvSvg(W,H,s,'Faktortre'); leafs.sort((a,b)=>a-b);
+      const done=leafs.reduce((a,b)=>a*b,1)===S.root.v, cnt={}; leafs.forEach(p=>cnt[p]=(cnt[p]||0)+1);
+      return done?`<p class="tv-eq">${S.root.v} = ${leafs.join(' · ')} = <b>${Object.entries(cnt).map(([p,k])=>k>1?P(p,k):p).join(' · ')}</b></p><p>Alle grenene ender i primtall (grønne). Det er primtallsfaktoriseringen.</p>`
+        :`<p>Trykk på et tall med stiplet kant for å dele det, eller trykk «Del videre». Vi deler med det minste primtallet som går opp.</p>`; } }); };
+
+/* ---- brøk ---- */
+const tvBar=(x,y,w,h,d,n,cls,lab)=>{ let s=`<rect x="${x}" y="${y}" width="${w}" height="${h}" class="tv-fbg"/>`; const pw=w/d; for(let i=0;i<d;i++) s+=`<rect x="${x+i*pw}" y="${y}" width="${pw}" height="${h}" class="tv-fp${i<n?' '+(cls||'c1'):''}"/>`; return s+(lab?tvT(x-14,y+h/2+9,lab,'tv-lb e'):''); };
+const tvFr=(n,d)=>F(n,d);
+TVX.brok=(el,c={})=>tvMount(el,{
+  ctl:tvSeg('mode',[['lik','Like store brøker'],['des','Desimal og prosent'],['add','Pluss og minus']],'Visning')+tvS('n','Teller',0,12,c.n??3)+tvS('d','Nevner',1,12,c.d??4)
+    +tvW('mode=lik',tvS('k','Del hver bit i',1,6,c.k??2))+tvW('mode=add',tvSeg('op',[['+','+'],['-','−']],'Regneart')+tvS('n2','Teller 2',0,12,1)+tvS('d2','Nevner 2',1,12,6)+tvSeg('fn',[['0','Vanlig'],['1','Fellesnevner']],'Visning')),
+  state:{mode:c.mode||'lik',n:c.n??3,d:c.d??4,k:c.k??2,op:'+',n2:1,d2:6,fn:0}, lim:{n:S=>[0,S.mode==='lik'?S.d:S.d*2]},
+  draw(S,st){ const W=760, x0=170;
+    if(S.mode==='lik'){ const g=gcd(S.n,S.d)||1; let s=tvBar(x0,20,W,70,S.d,S.n,'c1',tvMinus(`${S.n}/${S.d}`))+tvBar(x0,130,W,70,S.d*S.k,S.n*S.k,'c2',`${S.n*S.k}/${S.d*S.k}`);
+      if(g>1) s+=tvBar(x0,240,W,70,S.d/g,S.n/g,'c3',`${S.n/g}/${S.d/g}`);
+      st.innerHTML=tvSvg(1000,g>1?330:220,s,'Brøkstrimler');
+      return `<p class="tv-eq">${tvFr(S.n,S.d)} = ${tvFr(S.n*S.k,S.d*S.k)}${g>1?` = ${tvFr(S.n/g,S.d/g)}`:''}</p><p>${S.k>1?`Vi deler hver bit i ${S.k}. Da blir det ${S.k} ganger så mange biter, og hver bit blir ${S.k} ganger så liten. Den fargede delen er like stor. Vi har <b>utvidet</b> med ${S.k}.`:'Del bitene for å utvide brøken.'}${g>1?` Brøken kan <b>forkortes</b> med ${g} (nederst).`:''}</p>`; }
+    if(S.mode==='des'){ const v=S.n/S.d, wh=Math.max(1,Math.ceil(v)), uw=W/wh; let s='';
+      for(let u=0;u<wh;u++) s+=tvBar(x0+u*uw,20,uw-6,70,S.d,Math.max(0,Math.min(S.d,S.n-u*S.d)),'c1');
+      const Y=170; s+=`<line x1="${x0}" x2="${x0+W}" y1="${Y}" y2="${Y}" class="tv-ax"/>`; for(let t=0;t<=wh*10;t++){ const x=x0+t*W/(wh*10); s+=`<line x1="${x}" x2="${x}" y1="${Y-(t%10?7:14)}" y2="${Y+(t%10?7:14)}" class="tv-tk"/>`; if(t%10===0) s+=tvT(x,Y+40,t/10,'tv-lb'); else if(wh===1) s+=tvT(x,Y+34,fmt(t/10),'tv-lb sm'); }
+      s+=`<circle cx="${x0+v*W/wh}" cy="${Y}" r="12" class="tv-pt b"/>`; st.innerHTML=tvSvg(1000,230,s,'Brøk på tallinje');
+      const dec=Math.round(v*1000)/1000, exact=Math.abs(dec-v)<1e-12;
+      return `<p class="tv-eq">${tvFr(S.n,S.d)} = ${S.n} : ${S.d} = <b>${exact?'':'≈ '}${fmt(dec)}</b> = <b>${fmt(Math.round(v*1000)/10)} %</b></p><p>Brøkstreken betyr deling. Prosent betyr «hundredeler»: ${fmt(dec)} = ${fmt(Math.round(v*1000)/10)} hundredeler.</p>`; }
+    const L=lcm(S.d,S.d2), sg=S.op==='+'?1:-1, rn=S.n*(L/S.d)+sg*S.n2*(L/S.d2), wh=Math.max(1,Math.ceil(Math.max(S.n/S.d,rn/L,S.n2/S.d2))), uw=W/wh;
+    let s=''; const row=(y,n,d,cls,lab)=>{ for(let u=0;u<wh;u++) s+=tvBar(x0+u*uw,y,uw-6,58,d,Math.max(0,Math.min(d,n-u*d)),cls,u===0?lab:''); };
+    if(S.fn){ row(20,S.n*L/S.d,L,'c1',`${S.n*L/S.d}/${L}`); row(100,S.n2*L/S.d2,L,'c2',`${S.n2*L/S.d2}/${L}`); } else { row(20,S.n,S.d,'c1',`${S.n}/${S.d}`); row(100,S.n2,S.d2,'c2',`${S.n2}/${S.d2}`); }
+    if(rn>=0&&S.fn) row(200,rn,L,'c3','='); st.innerHTML=tvSvg(1000,S.fn?280:180,s,'Brøkstrimler');
+    const g=gcd(Math.abs(rn),L)||1;
+    if(!S.fn) return `<p class="tv-eq">${tvFr(S.n,S.d)} ${S.op==='+'?'+':'−'} ${tvFr(S.n2,S.d2)} = ?</p><p>${S.d===S.d2?'Bitene er like store, så vi kan regne med tellerne.':'Bitene er <b>ikke</b> like store. Trykk «Fellesnevner» for å dele dem opp i like store biter.'}</p>`;
+    return `<p class="tv-eq">${tvFr(S.n,S.d)} ${S.op==='+'?'+':'−'} ${tvFr(S.n2,S.d2)} = ${tvFr(S.n*L/S.d,L)} ${S.op==='+'?'+':'−'} ${tvFr(S.n2*L/S.d2,L)} = <b>${tvFr(rn,L)}</b>${g>1?` = ${tvFr(rn/g,L/g)}`:''}</p><p>Fellesnevneren ${L} er det minste tallet begge nevnerne går opp i. Nå er bitene like store, og vi regner med tellerne.</p>`; } });
+
+TVX.brokareal=(el,c={})=>tvMount(el,{
+  ctl:tvSeg('mode',[['del','Brøk · brøk'],['hel','Helt tall · brøk']],'Visning')+tvW('mode=del',tvS('a','Teller 1',1,8,c.a??2)+tvS('b','Nevner 1',1,8,c.b??3))+tvW('mode=hel',tvS('h','Helt tall',1,6,3))+tvS('c2','Teller 2',1,8,c.c??3)+tvS('d','Nevner 2',1,8,c.d??4),
+  state:{mode:c.mode||'del',a:c.a??2,b:c.b??3,h:3,c2:c.c??3,d:c.d??4}, lim:{a:S=>[1,S.b],c2:S=>[1,S.d]},
+  draw(S,st){ if(S.mode==='del'){ const Z=330, x0=330, y0=15, cw=Z/S.b, rh=Z/S.d; let s='';
+      for(let i=0;i<S.b;i++) for(let j=0;j<S.d;j++){ const A=i<S.a, C=j<S.c2; s+=`<rect x="${x0+i*cw}" y="${y0+j*rh}" width="${cw}" height="${rh}" class="tv-fp ${A&&C?'c3':A?'c1':C?'c2':''}"/>`; }
+      s+=`<rect x="${x0}" y="${y0}" width="${Z}" height="${Z}" class="tv-fout"/>`+tvT(x0+S.a*cw/2,y0+Z+34,`${S.a}/${S.b}`,'tv-lb pen')+tvT(x0-40,y0+S.c2*rh/2+8,`${S.c2}/${S.d}`,'tv-lb red');
+      st.innerHTML=tvSvg(1000,390,s,'Arealmodell');
+      const n=S.a*S.c2, d=S.b*S.d, g=gcd(n,d); return `<p class="tv-eq">${tvFr(S.c2,S.d)} av ${tvFr(S.a,S.b)} = ${tvFr(S.a,S.b)} · ${tvFr(S.c2,S.d)} = <b>${tvFr(n,d)}</b>${g>1?` = ${tvFr(n/g,d/g)}`:''}</p><p>Kvadratet er 1 hel. Den lilla delen er der begge brøkene overlapper: ${n} av ${d} ruter. Vi ganger teller med teller og nevner med nevner.</p>`; }
+    const tot=S.h*S.c2, wh=Math.max(1,Math.ceil(tot/S.d)), W=200; let s='';
+    for(let i=0;i<S.h;i++) s+=tvBar(60+i*(W+20),20,W,56,S.d,S.c2,'c1');
+    for(let u=0;u<wh;u++) s+=tvBar(60+u*(W+20),130,W,56,S.d,Math.max(0,Math.min(S.d,tot-u*S.d)),'c3');
+    s+=tvT(40,165,'=','tv-big'); st.innerHTML=tvSvg(1000,210,s,'Gjentatt addisjon');
+    return `<p class="tv-eq">${S.h} · ${tvFr(S.c2,S.d)} = ${Array(S.h).fill(tvFr(S.c2,S.d)).join(' + ')} = <b>${tvFr(tot,S.d)}</b></p><p>Helt tall ganger brøk er gjentatt addisjon. Vi ganger bare telleren.</p>`; } });
+
+TVX.brokdel=(el,c={})=>tvMount(el,{
+  ctl:tvS('a','Teller 1',1,12,c.a??3)+tvS('b','Nevner 1',1,8,c.b??1)+tvS('c2','Teller 2',1,8,c.c??1)+tvS('d','Nevner 2',1,8,c.d??4),
+  state:{a:c.a??3,b:c.b??1,c2:c.c??1,d:c.d??4},
+  draw(S,st){ const v1=S.a/S.b, v2=S.c2/S.d, wh=Math.max(1,Math.ceil(Math.max(v1,v2))), W=820, u=W/wh, x0=120; let s='';
+    for(let i=0;i<wh;i++){ s+=`<rect x="${x0+i*u}" y="20" width="${u}" height="50" class="tv-fbg"/>`; s+=tvT(x0+i*u+u/2,52,'1 hel','tv-lb sm'); }
+    s+=`<rect x="${x0}" y="80" width="${v1*u}" height="50" class="tv-fp c1"/>`+tvT(x0-50,114,S.b===1?String(S.a):`${S.a}/${S.b}`,'tv-lb pen');
+    const q=v1/v2, full=Math.floor(q+1e-9); for(let i=0;i<Math.ceil(q-1e-9);i++){ const w=Math.min(v2,v1-i*v2)*u; s+=`<rect x="${x0+i*v2*u}" y="150" width="${w}" height="50" class="tv-fp ${i<full?'c2':'c2 part'}"/>`+(i<full?tvT(x0+i*v2*u+v2*u/2,184,i+1,'tv-lb sm'):''); }
+    st.innerHTML=tvSvg(1000,220,s,'Hvor mange ganger går det opp');
+    const n=S.a*S.d, dd=S.b*S.c2, g=gcd(n,dd);
+    return `<p class="tv-eq">${tvFr(S.a,S.b)} : ${tvFr(S.c2,S.d)} = ${tvFr(S.a,S.b)} · ${tvFr(S.d,S.c2)} = <b>${tvFr(n/g,dd/g)}</b>${dd/g!==1&&n/g>dd/g?` = ${fmt(Math.round(n/dd*100)/100)}`:''}</p><p>Spørsmålet er: <b>hvor mange ganger går ${tvFr(S.c2,S.d)} opp i ${tvFr(S.a,S.b)}?</b> Her går den ${full} hele ganger${Math.abs(q-full)>1e-9?' og litt til':''}. Å dele med en brøk er det samme som å gange med den omvendte brøken.</p>`; } });
+
+/* ---- algebrabrikker ---- */
+const tvAlg=(cx,c1,cx2)=>{ const t=[]; const term=(k,v)=>{ if(!k) return; const a=Math.abs(k), s=k<0?'−':'+'; t.push({s,b:(a===1&&v?'':fmt(a))+v}); }; term(cx2||0,'x²'); term(cx,'x'); term(c1,''); if(!t.length) return '0'; return t.map((x,i)=>i===0?(x.s==='−'?'−':'')+x.b:` ${x.s} ${x.b}`).join('').replace(/x²/g,'x<sup>2</sup>').replace(/x/g,'<i>x</i>').replace(/<i><i>x<\/i><\/i>/g,'<i>x</i>'); };
+TVX.brikker=(el,c={})=>tvMount(el,{
+  ctl:tvSeg('mode',[['samle','Samle ledd'],['par','Parentes'],['gange','Gange']],'Visning')
+    +tvW('mode=samle',tvB('px','+ x')+tvB('mx','− x')+tvB('p1','+ 1')+tvB('m1','− 1')+tvB('rnd','Tilfeldig')+tvB('clr','Tøm')+tvSeg('sort',[['0','Slik det står'],['1','Sortert']],'Visning'))
+    +tvW('mode=par',tvS('a','Tall foran parentesen',1,6,3)+tvS('b','Tall i parentesen',-5,6,2))+tvW('mode=gange',tvS('a','Første ledd',1,5,2)+tvS('g','Andre ledd',1,5,3))
+    +tvS('x','Verdi for x',-5,10,c.x??4),
+  state:{mode:c.mode||'samle',tiles:c.tiles||['x','x','1','1','1','-x','1'],sort:0,a:3,b:2,g:3,x:c.x??4},
+  act(S,a){ const m={px:'x',mx:'-x',p1:'1',m1:'-1'}; if(m[a]&&S.tiles.length<24) S.tiles.push(m[a]); else if(a==='clr') S.tiles=[]; else if(a==='rnd'){ S.tiles=[]; const n=rnd(5,10); for(let i=0;i<n;i++) S.tiles.push(pick(['x','x','1','-x','-1','1'])); } },
+  draw(S,st){ const X=S.x;
+    if(S.mode==='samle'){ const T=S.tiles, cx=T.filter(t=>t==='x').length-T.filter(t=>t==='-x').length, c1=T.filter(t=>t==='1').length-T.filter(t=>t==='-1').length;
+      const tile=(t,x,y,dim)=>{ const isx=/x/.test(t), neg=t[0]==='-'; return `<g class="tv-tile ${isx?'tx':'t1'}${neg?' neg':''}${dim?' dim':''}"><rect x="${x}" y="${y}" width="${isx?40:40}" height="${isx?120:40}" rx="6"/>${tvT(x+20,y+(isx?68:28),(neg?'−':'')+(isx?'x':'1'),'tv-tilet')}</g>`; };
+      let s='', x=20;
+      if(!S.sort){ T.forEach(t=>{ s+=tile(t,x,/x/.test(t)?20:100); x+=52; }); }
+      else { const grp=[['x','-x'],['1','-1']]; grp.forEach(([p,n])=>{ const P1=T.filter(t=>t===p).length, N1=T.filter(t=>t===n).length, z=Math.min(P1,N1);
+          for(let i=0;i<P1;i++){ s+=tile(p,x,p==='x'?20:100,i<z); x+=52; } for(let i=0;i<N1;i++){ s+=tile(n,x,n==='-x'?20:100,i<z); x+=52; } x+=30; }); }
+      st.innerHTML=tvSvg(Math.max(1000,x+20),170,s,'Algebrabrikker');
+      const raw=T.length?T.map((t,i)=>{ const neg=t[0]==='-', b=/x/.test(t)?'<i>x</i>':'1'; return i===0?(neg?'−':'')+b:` ${neg?'−':'+'} ${b}`; }).join(''):'0';
+      return `<p class="tv-eq">${raw} = <b>${tvAlg(cx,c1)}</b></p><p>${S.sort?'Like brikker står sammen. En positiv og en negativ brikke av samme slag blir null og er gråe.':'Trykk «Sortert» for å samle like ledd.'} Med <i>x</i> = ${fmt(X)} blir verdien ${tvAlg(cx,c1).replace(/<[^>]+>/g,'')==='0'?'0':fmt(cx*X+c1)}.</p>`; }
+    if(S.mode==='par'){ const a=S.a, b=S.b, xw=220, uw=40, W=xw+Math.abs(b)*uw, x0=(1000-W)/2, rh=48; let s='';
+      for(let i=0;i<a;i++){ s+=`<g class="tv-tile tx h"><rect x="${x0}" y="${20+i*rh}" width="${xw-4}" height="${rh-6}" rx="6"/>${tvT(x0+xw/2,20+i*rh+30,'x','tv-tilet')}</g>`; for(let j=0;j<Math.abs(b);j++) s+=`<g class="tv-tile t1${b<0?' neg':''}"><rect x="${x0+xw+j*uw}" y="${20+i*rh}" width="${uw-4}" height="${rh-6}" rx="6"/>${tvT(x0+xw+j*uw+18,20+i*rh+30,b<0?'−1':'1','tv-tilet sm')}</g>`; }
+      s+=tvT(x0-26,20+a*rh/2+6,a,'tv-lb e red'); st.innerHTML=tvSvg(1000,a*rh+40,s,'Parentes som rektangel');
+      return `<p class="tv-eq">${a}(<i>x</i> ${b<0?'−':'+'} ${Math.abs(b)}) = ${a} · <i>x</i> ${b<0?'−':'+'} ${a} · ${Math.abs(b)} = <b>${tvAlg(a,a*b)}</b></p><p>Hver av de ${a} radene inneholder <i>x</i> ${b<0?'−':'+'} ${Math.abs(b)}. Tallet foran parentesen ganges med <b>hvert</b> ledd inni. Med <i>x</i> = ${fmt(X)}: ${a} · ${tvPar(X+b)} = ${fmt(a*(X+b))}.</p>`; }
+    const a=S.a, g=S.g, z=56, x0=(1000-a*z)/2; let s='';
+    for(let i=0;i<g;i++) for(let j=0;j<a;j++) s+=`<g class="tv-tile tx2"><rect x="${x0+j*z}" y="${40+i*z}" width="${z-4}" height="${z-4}" rx="6"/>${tvT(x0+j*z+26,40+i*z+34,'x²','tv-tilet sm')}</g>`;
+    s+=tvT(x0+a*z/2,28,a===1?'x':a+'x','tv-lb pen')+tvT(x0-30,40+g*z/2+8,g===1?'x':g+'x','tv-lb red');
+    st.innerHTML=tvSvg(1000,g*z+60,s,'Areal');
+    return `<p class="tv-eq">${a===1?'':a}<i>x</i> · ${g===1?'':g}<i>x</i> = ${a} · ${g} · <i>x</i> · <i>x</i> = <b>${a*g===1?'':a*g}<i>x</i><sup>2</sup></b></p><p>Rektangelet er ${a===1?'':a}<i>x</i> bredt og ${g===1?'':g}<i>x</i> høyt. Det består av ${a*g} kvadrater med areal <i>x</i><sup>2</sup>. Tallene ganges, og <i>x</i> · <i>x</i> = <i>x</i><sup>2</sup>. Med <i>x</i> = ${fmt(X)}: ${a*g} · ${tvPar(X)}<sup>2</sup> = ${fmt(a*g*X*X)}.</p>`; } });
+
+/* ---- mønster ---- */
+const TV_PAT={fyr:{t:'Fyrstikker',f:n=>3*n+1,fx:'3n + 1',u:'fyrstikker'},L:{t:'L-form',f:n=>2*n-1,fx:'2n − 1',u:'ruter'},kv:{t:'Kvadrat',f:n=>n*n,fx:'n<sup>2</sup>',u:'ruter'},tr:{t:'Trekanttall',f:n=>n*(n+1)/2,fx:'n(n + 1) / 2',u:'prikker'},rk:{t:'Rektangel',f:n=>n*(n+1),fx:'n(n + 1)',u:'ruter'}};
+function tvPatFig(type,n,x,y,z){ let s='';
+  if(type==='fyr'){ for(let i=0;i<n;i++){ const X=x+i*z; s+=`<line x1="${X}" y1="${y}" x2="${X+z}" y2="${y}" class="tv-stick"/><line x1="${X}" y1="${y+z}" x2="${X+z}" y2="${y+z}" class="tv-stick"/><line x1="${X+z}" y1="${y}" x2="${X+z}" y2="${y+z}" class="tv-stick"/>`; } s+=`<line x1="${x}" y1="${y}" x2="${x}" y2="${y+z}" class="tv-stick"/>`; return [s,n*z,z]; }
+  const cells=[]; if(type==='L'){ for(let i=0;i<n;i++) cells.push([0,i]); for(let j=1;j<n;j++) cells.push([j,n-1]); }
+  else if(type==='kv'){ for(let i=0;i<n;i++) for(let j=0;j<n;j++) cells.push([j,i]); }
+  else if(type==='rk'){ for(let i=0;i<n;i++) for(let j=0;j<n+1;j++) cells.push([j,i]); }
+  else if(type==='tr'){ for(let i=0;i<n;i++) for(let j=0;j<=i;j++) cells.push([j,i,1]); }
+  let w=0,h=0; cells.forEach(([j,i,dot])=>{ w=Math.max(w,(j+1)*z); h=Math.max(h,(i+1)*z); s+=dot?`<circle cx="${x+j*z+z/2}" cy="${y+i*z+z/2}" r="${z*0.36}" class="tv-dot c1"/>`:`<rect x="${x+j*z}" y="${y+i*z}" width="${z-3}" height="${z-3}" rx="3" class="tv-cell c1"/>`; });
+  return [s,w,h]; }
+TVX.figur=(el,c={})=>tvMount(el,{
+  ctl:tvSeg('type',Object.entries(TV_PAT).map(([k,v])=>[k,v.t]),'Mønster')+tvS('n','Figur nummer',1,12,c.n??5)+tvSeg('fx',[['0','Skjul formel'],['1','Vis formel']],'Formel'),
+  state:{type:c.type||'fyr',n:c.n??5,fx:0},
+  draw(S,st){ const T=TV_PAT[S.type]; let s='', x=20, H=0; const z=S.type==='fyr'?44:S.type==='L'||S.type==='tr'?30:26;
+    for(const k of [1,2,3]){ const [g,w,h]=tvPatFig(S.type,k,x,50,z); H=Math.max(H,h); s+=g+tvT(x+Math.max(w,30)/2,34,`Figur ${k}`,'tv-lb sm'); x+=Math.max(w,40)+44; }
+    x+=10; const cols=S.type==='fyr'?S.n:S.type==='rk'?S.n+1:S.n, zz=Math.max(10,Math.min(S.type==='fyr'?60:44,Math.floor((1000-x-30)/cols),Math.floor(380/(S.type==='fyr'?1.2:S.n))));
+    const [g,w,h]=tvPatFig(S.type,S.n,x+20,50,zz); H=Math.max(H,h); s+=`<line x1="${x}" y1="20" x2="${x}" y2="${H+70}" class="tv-ax thin"/>`+g+tvT(x+20+w/2,34,`Figur ${S.n}`,'tv-lb sm pen');
+    st.innerHTML=tvSvg(1000,H+80,s,'Mønster');
+    const rows=[1,2,3,4,5].concat(S.n>5?[S.n]:[]);
+    return `<table class="tv-tab"><tr><th>Figur</th>${rows.map(n=>`<td${n===S.n?' class="on"':''}>${n}</td>`).join('')}</tr><tr><th>Antall ${T.u}</th>${rows.map(n=>`<td${n===S.n?' class="on"':''}>${T.f(n)}</td>`).join('')}</tr></table>
+      <p>${S.fx?`Formel: figur <i>n</i> har <b>${T.fx.replace(/n/g,'<i>n</i>')}</b> ${T.u}. Figur ${S.n}: <b>${T.f(S.n)}</b>.`:'Hvordan vokser mønsteret fra én figur til den neste? Kan dere finne antallet i figur 100 uten å tegne?'}</p>`; } });
+
+/* ---- likevektsvekt ---- */
+function tvEqNew(){ const x=rnd(1,8), a=rnd(2,5), c=rnd(0,a-1), b=rnd(0,9); return {a,b,c,d:(a-c)*x+b,x}; }
+TVX.vekt=(el,c={})=>{ const st0=c.eq||tvEqNew();
+  const lhs=E=>tvAlg(E.a,E.b), rhs=E=>tvAlg(E.c,E.d);
+  return tvMount(el,{ctl:tvB('subx','Ta bort én x på hver side')+tvB('sub1','Ta bort ett lodd på hver side')+tvB('subb','Ta bort alle loddene på venstre side')+tvB('div','Del begge sider')+tvB('show','Vis x')+tvB('new','Ny likning','')+tvB('restart','Start på nytt'),
+    state:{E:Object.assign({},st0),E0:Object.assign({},st0),log:[],show:0,msg:''},
+    act(S,a){ const E=S.E; S.msg='';
+      if(a==='new'){ S.E0=tvEqNew(); S.E=Object.assign({},S.E0); S.log=[]; S.show=0; return; }
+      if(a==='restart'){ S.E=Object.assign({},S.E0); S.log=[]; S.show=0; return; }
+      if(a==='show'){ S.show=!S.show; return; }
+      let did='';
+      if(a==='subx'){ if(E.a>0&&E.c>0){ E.a--; E.c--; did='Vi tok bort én <i>x</i> på hver side.'; } else S.msg='Det må være minst én <i>x</i> på begge sidene.'; }
+      if(a==='sub1'){ if(E.b>0&&E.d>0){ E.b--; E.d--; did='Vi tok bort ett lodd på hver side.'; } else S.msg='Det må være minst ett lodd på begge sidene.'; }
+      if(a==='subb'){ if(E.b>0&&E.d>=E.b){ did=`Vi tok bort ${E.b} lodd på hver side.`; E.d-=E.b; E.b=0; } else S.msg='Det må være lodd på venstre side, og minst like mange på høyre side.'; }
+      if(a==='div'){ if(E.c===0&&E.b===0&&E.a>1&&E.d%E.a===0){ did=`Vi delte begge sider i ${E.a} like deler.`; E.d/=E.a; E.a=1; } else S.msg='Det går først når det bare er <i>x</i>-er på den ene siden og bare lodd på den andre.'; }
+      if(did) S.log.push({t:did,eq:`${lhs(E)} = ${rhs(E)}`}); },
+    draw(S,st){ const E=S.E, pan=(cx,nx,n1)=>{ let s='', items=[]; for(let i=0;i<nx;i++) items.push('x'); for(let i=0;i<n1;i++) items.push('1');
+        const per=Math.min(items.length,8), w=per*44; items.forEach((t,i)=>{ const r=Math.floor(i/8), k=i%8, X=cx-w/2+k*44, Y=200-(r+1)*(t==='x'?50:44);
+          s+=t==='x'?`<g class="tv-tile tx"><rect x="${X}" y="${Y}" width="40" height="46" rx="6"/>${tvT(X+20,Y+31,S.show?E.x:'x','tv-tilet')}</g>`:`<g class="tv-tile t1"><rect x="${X+4}" y="${Y+8}" width="34" height="34" rx="5"/>${tvT(X+21,Y+32,'1','tv-tilet sm')}</g>`; });
+        return s+`<path d="M${cx-200} 204 h400 l-30 22 h-340 z" class="tv-pan"/>`; };
+      let s=`<path d="M500 230 L470 320 h60 z" class="tv-stand"/><line x1="250" y1="230" x2="750" y2="230" class="tv-beam"/>`+pan(270,E.a,E.b)+pan(730,E.c,E.d);
+      st.innerHTML=tvSvg(1000,330,s,'Vekt i likevekt');
+      const solved=E.c===0&&E.b===0&&E.a===1;
+      return `<p class="tv-eq">${lhs(S.E0)} = ${rhs(S.E0)}</p>${S.log.map(l=>`<p class="tv-log">${l.t} &nbsp;<b>${l.eq}</b></p>`).join('')}${S.msg?`<p class="red">${S.msg}</p>`:''}<p>${solved?`<b>Løst! x = ${E.d}.</b> Sjekk: sett inn ${E.x} i den første likningen.`:'Vekta er i balanse. Gjør det samme på begge sider, så holder den seg i balanse.'}</p>`; } }); };
+
+/* ---- koordinatsystem ---- */
+TVX.koord=(el,c={})=>{ const R=10, Z=30, O=330, toX=v=>O+v*Z, toY=v=>O-v*Z;
+  return tvMount(el,{ctl:tvSeg('poly',[['0','Bare punkter'],['1','Koble punktene']],'Koble')+tvB('find','Finn punktet!','')+tvB('undo','Angre')+tvB('clr','Tøm'),
+    state:{pts:c.pts||[],poly:0,target:null,msg:''},
+    act(S,a){ if(a==='clr'){ S.pts=[]; S.target=null; S.msg=''; } else if(a==='undo') S.pts.pop(); else if(a==='find'){ S.target={x:rnd(-8,8),y:rnd(-8,8)}; S.msg=''; } },
+    click(S,e){ const svg=e.target.closest('svg'); if(!svg||!el.contains(svg)) return false; const p=svgXY(svg,e), x=Math.round((p.x-O)/Z), y=Math.round((O-p.y)/Z); if(Math.abs(x)>R||Math.abs(y)>R) return false;
+      if(S.target){ S.msg=x===S.target.x&&y===S.target.y?`<b class="ok">Riktig!</b> (${fmt(x)}, ${fmt(y)})`:`Du trykket på (${fmt(x)}, ${fmt(y)}). Husk: først <i>x</i> (bortover), så <i>y</i> (oppover).`; if(x===S.target.x&&y===S.target.y){ S.pts.push({x,y}); S.target=null; } return; }
+      const i=S.pts.findIndex(q=>q.x===x&&q.y===y); if(i>=0) S.pts.splice(i,1); else if(S.pts.length<26) S.pts.push({x,y}); },
+    draw(S,st){ let s=''; for(let v=-R;v<=R;v++){ s+=`<line x1="${toX(v)}" y1="${toY(-R)}" x2="${toX(v)}" y2="${toY(R)}" class="tv-grid"/><line x1="${toX(-R)}" y1="${toY(v)}" x2="${toX(R)}" y2="${toY(v)}" class="tv-grid"/>`;
+        if(v&&v%2===0){ s+=tvT(toX(v),O+24,fmt(v),'tv-lb xs')+tvT(O-12,toY(v)+6,fmt(v),'tv-lb xs e'); } }
+      s+=`<line x1="${toX(-R)-10}" y1="${O}" x2="${toX(R)+14}" y2="${O}" class="tv-ax"/><line x1="${O}" y1="${toY(-R)+10}" x2="${O}" y2="${toY(R)-14}" class="tv-ax"/>`+tvT(toX(R)+20,O+8,'x','tv-lb sm')+tvT(O,toY(R)-20,'y','tv-lb sm');
+      ['I','II','III','IV'].forEach((q,i)=>{ s+=tvT(O+(i===0||i===3?1:-1)*240,O+(i<2?-1:1)*270,q,'tv-quad'); });
+      if(S.poly&&S.pts.length>1) s+=`<polygon points="${S.pts.map(p=>toX(p.x)+','+toY(p.y)).join(' ')}" class="tv-poly"/>`;
+      S.pts.forEach((p,i)=>{ s+=`<circle cx="${toX(p.x)}" cy="${toY(p.y)}" r="9" class="tv-pt b"/>`+tvT(toX(p.x)+16,toY(p.y)-10,String.fromCharCode(65+i),'tv-lb sm red',`text-anchor="start"`); });
+      st.innerHTML=`<div class="tv-koord">${tvSvg(660,660,s,'Koordinatsystem')}<div class="tv-pl">${S.target?`<p class="tv-eq">Finn<br><b>(${fmt(S.target.x)}, ${fmt(S.target.y)})</b></p>`:''}${S.pts.map((p,i)=>`<p><b>${String.fromCharCode(65+i)}</b>(${fmt(p.x)}, ${fmt(p.y)})</p>`).join('')}</div></div>`;
+      return `${S.msg?`<p>${S.msg}</p>`:''}<p>Trykk i rutenettet for å sette et punkt. Første tall er <i>x</i> (bortover), andre er <i>y</i> (oppover). Kvadrantene er nummerert I–IV mot klokka.</p>`; } }); };
+
+/* ---- lineær funksjon ---- */
+const TV_CTX={ren:{t:'Uten situasjon',x:'x',y:'y',a:'stigningstall',b:'konstantledd'},taxi:{t:'Taxi',x:'km',y:'kr',a:'pris per km',b:'startpris'},spar:{t:'Sparing',x:'uker',y:'kr',a:'sparer per uke',b:'har fra før'}};
+TVX.graf=(el,c={})=>tvMount(el,{
+  ctl:tvSeg('ctx',Object.entries(TV_CTX).map(([k,v])=>[k,v.t]),'Situasjon')+tvS('a','Stigning a',-5,5,c.a??2,0.5)+tvS('b','Start b',-10,10,c.b??1)+tvSeg('tri',[['0','Uten trekant'],['1','Stigningstrekant']],'Trekant'),
+  state:{ctx:c.ctx||'ren',a:c.a??2,b:c.b??1,tri:0}, lim:{a:S=>S.ctx==='ren'?[-5,5]:[0,5],b:S=>S.ctx==='ren'?[-10,10]:[0,10]},
+  draw(S,st){ const C=TV_CTX[S.ctx], ren=S.ctx==='ren', xmin=ren?-6:0, xmax=ren?6:10, ys=[xmin,xmax].map(x=>S.a*x+S.b), ymin=Math.min(ren?-10:0,...ys), ymax=Math.max(10,...ys);
+    const W=620,H=440,ox=60,oy=20, X=x=>ox+(x-xmin)*W/(xmax-xmin), Y=y=>oy+(ymax-y)*H/(ymax-ymin); let s='';
+    const ystep=(ymax-ymin)>40?10:(ymax-ymin)>20?5:2;
+    for(let x=xmin;x<=xmax;x++) s+=`<line x1="${X(x)}" y1="${Y(ymin)}" x2="${X(x)}" y2="${Y(ymax)}" class="tv-grid"/>`+tvT(X(x),Y(Math.max(ymin,Math.min(0,ymax)))+24,fmt(x),'tv-lb xs');
+    for(let y=Math.ceil(ymin/ystep)*ystep;y<=ymax;y+=ystep) s+=`<line x1="${X(xmin)}" y1="${Y(y)}" x2="${X(xmax)}" y2="${Y(y)}" class="tv-grid"/>`+tvT(X(Math.max(xmin,0))-10,Y(y)+6,fmt(y),'tv-lb xs e');
+    s+=`<line x1="${X(xmin)}" y1="${Y(0)}" x2="${X(xmax)}" y2="${Y(0)}" class="tv-ax"/><line x1="${X(Math.max(xmin,0))}" y1="${Y(ymin)}" x2="${X(Math.max(xmin,0))}" y2="${Y(ymax)}" class="tv-ax"/>`;
+    s+=tvT(X(xmax)-4,Y(0)-10,C.x,'tv-lb sm e')+tvT(X(Math.max(xmin,0))+12,Y(ymax)+20,C.y,'tv-lb sm',`text-anchor="start"`);
+    s+=`<line x1="${X(xmin)}" y1="${Y(ys[0])}" x2="${X(xmax)}" y2="${Y(ys[1])}" class="tv-line"/><circle cx="${X(0)}" cy="${Y(S.b)}" r="9" class="tv-pt a"/>`;
+    if(S.tri){ const x1=ren?1:2; s+=`<path d="M${X(x1)} ${Y(S.a*x1+S.b)} H${X(x1+1)} V${Y(S.a*(x1+1)+S.b)}" class="tv-tri"/>`+tvT((X(x1)+X(x1+1))/2,Y(S.a*x1+S.b)+(S.a>=0?28:-12),'1','tv-lb sm pen')+tvT(X(x1+1)+14,(Y(S.a*x1+S.b)+Y(S.a*(x1+1)+S.b))/2+6,fmt(S.a),'tv-lb sm red',`text-anchor="start"`); }
+    const xs=ren?[-2,-1,0,1,2,3]:[0,1,2,3,4,5];
+    st.innerHTML=`<div class="tv-koord">${tvSvg(720,500,s,'Graf')}<table class="tv-tab v"><tr><th>${C.x}</th><th>${C.y}</th></tr>${xs.map(x=>`<tr><td>${fmt(x)}</td><td>${fmt(S.a*x+S.b)}</td></tr>`).join('')}</table></div>`;
+    const fx=`${C.y==='y'?'<i>y</i>':C.y} = ${tvAlg(S.a,S.b).replace(/<i>x<\/i>/g,ren?'<i>x</i>':' · '+C.x).replace(/^ · /,'')}`;
+    return `<p class="tv-eq">${ren?`<i>y</i> = ${tvAlg(S.a,S.b)}`:`pris = ${fmt(S.a)} · ${C.x} + ${fmt(S.b)}`.replace('pris',S.ctx==='spar'?'sum':'pris')}</p><p><b>${fmt(S.b)}</b> er ${C.b}: der linja krysser ${ren?'<i>y</i>-aksen':'den loddrette aksen'}. <b>${fmt(S.a)}</b> er ${C.a}: hvor mye ${ren?'<i>y</i>':C.y} øker når ${ren?'<i>x</i>':C.x} øker med 1.</p>`; } });
+
+/* ---- diagram ---- */
+TVX.diagram=(el,c={})=>{ const def=c.rows||[['Fotball',8],['Håndball',5],['Ski',4],['Svømming',3],['Annet',2]];
+  return tvMount(el,{ctl:tvSeg('type',[['bar','Søylediagram'],['line','Linjediagram'],['pie','Sektordiagram']],'Diagram')+tvSeg('juks',[['0','Aksen starter på 0'],['1','Aksen starter høyere']],'Akse')+tvB('add','+ Rad')+tvB('del','− Rad')+tvB('rnd','Nye tall'),
+    state:{rows:def.map(r=>r.slice()),type:c.type||'bar',juks:0},
+    act(S,a){ if(a==='add'&&S.rows.length<8) S.rows.push(['Ny',rnd(1,10)]); if(a==='del'&&S.rows.length>2) S.rows.pop(); if(a==='rnd') S.rows.forEach(r=>{ r[1]=rnd(1,15); }); },
+    draw(S,st){ const R=S.rows, vals=R.map(r=>Math.max(0,+r[1]||0)), mx=Math.max(1,...vals), tot=vals.reduce((a,b)=>a+b,0), base=S.juks&&S.type!=='pie'?Math.max(0,Math.min(...vals)-1):0;
+      const W=640,H=300,ox=60,oy=20; let s='';
+      if(S.type==='pie'){ let ang=-Math.PI/2; const cx=330, cy=180, r=150; R.forEach((row,i)=>{ const v=vals[i]/(tot||1)*Math.PI*2, a2=ang+v, lg=v>Math.PI?1:0;
+          if(vals[i]>0) s+=vals[i]===tot?`<circle cx="${cx}" cy="${cy}" r="${r}" style="fill:${BD_COL[i%4]}" class="tv-pie"/>`:`<path d="M${cx} ${cy} L${cx+r*Math.cos(ang)} ${cy+r*Math.sin(ang)} A${r} ${r} 0 ${lg} 1 ${cx+r*Math.cos(a2)} ${cy+r*Math.sin(a2)} Z" style="fill:${BD_COL[i%4]};opacity:${1-Math.floor(i/4)*0.4}" class="tv-pie"/>`;
+          const m=(ang+a2)/2; if(vals[i]) s+=tvT(cx+r*0.65*Math.cos(m),cy+r*0.65*Math.sin(m)+8,Math.round(vals[i]/tot*100)+' %','tv-lb sm wh'); ang=a2; }); }
+      else { const span=Math.max(1,mx-base), stp=[1,2,5,10,20,50,100,200,500,1000].find(x=>span/x<=6)||1000, top=Math.max(base+stp,Math.ceil(mx/stp)*stp), Y=v=>oy+H-(v-base)/(top-base)*H, bw=W/R.length;
+        for(let v=base;v<=top+1e-9;v+=stp){ s+=`<line x1="${ox}" x2="${ox+W}" y1="${Y(v)}" y2="${Y(v)}" class="tv-grid"/>`+tvT(ox-10,Y(v)+6,fmt(v),'tv-lb xs e'); }
+        if(S.type==='bar') R.forEach((r,i)=>{ s+=`<rect x="${ox+i*bw+bw*0.15}" y="${Y(vals[i])}" width="${bw*0.7}" height="${Math.max(0,oy+H-Y(vals[i]))}" style="fill:${BD_COL[i%4]}"/>`; });
+        else s+=`<polyline points="${R.map((r,i)=>`${ox+i*bw+bw/2},${Y(vals[i])}`).join(' ')}" class="tv-line"/>`+R.map((r,i)=>`<circle cx="${ox+i*bw+bw/2}" cy="${Y(vals[i])}" r="7" class="tv-pt a"/>`).join('');
+        R.forEach((r,i)=>{ s+=tvT(ox+i*bw+bw/2,oy+H+28,escE(String(r[0]).slice(0,12)),'tv-lb xs'); });
+        s+=`<line x1="${ox}" y1="${oy}" x2="${ox}" y2="${oy+H}" class="tv-ax"/><line x1="${ox}" y1="${oy+H}" x2="${ox+W}" y2="${oy+H}" class="tv-ax"/>`; }
+      st.innerHTML=`<div class="tv-koord">${tvSvg(720,370,s,'Diagram')}<table class="tv-tab v ed"><tr><th>Kategori</th><th>Antall</th></tr>${R.map((r,i)=>`<tr><td><input data-row="${i}" data-c="0" value="${escAttr(r[0])}" aria-label="Kategori ${i+1}"></td><td><input data-row="${i}" data-c="1" value="${escAttr(r[1])}" inputmode="numeric" aria-label="Antall ${i+1}"></td></tr>`).join('')}<tr><th>Sum</th><th>${tot}</th></tr></table></div>`;
+      const big=R[vals.indexOf(mx)][0];
+      return `<p>Totalt <b>${tot}</b>. Størst: <b>${escE(String(big))}</b> (${mx}, ${Math.round(mx/(tot||1)*100)} %). ${S.juks&&S.type!=='pie'?'<span class="red">Når aksen ikke starter på 0, ser forskjellene mye større ut enn de er.</span>':S.type==='pie'?'Sektordiagrammet viser andeler av helheten.':S.type==='line'?'Linjediagram passer best når x-aksen er tid.':''}</p>`; } }); };
+document.addEventListener('change',e=>{ const i=e.target.closest&&e.target.closest('.tv-tab.ed input[data-row]'); if(!i) return; const host=i.closest('[data-tvx]'); if(host&&host.__tv){ const r=host.__tv.S.rows[+i.dataset.row]; r[+i.dataset.c]=+i.dataset.c?(+i.value.replace(',','.')||0):i.value; host.__tv.sync(); } });
+
+/* ===================== TAVLA: innhold per tema ===================== */
+const tvE=(q,s)=>({q,s});
+const TVC={
+  addisjon:{ide:'Vi legger sammen og trekker fra plass for plass: enere med enere, tiere med tiere.',
+    start:{q:'Regn ut <b>398 + 247</b> i hodet. Hvordan tenkte du? Finn minst to ulike måter.',a:'For eksempel: 400 + 247 − 2 = 645, eller 300 + 200 + 90 + 40 + 8 + 7 = 645. Begge er riktige. Poenget er at vi kan dele opp tallene og regne i den rekkefølgen som er lettest.'},
+    ex:()=>{ const a=rnd(300,799), b=rnd(150,a-50), s=a+b; return tvE(`Regn ut <b>${a} + ${b}</b> med oppstilling.`,[`Skriv tallene under hverandre, enere under enere.`,`Enere: ${a%10} + ${b%10} = ${a%10+b%10}.${a%10+b%10>9?' Skriv '+((a%10+b%10)%10)+' og ha 1 i mente.':''}`,`Tiere: ${Math.floor(a/10)%10} + ${Math.floor(b/10)%10}${a%10+b%10>9?' + 1':''} = ${Math.floor(a/10)%10+Math.floor(b/10)%10+(a%10+b%10>9?1:0)}.`,`Hundrere, og til slutt: <b>${a} + ${b} = ${s}</b>.`,`Sjekk med overslag: ${Math.round(a/100)*100} + ${Math.round(b/100)*100} = ${Math.round(a/100)*100+Math.round(b/100)*100}. Svaret er rimelig.`]); },
+    x:['linje',{a:3,b:5}], exit:{q:'Hvorfor er det lurt å gjøre et overslag før du regner nøyaktig?',a:'Overslaget viser omtrent hva svaret skal bli. Da oppdager du om du har gjort en stor feil, for eksempel glemt mente eller satt sifrene på feil plass.'}},
+  multiplikasjon:{ide:'Gange er gjentatt addisjon, og kan vises som et rektangel med rader og kolonner.',
+    start:{q:'Hvor mange ruter er det i et rutenett med <b>6 rader og 14 kolonner</b>? Kan du regne det uten å telle alle?',a:'6 · 14 = 84. Vi kan dele 14 i 10 og 4: 6 · 10 + 6 · 4 = 60 + 24 = 84. Å dele opp tallene er nøkkelen til både hoderegning og oppstilling.'},
+    ex:()=>{ const a=rnd(12,48), b=rnd(3,9); return tvE(`Regn ut <b>${a} · ${b}</b>.`,[`Del opp: ${a} = ${Math.floor(a/10)*10} + ${a%10}.`,`${Math.floor(a/10)*10} · ${b} = ${Math.floor(a/10)*10*b}`,`${a%10} · ${b} = ${a%10*b}`,`Legg sammen: ${Math.floor(a/10)*10*b} + ${a%10*b} = <b>${a*b}</b>.`]); },
+    x:['rute',{mode:'mult',r:6,k:14}], exit:{q:'Forklar med et rutenett hvorfor 7 · 12 = 7 · 10 + 7 · 2.',a:'Et rutenett med 7 rader og 12 kolonner kan deles med en loddrett strek etter 10 kolonner. Da får vi to rektangler: 7 · 10 og 7 · 2. Til sammen er det like mange ruter.'}},
+  divisjon:{ide:'Å dele er å finne hvor mange ganger et tall går opp i et annet, eller å fordele likt.',
+    start:{q:'<b>75 elever</b> skal sitte ved bord med plass til <b>8</b>. Hvor mange bord trenger de? Hva betyr resten her?',a:'75 : 8 = 9 og 3 i rest. 9 bord gir plass til 72. De 3 siste elevene trenger også et bord, så svaret er <b>10 bord</b>. Hva resten betyr, avhenger av situasjonen.'},
+    ex:()=>{ const b=rnd(3,8), t=rnd(1,9), u=rnd(1,9), q=10*t+u, a=b*q; return tvE(`Regn ut <b>${a} : ${b}</b>.`,[`Del opp ${a} i deler som er lette å dele på ${b}: ${a} = ${b*10*t} + ${b*u}.`,`${b*10*t} : ${b} = ${10*t}`,`${b*u} : ${b} = ${u}`,`Til sammen: ${10*t} + ${u} = <b>${q}</b>.`,`Sjekk med gange: ${q} · ${b} = ${a}.`]); },
+    x:['rute',{mode:'div',n:75,g:8}], exit:{q:'Lag en tekstoppgave der svaret på 50 : 6 skal rundes <b>opp</b>, og en der det skal rundes <b>ned</b>.',a:'Opp: 50 personer i biler med 6 plasser trenger 9 biler. Ned: 50 kr gir 8 pakker til 6 kr. Resten betyr noe ulikt i de to situasjonene.'}},
+  'flere-ledd':{ide:'Parenteser først, så potenser, så gange og dele, til slutt pluss og minus.',
+    start:{q:'Tre elever regnet <b>4 + 3 · 5</b> og fikk 35, 19 og 23. Hvem har rett, og hvordan tenkte de andre?',a:'19 er riktig: 3 · 5 = 15, og 4 + 15 = 19. 35 kommer av å regne fra venstre (7 · 5). Vi trenger én felles regel, ellers kan samme uttrykk få flere svar.'},
+    ex:()=>{ const a=rnd(2,9), b=rnd(2,6), c=rnd(2,9), d=rnd(2,5); return tvE(`Regn ut <b>${a} + ${b} · (${c} + ${d}) − ${b}</b>.`,[`Parentesen først: ${c} + ${d} = ${c+d}.`,`Så gange: ${b} · ${c+d} = ${b*(c+d)}.`,`Til slutt pluss og minus fra venstre: ${a} + ${b*(c+d)} − ${b} = <b>${a+b*(c+d)-b}</b>.`]); },
+    x:['rekke',{e:'4 + 3 · (8 − 2) : 2'}], exit:{q:'Sett inn én parentes i <b>2 + 3 · 4 − 1</b> slik at svaret blir 19.',a:'(2 + 3) · 4 − 1 = 20 − 1 = 19.'}},
+  'negative-tall':{ide:'Negative tall ligger til venstre for null. Minus et negativt tall er det samme som pluss.',
+    start:{q:'Temperaturen er <b>−4 °C</b>. Den <b>stiger</b> 7 grader og <b>synker</b> så 10 grader. Hvor kald er det nå? Vis på tallinja.',a:'−4 + 7 = 3, og 3 − 10 = −7. Det er <b>−7 °C</b>. På tallinja: hopp 7 mot høyre, så 10 mot venstre.'},
+    ex:()=>{ const a=rnd(-9,-2), b=rnd(2,8); return tvE(`Regn ut <b>${fmt(a)} − (${fmt(-b)})</b>.`,[`Å trekke fra et negativt tall er det samme som å legge til: − (${fmt(-b)}) = + ${b}.`,`${fmt(a)} + ${b} = <b>${fmt(a+b)}</b>.`,`På tallinja: start på ${fmt(a)} og hopp ${b} mot høyre.`]); },
+    x:['linje',{a:-4,b:-6,op:'-',neg:1}], exit:{q:'Forklar med et eksempel fra virkeligheten hvorfor 5 − (−3) = 8.',a:'For eksempel: Du skylder 3 kr (−3). Hvis gjelden slettes (vi trekker fra −3), har du 3 kr mer enn før. Eller: forskjellen mellom 5 °C og −3 °C er 8 grader.'}},
+  potenser:{ide:'En potens er et kort skrivemåte for å gange et tall med seg selv flere ganger.',
+    start:{q:'Du bretter et ark på midten <b>10 ganger</b>. Hvor mange lag papir blir det? Gjett først!',a:'Hver bretting dobler antall lag: 2 · 2 · … · 2 = 2<sup>10</sup> = <b>1024</b> lag. Potenser vokser svært fort.'},
+    ex:()=>{ const a=rnd(2,5), n=rnd(3,5); return tvE(`Regn ut <b>${P(a,n)}</b> og <b>${P(n,a)}</b>. Hvilken er størst?`,[`${P(a,n)} = ${Array(n).fill(a).join(' · ')} = ${a**n}.`,`${P(n,a)} = ${Array(a).fill(n).join(' · ')} = ${n**a}.`,`<b>${a**n>n**a?P(a,n):a**n<n**a?P(n,a):'De er like store'}${a**n!==n**a?' er størst':''}</b>. Grunntall og eksponent kan ikke byttes om.`]); },
+    x:['potens',{mode:'pot',a:2,n:10}], exit:{q:'Hva er forskjellen på 3<sup>4</sup> og 3 · 4?',a:'3<sup>4</sup> = 3 · 3 · 3 · 3 = 81, mens 3 · 4 = 12. Eksponenten forteller hvor mange ganger vi ganger grunntallet med seg selv.'}},
+  potensregler:{ide:'Med samme grunntall: gange gir pluss i eksponenten, dele gir minus, potens av potens gir gange.',
+    start:{q:'Uten å regne ut: Hvor mange totall ganges sammen i <b>2<sup>3</sup> · 2<sup>4</sup></b>?',a:'2<sup>3</sup> er tre totall og 2<sup>4</sup> er fire totall. Til sammen <b>7</b>: 2<sup>3</sup> · 2<sup>4</sup> = 2<sup>7</sup>. Vi legger sammen eksponentene.'},
+    ex:()=>{ const a=rnd(2,7), m=rnd(4,8), n=rnd(2,3), k=rnd(2,4); return tvE(`Skriv som én potens: <b>${P(a,m)} · ${P(a,n)} : ${P(a,k)}</b>.`,[`Gange: ${P(a,m)} · ${P(a,n)} = ${P(a,m+n)} (legg sammen eksponentene).`,`Dele: ${P(a,m+n)} : ${P(a,k)} = ${P(a,m+n-k)} (trekk fra eksponentene).`,`Svar: <b>${P(a,m+n-k)}</b>.`]); },
+    x:['potens',{mode:'gange',a:2}], exit:{q:'Hvorfor er 5<sup>0</sup> = 1? Bruk regelen for deling.',a:'5<sup>3</sup> : 5<sup>3</sup> = 5<sup>3−3</sup> = 5<sup>0</sup>. Men et tall delt på seg selv er 1. Derfor må 5<sup>0</sup> = 1.'}},
+  delelighet:{ide:'Et primtall har nøyaktig to faktorer: 1 og seg selv.',
+    start:{q:'Hvilke av tallene <b>2, 9, 15, 17, 21, 23, 27</b> kan bare deles på 1 og seg selv?',a:'2, 17 og 23 er primtall. 9 = 3 · 3, 15 = 3 · 5, 21 = 3 · 7 og 27 = 3 · 9. Tverrsummen hjelper: går 3 opp i tverrsummen, går 3 opp i tallet.'},
+    ex:()=>{ const n=pick([126,135,210,312,405,516,630,738]), ts=String(n).split('').reduce((a,b)=>a+ +b,0); return tvE(`Er <b>${n}</b> delelig med 2, 3, 5, 9 og 10?`,[`2: siste siffer er ${n%10}. ${n%2===0?'Partall, så ja.':'Oddetall, så nei.'}`,`3 og 9: tverrsummen er ${String(n).split('').join(' + ')} = ${ts}. ${ts%3===0?'3 går opp':'3 går ikke opp'}${ts%9===0?', og 9 går opp.':', 9 går ikke opp.'}`,`5: siste siffer er ${n%10}. ${n%5===0?'Ja.':'Nei.'}`,`10: siste siffer må være 0. ${n%10===0?'Ja.':'Nei.'}`]); },
+    x:['hundre',{}], exit:{q:'Er 1 et primtall? Begrunn.',a:'Nei. Et primtall skal ha nøyaktig to ulike faktorer. 1 har bare én faktor, nemlig 1.'}},
+  faktorisering:{ide:'Alle hele tall større enn 1 kan skrives som et produkt av primtall på bare én måte.',
+    start:{q:'Skriv <b>60</b> som et produkt av så mange faktorer som mulig. Kan det gjøres på flere måter?',a:'60 = 2 · 2 · 3 · 5. Vi kan starte på ulike måter (6 · 10 eller 4 · 15), men vi ender alltid med de samme primtallene.'},
+    ex:()=>{ const n=pick([84,90,126,132,150,180,196,234]); const f=[]; let m=n; for(let p=2;m>1;) if(m%p===0){ f.push(p); m/=p; } else p++; let cur=n; const st=f.map(p=>{ const s=`${cur} = ${p} · ${cur/p}`; cur/=p; return s; }).slice(0,-1);
+      const cnt={}; f.forEach(p=>cnt[p]=(cnt[p]||0)+1); return tvE(`Primtallsfaktoriser <b>${n}</b>.`,st.concat([`Alle faktorene er primtall: ${n} = ${f.join(' · ')}.`,`Med potenser: <b>${n} = ${Object.entries(cnt).map(([p,k])=>k>1?P(p,k):p).join(' · ')}</b>.`])); },
+    x:['faktor',{n:360}], exit:{q:'Hvordan kan primtallsfaktoriseringen hjelpe deg å finne minste felles multiplum av 12 og 18?',a:'12 = 2 · 2 · 3 og 18 = 2 · 3 · 3. Vi tar med hver faktor så mange ganger den forekommer i ett av tallene: 2 · 2 · 3 · 3 = 36.'}},
+  forkorting:{ide:'Vi kan gange eller dele teller og nevner med samme tall uten å endre verdien.',
+    start:{q:'Er <b>3/4</b> og <b>9/12</b> like store? Forklar med en tegning.',a:'Ja. Del hver av de fire bitene i tre. Da blir det 12 biter, og 9 av dem er farget. Den fargede delen er like stor.'},
+    ex:()=>{ const d=pick([4,5,6,8,9]), n=rnd(1,d-1), k=rnd(2,5); return tvE(`Forkort <b>${F(n*k*(gcd(n,d)===1?1:1),d*k)}</b> så mye som mulig.`,[`Finn et tall som går opp i både ${n*k} og ${d*k}. Største felles faktor er ${gcd(n*k,d*k)}.`,`Del teller og nevner med ${gcd(n*k,d*k)}: ${F(n*k,d*k)} = ${F(n*k/gcd(n*k,d*k),d*k/gcd(n*k,d*k))}.`,`Svar: <b>${F(n*k/gcd(n*k,d*k),d*k/gcd(n*k,d*k))}</b>. Ingen tall større enn 1 går opp i både teller og nevner nå.`]); },
+    x:['brok',{mode:'lik',n:3,d:4,k:3}], exit:{q:'Hvorfor kan vi ikke forkorte 3/4 til 2/3 ved å trekke 1 fra teller og nevner?',a:'Forkorting er å dele med samme tall, ikke trekke fra. 3/4 = 0,75 og 2/3 ≈ 0,67. De er ikke like store.'}},
+  'brok-desimal':{ide:'Brøk, desimaltall og prosent er tre måter å skrive det samme tallet på.',
+    start:{q:'Hva er størst: <b>3/5</b>, <b>0,58</b> eller <b>62 %</b>?',a:'3/5 = 0,60 og 62 % = 0,62. Rekkefølgen er 0,58 &lt; 3/5 &lt; 62 %. Det er lettest å sammenligne når alt står på samme form.'},
+    ex:()=>{ const [n,d]=pick([[3,8],[2,5],[7,20],[5,4],[1,8],[9,25]]); const v=n/d; return tvE(`Skriv <b>${F(n,d)}</b> som desimaltall og prosent.`,[`Brøkstreken betyr deling: ${n} : ${d} = ${fmt(v)}.`,`Prosent betyr hundredeler: ${fmt(v)} = ${fmt(Math.round(v*1000)/10)} hundredeler.`,`<b>${F(n,d)} = ${fmt(v)} = ${fmt(Math.round(v*1000)/10)} %</b>.`]); },
+    x:['brok',{mode:'des',n:3,d:8}], exit:{q:'Hvorfor er 1/3 ikke nøyaktig lik 0,33?',a:'1 : 3 = 0,333… og sifrene fortsetter i det uendelige. 0,33 er bare en avrunding.'}},
+  'brok-add':{ide:'Vi kan bare legge sammen biter som er like store. Derfor trenger vi fellesnevner.',
+    start:{q:'Ola sier at <b>1/2 + 1/3 = 2/5</b>. Hva tenker du? Bruk en tegning.',a:'Det kan ikke stemme: 2/5 er mindre enn 1/2, men svaret må være større enn 1/2. Halvdeler og tredjedeler er ikke like store biter. Med sjettedeler: 3/6 + 2/6 = 5/6.'},
+    ex:()=>{ const [b,d]=pick([[3,4],[4,6],[2,5],[3,5],[6,8],[4,10]]), a=rnd(1,b-1), c=rnd(1,d-1), L=lcm(b,d), n=a*L/b+c*L/d, g=gcd(n,L); return tvE(`Regn ut <b>${F(a,b)} + ${F(c,d)}</b>.`,[`Fellesnevneren er det minste tallet både ${b} og ${d} går opp i: ${L}.`,`Utvid: ${F(a,b)} = ${F(a*L/b,L)} og ${F(c,d)} = ${F(c*L/d,L)}.`,`Legg sammen tellerne: ${F(a*L/b,L)} + ${F(c*L/d,L)} = ${F(n,L)}.`,g>1?`Forkort med ${g}: <b>${F(n/g,L/g)}</b>.`:`Svar: <b>${F(n,L)}</b>.`]); },
+    x:['brok',{mode:'add',n:1,d:2}], exit:{q:'Hvorfor legger vi sammen tellerne, men ikke nevnerne?',a:'Nevneren forteller hvor store bitene er, telleren hvor mange biter vi har. Når bitene er like store, teller vi bare antall biter. Størrelsen endres ikke.'}},
+  'brok-mul':{ide:'Brøk ganger brøk: teller ganger teller og nevner ganger nevner. «Av» betyr gange.',
+    start:{q:'Halvparten av klassen har sykkel. <b>2/3 av dem</b> sykler til skolen. Hvor stor del av klassen sykler til skolen?',a:'2/3 av 1/2 = 2/3 · 1/2 = 2/6 = <b>1/3</b>. Tegn et rektangel, del det i to, og del den ene halvdelen i tre.'},
+    ex:()=>{ const b=pick([3,4,5]), d=pick([2,3,4,5]), a=rnd(1,b-1), c=rnd(1,d-1), n=a*c, dd=b*d, g=gcd(n,dd); return tvE(`Regn ut <b>${F(a,b)} · ${F(c,d)}</b>.`,[`Teller ganger teller: ${a} · ${c} = ${n}.`,`Nevner ganger nevner: ${b} · ${d} = ${dd}.`,g>1?`${F(n,dd)}, forkortet med ${g}: <b>${F(n/g,dd/g)}</b>.`:`Svar: <b>${F(n,dd)}</b>.`,`Svaret er mindre enn begge brøkene, fordi vi tar en del av en del.`]); },
+    x:['brokareal',{mode:'del',a:2,b:3,c:3,d:4}], exit:{q:'Når du ganger 12 med 3/4, blir svaret mindre enn 12. Hvorfor?',a:'3/4 er mindre enn 1. Å gange med 3/4 betyr å ta 3/4 av 12, altså 9. Bare når vi ganger med et tall større enn 1, blir svaret større.'}},
+  'brok-div':{ide:'Å dele med en brøk er å finne hvor mange ganger brøken går opp. Det er det samme som å gange med den omvendte brøken.',
+    start:{q:'Du har <b>3 liter</b> saft og fyller glass med <b>1/4 liter</b>. Hvor mange glass får du?',a:'Hver liter gir 4 glass, så 3 liter gir 12 glass. 3 : 1/4 = 3 · 4 = <b>12</b>. Svaret blir større fordi vi deler på noe mindre enn 1.'},
+    ex:()=>{ const b=pick([2,3,4,5]), d=pick([3,4,6,8]), a=rnd(1,b+2), c=rnd(1,d-1), n=a*d, dd=b*c, g=gcd(n,dd); return tvE(`Regn ut <b>${F(a,b)} : ${F(c,d)}</b>.`,[`Snu brøken vi deler med: ${F(c,d)} blir ${F(d,c)}.`,`Gang i stedet: ${F(a,b)} · ${F(d,c)} = ${F(n,dd)}.`,g>1?`Forkort med ${g}: <b>${F(n/g,dd/g)}</b>.`:`Svar: <b>${F(n,dd)}</b>.`]); },
+    x:['brokdel',{a:3,b:1,c:1,d:4}], exit:{q:'Lag en tekstoppgave som passer til 2 : 1/3.',a:'For eksempel: Et tau er 2 meter. Hvor mange biter på 1/3 meter kan du kutte? Svar: 6.'}},
+  uttrykk:{ide:'En bokstav står for et tall vi ikke kjenner, eller som kan variere.',
+    start:{q:'En kinobillett koster <b>x kr</b> og popcorn koster <b>45 kr</b>. Hva betyr uttrykket <b>3x + 45</b>?',a:'Prisen for 3 kinobilletter og én popcorn. Koster billetten 120 kr, blir det 3 · 120 + 45 = 405 kr.'},
+    ex:()=>{ const a=rnd(2,6), b=rnd(1,9), x=rnd(2,9); return tvE(`Finn verdien av <b>${a}x + ${b}</b> når <b>x = ${x}</b>.`,[`Bytt ut x med ${x}: ${a} · ${x} + ${b}.`,`Gange først: ${a} · ${x} = ${a*x}.`,`${a*x} + ${b} = <b>${a*x+b}</b>.`]); },
+    x:['brikker',{mode:'samle',x:4}], exit:{q:'Skriv et uttrykk for omkretsen av et kvadrat med side s.',a:'s + s + s + s = 4s.'}},
+  forenkling:{ide:'Bare like ledd kan slås sammen: x-er med x-er og tall med tall.',
+    start:{q:'Kan <b>3x + 2</b> skrives som <b>5x</b>? Forklar med brikker.',a:'Nei. 3x er tre lange brikker og 2 er to små. De er ikke like ledd, så de kan ikke slås sammen. Prøv x = 1: 3 + 2 = 5, men x = 2 gir 8 og 10.'},
+    ex:()=>{ const a=rnd(2,7), b=rnd(1,9), c=rnd(1,5), d=rnd(1,9); return tvE(`Trekk sammen <b>${a}x + ${b} − ${c}x + ${d}</b>.`,[`Finn like ledd: x-leddene er ${a}x og −${c}x, tallene er ${b} og ${d}.`,`x-ledd: ${a}x − ${c}x = ${a-c===1?'':a-c}x.`,`Tall: ${b} + ${d} = ${b+d}.`,`Svar: <b>${tvAlg(a-c,b+d).replace(/<[^>]+>/g,'')}</b>.`]); },
+    x:['brikker',{mode:'samle'}], exit:{q:'Hva er feil: 4a − a = 4?',a:'4a − a betyr fire a-er minus én a. Det blir 3a, ikke 4. «a» er det samme som 1a.'}},
+  'gange-alg':{ide:'Tall ganges med tall, og like bokstaver ganget med hverandre gir potenser.',
+    start:{q:'Et rektangel er <b>2x</b> bredt og <b>3x</b> høyt. Hva er arealet?',a:'2x · 3x = 2 · 3 · x · x = <b>6x<sup>2</sup></b>. Tegn det: det blir seks kvadrater med side x.'},
+    ex:()=>{ const a=rnd(2,6), b=rnd(2,5), c=rnd(2,4); return tvE(`Regn ut <b>${a}x · ${b}x</b> og <b>${a*b*c}x<sup>2</sup> : ${c}x</b>.`,[`${a}x · ${b}x = ${a} · ${b} · x · x = <b>${a*b}x<sup>2</sup></b>.`,`${a*b*c}x<sup>2</sup> : ${c}x: tallene ${a*b*c} : ${c} = ${a*b}, og x<sup>2</sup> : x = x.`,`Svar: <b>${a*b}x</b>.`]); },
+    x:['brikker',{mode:'gange'}], exit:{q:'Er 3x · 4 og 3x + 4 det samme?',a:'Nei. 3x · 4 = 12x, mens 3x + 4 ikke kan trekkes sammen. Gange og pluss er ulike regneoperasjoner.'}},
+  parenteser:{ide:'Tallet foran en parentes ganges med hvert ledd inni. Minus foran parentes snur fortegnene.',
+    start:{q:'Ida kjøper <b>4 pakker</b> med en brus til x kr og en bolle til 12 kr i hver. Skriv prisen på to måter.',a:'4(x + 12) eller 4x + 48. Begge er like: fire bruser og fire boller. Dette er det vi gjør når vi løser opp en parentes.'},
+    ex:()=>{ const a=rnd(2,6), b=rnd(1,8), c=rnd(2,5), d=rnd(1,6); return tvE(`Løs opp og trekk sammen: <b>${a}(x + ${b}) − ${c}(x − ${d})</b>.`,[`${a}(x + ${b}) = ${a}x + ${a*b}.`,`Minus foran parentesen snur fortegnene: −${c}(x − ${d}) = −${c}x + ${c*d}.`,`Til sammen: ${a}x + ${a*b} − ${c}x + ${c*d}.`,`Trekk sammen: <b>${tvAlg(a-c,a*b+c*d).replace(/<[^>]+>/g,'')}</b>.`]); },
+    x:['brikker',{mode:'par'}], exit:{q:'Hva er feil: 3(x + 5) = 3x + 5?',a:'3 skal ganges med begge leddene i parentesen. Riktig er 3x + 15.'}},
+  monster:{ide:'Finn ut hvordan mønsteret vokser, og beskriv figur n med en formel.',
+    start:{q:'Figur 1 har 4 fyrstikker, figur 2 har 7, figur 3 har 10. Hvor mange fyrstikker har <b>figur 100</b>?',a:'For hver ny figur kommer 3 fyrstikker til. Figur n har 3n + 1 fyrstikker. Figur 100: 3 · 100 + 1 = <b>301</b>.'},
+    ex:()=>{ const a=rnd(2,5), b=rnd(1,4); return tvE(`Et mønster har <b>${a+b}, ${2*a+b}, ${3*a+b}, ${4*a+b}</b> ruter. Finn en formel for figur n.`,[`Differansen mellom figurene er ${a}. Da starter formelen med ${a}n.`,`Figur 1: ${a} · 1 = ${a}, men den har ${a+b}. Vi må legge til ${b}.`,`Formel: <b>${a}n + ${b}</b>.`,`Sjekk figur 4: ${a} · 4 + ${b} = ${4*a+b}. Stemmer.`]); },
+    x:['figur',{type:'fyr',n:5}], exit:{q:'Hvorfor er en formel bedre enn å tegne figur 50?',a:'Formelen gir svaret med én utregning. Å tegne tar lang tid, og det er lett å telle feil.'}},
+  likninger:{ide:'En likning er som en vekt i balanse: Gjør det samme på begge sider.',
+    start:{q:'På en vekt ligger <b>3 esker og 2 lodd</b> på venstre side og <b>14 lodd</b> på høyre. Alle eskene veier like mye. Hvor mye veier én eske?',a:'Ta bort 2 lodd på hver side: 3 esker = 12 lodd. Del i tre: én eske = <b>4 lodd</b>. Likningen er 3x + 2 = 14, x = 4.'},
+    ex:()=>{ const x=rnd(2,9), a=rnd(2,6), c=rnd(1,a-1), b=rnd(1,9), d=(a-c)*x+b; return tvE(`Løs likningen <b>${a}x + ${b} = ${c===1?'':c}x + ${d}</b>.`,[`Trekk fra ${c===1?'':c}x på begge sider: ${a-c===1?'':a-c}x + ${b} = ${d}.`,`Trekk fra ${b} på begge sider: ${a-c===1?'':a-c}x = ${d-b}.`,a-c>1?`Del på ${a-c} på begge sider: <b>x = ${x}</b>.`:`<b>x = ${x}</b>.`,`Sjekk: venstre side ${a} · ${x} + ${b} = ${a*x+b}, høyre side ${c} · ${x} + ${d} = ${c*x+d}.`]); },
+    x:['vekt',{}], exit:{q:'Hvorfor må vi gjøre det samme på begge sider?',a:'Da holder vekta seg i balanse, og de to sidene er fortsatt like store. Hvis vi bare endrer den ene siden, stemmer ikke likningen lenger.'}},
+  problemlosning:{ide:'Gi det ukjente et navn, skriv en likning, løs den og sjekk svaret i teksten.',
+    start:{q:'Sara og Ali har til sammen <b>84 klistremerker</b>. Sara har <b>tre ganger</b> så mange som Ali. Hvor mange har hver?',a:'La Ali ha x. Sara har 3x. x + 3x = 84, så 4x = 84 og x = 21. Ali har 21 og Sara 63. Sjekk: 21 + 63 = 84.'},
+    ex:()=>{ const x=rnd(5,30), k=rnd(5,20); return tvE(`Tre venner har til sammen <b>${3*x+3*k} kr</b>. Emil har ${k} kr mer enn Ida, og Noah har ${2*k} kr mer enn Ida. Hvor mye har Ida?`,[`La Ida ha x kr. Emil har x + ${k}, Noah har x + ${2*k}.`,`Likning: x + (x + ${k}) + (x + ${2*k}) = ${3*x+3*k}.`,`3x + ${3*k} = ${3*x+3*k}, så 3x = ${3*x} og <b>x = ${x}</b>.`,`Ida har ${x} kr, Emil ${x+k} kr og Noah ${x+2*k} kr. Sjekk summen: ${3*x+3*k}.`]); },
+    x:['vekt',{}], exit:{q:'Hva er de fire stegene i problemløsning med likning?',a:'1) Velg hva x står for. 2) Skriv likningen ut fra teksten. 3) Løs likningen. 4) Sjekk at svaret passer i teksten.'}},
+  koordinater:{ide:'Et punkt har to koordinater: først x (bortover), så y (oppover).',
+    start:{q:'Tre hjørner i et kvadrat er <b>(1, 1)</b>, <b>(4, 1)</b> og <b>(4, 4)</b>. Hvor er det fjerde?',a:'(1, 4). Tegn punktene. Sidene er 3 lange, og det fjerde hjørnet må ligge rett over (1, 1).'},
+    ex:()=>{ const x=rnd(-6,6), y=rnd(-6,6); return tvE(`Marker punktet <b>(${fmt(x)}, ${fmt(y)})</b>.`,[`Start i origo (0, 0).`,`Gå ${Math.abs(x)} ${x<0?'mot venstre':'mot høyre'} langs x-aksen.`,`Gå ${Math.abs(y)} ${y<0?'ned':'opp'} parallelt med y-aksen.`,`Punktet ligger i ${x===0||y===0?'ingen kvadrant (på en akse)':(x>0?(y>0?'første':'fjerde'):(y>0?'andre':'tredje'))+' kvadrant'}.`]); },
+    x:['koord',{}], exit:{q:'Er (2, 5) og (5, 2) det samme punktet?',a:'Nei. (2, 5) er 2 bortover og 5 opp. (5, 2) er 5 bortover og 2 opp. Rekkefølgen betyr noe.'}},
+  funksjonsuttrykk:{ide:'En funksjon beskriver hvordan én størrelse avhenger av en annen: y = ax + b.',
+    start:{q:'En taxi koster <b>50 kr</b> i start og <b>15 kr per km</b>. Hva koster 10 km? Kan du lage en regel for alle turer?',a:'50 + 15 · 10 = 200 kr. Regel: pris = 15 · km + 50, eller y = 15x + 50. 50 er startprisen (konstantleddet), 15 er hvor mye prisen øker per km.'},
+    ex:()=>{ const a=pick([10,12,15,20]), b=pick([30,40,50,60]), x=rnd(3,12); return tvE(`Et abonnement koster ${b} kr i måneden pluss ${a} kr per time. Skriv funksjonsuttrykket og finn prisen for ${x} timer.`,[`Den faste delen (${b}) er konstantleddet.`,`Det som øker per time (${a}) står foran x.`,`<b>f(x) = ${a}x + ${b}</b>.`,`f(${x}) = ${a} · ${x} + ${b} = <b>${a*x+b} kr</b>.`]); },
+    x:['graf',{ctx:'taxi',a:2,b:5}], exit:{q:'Hva betyr tallene i y = 20x + 100 hvis x er antall uker og y er penger på konto?',a:'100 kr er det du har fra start. 20 kr er det du sparer hver uke.'}},
+  grafer:{ide:'Grafen til en lineær funksjon er en rett linje. a sier hvor bratt den er, b hvor den krysser y-aksen.',
+    start:{q:'Hva har grafene til <b>y = 2x + 1</b> og <b>y = 2x − 3</b> til felles? Hva er forskjellen?',a:'Begge har stigningstall 2, så de er parallelle. Den første krysser y-aksen i 1, den andre i −3.'},
+    ex:()=>{ const a=rndNZ(-3,3), b=rnd(-4,4); return tvE(`Tegn grafen til <b>y = ${tvAlg(a,b).replace(/<[^>]+>/g,'')}</b>.`,[`Lag en verditabell: x = 0 gir y = ${b}, x = 1 gir y = ${a+b}, x = 2 gir y = ${2*a+b}.`,`Merk punktene (0, ${fmt(b)}), (1, ${fmt(a+b)}) og (2, ${fmt(2*a+b)}).`,`Trekk en rett linje gjennom punktene.`,`Sjekk: linja krysser y-aksen i ${fmt(b)}, og går ${Math.abs(a)} ${a>0?'opp':'ned'} for hvert steg mot høyre.`]); },
+    x:['graf',{ctx:'ren',a:2,b:1}], exit:{q:'Hvordan ser grafen ut når a er negativ?',a:'Linja går nedover mot høyre. y blir mindre når x blir større.'}},
+  diagrammer:{ide:'Les av aksene nøye, og spør alltid: Hva viser diagrammet, og hva viser det ikke?',
+    start:{q:'To diagrammer viser de samme tallene, men i det ene ser forskjellene mye større ut. Hvordan kan det skje?',a:'Hvis den loddrette aksen ikke starter på 0, blir små forskjeller store i diagrammet. Se alltid på tallene på aksene.'},
+    ex:()=>{ const v=[rnd(3,9),rnd(3,9),rnd(3,9),rnd(3,9)], t=v.reduce((a,b)=>a+b,0); return tvE(`En klasse stemte: fotball ${v[0]}, håndball ${v[1]}, ski ${v[2]}, svømming ${v[3]}. Hvor mange prosent valgte ski?`,[`Totalt: ${v.join(' + ')} = ${t} elever.`,`Ski: ${v[2]} av ${t} = ${v[2]} : ${t} ≈ ${fmt(Math.round(v[2]/t*1000)/1000)}.`,`I prosent: <b>${fmt(Math.round(v[2]/t*1000)/10)} %</b>.`,`I et sektordiagram blir ski-sektoren ${Math.round(v[2]/t*360)}° av 360°.`]); },
+    x:['diagram',{}], exit:{q:'Når passer et linjediagram bedre enn et søylediagram?',a:'Når vi viser hvordan noe endrer seg over tid, for eksempel temperatur gjennom et døgn.'}}
+};
+
+/* ===================== TAVLA: sider ===================== */
+const TV_XN={linje:'Tallinje',rute:'Rutenett',rekke:'Regnerekkefølge',potens:'Potenser',hundre:'Hundreruta',faktor:'Faktortre',brok:'Brøkstrimler',brokareal:'Brøk · brøk (areal)',brokdel:'Divisjon med brøk',brikker:'Algebrabrikker',figur:'Mønster',vekt:'Likevektsvekt',koord:'Koordinatsystem',graf:'Lineære funksjoner',diagram:'Diagram'};
+const tvChOf=tid=>BOOK.chapters.find(c=>c.groups.some(g=>g.topics.includes(tid)));
+const tvCrumb=(...xs)=>{ const L=[['Lærerforside','#matte'],['Tavla','#tavla'],...xs]; return `<nav class="crumb" aria-label="Brødsmuler">${L.map(([t,h],i)=>i<L.length-1?`<a href="${h}">${t}</a><span>›</span>`:`<span>${t}</span>`).join('')}</nav>`; };
+function renderTavlaHome(){
+  const chs=CHS(), have=chs.some(c=>c.groups.some(g=>g.topics.some(t=>TVC[t])));
+  main.innerHTML=`<div class="col">${tvCrumb()}
+    <header class="topic-head"><p class="eyebrow">Lærerdelen · ${GRADE}. trinn</p><h1>Tavla: <span class="hl">gjennomgang og utforsking</span></h1>
+      <p class="lede">Til bruk på storskjerm. Hvert tema har en <b>gjennomgang</b> i steg (tenk først, modell, regel, eksempel, prøv selv og avslutning) og en <b>utforskingsmodell</b> der du kan endre tallene sammen med klassen.</p></header>
+    ${have?chs.map(c=>`<section class="group" aria-labelledby="tvc-${c.id}"><h2 id="tvc-${c.id}">Kapittel ${c.num} · ${c.title}</h2><div class="quick tv-grid">${c.groups.flatMap(g=>g.topics).map(t=>TVC[t]?`<a class="qcard" href="#tavla/${t}"><b>${TOPICS[t].title}</b><span>${TVC[t].ide}</span></a>`:`<div class="qcard tv-soon"><b>${TOPICS[t].title}</b><span>Kommer snart</span></div>`).join('')}</div></section>`).join('')
+      :`<div class="box"><span class="lab">Kommer</span><p>Tavla er laget for 8. trinn først. ${GRADE}. trinn kommer etter hvert.</p><p><button type="button" class="btn small" data-grade="8">Gå til 8. trinn</button></p></div>`}
+    <div class="box"><span class="lab">Slik bruker du tavla</span><p>Bla med piltastene, mellomrom eller knappene nederst. På eksempel-siden viser <b>Neste</b> ett steg av gangen før den går videre. <b>F</b> gir fullskjerm.</p></div></div>`;
+}
+function tvSlides(tid){ const T=TOPICS[tid], d=document.createElement('div'); d.innerHTML=T.learn||'';
+  const m=d.querySelector('[data-model]'), rule=d.querySelector('.rule'), trap=d.querySelector('.trap');
+  return [{k:'start',t:'Tenk først'}, m?{k:'model',t:'Modell steg for steg',m:m.dataset.model,v:m.dataset.v}:null, (rule||trap)?{k:'regel',t:'Regelen',rule:rule?rule.outerHTML:'',trap:trap?trap.outerHTML:''}:null,
+    {k:'ex',t:'Eksempel sammen'},{k:'prov',t:'Prøv selv'},{k:'exit',t:'Avslutning'}].filter(Boolean); }
+function tvTasks(tid){ const out=[]; const seen=new Set();
+  [1,2,3].forEach(L=>{ const t=escTopicTasks(tid,L,4).find(p=>!seen.has(p.q)); if(t){ seen.add(t.q); out.push(Object.assign(t,{lv:L})); } });
+  const G=ESC_TENK[tid]; if(G&&G.length) for(let i=0;i<30&&out.length<4;i++){ let p=null; try{ p=pick(G)(2); }catch(e){} if(p&&!seen.has(p.q)){ seen.add(p.q); out.push(Object.assign(p,{lv:'T'})); } }
+  if(G&&out.length<4) for(let i=0;i<30&&out.length<4;i++){ let p=null; try{ p=pick(G)(pick([1,3])); }catch(e){} if(p&&!seen.has(p.q)){ seen.add(p.q); out.push(Object.assign(p,{lv:'T'})); } }
+  return out; }
+function renderTavla(tid,tab){
+  const C=TVC[tid], T=TOPICS[tid]; if(!C||!T){ location.hash='tavla'; return; }
+  const ch=tvChOf(tid), all=ch?CHS().flatMap(c=>c.groups.flatMap(g=>g.topics)).filter(t=>TVC[t]):[], ix=all.indexOf(tid), prevT=all[ix-1], nextT=all[ix+1];
+  const S={tab:tab==='utforsk'?'utforsk':'gjennom', i:0, step:0, ex:null, tasks:null, open:{}, x:C.x[0]};
+  const slides=tvSlides(tid);
+  main.innerHTML=`<div class="col pb-col">${tvCrumb([T.title,''])}
+    <section class="pb tv" id="pb" aria-label="Tavle: ${escAttr(T.title)}">
+      <div class="pb-bar"><div class="tv-tabs" role="tablist"><button type="button" role="tab" data-tab="gjennom">Gjennomgang</button><button type="button" role="tab" data-tab="utforsk">Utforsk</button></div>
+        <h2 class="tv-h">${T.title}</h2><span class="sp"></span>
+        ${prevT?`<a class="btn ghost small" href="#tavla/${prevT}" title="${escAttr(TOPICS[prevT].title)}">← Forrige tema</a>`:''}${nextT?`<a class="btn ghost small" href="#tavla/${nextT}" title="${escAttr(TOPICS[nextT].title)}">Neste tema →</a>`:''}
+        <button type="button" class="btn ghost small" data-pb="fs">Fullskjerm</button></div>
+      <div class="tv-body" id="tv-body"></div>
+    </section>
+    <div class="box"><span class="lab">Til læreren</span><p><b>Gjennomgang:</b> bla med piltastene eller mellomrom. På eksempel-siden kommer ett steg av gangen. <b>Utforsk:</b> endre tallene sammen med klassen og la elevene forutsi hva som skjer før du viser det. <b>F</b> gir fullskjerm. Elevenes side for temaet: <a href="#${ch?ch.id+'-'+tid:'matte'}">${T.title}</a>.</p></div></div>`;
+  const root=main.querySelector('#pb'), body=root.querySelector('#tv-body');
+  const exNew=()=>{ S.ex=C.ex(); S.step=0; }, tasksNew=()=>{ S.tasks=tvTasks(tid); S.open={}; };
+  const fx=h=>String(h).replace(/(^|[^\d<\/\w])(\d+)\/(\d+)(?![\d\/])/g,(m,p,a,b)=>p+F(+a,+b));
+  function slideHtml(sl){ const h=slideHtml0(sl); return /^(start|ex|exit)$/.test(sl.k)?fx(h):h; }
+  function slideHtml0(sl){
+    if(sl.k==='start') return `<p class="tv-goal"><span class="lab">Målet</span>${C.ide}</p><h3>Tenk først</h3><div class="tv-q">${C.start.q}</div><p class="tv-tip">Tenk selv i et halvt minutt, og snakk så med læringspartneren din.</p>
+      <div class="tv-rev">${S.open.s?`<div class="tv-a">${C.start.a}</div>`:`<button type="button" class="btn" data-tv="open" data-o="s">Vis forslag</button>`}</div>`;
+    if(sl.k==='model') return `<h3>Modell steg for steg</h3><div class="model tv-model" data-model="${sl.m}"${sl.v?` data-v='${escAttr(sl.v)}'`:''}></div>`;
+    if(sl.k==='regel') return `<h3>Regelen</h3><div class="learn tv-learn">${sl.rule}${sl.trap}</div>`;
+    if(sl.k==='ex'){ if(!S.ex) exNew(); return `<h3>Eksempel sammen</h3><div class="tv-q">${S.ex.q}</div><ol class="tv-st">${S.ex.s.map((x,k)=>`<li class="${k<S.step?'on':''}" ${k<S.step?'':'aria-hidden="true"'}>${x}</li>`).join('')}</ol>
+      <div class="tv-rev">${S.step<S.ex.s.length?`<button type="button" class="btn" data-tv="step">Vis neste steg</button><button type="button" class="btn ghost" data-tv="allsteps">Vis alle</button>`:''}<button type="button" class="btn ghost" data-tv="newex">Nytt eksempel</button></div>`; }
+    if(sl.k==='prov'){ if(!S.tasks) tasksNew(); return `<h3>Prøv selv</h3><p class="tv-tip">Regn på arket eller i boka. Vis svarene én og én.</p><div class="tv-tasks">${S.tasks.map((p,k)=>`<div class="tv-task"><div class="tv-tl"><b>${'ABCD'[k]}</b><span class="esc-tag${p.lv==='T'?' tk':''}">${p.lv==='T'?'Tenkeoppgave':'Nivå '+p.lv}</span></div>${p.ins?`<p class="esc-qins">${p.ins}</p>`:''}<div class="${p.expr?'qx':'q'}">${p.q}${p.expr?' =':''}</div>${p.mc?`<div class="esc-qmc">${p.mc.opts.map((o,j)=>`<span><b>${'abcdef'[j]})</b> ${o}</span>`).join('')}</div>`:''}
+        <div class="tv-ans">${S.open['t'+k]?`Svar: <b>${escAnsTxt(p)}</b>`:`<button type="button" class="btn ghost small" data-tv="open" data-o="t${k}">Vis svar</button>`}</div></div>`).join('')}</div>
+      <div class="tv-rev"><button type="button" class="btn ghost" data-tv="newtasks">Nye oppgaver</button></div>`; }
+    if(sl.k==='exit') return `<h3>Avslutning</h3><p class="tv-goal"><span class="lab">Dette lærte vi</span>${C.ide}</p><div class="tv-q">${C.exit.q}</div><p class="tv-tip">Skriv svaret på en lapp, eller forklar det til læringspartneren din.</p>
+      <div class="tv-rev">${S.open.e?`<div class="tv-a">${C.exit.a}</div>`:`<button type="button" class="btn" data-tv="open" data-o="e">Vis forslag</button>`}</div>${nextT?`<p class="tv-tip">Neste tema: <a href="#tavla/${nextT}">${TOPICS[nextT].title}</a></p>`:''}`;
+    return ''; }
+  function draw(){
+    root.querySelectorAll('[data-tab]').forEach(b=>{ b.setAttribute('aria-selected',String(b.dataset.tab===S.tab)); b.setAttribute('aria-pressed',String(b.dataset.tab===S.tab)); });
+    if(S.tab==='utforsk'){ const opts=Object.keys(TVX).map(k=>`<option value="${k}"${k===S.x?' selected':''}>${TV_XN[k]||k}</option>`).join('');
+      body.innerHTML=`<div class="tv-xhead"><label class="bd-sel">Modell <select id="tv-xsel">${opts}</select></label>${S.x!==C.x[0]?`<button type="button" class="btn ghost small" data-tv="xback">Tilbake til modellen for temaet</button>`:''}</div><div class="tv-xhost" data-tvx="${S.x}"></div>`;
+      const h=body.querySelector('.tv-xhost'); try{ h.__tv=TVX[S.x](h,S.x===C.x[0]?JSON.parse(JSON.stringify(C.x[1]||{})):{}); }catch(e){ console.error(e); h.innerHTML='<p class="model-err">Modellen kunne ikke vises.</p>'; }
+      body.querySelector('#tv-xsel').addEventListener('change',e=>{ S.x=e.target.value; draw(); }); return; }
+    const sl=slides[S.i];
+    body.innerHTML=`<div class="tv-slide" data-k="${sl.k}">${slideHtml(sl)}</div>
+      <nav class="tv-nav" aria-label="Sider i gjennomgangen"><button type="button" class="btn ghost" data-tv="prev" ${S.i===0?'disabled':''}>← Forrige</button>
+        <div class="tv-dots">${slides.map((x,k)=>`<button type="button" data-tv="go" data-n="${k}" aria-current="${k===S.i?'step':'false'}" title="${x.t}"><span>${k+1}</span><em>${x.t}</em></button>`).join('')}</div>
+        <button type="button" class="btn" data-tv="next" ${S.i===slides.length-1?'disabled':''}>Neste →</button></nav>`;
+    if(sl.k==='model'){ const el=body.querySelector('[data-model]'); try{ const api=MODELS[sl.m](el)||{}; if(sl.v&&api.load) api.load(JSON.parse(sl.v)); }catch(e){ console.error(e); el.innerHTML='<p class="model-err" style="padding:16px">Modellen kunne ikke vises.</p>'; } } }
+  function next(){ const sl=slides[S.i]; if(S.tab!=='gjennom') return; if(sl.k==='ex'&&S.ex&&S.step<S.ex.s.length){ S.step++; draw(); return; } if(S.i<slides.length-1){ S.i++; S.open={}; S.step=0; draw(); } }
+  function prev(){ if(S.tab!=='gjennom') return; if(S.i>0){ S.i--; S.open={}; draw(); } }
+  root.addEventListener('click',e=>{ const t=e.target.closest('[data-tab]'); if(t){ S.tab=t.dataset.tab; try{ history.replaceState(null,'','#tavla/'+tid+(S.tab==='utforsk'?'/utforsk':'')); }catch(err){} draw(); return; }
+    const f=e.target.closest('[data-pb=fs]'); if(f){ const fake=()=>{ const on=root.classList.toggle('pb-fake'); f.textContent=on?'Avslutt fullskjerm':'Fullskjerm'; };
+      if(root.classList.contains('pb-fake')) fake(); else if(document.fullscreenElement) document.exitFullscreen(); else { try{ const pr=root.requestFullscreen&&root.requestFullscreen(); if(pr&&pr.catch) pr.catch(fake); else if(!pr) fake(); }catch(err){ fake(); } } return; }
+    const b=e.target.closest('[data-tv]'); if(!b) return; const a=b.dataset.tv;
+    if(a==='next') next(); else if(a==='prev') prev(); else if(a==='go'){ S.i=+b.dataset.n; S.open={}; S.step=0; draw(); }
+    else if(a==='open'){ S.open[b.dataset.o]=1; draw(); } else if(a==='step'){ S.step++; draw(); } else if(a==='allsteps'){ S.step=S.ex.s.length; draw(); }
+    else if(a==='newex'){ exNew(); draw(); } else if(a==='newtasks'){ tasksNew(); draw(); } else if(a==='xback'){ S.x=C.x[0]; draw(); } });
+  window.__tvKey=e=>{ if(!root.isConnected||/INPUT|TEXTAREA|SELECT/.test(e.target.tagName)||e.ctrlKey||e.metaKey||e.altKey) return;
+    if(e.key==='ArrowRight'||e.key==='PageDown'||(e.key===' '&&!e.target.closest('button,a'))){ if(S.tab==='gjennom'){ e.preventDefault(); next(); } }
+    else if(e.key==='ArrowLeft'||e.key==='PageUp'){ if(S.tab==='gjennom'){ e.preventDefault(); prev(); } }
+    else if(e.key.toLowerCase()==='f'){ root.querySelector('[data-pb=fs]').click(); } else if(e.key==='Escape'&&root.classList.contains('pb-fake')) root.querySelector('[data-pb=fs]').click(); };
+  draw();
+}
+document.addEventListener('keydown',e=>{ if(window.__tvKey&&document.querySelector('#pb.tv')) window.__tvKey(e); });
+document.addEventListener('fullscreenchange',()=>{ const root=document.querySelector('#pb.tv'), f=root&&root.querySelector('[data-pb=fs]'); if(f) f.textContent=document.fullscreenElement===root?'Avslutt fullskjerm':'Fullskjerm'; });
+
 function route(){
   escLiveStop();
   const r=decodeURIComponent(location.hash.slice(1));
@@ -8238,6 +8859,8 @@ function route(){
   else if (r.startsWith('escape-las/')){ escLockRoom(r.slice(11)); cur='escape-bygger'; }
   else if (r.startsWith('escape-vert/')){ escHostPage(r.slice(12)); cur='escape-bygger'; }
   else if (r==='bli-med'||r.startsWith('bli-med/')){ escJoinPage(r.slice(8)); cur='bli-med'; }
+  else if (r==='tavla'){ renderTavlaHome(); cur='tavla'; }
+  else if (r.startsWith('tavla/')){ const [tid,tab]=r.slice(6).split('/'), c=tvChOf(tid); if(c&&gradeOf(c)!==GRADE) setGrade(gradeOf(c)); renderTavla(tid,tab); cur='tavla'; }
   else if (BOARDS[r]){ BOARDS[r](); cur='aktiviteter'; }
   else if (ch && r===ch.id){ renderChapter(ch); cur=r; }
   else if (ch && TOPICS[r.slice(ch.id.length+1)]){ renderTopic(ch, r.slice(ch.id.length+1)); cur=r; }
@@ -8256,9 +8879,9 @@ function closeMenu(){ side.classList.remove('open'); scrim.hidden=true; menuBtn.
 menuBtn.addEventListener('click', ()=> side.classList.contains('open')?closeMenu():openMenu());
 scrim.addEventListener('click', closeMenu);
 document.addEventListener('keydown', e=>{ if(e.key==='Escape'&&side.classList.contains('open')){ closeMenu(); menuBtn.focus(); } });
-try{ window.__mat8={ESC_TENK,escTopicTasks,escGenSlot,escCustomTask,escNumU,escFmtTxt,escHtmlTxt,escTaskTxt,escEnc,escAvail2,escWithSeed,WS_R,escSheets,escAnsTxt,TRAINERS,poly,parsePoly,polyEq,TOPICS,BOOK,F,P,fmt,powStr,pfac,MODELS,escRoom,escCheck,escDec,escAvail,gradeTids}; }catch(e){}
+try{ window.__mat8={TVX,TVC,tvSlides,tvTasks,ESC_TENK,escTopicTasks,escGenSlot,escCustomTask,escNumU,escFmtTxt,escHtmlTxt,escTaskTxt,escEnc,escAvail2,escWithSeed,WS_R,escSheets,escAnsTxt,TRAINERS,poly,parsePoly,polyEq,TOPICS,BOOK,F,P,fmt,powStr,pfac,MODELS,escRoom,escCheck,escDec,escAvail,gradeTids}; }catch(e){}
 document.addEventListener('click',e=>{ const b=e.target.closest('[data-grade]'); if(!b) return; const g=+b.dataset.grade; if(g===GRADE) return; setGrade(g);
-  const r=decodeURIComponent(location.hash.slice(1)); if(r==='laerer'||r==='spill'||r==='brettspill'||r.startsWith('eksamen')||r==='aktiviteter'||r==='escape-bygger'||BOARDS[r]||r===''||r==='matte') route(); else location.hash='matte'; });
+  const r=decodeURIComponent(location.hash.slice(1)); if(r==='laerer'||r==='spill'||r==='brettspill'||r.startsWith('eksamen')||r==='aktiviteter'||r==='escape-bygger'||r==='tavla'||BOARDS[r]||r===''||r==='matte') route(); else location.hash=r.startsWith('tavla/')?'tavla':'matte'; });
 setGrade(GRADE);
 window.addEventListener('hashchange', route);
 route();
